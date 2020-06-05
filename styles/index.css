@@ -3,3 +3,265 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+html, body {
+  font-family: 'Fira Mono', monospace;
+  background-color: white;
+  color: black;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #666;
+}
+
+p {
+  letter-spacing: -1.25px;
+  line-height: 1.25em;
+  margin: 1em 0;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1.125em;
+}
+
+h4, h5, h6 {
+  margin: -10px 0;
+}
+
+#navbar {
+  background: white;
+  box-shadow: 1px 3px rgba(221,221,221, 0.5);
+}
+
+img {
+  margin: 20px auto;
+  display: block;
+}
+
+pre {
+  background: #ddd;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+code {
+  background: #ddd;
+  padding: 3px;
+  border-radius: 5px;
+  color: #ff7070;
+}
+
+.keyboard {
+  margin: 10px auto;
+  height: 30vh;
+  max-width: 98%;
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard.octave > .note.black{
+  margin: 0 -6%;
+}
+
+.keyboard.ten > .note.black {
+  margin: 0 -5%;
+}
+
+.note {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  max-width: 20%;
+}
+
+.note.black {
+  justify-content: center;
+  position: relative;
+  height: 70%;
+  background-color: #474747;
+  color: white;
+  width: 8%;
+  max-width: 12%;
+  margin: 0 -7%;
+}
+
+.note.white {
+  flex-flow: column;
+  justify-content: flex-end;
+  outline: 3px solid #474747;
+  color: #474747;
+  background-color: #ffffff;
+  padding-bottom: 1%;
+}
+
+.note.white.emphasized {
+  background-color: #00f;
+  color: white;
+}
+
+.note.black.emphasized {
+  background-color: rgb(0, 0, 114);
+  color: white;
+}
+
+.note.white.pressed {
+  background-color: #f00;
+  color: white;
+}
+
+.note.black.pressed {
+  background-color: rgb(114, 0, 0);
+  color: white;
+}
+
+#newsletterSignupForm {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#newsletterEmailInput {
+  width: 200px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#newsletterSignupBtn {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+button {
+  border-width: 0;
+  padding: 10px 60px;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+button.centered {
+  margin: 0 auto;
+  display: block;
+}
+
+button.melody {
+  background: black;
+  color:white;
+}
+
+@media only screen and (max-width: 375px) {
+
+  /*
+    iPhone X, 6, 7, 8
+  */
+
+  .note.black {
+    width: 7%;
+    margin: 0 -6%;
+  }
+
+  .keyboard.octave > .note.black{
+    margin: 0 -5.5%;
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+
+  /*
+    iPhone 5
+  */
+
+  #logo {
+    font-size: 1em;
+  }
+
+  .navbar-right {
+    font-size: 0.75em;
+  }
+
+  #header > h1 {
+    margin-left: 0;
+  }
+}
+
+.links-page #logo {
+  font-size: 3em;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background-color: #222;
+    color: white;
+  }
+
+  #logo {
+    color: white;
+  }
+
+  img {
+    filter: grayscale(20%);
+  }
+
+  a {
+    color: white;
+  }
+
+  a:visited {
+    color: #bbb;
+  }
+
+  #navbar {
+    background: #222;
+    box-shadow: 1px 3px rgba(24,24,24, 0.5);
+  }
+
+  #body > pre {
+    background: #222;
+  }
+
+  code {
+    background: #222;
+    padding: 3px;
+    border-radius: 5px;
+    color: #fc9b9b;
+  }
+
+  #newsletterSignupForm {
+    border-color: #fff;
+  }
+  
+  #newsletterSignupBtn {
+    background: white;
+    color: black;
+  }
+
+  button.melody {
+    color: black;
+    background: rgb(216, 216, 216);
+  }
+}
