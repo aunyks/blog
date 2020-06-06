@@ -20,7 +20,7 @@ export default () => (
     </Head>
     <p>
       This is the third part in <a href="/2019/11/learning-music-theory">my series about music theory</a>. In the
-          <a href="/2019/11/musical-scales">previous post</a>, we covered musical scales, namely the Major and
+          &nbsp;<a href="/2019/11/musical-scales">previous post</a>, we covered musical scales, namely the Major and
           Natural Minor scales. In this
           part, we'll cover key.
         </p>
@@ -92,63 +92,71 @@ export default () => (
     <p>
       Woah! The C Major and A Minor scales both have all notes of the white keys in their scale. Does this mean that
       they're identical?
-        </p>
+    </p>
     <p>
       Not necessarily. The notes of their degrees still differ. For example, the second degree of the A Minor scale
-      is B, while the second degree of the C Major scale is D.
-        </p>
+      is B, while the second degree of the C Major scale is D. Also, their tonics, or root notes, are different, which is important for this post.
+    </p>
     <h3>Key</h3>
     <p>
-      In most Western music, a sequence of notes like that of a melody or entire song typically starts from and
-      returns to the tonic of a scale. If this is the case, the sequence is known to be in the key of the scale of
-      which that note is the tonic. For example, the song "Mary Had a Little Lamb" is often played in the key of C
-      Major.
-        </p>
+      In most Western music, a sequence of notes like that of a melody often move between the notes in a scale. This is very useful information, as
+      understanding the scale with which a piece is composed helps us better understand the piece. But, as we saw above, some scales share notes.
+      So, how do we know which scale the piece is composed in if the melody's notes fit more than one scale?
+    </p>
     <p>
-      This is because the melody of the song uses notes from the C Major Scale and feels resolved or closed when the
-      C note is played.
-        </p>
+      The answer is in the resolution. Take "Mary Had a Little Lamb", for example. The song's melody is as follows.
+    </p>
     <img width="300"
       src="https://www.true-piano-lessons.com/images/xMaryCtab.jpg.jpg.pagespeed.ic.lSyAFBbdIC.jpg" />
     <p>
-      Here, you can see that "his fleece was white as snow" ends on a C and sounds like this.
-        </p>
-    <button class="centered melody" onClick={() => {
-      const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'C4']
-      window.playMelody(notes)
-    }} id="resolutionPlayBtn">Resolved Melody</button>
+      Here, you can see that the song's melody consists of a group of white notes on a piano. We saw earlier that both C Major and
+      A Natural Minor consist of white notes. To determine which between these two is the scale of the song, we need to find out which
+      note the melody resolves, or finishes, on.
+    </p>
     <p>
-      The melody felt finished, or resolved, on that C note. To be sure of this, let's remove that last C and see
-      how the melody sounds.
-        </p>
-    <button class="centered melody" onClick={() => {
-      const notes = ['E4', 'D4', 'D4', 'E4', 'D4']
-      window.playMelody(notes)
-    }} id="unresolutionPlayBtn">Unresolved Melody</button>
+      Which sounds better? A resolution on A or C?
+    </p>
+    <div className="grid grid-cols-2 gap-2 mx-auto">
+      <button class="melody" onClick={() => {
+        const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'A3']
+        window.playMelody(notes)
+      }} id="resolutionPlayBtn">A</button>
+      <button class="melody" onClick={() => {
+        const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'C4']
+        window.playMelody(notes)
+      }} id="resolutionPlayBtn">C</button>
+    </div>
     <p>
-      It's a bit unsettling, right? You know that there's a note that would provide a satisfying finish to the above
-      melody, but it's just not there.
-        </p>
+      You probably said C, since that's what the melody actually finishes on. Because resolving on C feels much more natural than resolving on A,
+      we can say that C is the tonic of this scale.
+    </p>
     <p>
-      That note is the tonic, or C in this case.
-        </p>
+      Starting over, we were able to determine that the song used either the C Major or A Natural Minor scale based on the group of notes used in the song.
+      We noticed that the melody resolved on a C and not an A, though, so it must be using the C Major Scale.
+    </p>
+    <p>
+      With this being said, we can also say that the song is in the key of C Major. Put simply, <i>Key = Scale + Tonic</i>,
+      so we can find the key by first determining which scales have the song's notes. If only one scale has them, then the
+      key of the song is the same as that scale. If there is more than one scale, we can find the key by determining which
+      scale's tonic note the song resolves on.
+    </p>
     <h3 id="finding-key">Finding the Key of a Song</h3>
     <p>
-      Put simply, <strong>key is a scale plus a tonic</strong>. So, we can find the key that a song is in by first
+      Again, <strong>key is a scale plus a tonic</strong>. So, we can find the key that a song is in by first
           finding the scale. We need to ask ourselves what notes are being played throughout the song, then what scales
-          encapsulate those notes.
-        </p>
+         consist of those notes.
+    </p>
     <p>
       In the case of "Mary Had a Little Lamb", the notes in the song are on some of the white keys of a piano.
-      This means that two possible scales for this song are A Natural Minor and C Major, since those two have all
-      white keys in their scale.
-        </p>
+      This means that two possible scales for this song are A Natural Minor and C Major, since those two have notes from all
+      of the white keys in their scale.
+    </p>
     <p>
       Then, we need to listen to the song and determine when resolutions occur and on which note those resolutions
       take place. Once you've found that note, find out which one of the scales from earlier has that note as its
       tonic.
       The key of the song is named after that scale.
-        </p>
+    </p>
     <p>
       As we can recall from earlier, "Mary Had a Little Lamb" resolves on a C. A C is the tonic of C Major and
           <em>not</em> A Natural Minor, so this song is in the key of C Major!
@@ -157,13 +165,13 @@ export default () => (
     <h4>Why don't I always hear people say that the key of a song is in X Major?</h4>
     <p>
       When a key is in a major scale, people will typically leave out the "major" part when referring to it. So,
-      when people say that a song is in the key of A, for example, they're saying that the key is in A Major.
+      when people say that a song is in the key of F, for example, they're saying that the key is in F Major.
         </p>
     <h4>Do major and minor keys have the same tonic?</h4>
     <p>
       Yes, just like how the E Major and E Minor scales, for example, have an E note as their first degree, keys in
-      E Major and E Minor both have E as their tonic.
-        </p>
+      E Major and E Minor both have E as their tonic. Note that the other degrees in these two scales differ, though.
+    </p>
     <h3>What's next?</h3>
     <p>
       In the next post, we'll cover chords.

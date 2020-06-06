@@ -116,17 +116,16 @@ export default () => (
     <h3>FAQs</h3>
     <h4>Why does an octave start with C? Why not A?</h4>
     <p>
-      The first note in an octave doesn't actually have to be a C; that's just a common practice in modern music
-      theory. You can start your octaves with A, G, or even D# if you want, but when reading and discussing music
-      you'll typically find C notes to be the center of an octave.
-        </p>
+      The first note in an octave doesn't actually have to be a C. You can start your octave on any note, and all notes between the start and the next time the start note appears are in the same octave.
+      For example, if I start my octave on an F, every note between this F and the next F is in the same octave.
+    </p>
     <h4>How many octaves are there?</h4>
     <p>
-      Technically, an infinite amount. The frequency of any note is simply a multiple of the same note in any other
+      Technically, an infinite amount. Every musical note has a corresponding frequency of sound, and the frequency of some note is a multiple of the frequency of the same note in any other
       octave. So, technically the frequency can increase toward infinity (infinite octaves) or decrease toward 0.
           The limit for us is the <a href="http://www.cochlea.org/en/hear/human-auditory-range">range of frequencies
             that we can hear</a>.
-        </p>
+    </p>
     <h4>Should I call a black key a sharp or flat?</h4>
     <p>
       They're identical, but what you call it depends on the key you're in. We'll talk about those in a later

@@ -28,7 +28,7 @@ export default () => (
       You'll find that there's an incredible amount of
       ways to group notes in music theory, but aside from an octave a scale is one of the most fundamental methods
       of grouping. Notes within a scale have beautiful musical relationships, and scales are the basis of concepts
-      like chords.
+      like chords and melodies.
         </p>
     <p className="disclaimer">
       Remember: You can hit the notes to play their sounds. If you're on iPhone, turn your ringer on to enable
@@ -166,7 +166,7 @@ export default () => (
     <p>
       Et cetera. Sometimes, you'll see people say things like D Sharp Sharp (meaning E), B Flat Flat (meaning A), or
           even C Flat (meaning B) or E Sharp (meaning F). This is because the sharps and flats <em>actually</em>
-          indicate a moving a half-step
+          &nbsp;indicate moving a half-step
           in one direction. So, two sharps indicate a whole step forwards, and two flats indicate a whole step
           backwards. Since "step" and "tone" can be used interchangeably, I'll be using "step" from now on.
         </p>
@@ -178,16 +178,16 @@ export default () => (
       sequence of steps from the tonic that leads to the other notes in the scale.
         </p>
     <p>
-      Most of the scales found in modern western music consist of 8 notes. 7 of the 8 notes are unique, as the tonic
+      Some of the most common scales in modern western music consist of 8 notes. 7 of the 8 notes are unique, as the tonic
       note
           appears at the bottom of the scale <em>and again</em> an octave up at the top of the scale. One of the most
-          common scales is
+          common types of these scales is
           the major scale, which we'll cover in this post.
         </p>
     <h3>The Major Scale</h3>
     <p>
       A major scale is a group of notes that consists of a root, or tonic, and notes that follow the root in the
-      following sequence: W-W-H-W-W-W-H. A specific major scale is named after its root / tonic, so the C major
+      following sequence: W-W-H-W-W-W-H, where W is a whole step and H is a half step. A specific major scale is named after its root / tonic, so the C major
       scale is a major scale with a C as the root / tonic.
         </p>
     <h4>C Major</h4>
@@ -218,7 +218,7 @@ export default () => (
     <p>
       With this, we follow the major scale form of W-W-H-W-W-W-H! And, a cool observation is that the C major scale
       is all
-      of the white keys between any C and the C to the right of it.
+      of the white keys between any C and a C next to it.
         </p>
     <p>
       If you play the notes sequentially from left to right, you'll find that the notes sound pleasent together.
@@ -317,9 +317,9 @@ export default () => (
     <h3>Other Scales</h3>
     <p>
       While the major and minor scales are
-          the most common scales and the only ones you <em>should</em> know, there are more than <a
+          the most common scales, there are more than <a
         href="https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-scales/how-many-scales-are-there/">24,000
-            possible scales in music</a>.
+            possible scales in music</a>, and some scales are more common in certain genres, like <a href="https://pianoscales.org/blues.html">Blues</a> and <a href="https://pianoscales.org/jazz.html">Jazz</a> scales.
         </p>
     <h3>FAQs</h3>
     <h4>What are scale degrees again?</h4>
