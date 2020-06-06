@@ -24,7 +24,7 @@ export default () => (
           Natural Minor scales. In this
           part, we'll cover key.
         </p>
-    <p class="disclaimer">
+    <p className="disclaimer">
       Remember: You can hit the notes to play their sounds. If you're on iPhone, turn your ringer on to enable
       sound.
         </p>
@@ -38,56 +38,56 @@ export default () => (
       An interesting phenomenon related to scales is that the notes in their degrees aren't unique to the scale. For
       example, here's the C Major scale.
         </p>
-    <div class="keyboard octave">
-      <div class="note white c4 emphasized">C</div>
-      <div class="note c-sh4 black">C#</div>
-      <div class="note d4 white emphasized">D</div>
-      <div class="note d-sh4 black">D#</div>
-      <div class="note e4 white emphasized">E</div>
-      <div class="note f4 white emphasized">F</div>
-      <div class="note f-sh4 black">F#</div>
-      <div class="note g4 white emphasized">G</div>
-      <div class="note g-sh4 black">G#</div>
-      <div class="note a4 white emphasized">A</div>
-      <div class="note a-sh4 black">A#</div>
-      <div class="note b4 white emphasized">B</div>
-      <div class="note c5 white emphasized">C</div>
+    <div className="keyboard octave">
+      <div className="note white c4 emphasized">C</div>
+      <div className="note c-sh4 black">C#</div>
+      <div className="note d4 white emphasized">D</div>
+      <div className="note d-sh4 black">D#</div>
+      <div className="note e4 white emphasized">E</div>
+      <div className="note f4 white emphasized">F</div>
+      <div className="note f-sh4 black">F#</div>
+      <div className="note g4 white emphasized">G</div>
+      <div className="note g-sh4 black">G#</div>
+      <div className="note a4 white emphasized">A</div>
+      <div className="note a-sh4 black">A#</div>
+      <div className="note b4 white emphasized">B</div>
+      <div className="note c5 white emphasized">C</div>
     </div>
     <p>
       And here's the A (Natural) Minor Scale.
         </p>
-    <div class="keyboard octave">
-      <div class="note a3 white emphasized">A</div>
-      <div class="note a-sh3 black">A#</div>
-      <div class="note b3 white emphasized">B</div>
-      <div class="note white c4 emphasized">C</div>
-      <div class="note c-sh4 black">C#</div>
-      <div class="note d4 white emphasized">D</div>
-      <div class="note d-sh4 black">D#</div>
-      <div class="note e4 white emphasized">E</div>
-      <div class="note f4 white emphasized">F</div>
-      <div class="note f-sh4 black">F#</div>
-      <div class="note g4 white emphasized">G</div>
-      <div class="note g-sh4 black">G#</div>
-      <div class="note a4 white emphasized">A</div>
+    <div className="keyboard octave">
+      <div className="note a3 white emphasized">A</div>
+      <div className="note a-sh3 black">A#</div>
+      <div className="note b3 white emphasized">B</div>
+      <div className="note white c4 emphasized">C</div>
+      <div className="note c-sh4 black">C#</div>
+      <div className="note d4 white emphasized">D</div>
+      <div className="note d-sh4 black">D#</div>
+      <div className="note e4 white emphasized">E</div>
+      <div className="note f4 white emphasized">F</div>
+      <div className="note f-sh4 black">F#</div>
+      <div className="note g4 white emphasized">G</div>
+      <div className="note g-sh4 black">G#</div>
+      <div className="note a4 white emphasized">A</div>
     </div>
     <p>
       And if we shift the above keyboard to the left a few keys we get...
         </p>
-    <div class="keyboard octave">
-      <div class="note white c4 emphasized">C</div>
-      <div class="note c-sh4 black">C#</div>
-      <div class="note d4 white emphasized">D</div>
-      <div class="note d-sh4 black">D#</div>
-      <div class="note e4 white emphasized">E</div>
-      <div class="note f4 white emphasized">F</div>
-      <div class="note f-sh4 black">F#</div>
-      <div class="note g4 white emphasized">G</div>
-      <div class="note g-sh4 black">G#</div>
-      <div class="note a4 white emphasized">A</div>
-      <div class="note a-sh4 black">A#</div>
-      <div class="note b4 white emphasized">B</div>
-      <div class="note c5 white emphasized">C</div>
+    <div className="keyboard octave">
+      <div className="note white c4 emphasized">C</div>
+      <div className="note c-sh4 black">C#</div>
+      <div className="note d4 white emphasized">D</div>
+      <div className="note d-sh4 black">D#</div>
+      <div className="note e4 white emphasized">E</div>
+      <div className="note f4 white emphasized">F</div>
+      <div className="note f-sh4 black">F#</div>
+      <div className="note g4 white emphasized">G</div>
+      <div className="note g-sh4 black">G#</div>
+      <div className="note a4 white emphasized">A</div>
+      <div className="note a-sh4 black">A#</div>
+      <div className="note b4 white emphasized">B</div>
+      <div className="note c5 white emphasized">C</div>
     </div>
     <p>
       Woah! The C Major and A Minor scales both have all notes of the white keys in their scale. Does this mean that
@@ -117,11 +117,11 @@ export default () => (
       Which sounds better? A resolution on A or C?
     </p>
     <div className="grid grid-cols-2 gap-2 mx-auto">
-      <button class="melody" onClick={() => {
+      <button className="melody" onClick={() => {
         const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'A3']
         window.playMelody(notes)
       }} id="resolutionPlayBtn">A</button>
-      <button class="melody" onClick={() => {
+      <button className="melody" onClick={() => {
         const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'C4']
         window.playMelody(notes)
       }} id="resolutionPlayBtn">C</button>
@@ -159,7 +159,7 @@ export default () => (
     </p>
     <p>
       As we can recall from earlier, "Mary Had a Little Lamb" resolves on a C. A C is the tonic of C Major and
-          <em>not</em> A Natural Minor, so this song is in the key of C Major!
+          &nbsp;<em>not</em> A Natural Minor, so this song is in the key of C Major!
         </p>
     <h3>FAQs</h3>
     <h4>Why don't I always hear people say that the key of a song is in X Major?</h4>
