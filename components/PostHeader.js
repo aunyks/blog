@@ -11,7 +11,7 @@ export default function PostHeader({
 
   return (
     <section>
-      <h1>{title}</h1>
+      <h1 className="mt-2 lg:mt-0">{title}</h1>
       {subtitle && (
         <h2>{subtitle}</h2>
       )}

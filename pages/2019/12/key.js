@@ -23,11 +23,11 @@ export default () => (
           &nbsp;<a href="/2019/11/musical-scales">previous post</a>, we covered musical scales, namely the Major and
           Natural Minor scales. In this
           part, we'll cover key.
-        </p>
+    </p>
     <p className="disclaimer">
       Remember: You can hit the notes to play their sounds. If you're on iPhone, turn your ringer on to enable
       sound.
-        </p>
+    </p>
     <h3>Scales Share Notes</h3>
     <p>
       Recall that a scale is no more than a group of notes within the same octave. The notes, or degrees, in a scale
