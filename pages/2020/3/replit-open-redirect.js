@@ -5,7 +5,6 @@ export default () => (
   <Post
     date="2020-03-05"
     title="Repl.it Open URL Redirection Vulnerability Writeup"
-    subtitle="Exploiting Redirection"
     description="Covering the hack"
     cardImage="https://blog.aunyks.com/img/tech/vuln-writeup-repl-it.png">
     <p><u>NOTE: The content in this post is solely for educational purposes. Do NOT attack entities that did not
