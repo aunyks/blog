@@ -14,14 +14,12 @@ export default () => (
       I want to learn to play more music and experiment with composing and producing my own, and I think
       understanding music theory will serve as the perfect catalyst for reaching these goals. With this being said,
       I'm going to compile the interesting stuff I learn here.
-        </p>
+    </p>
     <h3 id="whats-music-theory">What's music theory?</h3>
     <p>
-      I define music theory as the study of the relationship between sound and rhythm and how the grouping
-      and
-      variation of the two can affect the feel of sound to the human ear. It's the theory behind the notes, chords,
-      and rhythms that make music sound good to us.
-        </p>
+      I define music theory as the exploration into why music and sound make us feel the way we do. It's the theory behind the notes, chords,
+      and rhythms that make music evoke certain human emotions.
+    </p>
     <h3 id="why-music-theory">Why music theory?</h3>
     <p>
       Some knowledge of music theory is a prerequisite for all musicians who want to learn, play, or create music
