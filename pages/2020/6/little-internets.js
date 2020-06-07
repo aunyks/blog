@@ -23,7 +23,7 @@ export default () => (
     <figure className="my-5">
       <img className="w-full lg:w-1/2" src="/img/tech/inet-core-and-edge.gif"
         alt="Eight computers are split into groups of four. The first group is at the top left of the image, and the second group is at the bottom right of the image. Each group is connected to an Edge Router. Both Edge Routers are connected to a group of Core Routers that, themselves, are interconnected ontop of a blue area. The computers in the red areas are connected to each other by the routers in the blue area. The red is the Edge. The blue is the Core." />
-      <figcaption className="w-full lg:w-1/2 text-xs mx-auto">This is a simplified model of the Internet. The red areas are the edge. The blue areas are the core.</figcaption>
+      <figcaption className="w-full lg:w-1/2 text-xs mx-auto">This is a simplified model of the Internet. The red areas are the edge. The blue area is the core.</figcaption>
     </figure>
     <p>
       "Of course my stuff will be at the Edge. It wouldn't be doing much of anything at the Core," I thought.
