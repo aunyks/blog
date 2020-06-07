@@ -4,7 +4,7 @@ export default function Navbar() {
       id="navbar"
       className="w-full fixed flex flex-row justify-between top-0 py-2 px-3 lg:px-48 z-10">
       <section className="navbar-left">
-        <a href="https://blog.aunyks.com" className="no-underline" style={{
+        <a href="/" className="no-underline" style={{
           fontSize: '1.5em'
         }}>⚡️</a>
       </section>

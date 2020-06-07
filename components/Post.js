@@ -18,6 +18,7 @@ export default function Post({
     <>
       <PostHead
         title={title}
+        subtitle={subtitle}
         description={description}
         cardImage={cardImage} />
       <Navbar />
