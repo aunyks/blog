@@ -185,10 +185,6 @@ export default () => (
       __html: `document.getElementById('resolutionPlayBtn').addEventListener('click', () => {
         const notes = ['E4', 'D4', 'D4', 'E4', 'D4', 'C4']
         playMelody(notes)
-      })
-      document.getElementById('unresolutionPlayBtn').addEventListener('click', () => {
-        const notes = ['E4', 'D4', 'D4', 'E4', 'D4']
-        playMelody(notes)
       })`}}></script>
   </Post>
 )

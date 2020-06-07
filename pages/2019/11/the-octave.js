@@ -15,8 +15,8 @@ export default () => (
       </>
     )}>
     <Head>
-      <script src="https://unpkg.com/tone@latest/build/Tone.js"></script>
-      <script src="/js/keyboard.js"></script>
+      <script src="https://unpkg.com/tone@latest/build/Tone.js" async></script>
+      <script src="/js/keyboard.js" async></script>
     </Head>
     <p>
       This is the first part in <a href="/2019/11/learning-music-theory">my series about music theory</a>. In this
