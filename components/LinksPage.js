@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import GAnalytics from './GAnalytics'
+import GAnalytics from 'components/GAnalytics'
 
 export default function LinksPage({
   pageTitle,

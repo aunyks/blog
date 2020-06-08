@@ -1,9 +1,9 @@
-import PostHead from './PostHead'
-import Navbar from './Navbar'
-import PostHeader from './PostHeader'
-import PostBody from './PostBody'
-import PostFooter from './PostFooter'
-import GAnalytics from './GAnalytics'
+import PostHead from 'components/PostHead'
+import Navbar from 'components/Navbar'
+import PostHeader from 'components/PostHeader'
+import PostBody from 'components/PostBody'
+import PostFooter from 'components/PostFooter'
+import GAnalytics from 'components/GAnalytics'
 
 export default function Post({
   title,
