@@ -54,7 +54,7 @@ h4, h5, h6 {
 
 #navbar {
   background: white;
-  box-shadow: 1px 3px rgba(221,221,221, 0.5);
+  box-shadow: 0px 0px 5px #000;
 }
 
 img {
@@ -241,7 +241,7 @@ button.melody {
 
   #navbar {
     background: #222;
-    box-shadow: 1px 3px rgba(24,24,24, 0.5);
+    box-shadow: 0px 0px 5px #fff;
   }
 
   #body > pre {
