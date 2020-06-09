@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 html, body {
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
   background-color: white;
   color: black;
 }
@@ -20,9 +20,12 @@ a:visited {
 }
 
 p {
-  letter-spacing: -1.25px;
   line-height: 1.25em;
   margin: 1em 0;
+}
+
+h1 {
+  letter-spacing: -1px;
 }
 
 h1, h2, h3, h4 {
@@ -30,7 +33,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 3em;
 }
 
 h2 {
@@ -171,6 +174,14 @@ button.melody {
   /*
     iPhone X, 6, 7, 8
   */
+
+  h1 {
+    font-size: 1.75em;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
 
   .note.black {
     width: 7%;

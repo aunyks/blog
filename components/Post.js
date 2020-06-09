@@ -15,7 +15,7 @@ export default function Post({
   children
 }) {
   return (
-    <>
+    <div style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}>
       <PostHead
         title={title}
         subtitle={subtitle}
@@ -28,6 +28,6 @@ export default function Post({
         <PostFooter remark={remark} date={date} />
         <GAnalytics />
       </PostBody>
-    </>
+    </div>
   )
 }
