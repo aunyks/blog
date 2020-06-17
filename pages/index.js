@@ -3,7 +3,7 @@ import Link from 'components/Link'
 
 export default () => (
   <LinksPage
-    pageTitle="Blog"
+    pageTitle="All"
     title="web log">
     <Link href="/music">music</Link>
     <Link href="/tech">tech</Link>

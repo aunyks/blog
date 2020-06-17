@@ -9,7 +9,7 @@ export default function LinksPage({
   return (
     <>
       <Head>
-        <title>{`${pageTitle} - Gerald Nash`}</title>
+        <title>{`${pageTitle} - High Voltage`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Gerald Nash's web log." />
