@@ -13,7 +13,7 @@ export default function LinksPage({
         <title>{`${pageTitle} - Hi-Voltage`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Gerald Nash's web log." />
+        <meta name="description" content={subtitle} />
         <meta name="author" content="Gerald Nash" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" type="image/png" href="https://aunyks.com/favicon.png" />
