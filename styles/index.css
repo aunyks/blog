@@ -4,12 +4,6 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
-html, body {
-  font-family: "Fira Mono", monospace;
-  background-color: white;
-  color: black;
-}
-
 a {
   color: black;
   text-decoration: underline;
@@ -227,8 +221,8 @@ button.melody {
     color: white;
   }
 
-  #logo {
-    color: white;
+  path {
+    fill: white;
   }
 
   img {

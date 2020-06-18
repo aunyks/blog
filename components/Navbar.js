@@ -17,10 +17,10 @@ export default function Navbar() {
   return (
     <nav id="navbar"
       style={{ boxShadow: '0px 0px 2px #000' }}
-      className="z-50 bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 px-5">
+      className="z-50 bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-5">
       <div className="flex items-center flex-shrink-0 mr-6">
         <a href="/" style={{ textColor: 'black' }} className="font-semibold text-xl tracking-tight no-underline">
-          High Voltage
+          Hi-Voltage
         </a>
       </div>
       <div className="block lg:hidden">
@@ -43,7 +43,7 @@ export default function Navbar() {
           <a href="/tech" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Tech
             </a>
-          <a style={{ cursor: 'pointer' }} onClick={() => alert('For all inquiries:\ncontact@mezcla.xyz')} className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          <a href="https://trustless.science" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Tech{'<>'}Culture
             </a>
         </div>
