@@ -17,6 +17,12 @@ export default function LinksPage({
         <meta name="author" content="Gerald Nash" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" type="image/png" href="https://aunyks.com/favicon.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@aunyks" />
+        <meta name="twitter:creator" content="@aunyks" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={subtitle} />
+        <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
       </Head>
       <div className="h-screen lg:w-1/2 flex flex-col pt-32">
         <div className="px-6 lg:px-24">

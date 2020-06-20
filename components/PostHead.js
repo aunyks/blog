@@ -15,14 +15,17 @@ export default function PostHead({
       <meta key="description" content={description} />
       <meta key="author" name="author" content="Gerald Nash" />
       <meta key="theme-color" name="theme-color" content="#ffffff" />
-      <link href="https://fonts.googleapis.com/css?family=Fira+Mono&amp;display=swap" rel="stylesheet" media="all" async />
       <link rel="icon" type="image/png" href="https://aunyks.com/favicon.png" />
-      <meta name="twitter:card" content="summary_large_image" />
+      {!!cardImage ? (
+        <meta name="twitter:card" content="summary_large_image" />
+      ) : (
+          <meta name="twitter:card" content="summary" />
+        )}
       <meta name="twitter:site" content="@aunyks" />
       <meta name="twitter:creator" content="@aunyks" />
       <meta name="twitter:title" content={effectiveTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={cardImage} />
+      <meta name="twitter:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
     </Head>
   )
 }
