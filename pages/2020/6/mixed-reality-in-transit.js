@@ -70,7 +70,7 @@ export default () => (
     <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
     <p>
       I finished it. By the end of the night, I'd successfully ported Smartmap Card from FB/IG to Snapchat. I submitted the filter and felt needed excitement when I saw that it was accepted and live in minutes,
-      much faster than Facebook's hours to weeks. I went to sleep knowing I was gonna record a new demo video to show off the better marker tracking that Snapchat offerred in addition to a link to the filter that people could
+      much faster than Facebook's hours to weeks. I went to sleep knowing I was gonna record a new demo video to show off the better marker tracking that Snapchat offered in addition to a link to the filter that people could
       use whenever they wanted to use the filter.
     </p>
     <blockquote className="twitter-tweet">
@@ -100,8 +100,8 @@ export default () => (
     </p>
     <p>
       I learned that Snapchat's AR platform has much better technology than Facebook's with respect to marker tracking, face+hand tracking, segmentation, and more respects. Snap's Lens Studio and publishing workflow also provides
-      a much better workflow than that of Facebook's Spark. So the only ways that Facebook's platform beats Snap's are by providing a more approachable programming experience to creators through its <a target="_blank" href="https://twitter.com/aunyks/status/1259231337170558977?s=20">Patch Editor</a>,
-      allowing creators to program shaders into their filters, and by having a larger user base.
+      a much better experience than that of Facebook's Spark. So the only ways that Facebook's platform beats Snap's are by providing a more approachable programming experience to creators through its <a target="_blank" href="https://twitter.com/aunyks/status/1259231337170558977?s=20">Patch Editor</a>,
+      allowing creators to program <a href="https://en.wikipedia.org/wiki/Shader">shaders</a> into their filters, and by having a larger user base.
     </p>
     <p>
       In the end I don't quite know what's next for these projects, if anything, but it was certainly interesting getting a taste of Internet virality.
