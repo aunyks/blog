@@ -10,5 +10,6 @@ export default () => (
     <Link href="/2020/2/howd-i-get-here">how'd i get here?</Link>
     <Link href="/tech/vuln-writeups">vuln writeups</Link>
     <Link href="/2020/6/little-internets">little internets</Link>
+    <Link href="/2020/6/mixed-reality-in-transit">mixed reality in transit</Link>
   </LinksPage>
 )
