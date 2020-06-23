@@ -8,6 +8,6 @@ export default () => (
     subtitle="Increasing potential">
     <Link href="/music">music</Link>
     <Link href="/tech">tech</Link>
-    <Link href="https://trustless.science">culture{`<>`}tech</Link>
+    <Link href="/tech-culture">culture{`<>`}tech</Link>
   </LinksPage>
 )

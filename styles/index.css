@@ -14,10 +14,6 @@ a {
   text-decoration: underline;
 }
 
-a:visited {
-  color: #666;
-}
-
 p {
   line-height: 1.25em;
   margin: 1em 0;
@@ -236,10 +232,6 @@ button.melody {
 
   a {
     color: white;
-  }
-
-  a:visited {
-    color: #bbb;
   }
 
   #navbar {

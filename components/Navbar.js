@@ -37,13 +37,16 @@ export default function Navbar() {
         </div>
         <div>
           {/* RIGHT SIDE OF NAV (LARGE SCREEN) */}
+          <a href="https://aunyks.com/about" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+            About
+          </a>
           <a href="/music" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Music
           </a>
           <a href="/tech" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Tech
-            </a>
-          <a href="https://trustless.science" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </a>
+          <a href="/tech-culture" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Tech{'<>'}Culture
             </a>
         </div>
