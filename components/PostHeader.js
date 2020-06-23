@@ -16,7 +16,7 @@ export default function PostHeader({
         <h2>{subtitle}</h2>
       )}
       <time dateTime={date}>{`${month} ${day}, ${year}`}</time>
-      <hr />
+      <hr style={{ marginBottom: '0.75em' }} />
     </section>
   )
 }

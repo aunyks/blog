@@ -16,7 +16,7 @@ export default () => (
     <figure className="my-5">
       <img className="w-full lg:w-1/2" src="/img/tech-culture/cyberpunk-game-kneeling.jpg"
         alt="A character from the game Cyberpunk 2077 kneeling." />
-      <figcaption className="w-full lg:w-1/2 text-xs mx-auto">Notice the LED accents woven into the jacket.</figcaption>
+      <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">Notice the LED accents woven into the jacket.</figcaption>
     </figure>
     <p>
       Visually, the two aesthetics share some themes: high tech, ubiquitous neutrals, and high body coverage. Cyberpunk's high tech aspects include <a href="https://interestingengineering.com/top-9-cybernetic-upgrades-everyone-will-want">cybernetic augmentations</a> and clothing with sensors that react with the environment.

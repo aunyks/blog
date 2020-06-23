@@ -34,7 +34,7 @@ export default () => (
     <figure className="my-5">
       <img className="w-full" src="/img/tech/smartmap-card-ig-demo.png"
         alt="A screenshot of the Instagram post that featured the unreleased Instagram version of the Smartmap Card filter." />
-      <figcaption className="w-full lg:w-1/2 text-xs mx-auto">Check out the actual post <a target="_blank" href="https://www.instagram.com/p/CBQz08rhPSc/">here</a>.</figcaption>
+      <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">Check out the actual post <a target="_blank" href="https://www.instagram.com/p/CBQz08rhPSc/">here</a>.</figcaption>
     </figure>
     <h2>Rejection</h2>
     <p>
