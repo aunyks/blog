@@ -24,10 +24,10 @@ export default function LinksPage({
         <meta name="twitter:description" content={subtitle} />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
       </Head>
-      <div className="h-screen lg:w-1/2 flex flex-col pt-32">
+      <div className="h-screen lg:w-3/4 flex flex-col pt-32">
         <div className="px-6 lg:px-24">
-          <h1 className="text-5xl">{title}</h1>
-          {subtitle && <h2 className="font-bold text-xl lg:text-2xl">{subtitle}</h2>}
+          <h1 className="text-5xl lg:text-6xl">{title}</h1>
+          {subtitle && <h2 className="font-bold text-2xl lg:text-3xl mb-5 lg:mb-3">{subtitle}</h2>}
           <div id="links">
             {children}
           </div>
