@@ -5,7 +5,7 @@ export default () => (
   <LinksPage
     pageTitle="Music"
     title="Music"
-    subtitle="Meditations of sonic art">
+    subtitle="Meditations on sonic art">
     <Link href="/2019/11/learning-music-theory">learning music theory</Link>
   </LinksPage>
 )
