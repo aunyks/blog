@@ -6,6 +6,7 @@ export default () => (
     subtitle="A new dimension of technology in fashion"
     date="2020-07-04"
     description="Taking a look at the introduction of 3D modeling to new parts of the fashion industry."
+    cardImage="https://blog.aunyks.com/img/tech-culture/hanifa-show-cap.png"
   >
     <p>
       The digital age has caused the fashion industry to innovate alongside many others, but the COVID-19 pandemic has accelerated some of this innovation in ways that many have not expected.
