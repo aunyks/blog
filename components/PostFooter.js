@@ -3,7 +3,7 @@ export default function PostFooter({ date, remark }) {
   const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
   return (
     <section id="footer">
-      <hr />
+      <hr className="mt-3" />
       <p>
         {remark || (
           <>

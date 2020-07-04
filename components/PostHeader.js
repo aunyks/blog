@@ -13,9 +13,9 @@ export default function PostHeader({
     <section>
       <h1 className="mt-2 lg:mt-0 leading-tight">{title}</h1>
       {subtitle && (
-        <h2>{subtitle}</h2>
+        <h2 className="leading-none">{subtitle}</h2>
       )}
-      <time dateTime={date}>{`${month} ${day}, ${year}`}</time>
+      <time className="text-xl" dateTime={date}>{`${month} ${day}, ${year}`}</time>
       <hr style={{ marginBottom: '0.75em' }} />
     </section>
   )

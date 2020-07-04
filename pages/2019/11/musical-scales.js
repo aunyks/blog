@@ -168,7 +168,7 @@ export default () => (
           even C Flat (meaning B) or E Sharp (meaning F). This is because the sharps and flats <em>actually</em>
           &nbsp;indicate moving a half-step
           in one direction. So, two sharps indicate a whole step forwards, and two flats indicate a whole step
-          backwards. Since "step" and "tone" can be used interchangeably, I'll be using "step" from now on.
+          backwards. Since "step" and "tone" can be used interchangeably, I'll be using "step" from now on. Note distances are more commonly referred to as intervals.
         </p>
     <h3>The Scale</h3>
     <p>
