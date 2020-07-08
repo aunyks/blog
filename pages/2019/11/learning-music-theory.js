@@ -37,7 +37,7 @@ export default () => (
       to be an interactive experience. I'll also be writing these lessons through the lense of piano playing, so it
       might not be as easy if you're using a different type of instrument.
         </p>
-    <ol>
+    <ol className="text-xl">
       <li>
         <a href="/2019/11/the-octave">The Octave</a>
       </li>

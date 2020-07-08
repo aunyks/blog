@@ -9,6 +9,12 @@
   margin-right: auto;
 }
 
+ol > li {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
 a {
   color: black;
   text-decoration: underline;
