@@ -49,6 +49,12 @@ export default function Navbar() {
           <a href="/tech-culture" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
             Tech{'<>'}Culture
             </a>
+          <a href="/thoughts" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+            Thoughts
+            </a>
+          <a href="/notes" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+            Notes
+            </a>
         </div>
       </div>
     </nav>

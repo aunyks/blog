@@ -10,7 +10,11 @@ export default function LinksPage({
   return (
     <>
       <Head>
-        <title>{`${pageTitle} - Hi-Voltage`}</title>
+        {pageTitle ? (
+          <title>{`${pageTitle} - Hi-Voltage`}</title>
+        ) : (
+            <title>{`${title} - Hi-Voltage`}</title>
+          )}
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={subtitle} />
