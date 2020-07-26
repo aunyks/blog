@@ -3,11 +3,16 @@ export default function PostHeader({
   subtitle,
   date
 }) {
-  const d = new Date(date)
-  const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-  const month = new Intl.DateTimeFormat('en', { month: 'long' }).format(d)
-  let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
-  day = parseInt(day) + 1
+  let month = null
+  let year = null
+  let day = null
+  if (date) {
+    const d = new Date(date)
+    year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+    month = new Intl.DateTimeFormat('en', { month: 'long' }).format(d)
+    day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+    day = parseInt(day) + 1
+  }
 
   return (
     <section>
@@ -15,7 +20,7 @@ export default function PostHeader({
       {subtitle && (
         <h2 className="leading-none">{subtitle}</h2>
       )}
-      <time className="text-xl" dateTime={date}>{`${month} ${day}, ${year}`}</time>
+      {date && <time className="text-xl" dateTime={date}>{`${month} ${day}, ${year}`}</time>}
       <hr style={{ marginBottom: '0.75em' }} />
     </section>
   )

@@ -37,7 +37,7 @@ export default () => (
     <h2>FM Demod</h2>
     <p>
       As previously stated, FM is more common than AM, so knowing how to demodulate FM signals is probably more desirable than doing so for AM signals. <a href="https://wybiral.github.io/">Davy Wybiral's</a>
-      <a href="https://github.com/wybiral/spirit-box">spirit-box</a> project has a very clear example of FM demodulation to playable sound using pyrtlsdr. Another good page for demodulation using
+      &nbsp;<a href="https://github.com/wybiral/spirit-box">spirit-box</a> project has a very clear example of FM demodulation to playable sound using pyrtlsdr. Another good page for demodulation using
       Python is <a href="https://witestlab.poly.edu/blog/capture-and-decode-fm-radio/">this post</a> by <a href="http://witestlab.poly.edu/~ffund/">Fraida Fund</a>.
     </p>
     <h2>Decoding Digital Signals</h2>

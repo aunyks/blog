@@ -1,6 +1,9 @@
 export default function PostFooter({ date, remark }) {
-  const d = new Date(date)
-  const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+  let year = null
+  if (date) {
+    const d = new Date(date)
+    year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+  }
   return (
     <section id="footer">
       <hr className="mt-3" />
@@ -13,7 +16,7 @@ export default function PostFooter({ date, remark }) {
         )}
       </p>
       <p>
-        Copyright &copy; {year} Gerald Nash
+        Copyright &copy; {date && year} Gerald Nash
         </p>
     </section>
   )

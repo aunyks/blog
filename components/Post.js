@@ -12,6 +12,7 @@ export default function Post({
   description,
   remark,
   cardImage,
+  noFooter,
   children
 }) {
   return (
@@ -25,7 +26,9 @@ export default function Post({
       <PostBody>
         <PostHeader title={title} subtitle={subtitle} date={date} />
         {children}
-        <PostFooter remark={remark} date={date} />
+        {!noFooter && (
+          <PostFooter remark={remark} date={date} />
+        )}
         <GAnalytics />
       </PostBody>
     </div>
