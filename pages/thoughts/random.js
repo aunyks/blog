@@ -9,6 +9,9 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-07-27">
+      Is HAM radio the only alternative to the Internet for instant long distance communication?
+    </Thought>
     <Thought date="2020-07-26">
       Twitter isn't good for my mental health and I don't know how long Mastodon will survive, so I decided to put some
       thoughts on here.
