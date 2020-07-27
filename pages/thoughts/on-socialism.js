@@ -9,6 +9,10 @@ export default () => (
     description="Miscellaneous thoughts on socialism."
     noFooter
   >
+    <Thought date="2020-07-27">
+      Do American universities cause people to shift politically left because they're socialist brainwashing machines or simply because they
+      show other perspectives of the world and leave conclusions to the student?
+    </Thought>
     <Thought date="2020-07-26">
       It's incredibly interesting to see the rise of leftist thought (particularly among youth) and a desire for socialism in the USA juxtapose
       a growing middle class and therefore more stratification in China.
