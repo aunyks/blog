@@ -1,10 +1,10 @@
-import Post from 'components/Post'
+import ThoughtsPost from 'components/ThoughtsPost'
 import Thought from 'components/Thought'
 
 const Separator = () => <hr className="w-full my-2" />
 
 export default () => (
-  <Post
+  <ThoughtsPost
     title="Thoughts On Art"
     description="Miscellaneous thoughts on art."
     noFooter
@@ -26,5 +26,5 @@ export default () => (
       how their work influences the viewer and how it can invoke thought or feelings about a subject or concept in the viewer.
       The artists, artwork, viewer(s), and subject(s) are all components in the system.
     </Thought>
-  </Post>
+  </ThoughtsPost>
 )

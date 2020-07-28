@@ -1,12 +1,10 @@
-import Post from 'components/Post'
+import NotesPost from 'components/NotesPost'
 
 export default () => (
-  <Post
+  <NotesPost
     title="Applied Digital Signal Processing"
-    date="2020-07-26"
     description="Making sense of the radio signals around us"
   >
-    <p><i>This is more of a brain dump and may not be as easy to follow as a de facto blog post.</i></p>
     <h2>Intro</h2>
     <p>
       Radio waves are literally everywhere always passing through us. FM/AM radio, HAM radio, WiFi, Bluetooh, car keys, garage door openers,
@@ -61,5 +59,5 @@ export default () => (
       You can do cool things like sniff WiFi traffic on insecure (read: WEP) networks and get a feed of all phones nearby and their IDs and carrier as if you were a cell tower, like a passive version of the
       &nbsp;<a href="https://en.wikipedia.org/wiki/IMSI-catcher">IMSI Catchers</a> that law enforcement and militaries use. <a href="https://harrisonsand.com/imsi-catcher/">This</a> is a good post to follow for that.
     </p>
-  </Post>
+  </NotesPost>
 )

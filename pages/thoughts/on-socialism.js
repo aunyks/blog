@@ -1,10 +1,10 @@
-import Post from 'components/Post'
+import ThoughtsPost from 'components/ThoughtsPost'
 import Thought from 'components/Thought'
 
 const Separator = () => <hr className="w-full my-2" />
 
 export default () => (
-  <Post
+  <ThoughtsPost
     title="Thoughts On Socialism"
     description="Miscellaneous thoughts on socialism."
     noFooter
@@ -32,5 +32,5 @@ export default () => (
       <del>I imagine the employees would be reaping all the benefits of their value creation and would also
         be owning the capital goods.</del> Edit: Thinking too microeconomically.
     </Thought>
-  </Post>
+  </ThoughtsPost>
 )

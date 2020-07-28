@@ -1,10 +1,10 @@
-import Post from 'components/Post'
+import ThoughtsPost from 'components/ThoughtsPost'
 import Thought from 'components/Thought'
 
 const Separator = () => <hr className="w-full my-2" />
 
 export default () => (
-  <Post
+  <ThoughtsPost
     title="Random Thoughts"
     description="Miscellaneous thoughts with no category."
     noFooter
@@ -28,5 +28,5 @@ export default () => (
       of quality as the middle class but reap all the benefits of TikTok's popularity. The lower class is the group
       that just consume the content but are still the backbone of TikTok's popularity (read: economy).
     </Thought>
-  </Post>
+  </ThoughtsPost>
 )
