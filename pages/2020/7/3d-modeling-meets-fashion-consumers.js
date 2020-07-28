@@ -17,7 +17,7 @@ export default () => (
     <figure className="my-5">
       <img className="w-full" src="/img/tech-culture/hanifa-virtual-show.gif"
         alt="An animated GIF of a white two-piece dress walking down a virtual runway." />
-      <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">Check out the actual post <a target="_blank" href="https://www.instagram.com/p/CBok4KNHgbP">here</a>.</figcaption>
+      <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">Check out the actual post <a className="text-xs" target="_blank" href="https://www.instagram.com/p/CBok4KNHgbP">here</a>.</figcaption>
     </figure>
     <p>
       The world was met with awe when fashion brand <a target="_blank" href="https://hanifa.co/">Hanifa</a>, owned by designer Anifa Mvuemba, unveiled the Pink Label Congo collection via a fashion show streamed to Instagram Live.

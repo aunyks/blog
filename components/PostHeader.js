@@ -20,7 +20,7 @@ export default function PostHeader({
       {subtitle && (
         <h2 className="leading-none">{subtitle}</h2>
       )}
-      {date && <time className="text-xl" dateTime={date}>{`${month} ${day}, ${year}`}</time>}
+      {date && <time className="text-lg" dateTime={date}>{`${month} ${day}, ${year}`}</time>}
       <hr style={{ marginBottom: '0.75em' }} />
     </section>
   )

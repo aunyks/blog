@@ -3,6 +3,12 @@ import {
   useEffect
 } from 'react'
 
+const NavLink = ({ href, children }) => (
+  <a href={href} className="text-base no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+    {children}
+  </a>
+)
+
 export default function Navbar() {
   const [isOpen, setNavbarOpen] = useState(false)
   const [cartLen, setCartLen] = useState(null)
@@ -19,7 +25,7 @@ export default function Navbar() {
       style={{ boxShadow: '0px 0px 2px #000' }}
       className="z-50 bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-5">
       <div className="flex items-center flex-shrink-0 mr-6">
-        <a href="/" style={{ textColor: 'black' }} className="font-semibold text-xl tracking-tight no-underline">
+        <a href="/" style={{ textColor: 'black' }} className="text-xl font-semibold tracking-tight no-underline">
           Hi-Voltage
         </a>
       </div>
@@ -32,29 +38,29 @@ export default function Navbar() {
         </span>
       </div>
       <div style={{ display: `${isOpen ? 'flex' : 'none'}` }} id="navbar-items" className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div className="text-sm lg:flex-grow">
+        <div className="lg:flex-grow">
           {/* LEFT SIDE OF NAV (LARGE SCREEN) */}
         </div>
         <div>
           {/* RIGHT SIDE OF NAV (LARGE SCREEN) */}
-          <a href="https://aunyks.com/about" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          <NavLink href="https://aunyks.com/about">
             About
-          </a>
-          <a href="/music" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </NavLink>
+          <NavLink href="/music">
             Music
-          </a>
-          <a href="/tech" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </NavLink>
+          <NavLink href="/tech">
             Tech
-          </a>
-          <a href="/tech-culture" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </NavLink>
+          <NavLink href="/tech-culture">
             Tech{'<>'}Culture
-            </a>
-          <a href="/thoughts" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </NavLink>
+          <NavLink href="/thoughts">
             Thoughts
-            </a>
-          <a href="/notes" className="no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+          </NavLink>
+          <NavLink href="/notes">
             Notes
-            </a>
+          </NavLink>
         </div>
       </div>
     </nav>
