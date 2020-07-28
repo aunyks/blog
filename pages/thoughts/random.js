@@ -9,6 +9,12 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-07-28">
+      <del>Loudspeakers are just forbidden walkie talkies.</del>
+    </Thought>
+    <Thought date="2020-07-28">
+      I wonder which countries wish they could export culture as well as Japan exports anime and manga.
+    </Thought>
     <Thought date="2020-07-27">
       Is HAM radio the only alternative to the Internet for instant long distance communication?
     </Thought>
