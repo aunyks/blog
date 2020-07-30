@@ -9,8 +9,10 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
-    <Thought date="2020-07-28">
-      <del>Loudspeakers are just forbidden walkie talkies.</del>
+    <Thought date="2020-07-29">
+      The good thing about today's increased political polarization is that it's a result of increased consciousness
+      of the current state of affairs. The bad thing is that the far right believes certain groups of people are
+      the problem and the far left believes that the system is the problem.
     </Thought>
     <Thought date="2020-07-28">
       I wonder which countries wish they could export culture as well as Japan exports anime and manga.
