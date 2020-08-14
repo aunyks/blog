@@ -25,7 +25,7 @@ export default () => (
       Knowing this, my first idea was to create an augmented reality experience so that destinations could overlay live ontop of their phone's camera view for easy interpretation.
       </p>
     <p>
-      The problem with a straightforward AR experience is the performance-accessibility tradeoff that it poses.
+      The problem with a straightforward <a href="https://en.wikipedia.org/wiki/Augmented_reality">augmented reality</a> experience is the performance-accessibility tradeoff that it poses.
       Making the experience smooth and snappy would be simpler if I used a framework that has lots of abstracted performance optimizations like <a href="https://developer.apple.com/augmented-reality/arkit/">Apple's ARKit</a>.
       Using ARKit would restrict the demographic of users to those who have newer iOS devices, and I'm sure that's a much smaller group of people than those who actually explore campus.
       So, I decided to use a web-based experience, as this would be accessible to a wider range of devices in several browsers. To mitigate the risk of the slowness that a web-based AR

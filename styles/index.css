@@ -53,6 +53,10 @@
   font-size: 5rem;
 }
 
+figcaption > a {
+  font-size: .875rem;
+}
+
 ol > li {
   display: list-item;
   list-style-position: inside;
