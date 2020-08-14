@@ -7,7 +7,7 @@ export default () => (
     description="Chance-based music"
     date="2020-08-13">
     <p>
-      Every now and then, I experiment with making music by giving a computer a scale to work with for my melody so that I can manually produce accompanying sounds. These ideas came to me as a result of my learning how cohesive certain notes in a scale always seem to be.
+      Every now and then, I experiment with making music by giving a computer a <a href="/2019/11/musical-scales">scale</a> to work with for my melody so that I can manually produce accompanying sounds. These ideas came to me as a result of my learning how cohesive certain notes in a scale always seem to be.
       I used a JavaScript library called <a href="https://scribbletune.com/">Scribbletune</a> to generate the sounds and decided to look deeper into its functionality to see how creative I could get.
     </p>
     <figure className="my-5">
