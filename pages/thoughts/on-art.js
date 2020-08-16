@@ -9,6 +9,9 @@ export default () => (
     description="Miscellaneous thoughts on art."
     noFooter
   >
+    <Thought date="2020-08-16">
+      You don't need to be "creative" to create art.
+    </Thought>
     <Thought date="2020-07-28">
       All business interests have negative impacts on pure creative expression.
     </Thought>

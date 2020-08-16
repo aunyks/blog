@@ -13,10 +13,10 @@ export default () => (
     </p>
     <h2>Signal Basics</h2>
     <p>
-      Being light, a radio wave is an analog signal which means we can model it using a <a href="https://en.wikipedia.org/wiki/Sine_wave">sine wave</a>. With this being said,
+      Being related to light, a radio wave is an analog signal which means we can model it using a <a href="https://en.wikipedia.org/wiki/Sine_wave">sine wave</a>. With this being said,
     the wave's attributes include its frequency, amplitude, and phase, the most important of which when modeling the wave in simple terms are its frequency and amplitude.
     We often communicate information by changing the signal's frequency or amplitude over time, called <a href="https://en.wikipedia.org/wiki/Frequency_modulation">frequency modulation</a> and <a href="https://en.wikipedia.org/wiki/Amplitude_modulation">amplitude modulation</a>, respectively.
-    I'm not certain why, but FM is more popular than AM in nearly all radio communication.
+    FM is more popular than AM in nearly all radio communication because it better maintains information during transmission. AM signals often travel further, though.
     </p>
     <h2>Getting Hands Dirty</h2>
     <p>
@@ -40,9 +40,12 @@ export default () => (
     </p>
     <h2>Decoding Digital Signals</h2>
     <p>
-      Protocols like WiFi and GSM encode purely digital information using FM, so decode the binary information from the signals we need to convert raw radio signal to FM and then FM to binary.
-      The signal to FM is can be done using tools from the previous section, but FM to binary (often via <a href="https://en.wikipedia.org/wiki/Square_wave">square waves</a>) can be done by demodulating <a href="https://www.allaboutcircuits.com/technical-articles/fsk-explained-with-python/">Frequency Shift Keyed</a>
+      Systems like dial-up internet encode purely digital information using FM, so to decode the binary information from the signals we need to convert the modulated signal to binary data.
+      The FM to binary can be done by demodulating <a href="https://www.allaboutcircuits.com/technical-articles/fsk-explained-with-python/">Frequency Shift Keyed</a>
       &nbsp; waves and then converting the resulting square waves into bits. Knowing a bit about <a href="https://en.wikipedia.org/wiki/Phase-locked_loop">Phase-Locked Loops (PLLs)</a> may help in understanding FSK.
+    </p>
+    <p>
+      Protocols like WiFi and Bluetooth are <a href="https://en.wikipedia.org/wiki/Phase_modulation">Phase Modulated</a> using <a href="https://en.wikipedia.org/wiki/Phase-shift_keying">Phase Shift Keying</a>.
     </p>
     <h2>Broader Signal Processing</h2>
     <p>
