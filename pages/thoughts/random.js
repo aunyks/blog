@@ -9,6 +9,12 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-08-16">
+      Trying new experiences always brings some excitement.
+    </Thought>
+    <Thought date="2020-08-16">
+      I find so much joy in challenging myself. It's addicting. Constantly pushing the frontier of knowledge and skill is so fulfilling, even if the original goal isn't achieved.
+    </Thought>
     <Thought date="2020-07-29">
       The good thing about today's increased political polarization is that it's a result of increased consciousness
       of the current state of affairs. The bad thing is that the far right believes certain groups of people are
