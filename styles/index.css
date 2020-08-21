@@ -11,6 +11,10 @@ yellow: #fab700;
 indigo: #5d44f8;
 */
 
+*::selection {
+ background: #ffdd81;
+}
+
 .twitter-tweet {
   margin-left: auto;
   margin-right: auto;
@@ -134,6 +138,13 @@ code {
   padding: 3px;
   border-radius: 5px;
   color: #ff7070;
+}
+
+.hint {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: #fab700;
+  cursor: pointer;
 }
 
 .keyboard {
@@ -279,6 +290,11 @@ button.melody {
 }
 
 @media (prefers-color-scheme: dark) {
+
+  *::selection {
+    background: #5d44f8;
+   }
+
   html, body {
     background-color: #222;
     color: white;
