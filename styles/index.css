@@ -4,6 +4,13 @@
 /* purgecss end ignore */
 @tailwind utilities;
 
+/*
+white: #fff;
+black: #000;
+yellow: #fab700;
+indigo: #5d44f8;
+*/
+
 .twitter-tweet {
   margin-left: auto;
   margin-right: auto;
@@ -66,6 +73,7 @@ ol > li {
 a {
   color: black;
   text-decoration: underline;
+  text-decoration-color: #fab700;
 }
 
 p {

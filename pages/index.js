@@ -8,6 +8,7 @@ export default () => (
     subtitle="Increasing potential">
     <Link href="/music">music</Link>
     <Link href="/tech">tech</Link>
+    <Link href="/misc">misc</Link>
     <Link href="/tech-culture">culture{`<>`}tech</Link>
     <Link href="/thoughts">thoughts</Link>
     <Link href="/notes">notes</Link>
