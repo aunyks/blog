@@ -16,7 +16,7 @@ export default () => (
       __html: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">List of well-designed credit cards:<br><br>• <a href="https://twitter.com/n26?ref_src=twsrc%5Etfw">@n26</a> Transparent <br>• <a href="https://twitter.com/pointcardhq?ref_src=twsrc%5Etfw">@pointcardhq</a> Runway Yellow<br>• <a href="https://twitter.com/CashApp?ref_src=twsrc%5Etfw">@CashApp</a> Glow in the Dark<br>• <a href="https://twitter.com/AppleCard?ref_src=twsrc%5Etfw">@AppleCard</a> Titanium<br><br>(I&#39;m writing a blog post about card design - what other companies should I look at?) <a href="https://t.co/neU8au0jMZ">pic.twitter.com/neU8au0jMZ</a></p>&mdash; Julian Lehr (@lehrjulian) <a href="https://twitter.com/lehrjulian/status/1295024066869567488?ref_src=twsrc%5Etfw">August 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`
     }} />
     <p>
-      <a href="https://twitter.com/aunyks/status/1292514140616105985">3D modeling</a> has greatly piqued my interest lately, so I decided to use his tweet as inspiration and challenge myself with a design project.
+      <a href="https://twitter.com/aunyks/status/1292514140616105985">3D modeling has piqued my interest lately</a>, so I decided to use his tweet as inspiration and challenge myself with a design project.
     </p>
     <p>
       With this in mind, I opened up <a href="https://www.blender.org/">Blender</a> and got to transforming the default cube into the shape of a credit card. I'd just learned
