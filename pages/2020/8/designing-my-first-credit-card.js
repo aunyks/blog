@@ -4,7 +4,7 @@ import Hint from 'components/Hint'
 export default () => (
   <Post
     title="Designing My First Credit Card"
-    subtitle="A Fun Design Project"
+    subtitle="A Fun Project"
     description="Recounting the inspiration and process for designing my first credit card."
     date="2020-08-21"
     cardImage="https://blog.aunyks.com/img/misc/true-potential-card-rear-slant.jpg">
