@@ -12,5 +12,6 @@ export default () => (
     <Link href="/tech-culture">culture{`<>`}tech</Link>
     <Link href="/thoughts">thoughts</Link>
     <Link href="/notes">notes</Link>
+    <Link href="https://medium.com/@aunyks">old posts</Link>
   </LinksPage>
 )
