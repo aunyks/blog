@@ -27,7 +27,7 @@ export default () => (
       have changed human culture and behavior, so the artists renew the cycle again.
     </p>
     <Quote author="Neri Oxman">
-      ...and when art meet science, it’s the Cinderella moment in the 12 o’clock.
+      ...and when art meets science, it’s the Cinderella moment in the 12 o’clock.
       </Quote>
     <p>
       Everything that the human race has created falls somewhere on this cycle and moves clockwise, inspiring more progress for others to take on. This is an interesting way to think of humanity, as many of us question
