@@ -43,9 +43,8 @@ export default () => (
     <p>
       The cycle is often modeled visually with a circle reminding of us of a clock.
     </p>
-    <figure className="my-2 mx-auto w-1/2">
-      <img alt="The Krebs Cycle of Creativity" src="/img/misc/kcc.png" />
-      <figcaption className="text-xs text-center">Source: <a href="https://jods.mitpress.mit.edu/pub/ageofentanglement/release/1">MIT JoDS</a></figcaption>
+    <figure className="my-2 mx-auto w-full">
+      <img alt="The Krebs Cycle of Creativity" src="/img/misc/cohp.png" />
     </figure>
     <p>
       This helps you visualize the clockwise motion in which creativity and inspiration travel. The image is in two dimensions, <Hint msg={`I don't believe in the "left brain"/"right brain" stuff, but I understand that a lot of people think of it this way.`}>with the "left brain"
