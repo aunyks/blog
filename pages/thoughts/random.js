@@ -9,6 +9,11 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-08-30">
+      Higher fidelity media for entertainment provide better detail
+      at the expense of abstraction. It sounds obvious, but in many cases it has an impact
+      on the quality of storytelling, especially when creators use this fact to their advantage.
+    </Thought>
     <Thought date="2020-08-16">
       Trying new experiences always brings some excitement.
     </Thought>
