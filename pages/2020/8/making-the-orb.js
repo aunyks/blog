@@ -59,7 +59,7 @@ export default () => (
       meaning that it's supposed to have the solid render quality with a significant speed boost. This certainly worked to my advantage, and I was very satisfied with the result.
     </p>
     <p>
-      The visuals alone were capturing, but a truly entrancing experience would also need accompanying sound. So, I opened Garageband and picked three instruments to loop to create an eerie sonic environment. Together they had an effect
+      The visuals alone were captivating, but a truly entrancing experience would also need accompanying sound. So, I opened Garageband and picked three instruments to loop to create an eerie sonic environment. Together they had an effect
       that, in a way, lets you <em>feel</em> the energy of the Orb. Once I'd gotten a solid loop, I exported it as an MP3 file, opened it in iMovie with the video, and brought the two together.
     </p>
     <figure className="my-3">
@@ -85,7 +85,7 @@ export default () => (
           <a href="https://www.apple.com/imovie">iMovie</a> - Applying the audio to the video
         </li>
         <li>
-          <a href="https://sparkar.facebook.com/ar-studio/">Spark AR Studio</a> - Rendering the Orb in an Instagram filter
+          <a href="https://sparkar.facebook.com/ar-studio/">Spark AR Studio</a> - Rendering the Orb in an <a href="https://twitter.com/aunyks/status/1299874681122586626">Instagram filter</a>
         </li>
         <li>
           <a href="https://threejs.org/">Three.js</a> - Rendering the Orb <a href="https://art.aunyks.com/2020/orb">in the browser</a>
