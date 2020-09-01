@@ -5,7 +5,7 @@ export default () => (
   <Post
     title="Making The Orb"
     subtitle="How and Why I Made a Fantasy Artifact"
-    description="Discussing how and why I made a fantasy artifact: The Orb."
+    description="Quickly covering how and why I made The Orb."
     date="2020-08-31"
     cardImage="https://blog.aunyks.com/img/misc/orb.jpg">
     <p>
