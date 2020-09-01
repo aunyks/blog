@@ -24,6 +24,10 @@ indigo: #5d44f8;
   font-size: 1.125rem;
 }
 
+ul li {
+  list-style: circle inside !important;
+}
+
 .text-xs {
   font-size: .875rem;
 }

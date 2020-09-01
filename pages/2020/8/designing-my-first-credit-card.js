@@ -72,5 +72,28 @@ export default () => (
     <p>
       Overall, it was a fun project, and I hope to try so many more in the future to get really good at stuff like this. If you want to play with the card yourself and get an up close view, <a href="https://art.aunyks.com/2020/true-potential-card-v1">check it out on my art site</a>.
     </p>
+    <h4>Tools Used</h4>
+    <p>
+      <ul>
+        <li>
+          <a href="https://www.blender.org/">Blender</a> - Modeling the card, exporting/importing its UV map, capturing photos, and exporting the card
+        </li>
+        <li>
+          <a href="https://www.figma.com/">Figma</a> - Texturing the card and actually applying the design
+        </li>
+        <li>
+          <a href="https://threejs.org/">Three.js</a> - Rendering the card <a href="https://art.aunyks.com/2020/true-potential-card-v1">in the browser</a>
+        </li>
+      </ul>
+    </p>
+    <h4>Things Learned</h4>
+    <p>
+      <ul>
+        <li>How to bevel and unwrap basic objects in Blender</li>
+        <li>How to export/import UV maps in Blender</li>
+        <li>Vector operations, layering, and methods of grouping in Figma</li>
+        <li>Basics of user-centric design</li>
+      </ul>
+    </p>
   </Post>
 )
