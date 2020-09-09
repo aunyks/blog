@@ -9,6 +9,9 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-09-03">
+      Thinking in pursuit of a quote yields a bad quote, ironically enough.
+    </Thought>
     <Thought date="2020-08-30">
       Higher fidelity media for entertainment provide better detail
       at the expense of abstraction. It sounds obvious, but in many cases it has an impact

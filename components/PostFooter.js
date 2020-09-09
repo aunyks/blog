@@ -15,7 +15,7 @@ export default function PostFooter({ date, remark }) {
           </>
         )}
       </p>
-      <p>
+      <p className="select-none">
         Copyright &copy; {date && year} Gerald Nash
         </p>
     </section>
