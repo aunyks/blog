@@ -16,7 +16,7 @@ export default function SecretPostv1({
       subtitle={subtitle}
       description={description}
       date={date}
-      cardImage={cardImage}
+      cardImage={cardImage || 'https://blog.aunyks.com/img/misc/hips.png'}
       remark={remark || (
         <></>
       )}>
