@@ -6,7 +6,7 @@ export default () => {
     <Post
       title="Hidden in Plain Sight"
       subtitle="Adding Secret Posts to the Blog"
-      description="I've added encrypted secret posts to the blog."
+      description="And a little bit on how they work!"
       date="2020-09-08"
       cardImage="https://blog.aunyks.com/img/misc/hips.png">
       <p>
