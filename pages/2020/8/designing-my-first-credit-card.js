@@ -7,7 +7,7 @@ export default () => (
     subtitle="A Fun Project"
     description="Recounting the inspiration and process for designing my first credit card."
     date="2020-08-21"
-    cardImage="https://blog.aunyks.com/img/tech/true-potential-card-rear-slant.jpg">
+    cardImage="https://blog.aunyks.com/img/art-n-design/true-potential-card-rear-slant.jpg">
     <p>
       I was scrolling through Twitter when I saw someone had interacted with one of <a href="https://twitter.com/lehrjulian">Julian Lehr's</a> tweets.
         I'd never seen his account on my timeline before, so I visited his profile. One of his most recent tweets featured some credit cards that he found to be well designed.
@@ -32,7 +32,7 @@ export default () => (
       so I used this project as a reason to not only practice my overall design skills but also get familiar with one of today's most popular design tools.
     </p>
     <figure className="my-2">
-      <img alt="The front of the card." src="/img/tech/true-potential-card-front.jpg" />
+      <img alt="The front of the card." src="/img/art-n-design/true-potential-card-front.jpg" />
       <figcaption className="text-xs text-center"></figcaption>
     </figure>
     <p>
@@ -46,7 +46,7 @@ export default () => (
       I didn't feel like adding these artifacts not only because I didn't exactly know what placeholder text to use but also because I wanted to give myself more creative freedom to explore. With this being said, I also need to consider what information or artifacts we all expect to be on the back of a payment card. The mag stripe, credit card number, security code, and expiration date are the first of which that come to mind.
     </p>
     <figure className="my-2">
-      <img alt="The back of the card." src="/img/tech/true-potential-card-rear.jpg" />
+      <img alt="The back of the card." src="/img/art-n-design/true-potential-card-rear.jpg" />
       <figcaption className="text-xs text-center"></figcaption>
     </figure>
     <p>
@@ -59,7 +59,7 @@ export default () => (
       The right side of the card had a lot of open space that needed to be filled for some balance. Frankly, I had no idea what to put here, so I decided to get creative and put random information in the space like the title of the project, the languages I speak or am learning at the time, and a random phone number with an Atlanta area code. To round it all off, I put my domain in the bottom corner as a sort of signature.
     </p>
     <figure className="my-2">
-      <img alt="The back of the card, but the card is oriented with the right side up higher than the left side for visual appeal." src="/img/tech/true-potential-card-rear-slant.jpg" />
+      <img alt="The back of the card, but the card is oriented with the right side up higher than the left side for visual appeal." src="/img/art-n-design/true-potential-card-rear-slant.jpg" />
       <figcaption className="text-xs text-center"></figcaption>
     </figure>
     <p>

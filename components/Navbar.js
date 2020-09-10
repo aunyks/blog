@@ -52,6 +52,9 @@ export default function Navbar() {
           <NavLink href="/tech">
             Tech
           </NavLink>
+          <NavLink href="/art-n-design">
+            Art & Design
+          </NavLink>
           <NavLink href="/misc">
             Misc
           </NavLink>
