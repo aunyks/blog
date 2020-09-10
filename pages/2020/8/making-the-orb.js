@@ -7,7 +7,7 @@ export default () => (
     subtitle="How and Why I Made a Fantasy Artifact"
     description="Quickly covering how and why I made The Orb."
     date="2020-08-31"
-    cardImage="https://blog.aunyks.com/img/misc/orb.jpg">
+    cardImage="https://blog.aunyks.com/img/tech/orb.jpg">
     <p>
       I found a lot of surrealist fantasy content the other day. There were eerie, mysterious scenes that that highlighted
       artifacts and architecture that didn't appear to be from this world. Such scenes inspired me to make a piece of my own, and of course
@@ -19,7 +19,7 @@ export default () => (
         beautiful emissive hue. Captivated by such a small detail, I'd applied it to my own scene.
       </p>
     <figure className="my-3">
-      <img className="w-full" src="/img/misc/orb.jpg" alt="A large sphere with wavey black designs. It emits bright blue light." />
+      <img className="w-full" src="/img/tech/orb.jpg" alt="A large sphere with wavey black designs. It emits bright blue light." />
       <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">The Orb itself.</figcaption>
     </figure>
     <p>
@@ -64,7 +64,7 @@ export default () => (
     </p>
     <figure className="my-3">
       <video loop autoPlay className="w-full">
-        <source src="/img/misc/orb.mp4" type="video/mp4" />
+        <source src="/img/tech/orb.mp4" type="video/mp4" />
         Looks like your browser doesn't support embedded videos, so I can't show you this one unfortunately.
       </video>
       <figcaption className="w-full lg:w-2/3 lg:pt-3 text-xs text-center mx-auto">Don't look for long. The trance is dizzying. Version with sound: <a href="https://twitter.com/aunyks/status/1299872036509102080">here</a></figcaption>

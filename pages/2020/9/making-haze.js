@@ -7,7 +7,7 @@ export default () => (
     subtitle="An Endeavor Into Modeling Landscapes"
     description="Quickly covering my process in rendering my first landscape in 3D!"
     date="2020-09-09"
-    cardImage="https://blog.aunyks.com/img/misc/haze.jpg">
+    cardImage="https://blog.aunyks.com/img/tech/haze.jpg">
     <p>
       As another 3D project to help me build some skill in Blender, I wanted to try my hand at capturing landscape shots.
       Like usual, I get a general idea of how others bring similar ideas to life, so I perused a number of YouTube videos to discover how some ways to model landscapes
@@ -25,7 +25,7 @@ export default () => (
         landscapes were amorphous, so it'd be tough to texture them well outside of Blender.
         </p>
     <figure className="mb-5">
-      <img className="w-full" src="/img/misc/haze-models.jpg" alt="The gray, texture-less models of the knoll and dunes." />
+      <img className="w-full" src="/img/tech/haze-models.jpg" alt="The gray, texture-less models of the knoll and dunes." />
       <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">The models used in the scene.</figcaption>
     </figure>
     <p>
@@ -38,7 +38,7 @@ export default () => (
       A detail I took advantage of when applying these textures is making sure to make each landscape's material pretty rough so that they scatter light well, like real natural landscapes.
         </p>
     <figure className="mb-2">
-      <img className="w-full" src="/img/misc/dune-shader-graph.png" alt="Some nodes in the Blender shader editor. An image texture node connects to a Principled BSDF node. The BSDF node then connects to the material output node." />
+      <img className="w-full" src="/img/tech/dune-shader-graph.png" alt="Some nodes in the Blender shader editor. An image texture node connects to a Principled BSDF node. The BSDF node then connects to the material output node." />
       <figcaption className="w-full lg:w-3/4 text-xs text-center mx-auto">The shader graph used to apply the painted textures to the sand dune landscape.</figcaption>
     </figure>
     <p>
@@ -46,7 +46,7 @@ export default () => (
           this in mind, I settled for taking a couple of still images so that I didn't have to wait hours like I did <Hint msg="It took an hour for me to render just 1 second of The Orb rotating with the Cycles render engine. I also used Cycles to render scenes for this project.">waiting for The Orb to render</Hint>.
         </p>
     <figure className="mb-3">
-      <img className="w-full" src="/img/misc/haze.jpg" alt="The sun is in the top right corner as you look over rolling sand dunes." />
+      <img className="w-full" src="/img/tech/haze.jpg" alt="The sun is in the top right corner as you look over rolling sand dunes." />
       <figcaption className="w-full lg:w-1/2 text-xs text-center mx-auto">The first render of Haze</figcaption>
     </figure>
     <p>
