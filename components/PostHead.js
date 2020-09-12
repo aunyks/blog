@@ -26,6 +26,10 @@ export default function PostHead({
       <meta name="twitter:title" content={effectiveTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
+      <meta property="og:title" content={effectiveTitle} />
+      <meta property="og:site_name" content="Hi-Voltage"></meta>
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
     </Head>
   )
 }
