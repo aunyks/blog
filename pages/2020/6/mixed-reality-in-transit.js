@@ -3,7 +3,7 @@ import Post from 'components/Post'
 export default () => (
   <Post
     title="Mixed Reality in Transit"
-    subtitle="A side project tasting virality"
+    subtitle="A Side Project Tasting Virality"
     date="2020-06-20">
     <h2>A Background</h2>
     <p>
@@ -89,7 +89,7 @@ export default () => (
     </p>
     <p>
       For the next week, both my posts reached some six figures in impressions per day, and with each passing day more people were recording themselves being wowed while trying the filter out on their Metro cards.
-      A couple of TikToks (<a target="_blank" href="https://vm.tiktok.com/J1VEswP/">one</a>, <a target="_blank" href="https://vm.tiktok.com/J1EmWXM/">two</a>), <a target="_blank" href="https://www.reddit.com/r/nextfuckinglevel/comments/hamvdk/washington_dc_metro_pass_that_displays_the_metro/">Reddit threads</a>, and <a target="_blank" href="https://www.instagram.com/p/CBbX8fXh33u/">Instagram reposts</a> came about.
+      A couple of TikToks, Reddit threads, and Instagram reposts came about.
       At this point, the filter was much bigger than me. Literally so, as accounts were now sharing and reposting without giving credit. It's part of the game, though.
     </p>
     <h2>In Conclusion</h2>
@@ -105,6 +105,11 @@ export default () => (
     </p>
     <p>
       In the end I don't quite know what's next for these projects, if anything, but it was certainly interesting getting a taste of Internet virality.
+    </p>
+    <h3>Places <em>I've</em> Seen It Mentioned</h3>
+    <p>
+      <a target="_blank" href="https://vm.tiktok.com/J1VEswP/">One TikTok</a>, <a target="_blank" href="https://vm.tiktok.com/J1EmWXM/">another TikTok</a>, <a target="_blank" href="https://www.reddit.com/r/nextfuckinglevel/comments/hamvdk/washington_dc_metro_pass_that_displays_the_metro/">r/nextfuckinglevel</a>,
+    <a target="_blank" href="https://www.reddit.com/r/Damnthatsinteresting/comments/is0hx3/washington_dc_new_metro_pass_displays_the_metro">r/Damnthatsinteresting</a>, <a target="_blank" href="https://www.cultofmac.com/714584/awesome-snapchat-filter-shows-how-well-navigate-the-metro-in-the-age-of-ar/">Cult of Mac</a>, <a target="_blank" href="https://www.instagram.com/p/CBbX8fXh33u/">WMATA's Instagram</a>, and the @washingtonprobs Instagram.
     </p>
   </Post >
 )
