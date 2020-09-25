@@ -7,7 +7,13 @@ export default () => (
     title="The Future of Tech for We"
     subtitle="The Coming of Self-Sovereign Technology"
     description="Covering the current state of content creation and monetization on the web and how it will soon favor creator-owned alternatives."
-    date="2020-09-25">
+    date="2020-09-25"
+    remark={
+      <>
+        Thanks for reading. If this topic interests you, <a href="https://twitter.com/balajis">Balaji</a> discusses it frequently. In the meantime, feel free to follow me on <a href="https://twitter.com/intent/follow?screen_name=aunyks">Twitter</a> if you have any
+          questions about this post or just wanna chat.
+      </>
+    }>
     <p>
       In the age of social media, content is king. Unlike previous eras, everyone's now a creator. This has caused an explosion in content, and it exists on just a few platforms owned by large corporations.
         </p>

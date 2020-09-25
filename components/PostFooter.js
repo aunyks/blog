@@ -11,7 +11,7 @@ export default function PostFooter({ date, remark }) {
         {remark || (
           <>
             Thanks for reading. Feel free to follow me on <a href="https://twitter.com/intent/follow?screen_name=aunyks">Twitter</a> if you have any
-          questions about this post or if you just wanna chat.
+          questions about this post or just wanna chat.
           </>
         )}
       </p>
