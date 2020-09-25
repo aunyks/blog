@@ -49,7 +49,7 @@ export default () => (
     <figure className="my-5">
       <img className="w-full" src="/img/tech-culture/mrsdrlupo-cap.jpg"
         alt="A screen capture of mrsdrlupo.tv." />
-      <figcaption className="w-full text-xs text-center mx-auto">Streamer <a href="https://mrsdrlupo.tv">MrsDrLupo</a> owns her own domain and website, which embeds her current Twitch stream, latest tweets, tip jar, and more!</figcaption>
+      <figcaption className="w-full text-xs text-center mx-auto">Streamer <a href="https://mrsdrlupo.tv">MrsDrLupo</a> owns her own domain and website, which embeds her current Twitch stream, latest tweets, tip jar, and more.</figcaption>
     </figure>
     <p>
       Right now, it seems that we're in an intermediate stage in the transition to self-sovereign tech. Large platforms still hold the majority of consumer and creator attention, but we're starting to see smaller platforms that build ontop of traditionally self-sovereign technology gain popularity. These newer platforms get creators familiar with the tech <Hint msg="This still comes at the expense of losing some ownership of content and monetization rights.">while providing easy-to-use solutions</Hint>.
