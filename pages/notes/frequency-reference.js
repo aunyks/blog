@@ -61,6 +61,18 @@ export default () => (
       </p>
     </Station>
     <h2>AM</h2>
-    <p>Nothing yet</p>
+    <Station title="Aircraft Emergency (GUARD) Frequencies" freq="121.5 MHz Civilian / 243 MHz Military or International">
+      <p>
+        Aircraft in distress transmit emergency messages on these frequencies. To be on these frequencies is often known as being "on guard".
+      </p>
+    </Station>
+    <Station title="Modern Aircraft Emergency Locator Transmitter (ELT) Frequency" freq="406 MHz">
+      <p>
+        ELTs encode information about aircraft. Older ELTs broadcast on the GUARD frequencies, while the modern variants typically broadcast on 406 MHz.
+      </p>
+      <p>
+        <a target="_blank" href="http://www.7-6aircav.com/ELT%20Sounds.htm">Sample ELT sounds</a>
+      </p>
+    </Station>
   </NotesPost>
 )
