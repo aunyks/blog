@@ -60,7 +60,7 @@ export default () => (
         <a target="_blank" href="https://www.fcc.gov/wireless/bureau-divisions/mobility-division/family-radio-service-frs">More info</a>
       </p>
     </Station>
-    <h2>AM</h2>
+    <h2 className="text-3xl">AM</h2>
     <Station title="Aircraft Emergency (GUARD) Frequencies" freq="121.5 MHz Civilian / 243 MHz Military or International">
       <p>
         Aircraft in distress transmit emergency messages on these frequencies. To be on these frequencies is often known as being "on guard".

@@ -245,6 +245,14 @@ button.melody {
   color:white;
 }
 
+.code-block {
+  background: #eee;
+}
+
+.code-block * {
+  text-shadow: none;
+}
+
 @media only screen and (max-width: 375px) {
 
   /*
@@ -334,6 +342,10 @@ button.melody {
     padding: 3px;
     border-radius: 5px;
     color: #fc9b9b;
+  }
+
+  .code-block {
+    background: #333;
   }
 
   #newsletterSignupForm {

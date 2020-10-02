@@ -6,6 +6,7 @@ export default function NotesPost({
   date,
   description,
   noFooter,
+  hasCodeSnippet,
   children
 }) {
   return (
@@ -15,6 +16,7 @@ export default function NotesPost({
       date={date}
       description={description}
       noFooter={noFooter}
+      hasCodeSnippet={hasCodeSnippet}
     >
       <p>
         <i>
