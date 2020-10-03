@@ -15,7 +15,8 @@ export default () => (
       <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryScatter } from 'victory'
 
-<VictoryChart>
+<VictoryChart
+  domain={{ x: [0, 5], y: [0, 10] }}>
   <VictoryScatter
     style={{ data: { fill: "#c43a31" } }}
     size={7}
@@ -37,13 +38,13 @@ import { VictoryChart, VictoryScatter } from 'victory'
       <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 
-<VictoryChart
-  domain={{ x: [0, 5], y: [0, 10] }}>
+<VictoryChart>
   <VictoryLine
     style={{ data: { stroke: "red" } }}
     y={({x}) => Math.sin(5 * Math.PI * x)}
   />
-</VictoryChart>`}</CodeBlock>
+</VictoryChart>
+`}</CodeBlock>
     </CodeSnippet>
     <CodeSnippet title="Line Chart with Custom Domain">
       <p>
