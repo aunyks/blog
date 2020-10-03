@@ -8,6 +8,28 @@ export default () => (
     description="Useful bites of React code that I find often write and rewrite."
     hasCodeSnippet
   >
+    <CodeSnippet title="Simple Scatter Plot">
+      <p>
+        Plot some dots on a chart and color them in.
+      </p>
+      <CodeBlock lang="jsx">{`
+import { VictoryChart, VictoryScatter } from 'victory'
+
+<VictoryChart>
+  <VictoryScatter
+    style={{ data: { fill: "#c43a31" } }}
+    size={7}
+    data={[
+      { x: 1, y: 2 },
+      { x: 2, y: 3 },
+      { x: 3, y: 5 },
+      { x: 4, y: 4 },
+      { x: 5, y: 7 }
+    ]}
+  />
+</VictoryChart>
+`}</CodeBlock>
+    </CodeSnippet>
     <CodeSnippet title="Simple Line Chart">
       <p>
         Make a line chart from with domain 0 to 1 and range from y<sub>min</sub> to y<sub>max</sub>. With red line.
@@ -15,20 +37,20 @@ export default () => (
       <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 
-<VictoryChart>
+<VictoryChart
+  domain={{ x: [0, 5], y: [0, 10] }}>
   <VictoryLine
     style={{ data: { stroke: "red" } }}
     y={({x}) => Math.sin(5 * Math.PI * x)}
   />
-</VictoryChart>
-    `}</CodeBlock>
+</VictoryChart>`}</CodeBlock>
     </CodeSnippet>
     <CodeSnippet title="Line Chart with Custom Domain">
       <p>
         In case you want to see more than just x at the interval [0, 1].
     </p>
       <CodeBlock lang="jsx">{`
-import { VictoryChart, VictoryLine } from 'victory'
+import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
 
 <VictoryChart>
   <VictoryAxis
