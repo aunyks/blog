@@ -10,6 +10,26 @@ export default () => (
   >
     <CodeSnippet title="Slugify a String">
       <p>
+        Like Python's `range` function, this returns an array of numbers, starting from the given initial value, and increments by `step`, and stops before the given final value. If the optional boolean parameter
+        `inclusiveOfB` is set to true, this function will include the given final value at the end of the returned array.
+    </p>
+      <CodeBlock lang="js">{`
+const range = (a, b, step, inclusiveOfB = false) => {
+  if(a > b) {
+    throw new Error('[range()] Initial value greater than final value. Must be less than final value.')
+  }
+  if(a === b) {
+    throw new Error('[range()] Initial value equal to final value. Must be less than final value')
+  }
+  let values = []
+  for(let currentValue = a; inclusiveOfB ? currentValue <= b  : currentValue < b; currentValue += step) {
+    values.push(currentValue)
+  }
+  return values
+}`}</CodeBlock>
+    </CodeSnippet>
+    <CodeSnippet title="Slugify a String">
+      <p>
         Turn a string into a slug. Borrowed from <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">Lulu</a>.
     </p>
       <CodeBlock lang="js">{`
