@@ -13,7 +13,7 @@ export default function CodeBlock({ className, lang, children }) {
     <pre className={`${className || ''} code-block overflow-x-scroll`}>
       <code
         className={`language-${lang}`}
-        dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children, Prism.languages[lang], lang) }}>
+        dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children.trim(), Prism.languages[lang], lang) }}>
       </code>
     </pre>
   )

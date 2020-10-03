@@ -47,6 +47,7 @@ export default function PostHead({
           <script src="/js/prism-rust.min.js"></script>
           <script src="/js/prism-markup.min.js"></script>
           <script src="/js/prism-go.min.js"></script>
+          <script src="/js/prism-jsx.min.js"></script>
         </>
       )}
     </Head>
