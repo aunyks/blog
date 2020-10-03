@@ -8,7 +8,7 @@ export default () => (
     description="Useful bites of JS code that I find often write and rewrite."
     hasCodeSnippet
   >
-    <CodeSnippet title="Slugify a String">
+    <CodeSnippet title="Generate list of numbers in range">
       <p>
         Like Python's `range` function, this returns an array of numbers, starting from the given initial value, and increments by `step`, and stops before the given final value. If the optional boolean parameter
         `inclusiveOfB` is set to true, this function will include the given final value at the end of the returned array.
