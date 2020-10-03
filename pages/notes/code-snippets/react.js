@@ -17,7 +17,7 @@ import { VictoryChart, VictoryLine } from 'victory'
 
 <VictoryChart>
   <VictoryLine
-  style={{ data: { stroke: "red" } }}
+    style={{ data: { stroke: "red" } }}
     y={({x}) => Math.sin(5 * Math.PI * x)}
   />
 </VictoryChart>
