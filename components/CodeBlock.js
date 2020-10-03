@@ -8,6 +8,7 @@ export default function CodeBlock({ className, lang, children }) {
   useEffect(() => {
     setPrism(window.Prism)
   }, [])
+
   return (
     <pre className={`${className || ''} code-block overflow-x-scroll`}>
       <code
