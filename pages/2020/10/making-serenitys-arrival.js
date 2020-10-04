@@ -8,6 +8,21 @@ export default () => (
     description="Walking through the inspiration and process for making Serenity's Arrival."
     date="2020-10-04"
     cardImage="https://blog.aunyks.com/img/art-n-design/serenitys-arrival/dusk-render.jpg">
+    <style jsx>{`
+        video {
+          border-style: none;
+          border-width: 5px;
+          border-color: black;
+          border-radius: 10px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          video {
+            border-style: solid;
+            border-color: white;
+          }
+        }
+      `}</style>
     <p>
       I approached <a target="_blank" href="https://art.aunyks.com/2020/serenitys-arrival">this project</a> in a way a bit different from previous ones. It was actually the audio
       that accompanies this piece that inspired me to make it.
