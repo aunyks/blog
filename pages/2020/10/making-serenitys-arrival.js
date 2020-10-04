@@ -36,7 +36,7 @@ export default () => (
       <figcaption className="text-sm text-center">Notice the ripples of the waves.</figcaption>
     </figure>
     <p>
-      Unlike my last project, I finally got the waves to continuously loop so they look more natural. After messing with the water's material
+      Unlike my last project, I finally got the waves to continuously loop so they look more natural. Then, I messed with the water's material
       so that it had some reflectiveness.
       </p>
     <figure className="my-5">
@@ -44,14 +44,14 @@ export default () => (
         alt="The Blender viewport featuring the ocean mesh with reflective material applied." />
     </figure>
     <p>
-      I decided to add a mountain to give the scene some depth.
+      I added a mountain to give the scene some depth.
       </p>
     <figure className="my-5">
       <img className="w-full" src="/img/art-n-design/serenitys-arrival/mountain.jpg"
         alt="The Blender viewport with ocean and mountain in view." />
     </figure>
     <p>
-      Now, I just need it to add a sky and sun to fill the background. After messing around with color schemes for the scene, I actually decided to go with two schemes: one for day and another for dusk.
+      Now, I just needed to add a sky and sun to fill the background. After messing around with color schemes for the scene, I actually decided to go with two schemes: one for day and another for dusk.
       My next step was to learn how to animate the camera movement to get different kinds of shots. The cool thing is that I found out how to do this without watching any tutorials.
       </p>
     <figure className="my-5">
