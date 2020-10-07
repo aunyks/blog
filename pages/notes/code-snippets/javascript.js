@@ -1,17 +1,17 @@
-import Post from 'components/NotesPost'
+import Post from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
 export default () => (
   <Post
     title="JavaScript Code Snippets"
-    description="Useful bites of JS code that I find often write and rewrite."
+    description="Useful bites of JS code that I often write and rewrite."
     hasCodeSnippet
   >
     <CodeSnippet title="Generate list of numbers in range">
       <p>
-        Like Python's `range` function, this returns an array of numbers, starting from the given initial value, and increments by `step`, and stops before the given final value. If the optional boolean parameter
-        `inclusiveOfB` is set to true, this function will include the given final value at the end of the returned array.
+        Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter
+        <code>inclusiveOfB</code> is set to true, this function will include the given final value at the end of the returned array.
     </p>
       <CodeBlock lang="js">{`
 const range = (a, b, step, inclusiveOfB = false) => {

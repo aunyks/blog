@@ -1,11 +1,11 @@
-import Post from 'components/NotesPost'
+import Post from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
 export default () => (
   <Post
     title="React.js Code Snippets"
-    description="Useful bites of React code that I find often write and rewrite."
+    description="Useful bites of React code that I often write and rewrite."
     hasCodeSnippet
   >
     <CodeSnippet title="Simple Scatter Plot">
@@ -48,7 +48,8 @@ import { VictoryChart, VictoryLine } from 'victory'
     </CodeSnippet>
     <CodeSnippet title="Line Chart with Custom Domain">
       <p>
-        In case you want to see more than just x at the interval [0, 1].
+        In case you want to see more than just x at the interval [0, 1]. See
+        the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
     </p>
       <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
@@ -71,7 +72,8 @@ import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
     </CodeSnippet>
     <CodeSnippet title="Line Chart for Parametric Functions">
       <p>
-        For when x and y values are dependent on a third value.
+        For when x and y values are dependent on a third value. See
+        the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
     </p>
       <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'

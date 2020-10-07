@@ -23,7 +23,7 @@ const slugify = str => {
 export default function CodeSnippet({ title, children }) {
   const titleSlug = slugify(title)
   return (
-    <div id={titleSlug} className="my-10">
+    <div id={titleSlug} className="mb-10">
       <style jsx>{`
         .snippet-title {
           text-decoration: none;
