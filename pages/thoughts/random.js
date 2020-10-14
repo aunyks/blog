@@ -10,10 +10,9 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
-    {/*<Thought date="2020-09-11">
-      Imagine flying the <a href="https://en.wikipedia.org/wiki/Gadsden_flag">Gadsden Flag</a> but also supporting law enforcement "doing whatever is necessary" to get the job done. The dissonance of
-      choosing when to support <Hint msg="Law enforcement programs are agencies of the executive branch on all levels of American government. They are also becoming more militarized and have greater capabilities for violence than American citizens/civilians. This is precisely what the founders of this country fought and warned against.">powerful government</Hint> shows an inability to come to logically sound conclusions.
-</Thought>*/}
+    <Thought date="2020-10-14">
+      Balance is rarely constant. It's often achieved through the continuous shift between all options.
+    </Thought>
     <Thought date="2020-09-03">
       Thinking in pursuit of a quote yields a bad quote, ironically enough.
     </Thought>
