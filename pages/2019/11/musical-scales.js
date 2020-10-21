@@ -6,7 +6,6 @@ export default () => (
     date="2019-11-22"
     title="Musical Scales"
     description="A brief, interactive lesson on scales in music theory."
-    cardImage="https://blog.aunyks.com/img/music/musical-scales-card.png"
     remark={(
       <>
         Thanks for reading. Huge thanks to <a href="https://twitter.com/mikayla_orange">Mikayla Orange</a> for lending
@@ -221,7 +220,7 @@ export default () => (
       of the white keys between any C and a C next to it.
         </p>
     <p>
-      If you play the notes sequentially from left to right, you'll find that the notes sound pleasent together.
+      If you play the notes sequentially from left to right, you'll find that the notes sound pleasant together.
         </p>
     <h4>D# Major</h4>
     <p>

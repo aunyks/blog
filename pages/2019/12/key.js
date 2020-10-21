@@ -6,7 +6,6 @@ export default () => (
     title="Key"
     date="2019-12-14"
     description="A brief, interactive lesson on key in music theory."
-    cardImage="https://blog.aunyks.com/img/music/key-card.png"
     remark={(
       <>
         Thanks for reading. Huge thanks to <a href="https://twitter.com/mikayla_orange">Mikayla Orange</a> for lending

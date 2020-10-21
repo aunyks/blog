@@ -6,7 +6,6 @@ export default () => (
     title="The Octave"
     date="2019-11-21"
     description="A brief, interactive lesson on octaves in music theory."
-    cardImage="https://blog.aunyks.com/img/music/the-octave-card.png"
     remark={(
       <>
         Thanks for reading. Huge thanks to <a href="https://twitter.com/mikayla_orange">Mikayla Orange</a> for lending
