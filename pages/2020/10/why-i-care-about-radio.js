@@ -25,6 +25,9 @@ export default () => (
     <p>
       <a target="_blank" href="https://www.gearbrain.com/logitech-wireless-keyboard-mouse-hack-2639194989.html">A vulnerability in Logitech keyboards and mice that let attackers steal keystrokes or remotely control a machine</a>.
     </p>
+    <p>
+      <a target="_blank" href="https://www.usenix.org/system/files/conference/woot14/woot14-ghena.pdf">Researchers use radio hardware to control traffic lights</a>.
+    </p>
     <h3>Space</h3>
     <p>
       The global superpowers are entering a new space race, and private businesses are beginning to inhabit space for various reasons. All of these machines, rockets, and satellites
@@ -41,7 +44,7 @@ export default () => (
     </p>
     <h3>Grid-Down Situations</h3>
     <p>
-      In situations where the electrical grid or Internet infrastructure is down, radios are often the next mode of communication. Thinking about different methods <Hint msg="I often think about how we can transmit digital information in these scenarios.">to transmit and receive information in
+      In situations where the electrical grid or Internet infrastructure is down, radios are often the next mode of communication. Thinking about different methods <Hint msg="I often think about how we can transmit digital information in these scenarios.">of transmitting and receiving information in
       varying conditions</Hint> is very unique to every possible scenario and could potentially save lives.
     </p>
     <p>
@@ -50,6 +53,9 @@ export default () => (
     <strong>For Example</strong>
     <p>
       <a target="_blank" href="https://youtu.be/7p-BAeWf0U0?t=213">Amateur radio operators communicate over extreme distances using a satellite orbiting near all of them</a>.
+    </p>
+    <p>
+      Amateur radio operators were important for communication immediately following Hurricanes Katrina and Maria.
     </p>
     <h3>New Technical Challenges</h3>
     <p>
