@@ -10,8 +10,12 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-10-24">
+      When an innocent person has their life taken by the government, it concerns me when people justify their innocence by saying they're unarmed. I
+      legally and responsibly carry my weapon, and exercising my right shouldn't be a reason for me to lose my life.
+    </Thought>
     <Thought date="2020-10-14">
-      Balance is rarely constant. It's often achieved through the continuous shift between all options.
+      Balance is rarely constant. It's achieved through the continuous shift between all possible states.
     </Thought>
     <Thought date="2020-09-03">
       Thinking in pursuit of a quote yields a bad quote, ironically enough.
