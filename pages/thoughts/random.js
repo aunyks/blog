@@ -12,7 +12,7 @@ export default () => (
   >
     <Thought date="2020-10-24">
       When an innocent person has their life taken by the government, it concerns me when people justify their innocence by saying they're unarmed. I
-      legally and responsibly carry my weapon, and exercising my right shouldn't be a reason for me to lose my life.
+      legally and responsibly carry my weapon, and exercising my right to do so shouldn't be a reason for me to lose my life.
     </Thought>
     <Thought date="2020-10-14">
       Balance is rarely constant. It's achieved through the continuous shift between all possible states.
