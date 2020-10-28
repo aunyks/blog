@@ -10,6 +10,9 @@ export default () => (
     description="Miscellaneous thoughts with no category."
     noFooter
   >
+    <Thought date="2020-10-28">
+      Effective cryptography is the last ubiquitous weapon people have against authoritarianism today.
+    </Thought>
     <Thought date="2020-10-24">
       When an innocent person has their life taken by the government, it concerns me when people justify their innocence by saying they're unarmed. I
       legally and responsibly carry my weapon, and exercising my right to do so shouldn't be a reason for me to lose my life.
