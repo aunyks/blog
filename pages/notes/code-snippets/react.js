@@ -2,17 +2,18 @@ import Post from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
-export default () => (
-  <Post
-    title="React.js Code Snippets"
-    description="Useful bites of React code that I often write and rewrite."
-    hasCodeSnippet
-  >
-    <CodeSnippet title="Simple Scatter Plot">
-      <p>
-        Plot some dots on a chart and color them in.
+export default function ReactCodeSnippets() {
+  return (
+    <Post
+      title="React.js Code Snippets"
+      description="Useful bites of React code that I often write and rewrite."
+      hasCodeSnippet
+    >
+      <CodeSnippet title="Simple Scatter Plot">
+        <p>
+          Plot some dots on a chart and color them in.
       </p>
-      <CodeBlock lang="jsx">{`
+        <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryScatter } from 'victory'
 
 <VictoryChart
@@ -30,12 +31,12 @@ import { VictoryChart, VictoryScatter } from 'victory'
   />
 </VictoryChart>
 `}</CodeBlock>
-    </CodeSnippet>
-    <CodeSnippet title="Simple Line Chart">
-      <p>
-        Make a line chart from with domain 0 to 1 and range from y<sub>min</sub> to y<sub>max</sub>. With red line.
+      </CodeSnippet>
+      <CodeSnippet title="Simple Line Chart">
+        <p>
+          Make a line chart from with domain 0 to 1 and range from y<sub>min</sub> to y<sub>max</sub>. With red line.
     </p>
-      <CodeBlock lang="jsx">{`
+        <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 
 <VictoryChart>
@@ -45,13 +46,13 @@ import { VictoryChart, VictoryLine } from 'victory'
   />
 </VictoryChart>
 `}</CodeBlock>
-    </CodeSnippet>
-    <CodeSnippet title="Line Chart with Custom Domain">
-      <p>
-        In case you want to see more than just x at the interval [0, 1]. See
+      </CodeSnippet>
+      <CodeSnippet title="Line Chart with Custom Domain">
+        <p>
+          In case you want to see more than just x at the interval [0, 1]. See
         the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
     </p>
-      <CodeBlock lang="jsx">{`
+        <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
 
 <VictoryChart>
@@ -69,13 +70,13 @@ import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
   />
 </VictoryChart>
 `}</CodeBlock>
-    </CodeSnippet>
-    <CodeSnippet title="Line Chart for Parametric Functions">
-      <p>
-        For when x and y values are dependent on a third value. See
+      </CodeSnippet>
+      <CodeSnippet title="Line Chart for Parametric Functions">
+        <p>
+          For when x and y values are dependent on a third value. See
         the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
     </p>
-      <CodeBlock lang="jsx">{`
+        <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 
 <VictoryChart>
@@ -87,6 +88,7 @@ import { VictoryChart, VictoryLine } from 'victory'
   />
 </VictoryChart>
 `}</CodeBlock>
-    </CodeSnippet>
-  </Post>
-)
+      </CodeSnippet>
+    </Post>
+  )
+}

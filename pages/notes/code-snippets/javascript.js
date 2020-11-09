@@ -2,18 +2,19 @@ import Post from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
-export default () => (
-  <Post
-    title="JavaScript Code Snippets"
-    description="Useful bites of JS code that I often write and rewrite."
-    hasCodeSnippet
-  >
-    <CodeSnippet title="Generate list of numbers in range">
-      <p>
-        Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter
+export default function JsCodeSnippets() {
+  return (
+    <Post
+      title="JavaScript Code Snippets"
+      description="Useful bites of JS code that I often write and rewrite."
+      hasCodeSnippet
+    >
+      <CodeSnippet title="Generate list of numbers in range">
+        <p>
+          Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter
         <code>inclusiveOfB</code> is set to true, this function will include the given final value at the end of the returned array.
     </p>
-      <CodeBlock lang="js">{`
+        <CodeBlock lang="js">{`
 const range = (a, b, step, inclusiveOfB = false) => {
   if(a > b) {
     throw new Error('[range()] Initial value greater than final value. Must be less than final value.')
@@ -27,12 +28,12 @@ const range = (a, b, step, inclusiveOfB = false) => {
   }
   return values
 }`}</CodeBlock>
-    </CodeSnippet>
-    <CodeSnippet title="Slugify a String">
-      <p>
-        Turn a string into a slug. Borrowed from <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">Lulu</a>.
+      </CodeSnippet>
+      <CodeSnippet title="Slugify a String">
+        <p>
+          Turn a string into a slug. Borrowed from <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">Lulu</a>.
     </p>
-      <CodeBlock lang="js">{`
+        <CodeBlock lang="js">{`
 const slugify = str => {
   str = str.replace(/^\s+|\s+$/g, '')
 
@@ -55,6 +56,7 @@ const slugify = str => {
   return str
 }
 `}</CodeBlock>
-    </CodeSnippet>
-  </Post>
-)
+      </CodeSnippet>
+    </Post>
+  )
+}

@@ -1,7 +1,7 @@
 import Post from 'components/Post'
 import Hint from 'components/Hint'
 
-export default () => {
+export default function HiddenInPlainSight() {
   return (
     <Post
       title="Hidden in Plain Sight"

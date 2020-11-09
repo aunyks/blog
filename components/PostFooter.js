@@ -5,7 +5,7 @@ export default function PostFooter({ date, remark }) {
     year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
   }
   return (
-    <section id="footer">
+    <footer id="footer">
       <hr className="mt-3" />
       <p>
         {remark || (
@@ -18,6 +18,6 @@ export default function PostFooter({ date, remark }) {
       <p className="select-none">
         Copyright &copy; {date && `2019-${year}`} Gerald Nash
         </p>
-    </section>
+    </footer>
   )
 }

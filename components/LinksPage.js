@@ -28,16 +28,18 @@ export default function LinksPage({
         <meta name="twitter:description" content={subtitle} />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
       </Head>
-      <div className="h-screen lg:w-3/4 flex flex-col pt-24 lg:pt-16">
-        <div className="px-6 lg:px-24">
-          <h1 className="text-3xl lg:text-5xl">{title}</h1>
-          {subtitle && <h2 className="font-bold text-xl lg:text-3xl mb-5 lg:mb-3">{subtitle}</h2>}
-          <div id="links">
+      <main className="h-screen lg:w-3/4 flex flex-col pt-24 lg:pt-16">
+        <article className="px-6 lg:px-24">
+          <header>
+            <h1 className="text-3xl lg:text-5xl">{title}</h1>
+            {subtitle && <h2 className="font-bold text-xl lg:text-3xl mb-2 lg:mb-0">{subtitle}</h2>}
+          </header>
+          <ul id="links" className="list-none">
             {children}
-          </div>
+          </ul>
           <GAnalytics />
-        </div>
-      </div>
+        </article>
+      </main>
     </>
   )
 }

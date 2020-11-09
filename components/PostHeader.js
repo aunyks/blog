@@ -15,13 +15,13 @@ export default function PostHeader({
   }
 
   return (
-    <section>
+    <header>
       <h1 className="mt-2 lg:mt-0 leading-tight">{title}</h1>
       {subtitle && (
         <h2 className="leading-none">{subtitle}</h2>
       )}
       {date && <time className="text-lg" dateTime={date}>{`${month} ${day}, ${year}`}</time>}
       <hr style={{ marginBottom: '0.75em' }} />
-    </section>
+    </header>
   )
 }
