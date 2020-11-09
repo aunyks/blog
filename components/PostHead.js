@@ -5,7 +5,8 @@ export default function PostHead({
   subtitle,
   description,
   cardImage,
-  hasCodeSnippet
+  hasCodeSnippet,
+  hasMath
 }) {
   const effectiveTitle = !!subtitle ? `${title}: ${subtitle}` : title
   return (
@@ -31,11 +32,16 @@ export default function PostHead({
       <meta property="og:site_name" content="Hi-Voltage"></meta>
       <meta property="og:description" content={description} />
       <meta property="og:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
+      {hasMath && (
+        <>
+          <link href="/css/katex.css" rel="stylesheet" />
+        </>
+      )}
       {hasCodeSnippet && (
         <>
-          <link href="/css/prism.css" rel="stylesheet" />
           {/* Find supported languages here: https://prismjs.com/#supported-languages */}
           {/* Find their CDN links here: https://prismjs.com/#basic-usage-cdn */}
+          <link href="/css/prism.css" rel="stylesheet" />
           <script>{`
           window.Prism = window.Prism || {};
           window.Prism.manual = true;     

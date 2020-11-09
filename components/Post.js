@@ -13,6 +13,7 @@ export default function Post({
   remark,
   cardImage,
   hasCodeSnippet,
+  hasMath,
   noFooter,
   children
 }) {
@@ -23,7 +24,8 @@ export default function Post({
         subtitle={subtitle}
         description={description}
         cardImage={cardImage}
-        hasCodeSnippet={hasCodeSnippet} />
+        hasCodeSnippet={hasCodeSnippet}
+        hasMath={hasMath} />
       <Navbar />
       <PostBody>
         <PostHeader title={title} subtitle={subtitle} date={date} />
