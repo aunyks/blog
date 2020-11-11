@@ -161,7 +161,7 @@ export default function UnderstandCSignals() {
         <figcaption className="text-xs text-center">Move the sliders to change the phasor's phase angle and amplitude.</figcaption>
       </figure>
       <p>
-        With these two parameters, we can model the incoming signal using Euler's formula, <Tex tex="e^{ i\theta } = \cos \theta + i\sin \theta" />.
+        With these two parameters, we can model the incoming signal using Euler's formula, <Tex tex="Ae^{ i\theta } = A\cos \theta + iA\sin \theta" />.
         That's some tricky math, and it came quickly, so let's take some time to understand what it means and why we need it.
         </p>
       <p>
@@ -216,12 +216,12 @@ export default function UnderstandCSignals() {
         our <Hint msg="Or, imaginary signal">quadrature signal</Hint>, we can mathematically represent both signals together using Euler's formula.
       </p>
       <figure className="mx-auto w-full">
-        <Tex isFigure tex="e^{ i\theta } = \cos \theta + i\sin \theta" />
+        <Tex isFigure tex="Ae^{ i\theta } = A\cos \theta + iA\sin \theta" />
       </figure>
       <p>
         Here, we're saying that the two parameters we receive from the RF signal, <Tex tex="A" /> and <Tex tex="\theta" />, can be equally
         represented using two signals: one that's in-phase with the RF signal and one that a quarter-rotation out of phase with it. The RF side of
-        the equation is the left-hand side, <Tex tex="e^{ i\theta }" />, and the side that's processed by the computer is the right-hand side, <Tex tex="\cos \theta + i\sin \theta" />.
+        the equation is the left-hand side, <Tex tex="Ae^{ i\theta }" />, and the side that's processed by the computer is the right-hand side, <Tex tex="\cos \theta + i\sin \theta" />.
         Of course, our equation shows us that both sides are equivalent, so the information we're processing is the same as the information we received over the air.
       </p>
       <h3>In Practice, the I and Q</h3>
