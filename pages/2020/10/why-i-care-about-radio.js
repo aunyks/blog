@@ -29,6 +29,9 @@ export default function WhyICareAboutRadio() {
       <p>
         <a target="_blank" href="https://www.usenix.org/system/files/conference/woot14/woot14-ghena.pdf">Researchers use radio hardware to control traffic lights</a>.
     </p>
+      <p>
+        <a target="_blank" href="https://harrisonsand.com/imsi-catcher/">Use radio to make a fake cell tower and trick people's phones into giving data</a>
+      </p>
       <h3>Space</h3>
       <p>
         The global superpowers are entering a new space race, and private businesses are beginning to inhabit space for various reasons. All of these machines, rockets, and satellites
