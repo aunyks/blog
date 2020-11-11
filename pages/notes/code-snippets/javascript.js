@@ -9,6 +9,16 @@ export default function JsCodeSnippets() {
       description="Useful bites of JS code that I often write and rewrite."
       hasCodeSnippet
     >
+      <CodeSnippet title="Linear Interpolation (lerp)">
+        <p>
+          A simple lerp implementation. <code>progress</code> ranges from 0 (start) to 1 (end).
+        </p>
+        <CodeBlock lang="js">{`
+function lerp(start, end, progress) {
+  return start * (1 - progress) + end * progress
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Generate list of numbers in range">
         <p>
           Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter

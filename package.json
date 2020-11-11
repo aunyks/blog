@@ -10,7 +10,8 @@
     "katex": "^0.12.0",
     "next": "^10.0.0",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "victory": "^35.3.5"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
