@@ -224,6 +224,10 @@ export default function UnderstandCSignals() {
         the equation is the left-hand side, <Tex tex="Ae^{ i\theta }" />, and the side that's processed by the computer is the right-hand side, <Tex tex="\cos \theta + i\sin \theta" />.
         Of course, our equation shows us that both sides are equivalent, so the information we're processing is the same as the information we received over the air.
       </p>
+      <p>
+        In reality, the signal that we're receiving over the air isn't a basic sinusoid, but this exercise helps us build some intuition about
+        the use of complex signals in DSP.
+      </p>
       <h3>In Practice, the I and Q</h3>
       <p>
         In practical DSP, you may not always hear about processing a real and imaginary signal, but the odds are that you've heard of them or have been using them without knowing!

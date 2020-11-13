@@ -13,7 +13,7 @@ export default function JsCodeSnippets() {
       <CodeSnippet title="Node.js Unit Testing (Jest)">
         <p>
           The structure of a test suite in Node.js. First, <a href="https://jestjs.io" target="_blank">Jest</a> must be <Hint msg="Execute `npm i -D jest` while in the directory of your project to install it.">installed</Hint>.
-          This code should be in a file titled <code>mytest.test.js</code>, and it can be ran by running the <code>jest</code> command.
+          This code should be in a file titled <code>mytest.test.js</code>, and it can be ran by executing the <code>jest</code> command in the terminal.
         </p>
         <CodeBlock lang="js">{`
 const sumFunction = require('./someModule')
