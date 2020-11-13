@@ -1,6 +1,7 @@
 import Post from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
+import Hint from 'components/Hint'
 
 export default function JsCodeSnippets() {
   return (
@@ -9,6 +10,21 @@ export default function JsCodeSnippets() {
       description="Useful bites of JS code that I often write and rewrite."
       hasCodeSnippet
     >
+      <CodeSnippet title="Node.js Unit Testing (Jest)">
+        <p>
+          The structure of a test suite in Node.js. First, <a href="https://jestjs.io" target="_blank">Jest</a> must be <Hint msg="Execute `npm i -D jest` while in the directory of your project to install it.">installed</Hint>.
+          This code should be in a file titled <code>mytest.test.js</code>, and it can be ran by running the <code>jest</code> command.
+        </p>
+        <CodeBlock lang="js">{`
+const sumFunction = require('./someModule')
+
+describe('My Test Suite', () => {
+  test('Test #1', () => {
+    expect(sumFunction(2, 2)).toBe(4)
+  })
+})
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Linear Interpolation (lerp)">
         <p>
           A simple lerp implementation. <code>progress</code> ranges from 0 (start) to 1 (end).
@@ -21,8 +37,8 @@ function lerp(start, end, progress) {
       </CodeSnippet>
       <CodeSnippet title="Generate list of numbers in range">
         <p>
-          Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter
-        <code>inclusiveOfB</code> is set to true, this function will include the given final value at the end of the returned array.
+          Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter <code>inclusiveOfB</code> is
+          set to true, this function will include the given final value at the end of the returned array.
     </p>
         <CodeBlock lang="js">{`
 const range = (a, b, step, inclusiveOfB = false) => {

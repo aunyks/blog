@@ -138,8 +138,8 @@ pre {
 }
 
 code {
-  background: #ddd;
-  padding: 3px;
+  background: #eee;
+  padding: 0 5px;
   border-radius: 5px;
   color: #ff7070;
 }
@@ -338,9 +338,7 @@ button.melody {
   }
 
   code {
-    background: #222;
-    padding: 3px;
-    border-radius: 5px;
+    background: #444;
     color: #fc9b9b;
   }
 
