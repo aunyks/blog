@@ -162,7 +162,7 @@ export default function DemodulatingIQData() {
         <figcaption className="text-xs mx-auto w-5/6 lg:w-3/4">Where <Tex tex="A(t)" /> is the amplitude of the signal at a point in time, or instantaneous amplitude.</figcaption>
       </figure>
       <p>
-        The <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem" target="_blank">Pythagorean Theorem</a> concludes that <Tex tex="A^2 + B^2 = C^2" />. With that in mind, we can get <Tex tex="C" /> in our triangle above with just <Tex tex="A" />, on the horizontal axis, and <Tex tex="B" />, on the vertical axis, by rearranging the
+        The <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem" target="_blank">Pythagorean Theorem</a> concludes that <Tex tex="A^2 + B^2 = C^2" />. With that in mind, we can get <Tex tex="C" />, the hypotenuse of our triangle above, with just <Tex tex="A" />, on the horizontal axis, and <Tex tex="B" />, on the vertical axis, by rearranging the
         equation into <Tex tex="C = \sqrt {A^2 + B^2}" />. Applying this formula to our signal function with <Tex tex="I(t)" /> being on the horizontal axis and <Tex tex="Q(t)" /> being on the verical axis yields a formula that gives
         us the amplitude of the signal at a certain point in time.
       </p>
