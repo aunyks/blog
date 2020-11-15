@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
+import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
 
 import Post from 'components/Post'
 import Hint from 'components/Hint'
 import Tex from 'components/Tex'
-
-import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
 
 function lerp(start, end, progress) {
   return start * (1 - progress) + end * progress
@@ -195,8 +194,8 @@ export default function UnderstandCSignals() {
           signal, it's called the <em className="underline">quad</em>rature signal.
         </p>
       <figure className="mb-3">
-        <img src="/img/tech/complex-phasor.gif" alt="A GIF showing a phasor with corresponding in-phase and quadrature signals." />
-        <figcaption className="text-xs mx-auto w-3/4">The in-phase signal is to the right, and the quadrature signal is toward the top. Source: <a href="https://www.physicsforums.com/threads/two-waves-moving-at-right-angles-go-in-circles.933112/">Physics Forums</a></figcaption>
+        <img src="/img/tech/complex-phasor.gif" alt="A GIF showing a phasor with corresponding in-phase and quadrature signals." style={{ transform: 'rotate(90deg)' }} />
+        <figcaption className="text-xs mx-auto w-3/4">The in-phase signal is to the bottom, and the quadrature signal is to the right. Source: <a href="https://www.physicsforums.com/threads/two-waves-moving-at-right-angles-go-in-circles.933112/">Physics Forums</a></figcaption>
       </figure>
       <p>
         The quadrature signal has an interesting property here in that it's imaginary. Recall that we're on a complex plane, so the vertical axis
@@ -246,7 +245,7 @@ export default function UnderstandCSignals() {
       </p>
       <h3>How does this make demodulation easier?</h3>
       <p>
-        I'll show how this is the case in a later post.
+        I cover this briefly in <a href="/2020/11/demodulating-iq-data">the next post</a>.
       </p>
       <h3>To wrap up</h3>
       <p>

@@ -14,7 +14,7 @@ export default function LearningRFSignalProcessing() {
         </p>
       <ol>
         <li><a href="/2020/11/understanding-complex-signals">Understanding Complex Signals</a></li>
-        <li>Demodulating I/Q Data (TBD)</li>
+        <li><a href="/2020/11/demodulating-iq-data">Demodulating I/Q Data</a></li>
       </ol>
     </Post>
   )

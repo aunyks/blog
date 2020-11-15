@@ -11,7 +11,7 @@ export default function HomePage() {
       <Link href="/tech">tech</Link>
       <Link href="/art-n-design">art & design</Link>
       <Link href="/misc">misc</Link>
-      <Link href="/tech-culture">culture{`<>`}tech</Link>
+      <Link href="/tech-culture">culture&#8596;tech</Link>
       <Link href="/thoughts">thoughts</Link>
       <Link href="/notes">notes</Link>
       <Link href="https://medium.com/@aunyks">old posts</Link>

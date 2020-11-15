@@ -5,7 +5,7 @@ export default function TechCulture() {
   return (
     <LinksPage
       pageTitle="Tech & Culture"
-      title="Tech<>Culture"
+      title="Tech&#8596;Culture"
       subtitle="Technology is culture">
       <Link href="/2020/9/future-of-tech-for-we">the future of tech for we</Link>
       <Link href="/2020/7/3d-modeling-meets-fashion-consumers">3d modeling meets fashion consumers</Link>

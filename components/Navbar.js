@@ -59,7 +59,7 @@ export default function Navbar() {
             Misc
           </NavLink>
           <NavLink href="/tech-culture">
-            Tech{'<>'}Culture
+            Tech&#8596;Culture
           </NavLink>
           <NavLink href="/thoughts">
             Thoughts
