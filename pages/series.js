@@ -7,6 +7,7 @@ export default function SeriesPage() {
       pageTitle="Blog Series"
       title="Series"
       subtitle="Collections of a single topic">
+      <Link href="/2020/11/building-a-modern-dsp-system">building a modern dsp system</Link>
       <Link href="/2020/11/learning-rf-signal-processing">learning rf signal processing</Link>
       <Link href="/2020/11/making-3d-art">making 3d art</Link>
       <Link href="/2019/11/learning-music-theory">learning music theory</Link>
