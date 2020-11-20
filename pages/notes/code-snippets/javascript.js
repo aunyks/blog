@@ -10,6 +10,30 @@ export default function JsCodeSnippets() {
       description="Useful bites of JS code that I often write and rewrite."
       hasCodeSnippet
     >
+      <CodeSnippet title="Send a Single SMS Message (Twilio)">
+        <p>
+          To run this Node.js script, the Twilio JavaScript library must first <Hint msg="Execute `npm i -S twilio` while in the directory of your project to install it.">be installed</Hint>. Here, <code>sendingNumber</code> and <code>receivingNumber</code> include the <Hint msg="The USA's is +1.">country code</Hint>.
+          Note that the Account SID and Auth Token are provided to the script as <a href="https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa">environment variables</a>. You can find these values in your Twilio dashboard.
+        </p>
+        <CodeBlock lang="js">{`
+const accountSid = process.env.TWILIO_SID
+const authToken = process.env.TWILIO_AUTH_TOKEN
+const client = require('twilio')(accountSid, authToken)
+
+let sendingNumber = '+15555555555'
+let receivingNumber = '+14444444444'
+
+async function sendText() {
+  await client.messages.create({
+    body: "The recipient will see this in the text body",
+    from: sendingNumber,
+    to: receivingNumber
+  })
+}
+
+sendText()
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Node.js Unit Testing (Jest)">
         <p>
           The structure of a test suite in Node.js. First, <a href="https://jestjs.io" target="_blank">Jest</a> must be <Hint msg="Execute `npm i -D jest` while in the directory of your project to install it.">installed</Hint>.
