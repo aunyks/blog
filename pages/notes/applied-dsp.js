@@ -61,6 +61,7 @@ export default function AppliedDSP() {
       <h2>Extra Notes</h2>
       <ul>
         <li>Before <a target="_blank" href="https://pypi.org/project/pyrtlsdr/">pyrtlsdr</a> is installed, <a target="_blank" href="https://github.com/librtlsdr/librtlsdr">librtlsdr</a> needs to be installed. A one-liner command to install both on macOS is <code>brew install librtlsdr && python -m pip install pyrtlsdr</code>.</li>
+        <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
       </ul>
     </NotesPost>
   )
