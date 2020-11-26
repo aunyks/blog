@@ -3,13 +3,18 @@ import {
   useState
 } from 'react'
 
-export default function CodeBlock({ className, lang, children }) {
+export default function CodeBlock({
+  className,
+  lang,
+  showCodeByDefault,
+  children
+}) {
   const [Prism, setPrism] = useState(null)
   useEffect(() => {
     setPrism(window.Prism)
   }, [])
 
-  const [isShowingCode, setShowingCode] = useState(false)
+  const [isShowingCode, setShowingCode] = useState(showCodeByDefault ? true : false)
 
   return (
     <>
