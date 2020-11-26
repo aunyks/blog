@@ -38,12 +38,10 @@ export default function AppliedDSP() {
       There's even a little hack to get your <a target="_blank" href="https://www.raspberrypi.org/">Raspberry Pi</a> to <a target="_blank" href="https://www.youtube.com/results?search_query=raspberry+pi+fm+transmitter">transmit on some lower frequencies</a> and serve as a cheap radio station.
       It's very approachable since the Pi is cheap, but do NOT transmit before consulting the laws in jurisdiction.
     </p>
-      {/* 
       <h3>Demodulation</h3>
       <p>
-        
+        We can demodulate the incoming signal in a <em>relatively</em> simple manner, if we're given the <a href="/2020/11/understanding-complex-signals">complex signal</a> in I/Q format. See <a href="/2020/11/demodulating-iq-data">this post</a> for more information.
     </p>
-    */}
       <h3>Decoding Digital Signals</h3>
       <p>
         WiFi, Bluetooth, digital satellites, and more using communicate using binary code. They prepare the bits in each message to be transmitted
@@ -103,6 +101,44 @@ def animate(frame):
 # animate function every 10 milliseconds
 ani = animation.FuncAnimation(fig, animate, interval=10)
 plt.show()
+`}</CodeBlock>
+      </CodeSnippet>
+      <CodeSnippet title="Read From .iq File (Python)">
+        <p>
+          Use <a target="_blank" href="https://numpy.org/">NumPy</a> to import I/Q samples from a file and optionally use <a target="_blank" href="https://matplotlib.org">matplotlib</a> to
+          visualize some of the samples. Modified from a <a target="_blank" href="https://pysdr.org/content/iq_files.html">PySDR page</a>.
+      </p>
+        <CodeBlock lang="python">{`
+import numpy as np
+import matplotlib.pyplot as plt
+
+samples = np.fromfile('signal.iq', np.complex64)
+print(samples)
+
+# Plot constellation
+plt.plot(np.real(samples), np.imag(samples), '.')
+plt.grid(True)
+plt.show()
+`}</CodeBlock>
+      </CodeSnippet>
+      <CodeSnippet title="Write to .iq File (Python)">
+        <p>
+          Use <a target="_blank" href="https://numpy.org/">NumPy</a> to export I/Q samples to a file. Modified from a <a target="_blank" href="https://pysdr.org/content/iq_files.html">PySDR page</a>.
+      </p>
+        <CodeBlock lang="python">{`
+import numpy as np
+
+# Manually generate signal with some noise
+num_symbols = 10000
+x_symbols = np.random.randint(0, 2, num_symbols)*2-1 # -1 and 1's
+n = (np.random.randn(num_symbols) + 1j*np.random.randn(num_symbols))/np.sqrt(2)
+r = x_symbols + n * np.sqrt(0.01) # noise power of 0.01
+
+# Save signal to an .iq file
+print(type(r[0])) # NumPy Complex is complex128 by default
+r = r.astype(np.complex64) # Convert to 64
+print(type(r[0])) # Verify it's 64
+r.tofile('bpsk_in_noise.iq') # Save
 `}</CodeBlock>
       </CodeSnippet>
     </NotesPost>
