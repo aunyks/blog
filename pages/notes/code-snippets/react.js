@@ -1,13 +1,12 @@
-import Post from 'components/CodeSnippetPost'
+import CodeSnippetPost from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
 export default function ReactCodeSnippets() {
   return (
-    <Post
+    <CodeSnippetPost
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
-      hasCodeSnippet
     >
       <CodeSnippet title="Simple Scatter Plot">
         <p>
@@ -89,6 +88,6 @@ import { VictoryChart, VictoryLine } from 'victory'
 </VictoryChart>
 `}</CodeBlock>
       </CodeSnippet>
-    </Post>
+    </CodeSnippetPost>
   )
 }

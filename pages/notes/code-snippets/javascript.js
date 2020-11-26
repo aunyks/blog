@@ -1,14 +1,13 @@
-import Post from 'components/CodeSnippetPost'
+import CodeSnippetPost from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 import Hint from 'components/Hint'
 
 export default function JsCodeSnippets() {
   return (
-    <Post
+    <CodeSnippetPost
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
-      hasCodeSnippet
     >
       <CodeSnippet title="Send a Single SMS Message (Twilio)">
         <p>
@@ -107,6 +106,6 @@ const slugify = str => {
 }
 `}</CodeBlock>
       </CodeSnippet>
-    </Post>
+    </CodeSnippetPost>
   )
 }

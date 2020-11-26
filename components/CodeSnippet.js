@@ -34,7 +34,7 @@ export default function CodeSnippet({ title, children }) {
           text-decoration-color: #fab700;
         }
       `}</style>
-      <a className="snippet-title" href={`#${titleSlug}`}><h3 className="text-2xl leading-tight">{title}</h3></a>
+      <a className="snippet-title" href={`#${titleSlug}`}><h3 className="text-xl leading-tight">{title}</h3></a>
       {children}
     </div>
   )

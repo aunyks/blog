@@ -1,10 +1,10 @@
-import Post from 'components/CodeSnippetPost'
+import CodeSnippetPost from 'components/CodeSnippetPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
 export default function RustCodeSnippets() {
   return (
-    <Post
+    <CodeSnippetPost
       title="Rust Code Snippets"
       description="Useful bites of Rust code that I often write and rewrite."
       hasCodeSnippet
@@ -38,6 +38,6 @@ mod test_operations {
 }
 `}</CodeBlock>
       </CodeSnippet>
-    </Post>
+    </CodeSnippetPost>
   )
 }

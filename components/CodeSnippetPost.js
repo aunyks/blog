@@ -1,20 +1,9 @@
 import Post from 'components/Post'
 
-export default function CodeSnippetPost({
-  title,
-  subtitle,
-  date,
-  description,
-  noFooter,
-  children
-}) {
+export default function CodeSnippetPost(props) {
   return (
     <Post
-      title={title}
-      subtitle={subtitle}
-      date={date}
-      description={description}
-      noFooter={noFooter}
+      {...props}
       hasCodeSnippet={true}
     >
       <p>
@@ -22,7 +11,7 @@ export default function CodeSnippetPost({
           You may be able to try some of this code out in your browser at <a href="https://repl.it/languages">Repl.it</a>.
         </i>
       </p>
-      {children}
+      {props.children}
     </Post>
   )
 }
