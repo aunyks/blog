@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2020-11-26">
+        Learning signal processing makes me feel like an electrical engineer.
+    </Thought>
       <Thought date="2020-10-28">
         Effective cryptography is the last ubiquitous weapon people have against authoritarianism today.
     </Thought>
