@@ -77,9 +77,17 @@ export default function DemodulatingIQData() {
 
   useEffect(() => {
     setDark(window.matchMedia('(prefers-color-scheme: dark)').matches)
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
-      setDark(matches)
-    })
+    try {
+      // For Chrome / FireFox
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+        setDark(matches)
+      })
+    } catch (e) {
+      // For Safari
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
+        setDark(matches)
+      })
+    }
   }, [])
 
   return (

@@ -66,6 +66,78 @@ export default function AppliedDSP() {
         <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
       </ul>
       <h2>Code</h2>
+      <CodeSnippet title="Listen to FM Radio (Python)">
+        <p>
+          Use <a target="_blank" href="https://numpy.org/">NumPy</a>, <a target="_blank" href="https://www.scipy.org/">SciPy</a>, and <a target="_blank" href="https://pypi.org/project/PyAudio/">PyAudio</a> to listen to demodulate FM radio
+          and play the message signal through the device speakers. Modified
+          from a <a target="_blank" href="https://gist.github.com/edy555/08284bcbd03cc59ea9b6c49c8dd733c3">GitHub Gist</a> made by <a target="_blank" href="https://github.com/edy555">@edy555</a>.
+      </p>
+        <CodeBlock lang="python">{`
+import numpy as np
+import signal as process_signal
+import scipy.signal as signal
+import array
+import rtlsdr
+import pyaudio
+from queue import Queue
+
+# I'm not exactly sure when this gets
+# executed so I'm scared to remove it
+def signal_handler(signum, frame):
+  print('sig handler called')
+  exit(-1)
+process_signal.signal(process_signal.SIGINT, signal_handler)
+
+sample_rate = 1.2e6 # 1.2 MHz
+tuning_freq = 95.5e6 # Center Receiving Frequency (95.5 MHz)
+gain = 30 # Low Noise Amp gain
+num_samples = 1024 * 50
+
+# Confugure SDR based on 
+# the above parameters
+sdr = rtlsdr.RtlSdr()
+sdr.gain = gain
+sdr.sample_rate = sample_rate
+sdr.center_freq = tuning_freq
+
+# Init audio player object
+pa = pyaudio.PyAudio()
+
+# Init the I/Q sample queue
+sample_queue = Queue()
+
+def callback(in_data, frame_count, time_info, status):
+  capture = sample_queue.get()
+  # Decimate 1/5 from 1.2MHz to 240kHz
+  sigif = signal.decimate(capture, 5, ftype='fir')
+  # Convert to continuous phase angle
+  # to help understand read: https://www.ljmu.ac.uk/~/media/files/ljmu/about-us/faculties-and-schools/fet/geri/onedimensionalphaseunwrapping_finalpdf.pdf
+  phase = np.unwrap(np.angle(sigif))
+  # Differentiate phase brings into frequency
+  pd = np.convolve(phase, [-1, 1], mode='valid')
+  # Decimate 1/10 from 240kHz to 24kHz
+  audio = signal.decimate(pd, 10, ftype='fir')
+  # Make binary buffer from numpy array for pyaudio
+  buf = array.array('f', audio).tostring()
+  return (buf, pyaudio.paContinue)
+
+# Audio rate is 1.2MHz / (5 * 10) = 24kHz
+stream = pa.open(format=pyaudio.paFloat32,
+                channels=1, rate=int(sample_rate/50), output=True, stream_callback=callback)
+stream.start_stream()
+
+# Get samples from the air and put them 
+# into the sample_queue to be processed
+def capture_callback(captured_samples, rtlsdr_obj):
+  sample_queue.put(captured_samples)
+
+sdr.read_samples_async(capture_callback, num_samples)
+
+stream.stop_stream()
+pa.close()
+sdr.close()
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Animated PSD / FFT Plot (Python)">
         <p>
           Using <a target="_blank" href="https://matplotlib.org">matplotlib</a> to create an
@@ -135,7 +207,7 @@ n = (np.random.randn(num_symbols) + 1j*np.random.randn(num_symbols))/np.sqrt(2)
 r = x_symbols + n * np.sqrt(0.01) # noise power of 0.01
 
 # Save signal to an .iq file
-print(type(r[0])) # NumPy Complex is complex128 by default
+print(type(r[0])) # NumPy complex is complex128 by default
 r = r.astype(np.complex64) # Convert to 64
 print(type(r[0])) # Verify it's 64
 r.tofile('bpsk_in_noise.iq') # Save
