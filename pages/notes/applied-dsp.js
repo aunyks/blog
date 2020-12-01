@@ -66,11 +66,67 @@ export default function AppliedDSP() {
         <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
       </ul>
       <h2>Code</h2>
+      <CodeSnippet title="Animated Constellation Plot (Python)">
+        <p>
+          Using <a target="_blank" href="https://matplotlib.org">matplotlib</a> and <a target="_blank" href="https://numpy.org/">NumPy</a> to create an
+          animated <a target="_blank" href="https://en.wikipedia.org/wiki/Constellation_diagram">Constellation Plot</a> visualization
+          at a given frequency. Requires an RTL-SDR to be plugged in and matplotlib, numpy, and <a target="_blank" href="https://pypi.org/project/pyrtlsdr/">pyrtlsdr</a> to be installed.
+      </p>
+        <CodeBlock lang="python">{`
+from matplotlib import mlab as mlab
+from matplotlib import pyplot as plt
+import numpy as np
+import matplotlib.animation as animation
+from rtlsdr import *
+
+# Open SDR
+sdr = RtlSdr()
+
+# Configure SDR
+sdr.sample_rate = 1.2e6
+sdr.center_freq = 95.5e6 # 95.5 MHz
+sdr.gain = 'auto'
+
+# Create figure and first plot
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+
+# On each animation frame, do this
+def animate(frame):
+  raw_samples = sdr.read_samples(256*1024)
+  ax.clear()
+  # Get 5 random samples for performance
+  randomly_chosen_samples = np.random.choice(raw_samples, size=5)
+  X = [c_num.real for c_num in randomly_chosen_samples]
+  Y = [c_num.imag for c_num in randomly_chosen_samples]
+
+  blue_circle = plt.Circle((0, 0), radius=1.5, color='blue', fill=False)
+  plt.gca().add_artist(blue_circle)
+
+  ax.set_xlabel('I Amplitude')
+  ax.set_ylabel('Q Amplitude')
+  ax.set_title('Constellation Plot')
+  # Plot complex numbers
+  ax.scatter(X, Y, color='red')
+  # Blue dot at center
+  ax.plot(0, 0, 'bD')
+  # Set X and Y axis limits to -6, 6
+  ax.axis([-2, 2, -2, 2])
+  # Make grid visible on plot
+  ax.grid(True)
+
+# Have animation show on our figure and call
+# animate function every 10 milliseconds
+ani = animation.FuncAnimation(fig, animate, interval=10)
+plt.show()
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Listen to FM Radio (Python)">
         <p>
           Use <a target="_blank" href="https://numpy.org/">NumPy</a>, <a target="_blank" href="https://www.scipy.org/">SciPy</a>, and <a target="_blank" href="https://pypi.org/project/PyAudio/">PyAudio</a> to listen to demodulate FM radio
           and play the message signal through the device speakers. Modified
           from a <a target="_blank" href="https://gist.github.com/edy555/08284bcbd03cc59ea9b6c49c8dd733c3">GitHub Gist</a> made by <a target="_blank" href="https://github.com/edy555">@edy555</a>.
+          Requires an RTL-SDR to be plugged in and numpy, scipy, pyaudio, and <a target="_blank" href="https://pypi.org/project/pyrtlsdr/">pyrtlsdr</a> to be installed.
       </p>
         <CodeBlock lang="python">{`
 import numpy as np
@@ -88,17 +144,14 @@ def signal_handler(signum, frame):
   exit(-1)
 process_signal.signal(process_signal.SIGINT, signal_handler)
 
-sample_rate = 1.2e6 # 1.2 MHz
-tuning_freq = 95.5e6 # Center Receiving Frequency (95.5 MHz)
-gain = 30 # Low Noise Amp gain
 num_samples = 1024 * 50
 
 # Confugure SDR based on 
 # the above parameters
 sdr = rtlsdr.RtlSdr()
-sdr.gain = gain
-sdr.sample_rate = sample_rate
-sdr.center_freq = tuning_freq
+sdr.gain = 30 # Low Noise Amp gain
+sdr.sample_rate = 1.2e6 # 1.2 MHz
+sdr.center_freq = 95.5e6 # Center Receiving Frequency (95.5 MHz)
 
 # Init audio player object
 pa = pyaudio.PyAudio()
@@ -168,6 +221,7 @@ def animate(frame):
   samples = sdr.read_samples(256*1024)
   ax.clear()
   ax.set_ylim([-30, 10])
+  ax.set_title('PSD / FFT')
   ax.psd(samples, NFFT=1024, Fs=sdr.sample_rate / 1e6)
 
 # Have animation show on our figure and call
