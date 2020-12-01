@@ -113,7 +113,8 @@ def callback(in_data, frame_count, time_info, status):
   # Convert to continuous phase angle
   # to help understand read: https://www.ljmu.ac.uk/~/media/files/ljmu/about-us/faculties-and-schools/fet/geri/onedimensionalphaseunwrapping_finalpdf.pdf
   phase = np.unwrap(np.angle(sigif))
-  # Differentiate phase brings into frequency
+  # Get the rate of change between each phase value
+  # and the next to get the frequency
   pd = np.convolve(phase, [-1, 1], mode='valid')
   # Decimate 1/10 from 240kHz to 24kHz
   audio = signal.decimate(pd, 10, ftype='fir')

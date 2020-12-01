@@ -10,6 +10,7 @@ export default function CodeSnippetsPage() {
       <Link href="/notes/code-snippets/go">go</Link>
       <Link href="/notes/code-snippets/javascript">javascript</Link>
       <Link href="/notes/code-snippets/react">react.js</Link>
+      <Link href="/notes/code-snippets/python">python</Link>
     </LinksPage>
   )
 }
