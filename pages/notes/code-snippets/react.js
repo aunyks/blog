@@ -63,30 +63,28 @@ import {
 } from 'react'
 
 const getDeviceSizeFromWidth = (width) => {
-  if(width < 640) {
+  console.log(width)
+  if (width <= 320) {
     return 'xs'
-  } else if(width < 768) {
+  } else if (width < 415) {
     return 'sm'
-  } else if(width < 1024) {
+  } else if (width < 1025) {
     return 'md'
-  } else if(width < 1280) {
+  } else if (width >= 1026) {
     return 'lg'
-  } else if(width < 1536) {
-    return 'xl'
-  } else if(width >= 1536) {
-    return '2xl'
   } else {
     throw new Error('Unexpected device size detected')
   }
 }
 
 const useDeviceSize = () => {
-  const [deviceSize, setDeviceSize] = useState(() => getDeviceSizeFromWidth(window.innerWidth))
-  
+  const [deviceSize, setDeviceSize] = useState(null)
+
   useEffect(() => {
     const calculateInnerWidth = () => {
       setDeviceSize(getDeviceSizeFromWidth(window.innerWidth))
     }
+    calculateInnerWidth()
     window.addEventListener('resize', calculateInnerWidth)
     return () => window.removeEventListener('resize', calculateInnerWidth)
   }, [])
