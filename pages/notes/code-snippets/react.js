@@ -8,9 +8,98 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="useDarkMode Hook">
+        <p>
+          A React hook for tracking and detecting the browser dark mode state.
+      </p>
+        <CodeBlock lang="jsx">{`
+import {
+  useState,
+  useEffect
+} from 'react'
+
+const useDarkMode = () => {
+  const [isDark, setDark] = useState(false)
+
+  useEffect(() => {
+    const onDarkModeChange = ({ matches }) => {
+      setDark(matches)
+    }
+    setDark(window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+    try {
+      // For Chrome / FireFox
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onDarkModeChange)
+    } catch (e) {
+      // For Safari
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(onDarkModeChange)
+    }
+
+    return () => {
+      try {
+        // For Chrome / FireFox
+        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', onDarkModeChange)
+      } catch (e) {
+        // For Safari
+        window.matchMedia('(prefers-color-scheme: dark)').removeListener(onDarkModeChange)
+      }
+    }
+  }, [])
+
+  return isDark
+}
+
+export default useDarkMode
+`}</CodeBlock>
+      </CodeSnippet>
+      <CodeSnippet title="useDeviceSize Hook">
+        <p>
+          A React hook for tracking and retrieving the device size.
+      </p>
+        <CodeBlock lang="jsx">{`
+import {
+  useState,
+  useEffect
+} from 'react'
+
+const getDeviceSizeFromWidth = (width) => {
+  if(width < 640) {
+    return 'xs'
+  } else if(width < 768) {
+    return 'sm'
+  } else if(width < 1024) {
+    return 'md'
+  } else if(width < 1280) {
+    return 'lg'
+  } else if(width < 1536) {
+    return 'xl'
+  } else if(width >= 1536) {
+    return '2xl'
+  } else {
+    throw new Error('Unexpected device size detected')
+  }
+}
+
+const useDeviceSize = () => {
+  const [deviceSize, setDeviceSize] = useState(() => getDeviceSizeFromWidth(window.innerWidth))
+  
+  useEffect(() => {
+    const calculateInnerWidth = () => {
+      setDeviceSize(getDeviceSizeFromWidth(window.innerWidth))
+    }
+    window.addEventListener('resize', calculateInnerWidth)
+    return () => window.removeEventListener('resize', calculateInnerWidth)
+  }, [])
+
+  return deviceSize
+}
+
+export default useDeviceSize
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Simple Scatter Plot">
         <p>
-          Plot some dots on a chart and color them in.
+          Plot some points on a chart and color them in.
       </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryScatter } from 'victory'

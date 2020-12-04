@@ -9,6 +9,26 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Detect Dark Mode in the Browser">
+        <p>
+          Detect dark mode and changes to dark mode in the browser in JS, when <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">CSS isn't enough</a>.
+        </p>
+        <CodeBlock lang="js">{`
+try {
+  // For Chrome / FireFox
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches }) => {
+    // true or false
+    console.log('Dark:', matches)
+  })
+} catch (e) {
+  // For Safari
+  window.matchMedia('(prefers-color-scheme: dark)').addListener(({ matches }) => {
+    // true or false
+    console.log('Dark:', matches)
+  })
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Send a Single SMS Message (Twilio)">
         <p>
           To run this Node.js script, the Twilio JavaScript library must first <Hint msg="Execute `npm i -S twilio` while in the directory of your project to install it.">be installed</Hint>. Here, <code>sendingNumber</code> and <code>receivingNumber</code> include the <Hint msg="The USA's is +1.">country code</Hint>.
