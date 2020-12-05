@@ -11,6 +11,7 @@ export default function ReactCodeSnippets() {
       <CodeSnippet title="useDarkMode Hook">
         <p>
           A React hook for tracking and detecting the browser dark mode state.
+          Always returns a boolean indicating whether the device is in dark mode <code>true</code> in dark mode, <code>false</code> when not.
       </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -54,7 +55,8 @@ export default useDarkMode
       </CodeSnippet>
       <CodeSnippet title="useDeviceSize Hook">
         <p>
-          A React hook for tracking and retrieving the device size.
+          A React hook for tracking and retrieving the device size. Always returns a
+          string indicating the current device size (<code>sm</code>, <code>md</code>, <code>lg</code>, etc).
       </p>
         <CodeBlock lang="jsx">{`
 import {
