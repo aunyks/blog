@@ -144,13 +144,14 @@ def signal_handler(signum, frame):
   exit(-1)
 process_signal.signal(process_signal.SIGINT, signal_handler)
 
+sample_rate = 1.2e6 # 1.2 MHz
 num_samples = 1024 * 50
 
 # Confugure SDR based on 
 # the above parameters
 sdr = rtlsdr.RtlSdr()
 sdr.gain = 30 # Low Noise Amp gain
-sdr.sample_rate = 1.2e6 # 1.2 MHz
+sdr.sample_rate = sample_rate
 sdr.center_freq = 95.5e6 # Center Receiving Frequency (95.5 MHz)
 
 # Init audio player object
