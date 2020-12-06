@@ -12,6 +12,12 @@ export default function RandomThoughts() {
       noFooter
     >
       <Thought date="2020-11-26">
+        Once the US Military moves to its next gen standard issue rifle, I wonder what will happen to domestic AR-15 sales.
+    </Thought>
+      <Thought date="2020-12-06">
+        I'm suspicious that the delayed/lasting effects of COVID-19 will make a lot of us say "I told you so" to non-believer's in the future.
+    </Thought>
+      <Thought date="2020-11-26">
         Learning signal processing makes me feel like an electrical engineer.
     </Thought>
       <Thought date="2020-10-28">
