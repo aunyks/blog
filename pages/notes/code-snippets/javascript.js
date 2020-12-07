@@ -9,6 +9,27 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Promisify a Function Accepting a Callback">
+        <p>
+          Turn a function that accepts a callback function as a argument into another
+          that <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">returns a Promise</a>.
+          Here, <code>someFunction</code> accepts a callback as the second argument. <code>somePromisifiedFunction</code> is the promisified version
+          of <code>someFunction</code>.
+        </p>
+        <CodeBlock lang="js">{`
+const somePromisifiedFunction = (someArg) => {
+  return new Promise((resolve, reject) => {
+    someFunction(someArg, (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data)
+      }
+    })
+  })
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Detect Dark Mode in the Browser">
         <p>
           Detect dark mode and changes to dark mode in the browser in JS, when <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">CSS isn't enough</a>.
@@ -26,8 +47,7 @@ try {
     // true or false
     console.log('Dark:', matches)
   })
-}
-      `}</CodeBlock>
+}`}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Send a Single SMS Message (Twilio)">
         <p>
@@ -50,8 +70,7 @@ async function sendText() {
   })
 }
 
-sendText()
-      `}</CodeBlock>
+sendText()`}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Node.js Unit Testing (Jest)">
         <p>
