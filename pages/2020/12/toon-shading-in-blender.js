@@ -46,10 +46,6 @@ export default function ToonShadingInBlender() {
         shadow.
       </p>
       <figure>
-        <img src="/img/art-n-design/toon-shader-nodes-2.png" alt="A screenshot of the same shader graph configuration as before, but the white and black colors are changed to red and a darker red." />
-        <figcaption className="text-xs text-center mx-auto">Notice the change in coloring.</figcaption>
-      </figure>
-      <figure>
         <img src="/img/art-n-design/toon-sphere-3.jpg" alt="A two-dimensional circle with two tones of red color." />
         <figcaption className="text-xs text-center mx-auto">Now check out the sphere. We're almost done.</figcaption>
       </figure>
