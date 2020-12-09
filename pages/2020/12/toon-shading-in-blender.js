@@ -5,7 +5,7 @@ export default function ToonShadingInBlender() {
   return (
     <Post
       title="Toon Shading in Blender"
-      description="Briefly discussing Go-go music and what makes it what it is."
+      description="Walking through how to create a cartoon-looking material in Blender."
       date="2020-12-08"
       cardImage="https://blog.aunyks.com/img/art-n-design/toon-sphere-4.jpg">
       <p>
