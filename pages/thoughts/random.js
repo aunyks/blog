@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2020-12-11">
+        I think we’re in the uncanny valley between not quantifying the value of a person’s time at all and having time being as easy to value as the dollar in your pocket. Being at one of
+        the extremes feels more natural than the state we're in now.
+    </Thought>
       <Thought date="2020-11-26">
         Once the US Military moves to its next gen standard issue rifle, I wonder what will happen to domestic AR-15 sales.
     </Thought>
