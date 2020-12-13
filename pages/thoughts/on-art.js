@@ -10,6 +10,11 @@ export default function ThoughtsOnArt() {
       description="Miscellaneous thoughts on art."
       noFooter
     >
+      <Thought date="2020-08-30">
+        Higher fidelity media for entertainment provide better detail
+        at the expense of abstraction. It sounds obvious, but in many cases it has an impact
+        on the quality of storytelling, especially when creators use this fact to their advantage.
+    </Thought>
       <Thought date="2020-08-16">
         You don't need to be "creative" to create art.
     </Thought>
