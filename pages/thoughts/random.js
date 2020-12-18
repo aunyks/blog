@@ -11,6 +11,12 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2020-12-17">
+        First <a target="_blank" href="https://www.theguardian.com/technology/2020/dec/08/fireeye-hack-cybersecurity-theft">FireEye</a>, then <a target="_blank" href="https://www.cnn.com/2020/12/14/politics/us-agencies-hack-solar-wind-russia/index.html">SolarWinds</a>,
+        and now <a target="_blank" href="https://www.politico.com/news/2020/12/17/nuclear-agency-hacked-officials-inform-congress-447855">the NNSA</a>? Even some city governments were hit. These attacks are hitting incredibly hard and fast.
+        <br />
+        <a href="https://www.nytimes.com/2020/12/16/opinion/fireeye-solarwinds-russia-hack.html" target="_blank">Related</a>
+      </Thought>
       <Thought date="2020-12-11">
         I think we’re in the uncanny valley between not quantifying the value of a person’s time at all and having time being as easy to value as the dollar in your pocket. Being at one of
         the extremes feels more natural than the state we're in now.
