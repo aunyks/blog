@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2020-12-19">
+        I need to start writing and taking pics when I’m out enjoying experiences. I reject materialism to enhance my experiences with the world, but it’s hard to enjoy the experiences if I have to remember everything by myself. Pics
+        and words will help me relive them.
+      </Thought>
       <Thought date="2020-12-17">
         First <a target="_blank" href="https://www.theguardian.com/technology/2020/dec/08/fireeye-hack-cybersecurity-theft">FireEye</a>, then <a target="_blank" href="https://www.cnn.com/2020/12/14/politics/us-agencies-hack-solar-wind-russia/index.html">SolarWinds</a>,
         and now <a target="_blank" href="https://www.politico.com/news/2020/12/17/nuclear-agency-hacked-officials-inform-congress-447855">the NNSA</a>? Even some city governments were hit. These attacks are hitting incredibly hard and fast.
