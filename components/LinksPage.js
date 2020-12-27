@@ -7,20 +7,17 @@ export default function LinksPage({
   subtitle,
   children
 }) {
+  const effectiveTitle = pageTitle ? `${pageTitle} - Hi-Voltage` : `${title} - Hi-Voltage`
   return (
     <>
       <Head>
-        {pageTitle ? (
-          <title>{`${pageTitle} - Hi-Voltage`}</title>
-        ) : (
-            <title>{`${title} - Hi-Voltage`}</title>
-          )}
+        <title>{effectiveTitle}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={subtitle} />
         <meta name="author" content="Gerald Nash" />
         <meta name="theme-color" content="#ffffff" />
-        <link rel="icon" type="image/png" href="https://aunyks.com/favicon.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@aunyks" />
         <meta name="twitter:creator" content="@aunyks" />

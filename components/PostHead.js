@@ -17,7 +17,7 @@ export default function PostHead({
       <meta key="description" name="description" content={description} />
       <meta key="author" name="author" content="Gerald Nash" />
       <meta key="theme-color" name="theme-color" content="#ffffff" />
-      <link rel="icon" type="image/png" href="https://aunyks.com/favicon.png" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
       {!!cardImage ? (
         <meta name="twitter:card" content="summary_large_image" />
       ) : (
