@@ -134,10 +134,11 @@ pre {
 }
 
 code {
+  font-family: monospace;
   background: #eee;
   padding: 0 5px;
   border-radius: 5px;
-  color: #ff7070;
+  color: #fc4f4f;
 }
 
 .hint {
@@ -334,8 +335,8 @@ button.melody {
   }
 
   code {
-    background: #444;
-    color: #fc9b9b;
+    background: #555;
+    color: #fa9c9c;
   }
 
   .code-block {
