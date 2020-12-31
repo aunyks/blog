@@ -28,7 +28,7 @@ export default function AppliedDSP() {
       <p>
         We can use a <a target="_blank" href="https://www.amazon.com/s?k=software+defined+radio">Software Defined Radio (SDR)</a> dongle and attach an antenna to it in order to receive lots of radio signals.
       SDRs receive raw radio signals on a wide range of frequencies (often high kHZ to low GHz). The cool thing about them is that you use software to interpret the raw <a href="/2020/11/understanding-complex-signals">complex radio signals</a>, which means
-      you can do all the signal processing entirely using software. You can use GNU Software like <a target="_blank" href="https://www.gnuradio.org/">GNU Radio</a> or other open source software like the
+      you can do all the signal processing entirely using software. You can use GNU Software like <a target="_blank" href="https://www.gnuradio.org/">GNU Radio</a> (<code>brew install gnuradio</code> on macOS) or other open source software like the
       &nbsp;<a target="_blank" href="https://github.com/osmocom/rtl-sdr">rtl-sdr</a> and its more approachable Python wrapper, <a target="_blank" href="https://github.com/roger-/pyrtlsdr">pyrtlsdr</a>. I found <a target="_blank" href="https://gqrx.dk/">GQRX</a>&nbsp;
        to be the easiest thing to get started using for beginners with a new SDR. It was easy to download and install, and you can immediately plug in your SDR dongle and start tuning it to nearby radio stations
       to listen to music.
