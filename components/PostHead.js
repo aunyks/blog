@@ -5,8 +5,9 @@ export default function PostHead({
   subtitle,
   description,
   cardImage,
-  hasCodeSnippet,
-  hasMath
+  hasMath,
+  hasDiagram,
+  hasCodeSnippet
 }) {
   const effectiveTitle = !!subtitle ? `${title}: ${subtitle}` : title
   return (
@@ -35,6 +36,14 @@ export default function PostHead({
       {hasMath && (
         <>
           <link href="/css/katex.css" rel="stylesheet" />
+        </>
+      )}
+      {hasDiagram && (
+        <>
+          <script src="/js/mermaid.min.js"></script>
+          <script>{`
+          mermaid.initialize({ startOnLoad: true })
+          `}</script>
         </>
       )}
       {hasCodeSnippet && (

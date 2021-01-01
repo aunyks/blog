@@ -11,6 +11,13 @@ yellow: #fab700;
 indigo: #5d44f8;
 */
 
+:root {
+  --color-1: #fab700;
+  --color-2: #5d44f8;
+  --selection-color: #ffdd81;
+  --code-light-text-color: #fc4f4f;
+}
+
 *::selection {
  background: #ffdd81;
 }
@@ -62,6 +69,12 @@ indigo: #5d44f8;
 
 .text-6xl {
   font-size: 5rem;
+}
+
+div.mermaid {
+  background: white;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
 figcaption > a {
@@ -341,6 +354,10 @@ button.melody {
 
   .code-block {
     background: #ddd;
+  }
+
+  div.mermaid {
+    background: #fee;
   }
 
   #newsletterSignupForm {
