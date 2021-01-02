@@ -60,10 +60,6 @@ export default function AppliedDSP() {
         There's a variety of applications for radio technology. I've talked about <a href="/2020/10/why-i-care-about-radio">why I care about radio</a>, and I have <a href="/notes/frequency-reference">a list of some easy-to-find radio stations</a> and bands you can tune yours to if
         you want to find some interesting stuff.
     </p>
-      <h2>Extra Notes</h2>
-      <ul className="mb-4">
-        <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
-      </ul>
       <h2>Installing Software</h2>
       <p className="mb-3">
         On <Hint msg="My current operating system.">macOS</Hint>:
@@ -107,6 +103,10 @@ export default function AppliedDSP() {
       <p>
         See <a href="/notes/applied-dsp/code">code snippets and GNURadio flows</a>.
       </p>
+      <h2>Extra Notes</h2>
+      <ul className="mb-4">
+        <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
+      </ul>
     </NotesPost>
   )
 }
