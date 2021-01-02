@@ -28,9 +28,11 @@ export default function Diagram({ alt, children }) {
       Hidden visually but still accessible
       to screen readers 
       */}
-      <p>
-        {alt}
-      </p>
+      {alt && (
+        <p>
+          {alt}
+        </p>
+      )}
     </>
   )
 }

@@ -1,8 +1,11 @@
 export default function Hint({ msg, children }) {
-  const onInteraction = () => alert(msg)
+  const onInteraction = e => {
+    alert(msg)
+    e.preventDefault()
+  }
   return (
-    <span className="hint" title={msg} onClick={onInteraction}>
+    <a href="#" className="hint" title={msg} onClick={onInteraction}>
       {children}
-    </span>
+    </a>
   )
 }
