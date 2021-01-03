@@ -12,7 +12,7 @@ export default function DSPCodeSnippets() {
     >
       <CodeSnippet title="Listen to FM Radio (GNURadio)">
         <p>
-          Using GNURadio to listen to FM Radio. To change the station frequency, set the Ch0 Frequency argument of the
+          Using GNURadio to listen to FM Radio. To change the station frequency, set the <code>Ch0 Frequency</code> argument of the
           RTL-SDR Source block to the desired FM station frequency. Every block's arguments can stay on their default values,
           except for those specified below.
         </p>
