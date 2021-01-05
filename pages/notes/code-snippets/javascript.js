@@ -37,7 +37,7 @@ async function sendEthTransaction(toAddr, weiAmount){
     // If the new method is supported but we're in 
     // this catch block, the new method txion was denied
     // If it isn't supported, we can try the old method
-    if(!newMethodSupported){
+    if(!newMethodSupported) {
       return new Promise((resolve, reject) => {
         // See https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction
         web3.eth.sendTransaction({
@@ -52,6 +52,8 @@ async function sendEthTransaction(toAddr, weiAmount){
           resolve(receipt)
         })
       })
+    } else {
+      throw new Error('Transaction request denied')
     }
   }
 }
