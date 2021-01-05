@@ -18,19 +18,30 @@ export default function CodeBlock({
 
   return (
     <>
+      <style jsx>{`
+        .no-code-btn {
+          background: #fab700;
+        }
+
+        .code-btn {
+          background: #fab700;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          .code-btn {
+            background: #5d44f8;
+          }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+          .no-code-btn {
+            background: #5d44f8;
+          }
+        }
+      `}</style>
       {
         isShowingCode ? (
           <>
-            <style jsx>{`
-              .no-code-btn {
-                background: #fab700;
-              }
-              @media (prefers-color-scheme: dark) {
-                .no-code-btn {
-                  background: #5d44f8;
-                }
-              }
-            `}</style>
             <pre className={`${className || ''} code-block overflow-x-scroll`}>
               <code
                 className={`language-${lang}`}
@@ -44,25 +55,13 @@ export default function CodeBlock({
               }}>Hide code &#9650;</button>
           </>
         ) : (
-            <>
-              <style jsx>{`
-                .code-btn {
-                  background: #fab700;
-                }
-                @media (prefers-color-scheme: dark) {
-                  .code-btn {
-                    background: #5d44f8;
-                  }
-                }
-            `}</style>
-              <button
-                className="code-btn w-full text-center py-2 rounded"
-                onClick={() => {
-                  setShowingCode(true)
-                }}>
-                Show Code &#9660;
-              </button>
-            </>
+            <button
+              className="code-btn w-full text-center py-2 rounded"
+              onClick={() => {
+                setShowingCode(true)
+              }}>
+              Show Code &#9660;
+            </button>
           )
       }
     </>
