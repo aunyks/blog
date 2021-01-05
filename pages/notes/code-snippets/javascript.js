@@ -9,6 +9,92 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Send Ether to an Address">
+        <p>
+          A quick-and-dirty way to send Ether to an Ethereum address. It's compatible with all of
+          the <a target="_blank" href="https://eips.ethereum.org/EIPS/eip-1102">EIP-1102 implementations</a> and older Web3 browser implementations. This function
+          accepts the recipient address as a string and the hex-encoded amount in Wei to send as a string. It returns a promise
+          that resolves to the transaction receipt or hash, depending on the Web3 version used.
+        </p>
+        <CodeBlock lang="js">{`
+async function sendEthTransaction(toAddr, weiAmount){
+  let newMethodSupported = false
+  try {
+    // Try the latest method
+    let account = (await ethereum.request({ method: 'eth_requestAccounts' }))[0]
+    newMethodSupported = true
+    // See https://docs.metamask.io/guide/sending-transactions.html#transaction-parameters
+    const txHash = await ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [{
+        from: account,
+        to: toAddr,
+        value: weiAmount,
+      }],
+    })
+    return txHash
+  } catch(txDenied1) {
+    // If the new method is supported but we're in 
+    // this catch block, the new method txion was denied
+    // If it isn't supported, we can try the old method
+    if(!newMethodSupported){
+      return new Promise((resolve, reject) => {
+        // See https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction
+        web3.eth.sendTransaction({
+          from: web3.eth.accounts[0],
+          to: toAddr,
+          value: parseInt(weiAmount)
+        }, (receipt, error) => {
+          if(error) {
+            reject(error)
+            return
+          }
+          resolve(receipt)
+        })
+      })
+    }
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
+      <CodeSnippet title="Request Access to Ethereum Wallet">
+        <p>
+          A quick-and-dirty way to request access to a user's <Hint label="What's an Ethereum wallet?" msg="Browser-based Ethereum wallets like MetaMask and Coinbase Wallet allow developers to interface their web apps with the Ethereum blockchain and gain the ability to use money without the need for a bank.">Ethereum wallet</Hint> within
+           the browser. It returns <code>'allowed'</code> if the user gives access, <code>'denied'</code> if
+          the user denies access, and <code>'no-wallet'</code> if the user doesn't have a Web3 wallet.
+        </p>
+        <p>
+          Usage:<br />
+          <code>const walletAccessStatus = await getWalletStatus()</code>
+        </p>
+        <CodeBlock lang="js">{`
+async function getWalletStatus() {
+  const NO_WALLET = 'no-wallet'
+  const WALLET_DENIED = 'denied'
+  const WALLET_ALLOWED = 'allowed'
+  if (window.ethereum) {
+    window.web3 = new window.Web3(window.ethereum)
+    try {
+      let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      return WALLET_ALLOWED
+    } catch(accessDeniedError1) {
+      try {
+        await window.ethereum.enable()
+        return WALLET_ALLOWED
+      } catch (accessDeniedError2) {
+        window.web3 = null
+        return WALLET_DENIED
+      }
+    }
+  } else if (window.web3) {
+    window.web3 = new window.Web3(window.web3.currentProvider)
+    return WALLET_ALLOWED
+  } else {
+    return NO_WALLET
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Promisify a Function Accepting a Callback">
         <p>
           Turn a function that accepts a callback function as a argument into another
