@@ -30,7 +30,7 @@ export default function Web3TipBox() {
 
   return !hasEthWallet ? null : (
     <div className="my-5 w-full p-6 rounded-lg text-white" style={{ background: isDark ? '#5d44f8' : '#fab700', color: isDark ? 'white' : 'black' }}>
-      <h4>Care to Donate?</h4>
+      <h4>Tip Jar</h4>
       <p className="my-3 text-sm">
         {[AWAITING_ACCESS, READY_TO_SEND, SENDING].includes(boxState) && 'I see you like Ethereum as much as I do. If you liked this article, you can tip me some ETH.'}
         {boxState === ERROR && 'An error occured, but no worries! I\'ll take care of it some time later. Thanks anyway!'}
@@ -114,7 +114,7 @@ export default function Web3TipBox() {
               }
               try {
                 // Try sending 0.005 ETH
-                await sendEth('0x2125E5963f17643461bE3067bA75c62dAC9f3D4A', '20000000000000')
+                await sendEth('0x2125E5963f17643461bE3067bA75c62dAC9f3D4A', '0x11C37937E08000')
                 setBoxState(SENT)
               } catch (e) {
                 console.error(e)
@@ -130,7 +130,7 @@ export default function Web3TipBox() {
           }
         }}>
         {boxState === AWAITING_ACCESS && 'Grant Wallet Access'}
-        {boxState === READY_TO_SEND && 'Send 0.01 ETH'}
+        {boxState === READY_TO_SEND && 'Send 0.005 ETH'}
         {boxState === SENT && 'Thank you!'}
         {boxState === ERROR && 'Error'}
       </button>
