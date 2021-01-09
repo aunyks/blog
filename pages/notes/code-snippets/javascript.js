@@ -9,6 +9,17 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Check Whether the Current Browser has an Ethereum Wallet">
+        <p>
+          This function returns a boolean value determining whether the current browser has a Web3 wallet
+          available. It returns <code>true</code> if the wallet is available and <code>false</code> if it isn't.
+        </p>
+        <CodeBlock lang="js">{`
+function hasWeb3Wallet() {
+  return !!window.ethereum || !!window.web3
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Send Ether to an Address">
         <p>
           A quick-and-dirty way to send Ether to an Ethereum address. It's compatible with all of
@@ -40,8 +51,8 @@ async function sendEthTransaction(toAddr, weiAmount){
     if(!newMethodSupported) {
       return new Promise((resolve, reject) => {
         // See https://web3js.readthedocs.io/en/v1.2.11/web3-eth.html#sendtransaction
-        web3.eth.sendTransaction({
-          from: web3.eth.accounts[0],
+        window.web3.eth.sendTransaction({
+          from: window.web3.eth.accounts[0],
           to: toAddr,
           value: parseInt(weiAmount)
         }, (receipt, error) => {
@@ -59,18 +70,14 @@ async function sendEthTransaction(toAddr, weiAmount){
 }
       `}</CodeBlock>
       </CodeSnippet>
-      <CodeSnippet title="Request Access to Ethereum Wallet">
+      <CodeSnippet title="Request Access to an Ethereum Wallet">
         <p>
           A quick-and-dirty way to request access to a user's <Hint label="What's an Ethereum wallet?" msg="Browser-based Ethereum wallets like MetaMask and Coinbase Wallet allow developers to interface their web apps with the Ethereum blockchain and gain the ability to use money without the need for a bank.">Ethereum wallet</Hint> within
            the browser. It returns <code>'allowed'</code> if the user gives access, <code>'denied'</code> if
           the user denies access, and <code>'no-wallet'</code> if the user doesn't have a Web3 wallet.
         </p>
-        <p>
-          Usage:<br />
-          <code>const walletAccessStatus = await getWalletStatus()</code>
-        </p>
         <CodeBlock lang="js">{`
-async function getWalletStatus() {
+async function requestWeb3Wallet() {
   const NO_WALLET = 'no-wallet'
   const WALLET_DENIED = 'denied'
   const WALLET_ALLOWED = 'allowed'

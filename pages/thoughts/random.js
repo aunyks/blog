@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-01-08">
+        The next tech revolution will be tiny: biotech, nanotech, and future/smart materials.
+        Of course we’ll see lots of digital tech innovation along the way, but I think the next explosion will be in those fields.
+      </Thought>
       <Thought date="2020-12-19">
         I need to start writing and taking pics when I’m out enjoying experiences. I reject materialism to enhance my experiences with the world, but it’s hard to enjoy the experiences if I have to remember everything by myself. Pics
         and words will help me relive them.

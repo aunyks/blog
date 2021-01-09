@@ -3,6 +3,7 @@ import Navbar from 'components/Navbar'
 import PostHeader from 'components/PostHeader'
 import PostBody from 'components/PostBody'
 import PostFooter from 'components/PostFooter'
+import Web3TipBox from 'components/Web3TipBox'
 import GAnalytics from 'components/GAnalytics'
 
 export default function Post({
@@ -32,6 +33,7 @@ export default function Post({
       <PostBody>
         <PostHeader title={title} subtitle={subtitle} date={date} />
         {children}
+        <Web3TipBox />
         {!noFooter && (
           <PostFooter remark={remark} date={date} />
         )}
