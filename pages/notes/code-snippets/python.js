@@ -8,6 +8,18 @@ export default function PythonCodeSnippets() {
       title="Python Code Snippets"
       description="Useful bites of Python code I've probably written by hand too often."
     >
+      <CodeSnippet title="Hash a String with SHA-256">
+        <p>
+          Using <code>hash_string('hi')</code> returns <code>'8f434346648...'</code>.
+        </p>
+        <CodeBlock lang="python">{`
+import hashlib
+
+def hash_string(msg_string):
+    sha_digest = hashlib.sha256(msg_string.encode()).hexdigest()
+    return sha_digest
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Plot a Circle on a 2D Plane">
         <p>
           Using <code>matplotlib</code> to plot a blue circle on a two-dimensional plane.
