@@ -8,6 +8,8 @@ export default function GabSecurityVulns() {
       date="2021-01-11"
       remark={<></>}>
       {/*
+Timestamped on Twitter (https://twitter.com/aunyks/status/1348799236809383936)
+
 hash_string('I (@aunyks) have found two low severity and one high severity security vulnerabilities in the gab.com web app.')
 =
 'c1e7853f3023e1361fc96e322f9b0d16c59a48eaa646f00d928ecd8bf698d11a'
