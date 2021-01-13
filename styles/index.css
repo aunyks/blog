@@ -22,6 +22,10 @@ indigo: #5d44f8;
  background: #ffdd81;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .twitter-tweet {
   margin-left: auto;
   margin-right: auto;

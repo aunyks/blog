@@ -7,6 +7,7 @@ export default function CodeBlock({
   className,
   lang,
   showCodeByDefault,
+  noButton,
   children
 }) {
   const [Prism, setPrism] = useState(null)
@@ -48,11 +49,13 @@ export default function CodeBlock({
                 dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children.trim(), Prism.languages[lang], lang) }}>
               </code>
             </pre>
-            <button
-              className="no-code-btn my-2 px-2 py-0 text-sm rounded-sm"
-              onClick={() => {
-                setShowingCode(false)
-              }}>Hide code &#9650;</button>
+            {!noButton &&
+              <button
+                className="no-code-btn my-2 px-2 py-0 text-sm rounded-sm"
+                onClick={() => {
+                  setShowingCode(false)
+                }}>Hide code &#9650;</button>
+            }
           </>
         ) : (
             <button
