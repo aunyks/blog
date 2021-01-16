@@ -11,6 +11,16 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-01-16">
+        Call of Duty Black Ops 2 and Infinite Warfare told the future to the masses. I'm convinced.
+      </Thought>
+      <Thought date="2021-01-16">
+        Bay Area tech types keep talking about leaving the Bay for Austin and Miami when the reality is that they’ll be colonizing every big city below the Mason-Dixon with enough time.
+        <br />
+        Lots of southern cities have been positioning themselves as some kind of “Silicon Valley of the South” for more than a decade now and would be happy finally to bring those types to their city. Austin and Miami are just the beginning.
+        <br />
+        I’ll even go so far as to say that Austin and Miami are first. Atlanta and Raleigh are next. Birmingham, Louisville, and Nashville or Memphis will follow.
+      </Thought>
       <Thought date="2021-01-10">
         Negative partisanship works so well, because it's easier to make fun of the other side than it is to justify why you're on your side.
         As a result, political polarization increases.
