@@ -12,6 +12,7 @@ export default function CodeSnippetsPage() {
       <Link href="/notes/code-snippets/react">react.js</Link>
       <Link href="/notes/code-snippets/python">python</Link>
       <Link href="/notes/code-snippets/sql">sql</Link>
+      <Link href="/notes/code-snippets/html">html</Link>
     </LinksPage>
   )
 }
