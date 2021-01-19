@@ -9,6 +9,95 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Keyboard Manager (Game Dev)">
+        <p>
+          A class that provides an easy-to-use interface for using a <Hint msg="">hardware keyboard</Hint> as
+          input in a game. Specifically, it's meant to be instantiated outside of the game loop so that its
+          functions can be called in the game loop. This way, the game can update based on the keyboard state on each
+          tick.
+        </p>
+        <CodeBlock lang="js">{`
+class KeyboardInput {
+  // May need to start using event.key instead of .keycode
+  // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+  constructor(elementToWatch) {
+    this.pressedButtonsList = []
+    this.elementToWatch = (elementToWatch || document)
+    this.elementToWatch.addEventListener('keydown', (e) => this.onKeyDown(e), false)
+    this.elementToWatch.addEventListener('keyup', (e) => this.onKeyUp(e), false)
+  }
+
+  onKeyDown(event) {
+    const keyCode = event.keyCode
+    if (!this.pressedButtonsList.includes(keyCode)) {
+      this.pressedButtonsList.push(keyCode)
+    }
+  }
+
+  onKeyUp(event) {
+    const keyCode = event.keyCode
+    if (this.pressedButtonsList.includes(keyCode)) {
+      for (let i = 0; i < this.pressedButtonsList.length; i++) {
+        if (this.pressedButtonsList[i] === keyCode) {
+          this.pressedButtonsList.splice(i, 1)
+        }
+      }
+    }
+  }
+
+  ready() {
+    // We assume that the keyboard is always 
+    // present and ready
+    // [WARNING] What about mobile?
+    return true
+  }
+
+  buttonPressed(keyCode) {
+    return this.pressedButtonsList.includes(keyCode)
+  }
+
+  wPressed() {
+    return this.buttonPressed(87)
+  }
+
+  aPressed() {
+    return this.buttonPressed(65)
+  }
+
+  sPressed() {
+    return this.buttonPressed(83)
+  }
+
+  dPressed() {
+    return this.buttonPressed(68)
+  }
+
+  qPressed() {
+    return this.buttonPressed(81)
+  }
+
+  ePressed() {
+    return this.buttonPressed(69)
+  }
+
+  upPressed() {
+    return this.buttonPressed(38)
+  }
+
+  leftPressed() {
+    return this.buttonPressed(37)
+  }
+
+  downPressed() {
+    return this.buttonPressed(40)
+  }
+
+  rightPressed() {
+    return this.buttonPressed(39)
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Gamepad Manager (Browser)">
         <p>
           A class that provides an <Hint msg="The browser Gamepad API is pretty verbose and difficult to use.">easier-to-use</Hint> interface for interacting with

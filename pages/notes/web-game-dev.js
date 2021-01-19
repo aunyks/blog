@@ -62,6 +62,12 @@ function updateGameState(dt) {
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/32631/easy-way-to-do-gravity-in-a-simple-game">Add gravity to your game (engine)</a></li>
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/60008/smooth-jumping-in-2d-platformers">Add jump physics to your game (engine)</a></li>
       </ul>
+      <h2>Useful Code Snippets</h2>
+      <ul className="mb-4">
+        <li><a href="/notes/code-snippets/html#basic-game-loop">Basic Game Loop Web Page</a></li>
+        <li><a href="/notes/code-snippets/javascript#gamepad-manager-browser">Gamepad Input Manager</a></li>
+        <li><a href="/notes/code-snippets/javascript#keyboard-manager-game-dev">Keyboard Input Manager</a></li>
+      </ul>
     </NotesPost>
   )
 }
