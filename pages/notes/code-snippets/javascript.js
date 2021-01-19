@@ -9,6 +9,155 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Gamepad Manager (Browser)">
+        <p>
+          A class that provides an <Hint msg="The browser Gamepad API is pretty verbose and difficult to use.">easier-to-use</Hint> interface for interacting with
+          gamepads like PlayStation and XBox controllers. This class assumes the controller has
+          a <Hint msg="Standard control layout involves a left and right joystick, directional pad, four-button pad, select and start buttons, left and right bumpers, and left and right triggers. PlayStation and XBox controllers have standard mappings.">standard</Hint> control mapping.
+          Construct it outside of the game loop, and call its member functions on each tick in the loop. Only call its functions
+          when the instance's <code>ready()</code> function returns true.
+          See <a target="_blank" title="Google web.dev gamepad walkthrough" href="https://web.dev/gamepad">this</a>, <a target="_blank" title="MDN Gamepad tutorial" href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API">this</a>, and <a title="Gamepad tester and debugger" target="_blank" href="https://gamepad-tester.com">this</a>.
+        </p>
+        <CodeBlock lang="js">{`
+class GamepadInput {
+  constructor(index) {
+    // Assume the index to be the first unless 
+    // specified otherwise
+    if (index !== null && index !== undefined) {
+      this.gamepadIndex = index
+    } else {
+      this.gamepadIndex = 0
+    }
+  }
+
+  ready() {
+    for (let i = 0; i < navigator.getGamepads().length; i++) {
+      const gamepad = navigator.getGamepads()[i]
+      const discoveredGamepadIndex = i
+      if (discoveredGamepadIndex === this.gamepadIndex && gamepad !== null)
+        return true
+    }
+    return false
+  }
+
+  // [WARNING]
+  // All of the following functions could throw if  
+  // the controller is disconnected after checking 
+  // its readiness. Check for readiness here and throw 
+  // an error to prevent that
+
+  getPad() {
+    return navigator.getGamepads()[this.gamepadIndex]
+  }
+
+  canRumble() {
+    return 'vibrationActuator' in this.getPad()
+  }
+
+  // delay and duration in ms
+  // strong, weak magnitude between 0 and 1
+  rumble(delay = 0, duration = 500, weakMag = 1, strongMag = 1) {
+    this.getPad().vibrationActuator.playEffect('dual-rumble', {
+      startDelay: delay,
+      duration: duration,
+      weakMagnitude: weakMag,
+      strongMagnitude: strongMag,
+    })
+  }
+
+  getLeftStickPos() {
+    // x and y are both in the range [-1, 1]
+    // x: negative is left. y: negative is up
+    return {
+      x: this.getPad().axes[0],
+      y: this.getPad().axes[1]
+    }
+  }
+
+  getRightStickPos() {
+    // x and y are both in the range [-1, 1]
+    // x: negative is left. y: negative is up
+    return {
+      x: this.getPad().axes[2],
+      y: this.getPad().axes[3]
+    }
+  }
+
+  buttonPressed(buttonIndex) {
+    return this.getPad().buttons[buttonIndex].pressed
+  }
+
+  // The right button pad on PS and XBox controllers
+  bPadSouthPressed() {
+    return this.buttonPressed(0)
+  }
+
+  bPadEastPressed() {
+    return this.buttonPressed(1)
+  }
+
+  bPadWestPressed() {
+    return this.buttonPressed(2)
+  }
+
+  bPadNorthPressed() {
+    return this.buttonPressed(3)
+  }
+
+  // Bumpers
+  leftBumperPressed() {
+    return this.buttonPressed(4)
+  }
+
+  rightBumperPressed() {
+    return this.buttonPressed(5)
+  }
+
+  // Triggers
+  leftTriggerPressed() {
+    return !!this.buttonPressed(6)
+  }
+
+  rightTriggerPressed() {
+    return !!this.buttonPressed(7)
+  }
+
+  // Select and start buttons
+  selectBtnPressed() {
+    return this.buttonPressed(8)
+  }
+
+  startBtnPressed() {
+    return this.buttonPressed(9)
+  }
+
+  leftStickPressed() {
+    return this.buttonPressed(10)
+  }
+
+  rightStickPressed() {
+    return this.buttonPressed(11)
+  }
+
+  // The d-pad (left button pad) on PS and XBox controllers
+  dPadNorthPressed() {
+    return this.buttonPressed(12)
+  }
+
+  dPadSouthPressed() {
+    return this.buttonPressed(13)
+  }
+
+  dPadWestPressed() {
+    return this.buttonPressed(14)
+  }
+
+  dPadEastPressed() {
+    return this.buttonPressed(15)
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Check Whether the Current Browser has an Ethereum Wallet">
         <p>
           This function returns a boolean value determining whether the current browser has a Web3 wallet
