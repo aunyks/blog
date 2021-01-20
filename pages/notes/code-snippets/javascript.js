@@ -56,6 +56,10 @@ class KeyboardInput {
     return this.pressedButtonsList.includes(keyCode)
   }
 
+  spacebarPressed() {
+    return this.buttonPressed(32)
+  }
+
   wPressed() {
     return this.buttonPressed(87)
   }
