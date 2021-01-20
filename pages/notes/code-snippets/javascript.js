@@ -18,8 +18,7 @@ export default function JsCodeSnippets() {
         </p>
         <CodeBlock lang="js">{`
 class KeyboardInput {
-  // May need to start using event.key instead of .keycode
-  // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+  
   constructor(elementToWatch) {
     this.pressedButtonsList = []
     this.elementToWatch = (elementToWatch || document)
@@ -28,17 +27,17 @@ class KeyboardInput {
   }
 
   onKeyDown(event) {
-    const keyCode = event.keyCode
-    if (!this.pressedButtonsList.includes(keyCode)) {
-      this.pressedButtonsList.push(keyCode)
+    const key = event.key
+    if (!this.pressedButtonsList.includes(key)) {
+      this.pressedButtonsList.push(key)
     }
   }
 
   onKeyUp(event) {
-    const keyCode = event.keyCode
-    if (this.pressedButtonsList.includes(keyCode)) {
+    const key = event.key
+    if (this.pressedButtonsList.includes(key)) {
       for (let i = 0; i < this.pressedButtonsList.length; i++) {
-        if (this.pressedButtonsList[i] === keyCode) {
+        if (this.pressedButtonsList[i] === key) {
           this.pressedButtonsList.splice(i, 1)
         }
       }
@@ -52,52 +51,52 @@ class KeyboardInput {
     return true
   }
 
-  buttonPressed(keyCode) {
-    return this.pressedButtonsList.includes(keyCode)
+  buttonPressed(key) {
+    return this.pressedButtonsList.includes(key)
   }
 
   spacebarPressed() {
-    return this.buttonPressed(32)
+    return this.buttonPressed(' ')
   }
 
   wPressed() {
-    return this.buttonPressed(87)
+    return this.buttonPressed('w') || this.buttonPressed('W')
   }
 
   aPressed() {
-    return this.buttonPressed(65)
+    return this.buttonPressed('a') || this.buttonPressed('A')
   }
 
   sPressed() {
-    return this.buttonPressed(83)
+    return this.buttonPressed('s') || this.buttonPressed('S')
   }
 
   dPressed() {
-    return this.buttonPressed(68)
+    return this.buttonPressed('d') || this.buttonPressed('D')
   }
 
   qPressed() {
-    return this.buttonPressed(81)
+    return this.buttonPressed('q') || this.buttonPressed('Q')
   }
 
   ePressed() {
-    return this.buttonPressed(69)
+    return this.buttonPressed('e') || this.buttonPressed('E')
   }
 
   upPressed() {
-    return this.buttonPressed(38)
+    return this.buttonPressed('ArrowUp') || this.buttonPressed('Up')
   }
 
   leftPressed() {
-    return this.buttonPressed(37)
+    return this.buttonPressed('ArrowLeft') || this.buttonPressed('Left')
   }
 
   downPressed() {
-    return this.buttonPressed(40)
+    return this.buttonPressed('ArrowDown') || this.buttonPressed('Down')
   }
 
   rightPressed() {
-    return this.buttonPressed(39)
+    return this.buttonPressed('ArrowRight') || this.buttonPressed('Right')
   }
 }
       `}</CodeBlock>
