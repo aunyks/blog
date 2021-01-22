@@ -13,8 +13,8 @@ export default function GoCodeSnippets() {
           A basic JavaScript-focused game loop. Invoke <code>startGameplay</code> to start the game or resume it after pausing. Invoke <code>stopGameplay</code> to
           stop the game or pause it. Use <code>updateGameState</code> to read the state of the input controls
           and game objects then update the game objects accordingly. Use <code>renderGame</code> to
-          render the game to the player based on everything's state. Increasing <code>timeDilationFactor</code> slows the rate the game updates, and decreasing it speeds
-          it up.
+          render the game to the player based on everything's state. Increasing <code>timeDilationFactor</code> speeds up the rate the game updates, and decreasing it slows
+          it down.
         </p>
         <CodeBlock lang="html">{`
 <!DOCTYPE html>
