@@ -41,8 +41,8 @@ export default function GoCodeSnippets() {
         deltaT = deltaT + Math.min(1, (tFrame - lastTimestamp) / 1000)
         while (deltaT > TICK_RATE * timeDilationFactor) {
           deltaT = deltaT - TICK_RATE * timeDilationFactor
-          updateGameState(deltaT * timeDilationFactor)
         }
+        updateGameState(deltaT * timeDilationFactor)
         renderGame(deltaT)
         // Update our tick timestamp for the next deltaT calculation
         lastTimestamp = tFrame
