@@ -45,10 +45,7 @@ class KeyboardInput {
   }
 
   ready() {
-    // We assume that the keyboard is always 
-    // present and ready
-    // [WARNING] What about mobile?
-    return true
+    return !window.matchMedia('(max-width: 375px)').matches
   }
 
   buttonPressed(key) {
