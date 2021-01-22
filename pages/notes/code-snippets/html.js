@@ -28,21 +28,31 @@ export default function GoCodeSnippets() {
       const FPS = 24
       const TICK_RATE = 1 / FPS
 
-      let timeDilationFactor = 1
-      let counter = 0
-      window.gameLoopContext = null
+      window.GAME_STATE = {
+        gameLoopContext: null,
+        timeDilationFactor: 1,
+        counter: 0
+      }
+
+      function updateGameState(dt) {
+        window.GAME_STATE.counter++
+      }
+
+      function renderGame(dt) {
+        document.getElementById('screen').innerText = 'Count: ' + window.GAME_STATE.counter
+      }
 
       // The basic game loop that's repeatedly invoked
       let lastTimestamp = null
       let deltaT = 0
       function onGameLoopTick(tFrame) {
-        window.gameLoopContext = window.requestAnimationFrame(onGameLoopTick)
+        window.GAME_STATE.gameLoopContext = window.requestAnimationFrame(onGameLoopTick)
 
         deltaT = deltaT + Math.min(1, (tFrame - lastTimestamp) / 1000)
-        while (deltaT > TICK_RATE * timeDilationFactor) {
-          deltaT = deltaT - TICK_RATE * timeDilationFactor
+        while (deltaT > TICK_RATE * window.GAME_STATE.timeDilationFactor) {
+          deltaT = deltaT - TICK_RATE * window.GAME_STATE.timeDilationFactor
         }
-        updateGameState(deltaT * timeDilationFactor)
+        updateGameState(deltaT * window.GAME_STATE.timeDilationFactor)
         renderGame(deltaT)
         // Update our tick timestamp for the next deltaT calculation
         lastTimestamp = tFrame
@@ -56,17 +66,15 @@ export default function GoCodeSnippets() {
       }
 
       function stopGameplay() {
-        window.cancelAnimationFrame(window.gameLoopContext)
+        window.cancelAnimationFrame(window.GAME_STATE.gameLoopContext)
       }
 
-      function updateGameState(dt) {
-        counter++
+      function loadGame() {
+        // load assets, levels, initialize player, etc
       }
 
-      function renderGame(dt) {
-        document.getElementById('screen').innerText = 'Count: ' + counter
-      }
-
+      // Load the game
+      loadGame()
       // Start the game!
       startGameplay()
     </script>
