@@ -59,7 +59,8 @@ function updateGameState(dt) {
       <h2>Extra Notes</h2>
       <ul className="mb-4">
         <li>You can use <a target="_blank" href="https://www.pixijs.com">pixi.js</a> (2D), <a target="_blank" href="https://threejs.org">three.js</a> (3D), or the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas API</a> (2D) for rendering your game</li>
-        <li><a target="_blank" href="https://rapier.rs/">Rapier.rs</a> as a 3D WASM physics engine</li>
+        <li><a target="_blank" href="https://github.com/schteppe/cannon.js">Cannon.js</a> as a pure JavaScript physics engine</li>
+        <li><a target="_blank" href="https://rapier.rs">Rapier.rs</a> as a 3D WASM physics engine</li>
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/32631/easy-way-to-do-gravity-in-a-simple-game">Add gravity to your game (engine)</a></li>
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/60008/smooth-jumping-in-2d-platformers">Add jump physics to your game (engine)</a></li>
       </ul>
