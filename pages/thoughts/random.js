@@ -11,6 +11,17 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-01-29">
+        <p>
+          The move from centralized platforms to decentralized ones will never happen under normal conditions.
+          It'll only happen in black swan events where people are frightened by the lack of control their current solutions gave them.
+        </p>
+        <p>
+          With this being said, the move from fiat currency and <Hint msg="Central Bank Digital Currencies">CBDCs</Hint> will likely occur
+          after a near failure of the financial system. And, the move of apps from mobile back to the web will occur when app store owners become to strict
+          for companies to deal with.
+        </p>
+      </Thought>
       <Thought date="2021-01-16">
         Call of Duty Black Ops 2 and Infinite Warfare told the future to the masses. I'm convinced.
       </Thought>
