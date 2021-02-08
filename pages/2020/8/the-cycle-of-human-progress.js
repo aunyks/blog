@@ -9,7 +9,13 @@ export default function HumanProgress() {
       subtitle="Human Evolution in Three Dimensions"
       description="Recounting the inspiration and process for designing my first credit card."
       date="2020-08-26"
-      cardImage="https://blog.aunyks.com/img/misc/cohp.png">
+      cardImage="https://blog.aunyks.com/img/misc/cohp.png"
+      remark={
+        <p>
+          Thanks for reading. This post is a practical example of balance achieved through cycles. You can read about it more abstractly in
+          my post <a href="/2021/2/on-balance">On Balance</a>.
+        </p>
+      }>
       <p>
         A couple weeks ago, I was watching an episode of <a href="https://www.netflix.com/title/80057883">Abstract</a> that covered Bio-Architecture. It followed <a href="https://twitter.com/NeriOxman">Neri Oxman</a> as she completed a project of hers, telling her life story in the process. She made lots of insightful statements, but one idea of hers that had truly stuck with me was how she described the connection between art, science, engineering,
         and design.
@@ -49,15 +55,15 @@ export default function HumanProgress() {
       </figure>
       <p>
         This helps you visualize the clockwise motion in which creativity and inspiration travel. The image is in two dimensions, <Hint msg={`I don't believe in the "left brain"/"right brain" stuff, but I understand that a lot of people think of it this way.`}>with the "left brain"
-      activities on the right side and "right brain" activities on the left side</Hint> and the more abstract, theoretical activities on top and applied activities on the bottom. But, I like to think that we can model it even more accurately if we think about it in three dimensions, with the third dimension abstractly
-      representing progress. This means that the circle becomes a spring-like coil.
-    </p>
+        activities on the right side and "right brain" activities on the left side</Hint> and the more abstract, theoretical activities on top and applied activities on the bottom. But, I like to think that we can model it even more accurately if we think about it in three dimensions, with the third dimension abstractly
+        representing progress. This means that the circle becomes a helix, a spring-like coil.
+      </p>
       <p>
         With this, we can better visualize this idea in a grander scheme. We can see that, although creativity and inspiration continuously cycle in the same two dimensions, the overall condition of humanity improves almost linearly.
-    </p>
+      </p>
       <p>
         I'll be keeping this in the back of my mind for a <em>long</em> time. Hopefully you will too.
-    </p>
+      </p>
     </Post>
   )
 }

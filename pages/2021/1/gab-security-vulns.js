@@ -6,7 +6,7 @@ export default function GabSecurityVulns() {
   return (
     <Post
       title="Gab Security Vulnerabilities"
-      description="[PRIVATE] Covering my recently discovered vulns in the Gab web app."
+      description="Covering my recently discovered vulns in the Gab web app."
       date="2021-01-11"
       hasCodeSnippet
       remark={<></>}>
