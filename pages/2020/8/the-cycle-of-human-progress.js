@@ -21,7 +21,7 @@ export default function HumanProgress() {
         and design.
       </p>
       <Quote author="Neri Oxman">
-        Science converts information into knowledge, engineering converts knowledge into utility, design converts utility into culture behavior and context, and art converts the culture behavior and question our perception of the world.
+        Science converts information into knowledge, engineering converts knowledge into utility, design converts utility into culture behavior and context, and art converts the [cultural] behavior and question[s] our perception of the world.
       </Quote>
       <p>
         Here, she describes the Krebs Cycle of Creativity (KCC), into which she delves more deeply in her article titled <em><a href="https://jods.mitpress.mit.edu/pub/ageofentanglement/release/1">Age of Entanglement</a></em>. When first hearing her
@@ -45,7 +45,7 @@ export default function HumanProgress() {
         A modern example of the cycle is Bitcoin. It's said that Neal Stephenson's science fiction novel <em><a href="https://en.wikipedia.org/wiki/Cryptonomicon">Cryptonomicon</a></em> inspired the digital currency called Bitcoin. Here,
       Stephenson produced the art via his novel. Several technologists like <a href="http://www.chaum.com/">David Chaum</a> and <a href="https://twitter.com/adam3us">Adam Back</a> have scientifically explored distributed digital currencies with Chaumian e-cash and Hashcash, respectively.
       Their efforts likely inspired Satoshi Nakamoto to explore another digital currency implementation, and he later invented Bitcoin for the world to use. The following years, including now, have been dedicated to design thinkers trying to make Bitcoin
-      as accessible as possible to the average person. This, in turn has inspired more artistic cretion, and the cycle continues!
+      as accessible as possible to the average person. This, in turn has inspired more artistic creation, and the cycle continues!
     </p>
       <p>
         The cycle is often modeled visually with a circle reminding of us of a clock.
