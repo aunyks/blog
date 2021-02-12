@@ -25,9 +25,6 @@ export default function GoCodeSnippets() {
   <body>
     <p id="screen"></p>
     <script>
-      const FPS = 24
-      const TICK_RATE = 1 / FPS
-
       window.GAME_STATE = {
         gameLoopContext: null,
         timeDilationFactor: 1,
@@ -46,22 +43,18 @@ export default function GoCodeSnippets() {
       let lastTimestamp = null
       let deltaT = 0
       function onGameLoopTick(tFrame) {
-        window.GAME_STATE.gameLoopContext = window.requestAnimationFrame(onGameLoopTick)
-
-        deltaT = deltaT + Math.min(1, (tFrame - lastTimestamp) / 1000)
-        while (deltaT > TICK_RATE * window.GAME_STATE.timeDilationFactor) {
-          deltaT = deltaT - TICK_RATE * window.GAME_STATE.timeDilationFactor
-        }
+        deltaT = tFrame - lastTimestamp
         updateGameState(deltaT * window.GAME_STATE.timeDilationFactor)
         renderGame(deltaT)
         // Update our tick timestamp for the next deltaT calculation
         lastTimestamp = tFrame
+        window.GAME_STATE.gameLoopContext = window.requestAnimationFrame(onGameLoopTick)
       }
 
       function startGameplay() {
         // Kick loop off with high res timestamp (https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)
         // The below lines, plus the argument in onGameLoopTick , are borrowed from https://developer.mozilla.org/en-US/docs/Games/Anatomy#building_a_more_optimized_main_loop_in_javascript
-        let lastTimestamp = window.performance.now()
+        lastTimestamp = window.performance.now()
         onGameLoopTick(window.performance.now())
       }
 
