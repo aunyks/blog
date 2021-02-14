@@ -4,7 +4,6 @@ export default function OnBalance() {
   return (
     <Post
       title="On Balance"
-      subtitle="A natural law hidden in plain sight"
       description="Exploring balance as a natural law and how it governs life and nature."
       date="2021-02-08"
       remark={
