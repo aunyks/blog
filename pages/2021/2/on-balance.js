@@ -31,9 +31,6 @@ export default function OnBalance() {
         regardless of the lengths we go to bring imbalance.
       </p>
       <p>
-        But as humans, we have memory of the past. We constantly refer to our past experiences in shaping our future ones. This travel through time can be visualized by modifying our previous ideas. The cycle now becomes a helix. This shows us how balance flows through time: it always move linearly through time, but still oscillates between states.
-      </p>
-      <p>
         Ultimately, balance is dynamic, always in motion. In moving, an entity constantly flows between some states. Balance takes form in cycles. It's the way of the world, and it’s a fundamental law of life and nature, so be mindful of it in all that you do.
       </p>
     </Post>
