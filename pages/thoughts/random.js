@@ -11,6 +11,13 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-02-13">
+        All roads in digital innovation eventually lead back to gaming.
+      </Thought>
+      <Thought date="2021-02-13">
+        The interesting thing about web games is that you can make them such that you take advantage of the
+        accessibility features that browsers already have.
+      </Thought>
       <Thought date="2021-01-29">
         <p>
           The move from centralized platforms to decentralized ones will never happen under normal conditions.
