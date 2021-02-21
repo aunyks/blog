@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-02-20">
+        I might start sticking close to game dev. It’s so interdisciplinary.
+      </Thought>
       <Thought date="2021-02-14">
         Used a flame graph for the first time today. It felt like hard core engineering / debugging. I used it
         to debug a game I was making that started to jitter on each frame. The entire time I thought the physics stepping
