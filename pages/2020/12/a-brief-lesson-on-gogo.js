@@ -27,7 +27,7 @@ export default function AnatomyOfGogo() {
       </figure>
       <h3>Instruments</h3>
       <p>
-        The vast majority of go-go has a distinct drum line fit with sounds from a drum kit, and conga and bongo drums. Other aspects of
+        The vast majority of go-go has a distinct drum line fit with sounds from a drum kit and conga and bongo drums. Other aspects of
         a song like the harmony and melody are often played using vocals, piano, strings, or synthesizers. The genre can have a wide
         range of sounds, but the core of the genre is the familiar beat, as you can see in the above examples.
       </p>
