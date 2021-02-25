@@ -10,7 +10,7 @@ export default function ThreeDDesignWorks() {
       date="2020-09-11"
       cardImage="https://blog.aunyks.com/img/art-n-design/photo-of-cube.jpg">
       <p>
-        All applications of 3D design consist of the same basic properties. Modeling, <Hint msg="Video effects">VFX</Hint>, and animation are
+        All applications of 3D design consist of the same basic properties. Modeling, <Hint msg="Visual Effects">VFX</Hint>, and animation are
           each made of scenes that are constructed with objects that emulate those of the real world. By mimicking real-world conditions, we're able
           to get realistic-looking scenes. To see how components of physical and virtual scenes can create very similar appearances, we'll use light, shape,
           material, and camera positioning to make something that looks like this real-world photo of a cube using <a href="https://blender.org">Blender</a>, although it can be done it all kinds of 3D design software.
