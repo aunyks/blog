@@ -9,6 +9,16 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Map a Number from One Range to Another">
+        <p>
+          The function is called <code>scale</code>, because <code>map</code> is often associated with the array function in the context of JavaScript. Borrowed from <a href="https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers">August Miller</a>.
+        </p>
+        <CodeBlock lang="js">{`
+function scale(num, in_min, in_max, out_min, out_max) {
+  return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Keyboard Manager (Game Dev)">
         <p>
           A class that provides an easy-to-use interface for using a <Hint msg="">hardware keyboard</Hint> as
