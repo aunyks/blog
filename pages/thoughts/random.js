@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-03-19">
+        Software engineers could learn a lot from conventional engineering branches. In practice, though, because in theory we
+        have similar workflows.
+      </Thought>
       <Thought date="2021-02-20">
         I might start sticking close to game dev. It’s so interdisciplinary.
       </Thought>
