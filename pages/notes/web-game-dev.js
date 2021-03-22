@@ -3,7 +3,7 @@ import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 import Hint from 'components/Hint'
 
-export default function AppliedDSP() {
+export default function WebGameDev() {
   return (
     <NotesPost
       title="Game Development on the Web"
