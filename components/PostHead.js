@@ -22,8 +22,8 @@ export default function PostHead({
       {!!cardImage ? (
         <meta name="twitter:card" content="summary_large_image" />
       ) : (
-          <meta name="twitter:card" content="summary" />
-        )}
+        <meta name="twitter:card" content="summary" />
+      )}
       <meta name="twitter:site" content="@aunyks" />
       <meta name="twitter:creator" content="@aunyks" />
       <meta name="twitter:title" content={effectiveTitle} />
@@ -65,6 +65,7 @@ export default function PostHead({
           <script src="/js/prism-jsx.min.js"></script>
           <script src="/js/prism-sql.min.js"></script>
           <script src="/js/prism-glsl.min.js"></script>
+          <script src="/js/prism-shell.min.js"></script>
         </>
       )}
     </Head>
