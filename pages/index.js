@@ -26,12 +26,12 @@ export default function HomePage() {
         }
       `}</style>
       <main className="w-full h-full">
-        <section className="flex flex-col justify-center w-full h-full" style={{ background: 'red' }}>
-          <div id="greeting" className="px-3 lg:px-24 mt-20">
-            <h1 className="text-4xl">
+        <section className="flex flex-col justify-end lg:justify-center w-full h-full" style={{ background: 'red' }}>
+          <div id="greeting" className="px-3 lg:px-24 my-20">
+            <h1 className="text-3xl lg:text-5xl">
               Hi-Voltage
           </h1>
-            <h2 className="text-xl">
+            <h2 className="text-lg lg:text-3xl">
               Increasing potential
           </h2>
           </div>
