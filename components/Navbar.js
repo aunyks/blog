@@ -44,13 +44,10 @@ export default function Navbar() {
         <div className="lg:flex-grow">
           {/* LEFT SIDE OF NAV (LARGE SCREEN) */}
           <NavLink href="/music">
-            All
-          </NavLink>
-          <NavLink href="/music">
             Posts
           </NavLink>
           <NavLink href="/music">
-            Videos
+            Categories
           </NavLink>
           <NavLink href="https://aunyks.com/about">
             About
@@ -58,14 +55,12 @@ export default function Navbar() {
         </div>
         <div>
           {/* RIGHT SIDE OF NAV (LARGE SCREEN) */}
-          {/*
-            <NavLink href="/thoughts">
+          <NavLink href="/thoughts">
             Thoughts
           </NavLink>
           <NavLink href="/notes">
             Notes
           </NavLink>
-          */}
         </div>
       </div>
     </nav>
