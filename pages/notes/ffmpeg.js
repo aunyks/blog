@@ -62,6 +62,7 @@ ffmpeg \\
 ffmpeg \\ 
 \t-i my-video.mp4 \\ # The input file
 \t-vf lut3d="my-lut.cube" \\ # The LUT Cube file path
+\t-pix_fmt yuv420p \\ # This just helps oftentimes
 \t-c:a copy output \\ # This is probably just copying over random details from the source for the target
 \tmy-new-file.mp4 # The output file
 `}</CodeBlock>
