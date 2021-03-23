@@ -10,12 +10,14 @@ export default function ElectronicsNotes() {
       description=""
     >
       <style jsx>{`
-      p {
-        margin-bottom: 0.5em;
-      }
-      ul {
-        margin: 0em 0 1em 0;
-      }
+        p {
+          margin-bottom: 0.5em;
+        }
+
+        ul {
+          margin: 0em 0 1em 0;
+        }
+
         li {
           list-style-type: disc;
           margin-left: 1rem;
