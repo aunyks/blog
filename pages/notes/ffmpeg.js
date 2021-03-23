@@ -6,7 +6,7 @@ import Hint from 'components/Hint'
 export default function FFmpegNotes() {
   return (
     <NotesPost
-      title="FFmpeg Notes"
+      title="FFmpeg"
       description=""
       hasCodeSnippet
     >
