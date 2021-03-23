@@ -10,6 +10,7 @@ export default function NotesPage() {
       <Link href="/notes/applied-dsp">applied digital signal processing</Link>
       <Link href="/notes/web-game-dev">web game dev</Link>
       <Link href="/notes/ffmpeg">ffmpeg</Link>
+      <Link href="/notes/electronics">electronics</Link>
     </LinksPage>
   )
 }
