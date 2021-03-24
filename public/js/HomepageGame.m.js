@@ -16,7 +16,6 @@ class HomepageGame extends GameContext {
     super()
     this._graphics = new ThreeJSContext(document.getElementById('game-canvas'))
     this._entities = new EntityManager()
-    this._isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   }
 
   getGraphicsCtx() {
@@ -43,6 +42,12 @@ class HomepageGame extends GameContext {
     this._graphics.render()
   }
 
+  setSceneBgColor() {
+    const graphicsScene = this._graphics.getScene()
+    const deviceIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    graphicsScene.background = deviceIsDark ? new Color(0x222222) : new Color(0xffffff)
+  }
+
   async setupGraphics() {
     const graphicsScene = this._graphics.getScene()
     /*
@@ -51,12 +56,17 @@ class HomepageGame extends GameContext {
         graphicsScene.add(mainLight)
         mainLight.lookAt(new Vector3(0, 0, 0))
         */
-
-    const complementLight = new AmbientLight(0xffffff, 0.2)
+    const complementLight = new AmbientLight(0xffffff, 1)
     graphicsScene.add(complementLight)
 
-    graphicsScene.background = this._isDark ? new Color(0x333333) : new Color(0xffffff)
-
+    this.setSceneBgColor()
+    try {
+      // For Chrome / FireFox
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.setSceneBgColor())
+    } catch (e) {
+      // For Safari
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(onDarkModeChange, () => this.setSceneBgColor())
+    }
   }
 }
 

@@ -1,5 +1,9 @@
 import Entity from './arachnid/entity.module.js'
 import {
+  MeshStandardMaterial,
+  Color
+} from './arachnid/graphics/three.module.js'
+import {
   Group,
   Tween,
   Easing
@@ -39,9 +43,16 @@ class LightningBolt extends Entity {
     this._object = boltModel.scene
     this._object.position.set(0, 0, 0)
     this._object.rotation.y = -Math.PI / 2
-
+    this.setBoltColor()
     scene.add(this._object)
 
+    try {
+      // For Chrome / FireFox
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.setBoltColor())
+    } catch (e) {
+      // For Safari
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(onDarkModeChange, () => this.setBoltColor())
+    }
     window.addEventListener('message', event => {
       if (event.origin !== window.location.origin) {
         return
@@ -51,6 +62,17 @@ class LightningBolt extends Entity {
         this.setTargetRotation('y', this._object.rotation.y + 2 * Math.PI, 1000, Easing.Quintic.InOut)
       }
     }, false)
+  }
+
+  setBoltColor() {
+    const deviceIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    this._object.traverse(function (modelChild) {
+      if (modelChild.isMesh) {
+        modelChild.material = new MeshStandardMaterial({
+          color: deviceIsDark ? new Color(0xffffff) : new Color(0x000000)
+        })
+      }
+    })
   }
 
   update(dt) {
@@ -76,6 +98,7 @@ class LightningBolt extends Entity {
       })
       .onComplete(() => {
         try {
+          // WARNING: Memory leaks if this fails
           this._tweenGroup.remove(this._positionTween)
         } catch (e) {
           console.log('Couldnt remove position tween')
@@ -102,7 +125,12 @@ class LightningBolt extends Entity {
             this._object.rotation.x = newAngle.x
           })
           .onComplete(() => {
-            this._tweenGroup.remove(this._xRotationTween)
+            // WARNING: Memory leaks if this fails
+            try {
+              this._tweenGroup.remove(this._xRotationTween)
+            } catch (e) {
+              console.log('Couldnt remove x rotation tween')
+            }
             this._xRotationTween = null
           })
           .start()
@@ -118,7 +146,12 @@ class LightningBolt extends Entity {
             this._object.rotation.y = newAngle.y
           })
           .onComplete(() => {
-            this._tweenGroup.remove(this._yRotationTween)
+            // WARNING: Memory leaks if this fails
+            try {
+              this._tweenGroup.remove(this._yRotationTween)
+            } catch (e) {
+              console.log('Couldnt remove y rotation tween')
+            }
             this._yRotationTween = null
           })
           .start()
@@ -134,7 +167,12 @@ class LightningBolt extends Entity {
             this._object.rotation.z = newAngle.z
           })
           .onComplete(() => {
-            this._tweenGroup.remove(this._zRotationTween)
+            // WARNING: Memory leaks if this fails
+            try {
+              this._tweenGroup.remove(this._zRotationTween)
+            } catch (e) {
+              console.log('Couldnt remove z rotation tween')
+            }
             this._zRotationTween = null
           })
           .start()
