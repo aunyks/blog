@@ -43,6 +43,19 @@
   overflow-y: hidden;
 }
 
+
 #loading-screen {
   background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  #loading-screen {
+    background: #222;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  #greeting-section {
+    justify-content: flex-end;
+  }
 }

@@ -23,7 +23,7 @@ export default function HomePage() {
       <Navbar />
       <div className="layer-container">
         <main className="layer w-full h-full">
-          <section className="flex flex-col justify-end lg:justify-center w-full h-full">
+          <section id="greeting-section" className="flex flex-col justify-end lg:justify-center w-full h-full">
             <div id="greeting" className="px-3 lg:px-24 my-20">
               <h1 className="text-3xl lg:text-5xl">
                 Hi-Voltage
