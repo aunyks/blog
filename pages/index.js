@@ -18,25 +18,30 @@ export default function HomePage() {
         <meta name="twitter:title" content="Hi-Voltage" />
         <meta name="twitter:description" content="Increasing potential" />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
+        <link rel="stylesheet" href="/css/homepage.css" />
       </Head>
       <Navbar />
-      <style>{`
-        #__next {
-          height: 100vh;
-        }
-      `}</style>
-      <main className="w-full h-full">
-        <section className="flex flex-col justify-end lg:justify-center w-full h-full" style={{ background: 'red' }}>
-          <div id="greeting" className="px-3 lg:px-24 my-20">
-            <h1 className="text-3xl lg:text-5xl">
-              Hi-Voltage
+      <div className="layer-container">
+        <main className="layer w-full h-full">
+          <section className="flex flex-col justify-end lg:justify-center w-full h-full">
+            <div id="greeting" className="px-3 lg:px-24 my-20">
+              <h1 className="text-3xl lg:text-5xl">
+                Hi-Voltage
           </h1>
-            <h2 className="text-lg lg:text-3xl">
-              Increasing potential
+              <h2 className="text-lg lg:text-3xl">
+                Increasing potential
           </h2>
-          </div>
-        </section>
-      </main>
+            </div>
+          </section>
+        </main>
+        <div id="loading-screen" className="layer">
+          <h1>Loading...</h1>
+        </div>
+        <div className="layer invisible game-viewport">
+          <canvas id="game-canvas"></canvas>
+        </div>
+      </div>
+      <script type="module" src="/js/homepage.js"></script>
     </>
   )
 }

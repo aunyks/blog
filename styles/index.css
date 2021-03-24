@@ -2,6 +2,10 @@
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: local('IBM Plex Sans'), url(./global-fonts/Roboto-Regular.ttf) format('ttf');
+}
 @tailwind utilities;
 
 /*
