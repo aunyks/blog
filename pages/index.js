@@ -35,7 +35,7 @@ export default function HomePage() {
           </section>
         </main>
         <div id="loading-screen" className="layer">
-          <h1>Loading...</h1>
+          {/*<h1>Loading...</h1>*/}
         </div>
         <div className="layer invisible game-viewport">
           <canvas id="game-canvas"></canvas>

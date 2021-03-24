@@ -1,10 +1,8 @@
 module.exports = {
   theme: {
-    extend: {
-      fontFamily: {
-        'sans': ['"IBM Plex Sans"', 'sans-serif']
-      }
-    },
+    fontFamily: {
+      'sans': '"IBM Plex Sans", Helvetica, sans-serif'
+    }
   },
   //variants: {},
   //plugins: []
