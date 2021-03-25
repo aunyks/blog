@@ -22,9 +22,9 @@ export default function HomePage() {
       </Head>
       <Navbar />
       <div className="layer-container">
-        <main className="layer w-full h-full">
+        <main className="layer w-full">
           <section id="greeting-section" className="flex flex-col justify-end lg:justify-center w-full h-full">
-            <div id="greeting" className="px-3 lg:px-24 my-20">
+            <div id="greeting" className="px-3 lg:px-24">
               <h1 className="text-3xl lg:text-5xl">
                 Hi-Voltage
           </h1>

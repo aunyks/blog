@@ -2,6 +2,10 @@
   height: 100vh;
 }
 
+body {
+  overflow: hidden;
+}
+
 .invisible {
   display: none;
 }
@@ -63,5 +67,10 @@
 @media only screen and (max-width: 1025px) {
   #greeting-section {
     justify-content: flex-end;
+  }
+
+  #greeting {
+    position: absolute;
+    bottom: 175px;
   }
 }
