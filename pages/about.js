@@ -28,8 +28,8 @@ export default function AboutPage() {
         you wanna talk about something, <a href="https://aunyks.com/contact" target="_blank">hit me up</a>.
       </p>
         <p>
-          "Increasing potential" is a double entendre. It's a reference to voltage representing the physics
-          concept of electric potential. It's also a reference human growth. A key to life is to always be growing and changing.
+          "Increasing potential" is a double entendre. It's a reference to the electromotive force in physics.
+          It's also a reference human growth. A key to life is to always be growing and changing.
           And, to gain knowledge, skill, wisdom, and experience along the way is to increase your potential as a person.
       </p>
       </article>
