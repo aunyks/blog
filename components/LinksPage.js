@@ -48,7 +48,7 @@ export default function LinksPage({
 
         .link-article {
           color: white;
-          background: black;
+          background: #333;
           border-radius: 7px;
           transition: all 0.2s ease;
         }

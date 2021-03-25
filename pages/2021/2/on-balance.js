@@ -13,7 +13,7 @@ export default function OnBalance() {
         </p>
       }>
       <p>
-        Balance isn’t a static. Rather, balance is a state of perpetual motion. It’s the constant cycle between states. It’s the perpetual pull of opposing actions.
+        Balance isn’t static. Rather, balance is a state of perpetual motion. It’s the constant cycle between states. It’s the perpetual pull of opposing actions.
       </p>
       <p>
         The simplest form of balance in motion is the wave. Waves are balanced because of their continuous oscillation between just two states. Think of a dot swaying from the right to left and back again, or a sine wave moving between a maximum and minimum value.

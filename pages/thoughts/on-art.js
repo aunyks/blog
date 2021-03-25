@@ -10,6 +10,10 @@ export default function ThoughtsOnArt() {
       description="Miscellaneous thoughts on art."
       noFooter
     >
+      <Thought date="2021-03-24">
+        I've been severely underestimating the importance of reference in the creative process. Maybe
+        knowing this now means I'm approaching my next level as an artist.
+      </Thought>
       <Thought date="2020-08-30">
         Higher fidelity media for entertainment provide better detail
         at the expense of abstraction. It sounds obvious, but in many cases it has an impact

@@ -39,8 +39,7 @@ export default function ThreeDGraphicsHighLevel() {
         graphics processors get faster, though. This is why the graphics on gaming consoles and PCs look better with each new generation.
       </p>
       <p>
-        I hope this was helpful. If you want to see me making a really basic scene in Blender, read <a href="/2020/9/how-3d-design-works">this post</a>. If you want a somewhat low level overview of how 3D graphics work,
-        I'm writing another post right now.
+        I hope this was helpful. If you want to see me making a really basic scene in Blender, read <a href="/2020/9/how-3d-design-works">this post</a>.
       </p>
     </Post>
   )

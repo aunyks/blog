@@ -43,13 +43,13 @@ export default function Navbar() {
       <div style={{ display: `${isOpen ? 'flex' : 'none'}` }} id="navbar-items" className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="lg:flex-grow">
           {/* LEFT SIDE OF NAV (LARGE SCREEN) */}
-          <NavLink href="/music">
+          <NavLink href="/all">
             Posts
           </NavLink>
-          <NavLink href="/music">
+          <NavLink href="/categories">
             Categories
           </NavLink>
-          <NavLink href="https://aunyks.com/about">
+          <NavLink href="/about">
             About
           </NavLink>
         </div>
