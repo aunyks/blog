@@ -19,7 +19,7 @@ export default function Post({
   children
 }) {
   return (
-    <div style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}>
+    <>
       <PostHead
         title={title}
         subtitle={subtitle}
@@ -30,13 +30,15 @@ export default function Post({
         hasCodeSnippet={hasCodeSnippet} />
       <Navbar />
       <PostBody>
-        <PostHeader title={title} subtitle={subtitle} date={date} />
-        {children}
-        {!noFooter && (
-          <PostFooter remark={remark} date={date} />
-        )}
+        <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <PostHeader title={title} subtitle={subtitle} date={date} />
+          {children}
+          {!noFooter && (
+            <PostFooter remark={remark} date={date} />
+          )}
+        </div>
         <GAnalytics />
       </PostBody>
-    </div>
+    </>
   )
 }
