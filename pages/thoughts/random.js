@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-03-25">
+        In the wee hours of this morning, I updated this blog to the second version of the UI for <Hint msg="Home page, about page, directory pages, etc.">non-post pages</Hint>.
+        It's my first significant UI update to any type of page since I've started this custom blog in late 2019. Here's to v2.0.
+      </Thought>
       <Thought date="2021-03-24">
         This is the best birthday I've had in a long time. Here's to 22 years.
       </Thought>
