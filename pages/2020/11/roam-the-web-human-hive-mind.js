@@ -19,12 +19,12 @@ export default function RoamResearchWebHumanHiveMind() {
         </p>
       <p>
         That is, through the exabytes of knowledge on the web and billions of links between thoughts, ideas, and
-        other content, has the web developed to become a knowledge graph of magnifiscent scale? A grand hive mind
+        other content, has the web developed to become a knowledge graph of magnificent scale? A grand hive mind
         that captures the state of human consciousness? And by corollary, is creating, editing, deleting, or consuming
         web content participating in the largest <a href="https://en.wikipedia.org/wiki/Zettelkasten" target="_blank">Zettelkasten</a> system in history?
         </p>
       <p>
-        My take is <em>yes</em>, to both.
+        My take is <em>yes</em>, to all of it.
         </p>
     </Post>
   )
