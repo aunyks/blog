@@ -40,6 +40,9 @@ export default function CategoriesPage() {
       <Link href="/2020/3/substack-open-redirect">substack open url redirection / reflected xss</Link>
       <Link href="/2020/3/replit-open-redirect">repl.it open url redirection</Link>
       <Link href="/2020/2/howd-i-get-here">how'd i get here?</Link>
+      <Link href="/2019/12/key">key</Link>
+      <Link href="/2019/11/musical-scales">musical scales</Link>
+      <Link href="/2019/11/the-octave">the octave</Link>
       <Link href="/2019/11/how-hacking-works">how hacking works</Link>
       <Link href="/2019/11/learning-music-theory">learning music theory</Link>
     </LinksPage>
