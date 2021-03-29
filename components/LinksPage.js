@@ -6,6 +6,7 @@ export default function LinksPage({
   pageTitle,
   title,
   subtitle,
+  hasInstructions,
   children
 }) {
   const effectiveTitle = pageTitle ? `${pageTitle} - Hi-Voltage` : `${title} - Hi-Voltage`
@@ -68,14 +69,6 @@ export default function LinksPage({
           bottom: 20px;
         }
 
-        .card-footer-block {
-          fill: white;
-          width: 30px;
-          height: 30px;
-          transition: all 0.7s ease;
-          /*transition-delay: 0.25s;*/
-        }
-
         .link-article:hover .card-footer-block, .link-article:focus .card-footer-block {
           transform: rotate(360deg);
         }
@@ -92,9 +85,11 @@ export default function LinksPage({
           <h1 className="font-bold text-3xl lg:text-5xl">{title}</h1>
           {subtitle && <h2 className="font-normal text-lg lg:text-2xl mb-2 lg:mb-0">{subtitle}</h2>}
         </header>
-        <ul id="links" className="list-none px-6 lg:px-24 py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-4">
-          {children}
-        </ul>
+        <div className="px-6 lg:px-24">
+          <ul id="links" className="list-none py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-4">
+            {children}
+          </ul>
+        </div>
         <GAnalytics />
       </main>
     </>

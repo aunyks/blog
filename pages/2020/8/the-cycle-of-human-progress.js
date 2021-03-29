@@ -21,7 +21,7 @@ export default function HumanProgress() {
         and design.
       </p>
       <Quote author="Neri Oxman">
-        Science converts information into knowledge, engineering converts knowledge into utility, design converts utility into culture behavior and context, and art converts the [cultural] behavior and question[s] our perception of the world.
+        Science converts information into knowledge, engineering converts knowledge into utility, design converts utility into culture, behavior, and context, and art converts the behavior and question[s] our perception of the world.
       </Quote>
       <p>
         Here, she describes the Krebs Cycle of Creativity (KCC), into which she delves more deeply in her article titled <em><a href="https://jods.mitpress.mit.edu/pub/ageofentanglement/release/1">Age of Entanglement</a></em>. When first hearing her
