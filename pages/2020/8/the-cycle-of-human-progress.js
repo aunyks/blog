@@ -38,8 +38,8 @@ export default function HumanProgress() {
       </Quote>
       <p>
         Everything that the human race has created falls somewhere on this cycle and moves clockwise, inspiring more progress for others to take on. This is an interesting way to think of humanity, as many of us question
-        why any one of the quadrants exist. Unfortunately art gets the most criticism of this kind. People very often state that art is a waste of resources because of its economic significance isn't always great. This model
-      of thinking provides one more proof that art is equally impactful on human progress as the other three aspects, <Hint msg="Art has many purposes, and it shouldn't be measured solely by its economic impact. Much of science also has relatively little economic impact.">highlighting that artistic expression inspires other humans by some means</Hint>.
+        why any one of the quadrants exist. Unfortunately art gets the most criticism of this kind. People very often state that art is a waste of resources since <Hint msg="Art has many purposes, and it shouldn't be measured solely by its economic impact. Much of science also has relatively little economic impact.">its economic significance isn't always obvious</Hint>. Oxman's model
+      provides one more proof that art is equally impactful on human progress as the other three aspects, highlighting that artistic expression inspires other humans by some means.
     </p>
       <p>
         A modern example of the cycle is Bitcoin. It's said that Neal Stephenson's science fiction novel <em><a href="https://en.wikipedia.org/wiki/Cryptonomicon">Cryptonomicon</a></em> inspired the digital currency called Bitcoin. Here,
