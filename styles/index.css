@@ -121,10 +121,17 @@ figcaption > a {
   font-size: .875rem;
 }
 
+ol, ul {
+  margin: 0em 0 1em 0;
+}
 ol > li {
   display: list-item;
   list-style-position: inside;
   list-style-type: decimal;
+}
+
+ul > li {
+  list-style: disc inside;
 }
 
 a {

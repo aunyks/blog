@@ -2,6 +2,7 @@ import NotesPost from 'components/NotesPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 import Hint from 'components/Hint'
+import Tex from 'components/Tex'
 
 export default function AppliedDSP() {
   return (
@@ -9,6 +10,7 @@ export default function AppliedDSP() {
       title="Applied Digital Signal Processing"
       description="Making sense of the radio signals around us"
       hasCodeSnippet
+      hasMath
     >
       <h2>Overview</h2>
       <h3>Intro</h3>
@@ -106,6 +108,12 @@ export default function AppliedDSP() {
       <h2>Extra Notes</h2>
       <ul className="mb-4">
         <li><a target="_blank" href="https://pysdr.org">PySDR</a> is a great resource for learning the basics of applying DSP in Python.</li>
+        <li>
+          A decibel (dB) is a unit of relative power. It's a ratio of two different values. For some values <Tex tex="A" /> and <Tex tex="B" />, a decibel is defined
+          as <Tex tex="10log(\frac {B} {A})" />. Often, it's used to measure a component in a system by comparing the scale of its input (<Tex tex="A" />) with that of its output (<Tex tex="B" />), such as for
+          measuring the ratio between input and output in an amplifier. See <a href="https://www.youtube.com/watch?v=ta1sUTiJNkY" target="_blank">this YouTube video</a> and
+          &nbsp;<a target="_blank" href="https://en.wikipedia.org/wiki/Decibel">the Wikipedia page</a> for more.
+        </li>
       </ul>
     </NotesPost>
   )

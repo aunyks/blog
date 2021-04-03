@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-04-01">
+        SpaceX moving quickly, Bezos leaving Amazon to focus more on Blue Origin in a few months, NASA's Artemis missions, space programs coming out of the East, and so much more mean that this new era of space innovation is 100% happening now.
+      </Thought>
       <Thought date="2021-03-25">
         In the wee hours of this morning, I updated this blog to the second version of the UI for <Hint msg="Home page, about page, directory pages, etc.">non-post pages</Hint>.
         It's my first significant UI update to any type of page since I've started this custom blog in late 2019. I made this change
