@@ -24,7 +24,7 @@ export default function AboutPage() {
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
       </Head>
       <Navbar />
-      <article className="px-3 lg:px-24 w-full lg:w-3/4 pt-16 lg:pt-16">
+      <main className="px-3 lg:px-24 w-full lg:w-3/4 pt-16 lg:pt-16">
         <h1>Increasing potential</h1>
         <p>
           Hi-Voltage is <a href="https://aunyks.com/about" target="_blank">my</a> blog, my digital garden, if you will. It's my place to
@@ -40,7 +40,12 @@ export default function AboutPage() {
           When looking for posts, you'll probably see a white box in the corner of a post. If the box has a <Hint msg="If it just looks like a plain white box">white outline</Hint>,
         it's a normal text post. If it has a yellow outline, it's part of a series. If it has an indigo outline, it's a video post.
       </p>
-        <ul className="my-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6">
+        <style jsx>{`
+        li {
+          list-style: none;
+        }
+      `}</style>
+        <ul className="my-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 list-none">
           <li>
             <CardBox postExample /> Text
             </li>
@@ -51,7 +56,7 @@ export default function AboutPage() {
             <CardBox video /> Video
           </li>
         </ul>
-      </article>
+      </main>
     </>
   )
 }

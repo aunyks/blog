@@ -67,6 +67,27 @@ ffmpeg \\
 \tmy-new-file.mp4 # The output file
 `}</CodeBlock>
       </div>
+      <div className="snippet">
+        <h3>Convert M4A Audio to WAV</h3>
+        <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
+ffmpeg \\ 
+\t-i input-file.m4a \\ 
+\toutput-file.wav
+`}</CodeBlock>
+      </div>
+      <div className="snippet">
+        <h3>Convert Image Sequence to Video</h3>
+        <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
+ffmpeg \\ 
+\t-r 24 \\ # Output frame rate (fps)
+\t-s 1920x1080 \\ # Output screen size (width x height) in pixels
+\t-i my_sequence.%04d.jpg \\ # The input sequence title. Use %0n where n is the number of digits in each image title
+\t-vcodec libx264 \\ # Video codec. Keep this or use h264 for mp4 output
+\t-crf 25 \\ # Output video quality. Try to keep between 15 and 25 but feel free to experiment
+\t-pix_fmt yuv420p \\ # The pixel format. Keep this as is unless it's breaking something
+\tmy_video.mp4
+`}</CodeBlock>
+      </div>
     </NotesPost>
   )
 }
