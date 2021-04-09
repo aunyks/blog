@@ -1,4 +1,5 @@
 import 'styles/index.css'
 
-export default ({ Component, pageProps }) =>
-  <Component {...pageProps} />
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
