@@ -35,7 +35,7 @@ export default function FFmpegNotes() {
 ffmpeg \\ 
 \t-i my-video.mov \\ # The input file
 \t-vcodec h264 \\ # Output video codec. I think this is part of the mp4 stuff so just keep it unless it's broken
-\t-acodec mp3 \\  # Output audio codec. If the output has no audio, try mp2 or 'copy'
+\t-acodec aac \\  # Output audio codec. If the output has no audio, try mp3, mp2 or 'copy'
 \t-pix_fmt yuv420p \\ # Honestly I just toss this in cuz it helps sometimes. Feel free to remove
 \tmy-video.mp4 # Output file
 `}</CodeBlock>
