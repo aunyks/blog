@@ -10,23 +10,12 @@ export default function FFmpegNotes() {
       description=""
       hasCodeSnippet
     >
-      <style jsx>{`
-        li {
-          list-style-type: disc;
-          margin-left: 1rem;
-        }
-
-        .snippet {
-          margin-bottom: 1.5em;
-        }
-      `}</style>
       <p>
         FFmpeg commands I find on the web look insanely confusing even for seemingly
         simple operations. Here's some stuff I find myself using every now and then.
       </p>
       <h2>Commands</h2>
-      <div className="snippet">
-        <h3>Convert video file format</h3>
+      <CodeSnippet title="Convert video file format">
         <p>
           This converts a MOV file to MP4, but it should be able to be modified
           to do any kind of video conversion as long as you know the video codecs for them.
@@ -39,9 +28,8 @@ ffmpeg \\
 \t-pix_fmt yuv420p \\ # Honestly I just toss this in cuz it helps sometimes. Feel free to remove
 \tmy-video.mp4 # Output file
 `}</CodeBlock>
-      </div>
-      <div className="snippet">
-        <h3>Change Frame Rate</h3>
+      </CodeSnippet>
+      <CodeSnippet title="Change Frame Rate">
         <p>
           This changes the frame rate of the input video. If the target rate is lower than source rate, it removes some frames.
         If greater, it <em>probably</em> duplicates some frames: I haven't tried it for that case before.
@@ -52,9 +40,8 @@ ffmpeg \\
 \t-filter:v fps=30 \\ # The output frame rate
 \tmy-new-file.mp4 # The output file
 `}</CodeBlock>
-      </div>
-      <div className="snippet">
-        <h3>Apply a LUT Cube / 3D LUT to a Video</h3>
+      </CodeSnippet>
+      <CodeSnippet title="Apply a LUT Cube / 3D LUT to a Video">
         <p>
           This applies a <a href="https://en.wikipedia.org/wiki/3D_lookup_table" target="_blank">3D Color Lookup Table</a> to a video.
       </p>
@@ -66,17 +53,15 @@ ffmpeg \\
 \t-c:a copy output \\ # This is probably just copying over random details from the source for the target
 \tmy-new-file.mp4 # The output file
 `}</CodeBlock>
-      </div>
-      <div className="snippet">
-        <h3>Convert M4A Audio to WAV</h3>
+      </CodeSnippet>
+      <CodeSnippet title="Convert M4A Audio to WAV">
         <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
 ffmpeg \\ 
 \t-i input-file.m4a \\ 
 \toutput-file.wav
 `}</CodeBlock>
-      </div>
-      <div className="snippet">
-        <h3>Convert Image Sequence to Video</h3>
+      </CodeSnippet>
+      <CodeSnippet title="Convert Image Sequence to Video">
         <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
 ffmpeg \\ 
 \t-r 24 \\ # Output frame rate (fps)
@@ -87,7 +72,16 @@ ffmpeg \\
 \t-pix_fmt yuv420p \\ # The pixel format. Keep this as is unless it's breaking something
 \tmy_video.mp4
 `}</CodeBlock>
-      </div>
+      </CodeSnippet>
+      <CodeSnippet title="Scale Playback Speed (No Audio)">
+        <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
+ffmpeg \\
+\t-i input.mp4 \\
+\t-filter:v "setpts=2*PTS" \\ # PTS is the current playback speed. Multiply by a factor to slow down. Divide by factor to speed up
+\t-an \\ # Remove audio track
+\toutput.mp4
+`}</CodeBlock>
+      </CodeSnippet>
     </NotesPost>
   )
 }
