@@ -56,7 +56,7 @@ export default function VideoPost({
         title={title}
         subtitle={subtitle}
         description={description}
-        cardImage={poster || cardImage}
+        cardImage={poster && (`https://blog.aunyks.com${poster}`) || cardImage}
         hasMath={hasMath}
         hasDiagram={hasDiagram}
         hasCodeSnippet={hasCodeSnippet} />
