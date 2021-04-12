@@ -15,6 +15,7 @@ export default function Post({
   hasMath,
   hasDiagram,
   hasCodeSnippet,
+  wide,
   noFooter,
   children
 }) {
@@ -29,7 +30,7 @@ export default function Post({
         hasDiagram={hasDiagram}
         hasCodeSnippet={hasCodeSnippet} />
       <Navbar />
-      <PostBody>
+      <PostBody wide={wide}>
         <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
           <PostHeader title={title} subtitle={subtitle} date={date} />
           {children}
