@@ -10,6 +10,13 @@ export default function OnBalance() {
       poster="/videos/making-a-dual-ps5-controller-stand/making-a-dual-ps5-controller-stand.jpg"
       links={{
         'YouTube': 'https://www.youtube.com/watch?v=2UlX9Y-jH5o'
+      }}
+      timestamps={{
+        '0:00': 'Intro & What We\'ll Be Making',
+        '0:06': 'Modeling',
+        '3:23': 'Slicing',
+        '5:42': 'Printing',
+        '5:49': 'Reviewing Final Output'
       }}>
       <style jsx>{`
         li {

@@ -47,6 +47,7 @@ export default function VideoPost({
   src,
   fallback,
   links,
+  timestamps,
   noFooter,
   children
 }) {
@@ -70,12 +71,22 @@ export default function VideoPost({
             {fallback}
           </Video>
           <VideoPostHeader title={title} subtitle={subtitle} date={date} />
+          {!!timestamps && (
+            < details>
+              <summary className="text-sm lg:text-md">Key Timestamps</summary>
+              <ul>
+                {Object.keys(timestamps).map(time => (
+                  <li key={time} className="list-none text-sm lg:text-md">{time} - {timestamps[time]}</li>
+                ))}
+              </ul>
+            </details>
+          )}
           {!!links && (
             < details>
               <summary className="text-sm lg:text-md">Links</summary>
-              <ul>
+              <ul className="grid grid-cols-2 lg:grid-cols-6">
                 {Object.keys(links).map(linkName => (
-                  <li className="list-none"><a className="text-sm lg:text-md" target="_blank" href={links[linkName]}>{linkName}</a></li>
+                  <li key={linkName} className="list-none"><a className="text-sm lg:text-md" target="_blank" href={links[linkName]}>{linkName}</a></li>
                 ))}
               </ul>
             </details>
