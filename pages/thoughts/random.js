@@ -11,6 +11,15 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-05-07">
+        I graduated! B.S in Computer Science, Howard University
+      </Thought>
+      <Thought date="2021-04-22">
+        Much, and arguably most, of erosion of the American middle class can be attributed to the toxicity of corporate American culture and practices.
+      </Thought>
+      <Thought date="2021-04-16">
+        If your AR or VR project is neither playable nor interactive, then it’s just a VFX project with extra work.
+      </Thought>
       <Thought date="2021-04-01">
         SpaceX moving quickly, Bezos leaving Amazon to focus more on Blue Origin in a few months, NASA's Artemis missions, space programs coming out of the East, and so much more mean that this new era of space innovation is 100% happening now.
       </Thought>
