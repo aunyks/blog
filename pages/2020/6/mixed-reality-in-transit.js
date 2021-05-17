@@ -110,7 +110,8 @@ export default function MixedRealityInTransit() {
       <h3>Places <em>I've</em> Seen It Mentioned</h3>
       <p>
         <a target="_blank" href="https://vm.tiktok.com/J1VEswP/">One TikTok</a>, <a target="_blank" href="https://vm.tiktok.com/J1EmWXM/">another TikTok</a>, <a target="_blank" href="https://www.reddit.com/r/nextfuckinglevel/comments/hamvdk/washington_dc_metro_pass_that_displays_the_metro/">r/nextfuckinglevel</a>,
-    <a target="_blank" href="https://www.reddit.com/r/Damnthatsinteresting/comments/is0hx3/washington_dc_new_metro_pass_displays_the_metro">r/Damnthatsinteresting</a>, <a target="_blank" href="https://www.cultofmac.com/714584/awesome-snapchat-filter-shows-how-well-navigate-the-metro-in-the-age-of-ar/">Cult of Mac</a>, <a target="_blank" href="https://www.instagram.com/p/CBbX8fXh33u/">WMATA's Instagram</a>, and the @washingtonprobs Instagram.
+    <a target="_blank" href="https://www.reddit.com/r/Damnthatsinteresting/comments/is0hx3/washington_dc_new_metro_pass_displays_the_metro">r/Damnthatsinteresting</a>, <a target="_blank" href="https://www.cultofmac.com/714584/awesome-snapchat-filter-shows-how-well-navigate-the-metro-in-the-age-of-ar/">Cult of Mac</a>, <a target="_blank" href="https://www.instagram.com/p/CBbX8fXh33u/">WMATA's Instagram</a>, the @washingtonprobs Instagram,
+    and <a target="_blank" href="https://www.tiktok.com/@thejonathanlurie/video/6963085879577562374">this TikTok</a>.
     </p>
     </Post >
   )
