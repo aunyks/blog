@@ -7,6 +7,7 @@ export default function Misc() {
       pageTitle="Misc"
       title="Misc"
       subtitle="Posts of no category">
+      <Link href="/2021/5/so-you-wanna-be-cutting-edge">so you wanna be cutting edge</Link>
       <Link href="/2021/2/on-balance">on balance</Link>
       <Link href="/2020/12/writing-for-expression-not-argument">writing for the sake of expression, not argument</Link>
       <Link href="/2020/11/roam-the-web-human-hive-mind">roam, the web, and the human hive mind</Link>

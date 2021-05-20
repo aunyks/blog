@@ -26,6 +26,13 @@ export default function RoamResearchWebHumanHiveMind() {
       <p>
         My take is <em>yes</em>, to all of it.
         </p>
+      <h3>Update</h3>
+      <p>
+        As of early 2021, I've been using simple HTML pages to take my notes and help with my personal knowledge management. With HTML being a document format, the
+        web having built in linking, and web browsers being incredibly powerful scripting and formatting engines, this workflow has been incredibly robust and flexible.
+        I'll probably continue with it until I run into any debilitating issues. It's also pretty cool that the workflow uses an open standard, so I don't have to worry about
+        some company going out of business and ruining it.
+        </p>
     </Post>
   )
 }

@@ -7,7 +7,8 @@ export default function ArchivePage() {
       pageTitle="Posts"
       title="Posts"
       subtitle="In reverse chronological order...pretty much">
-      <Link href="/2021/4/making-a-dual-ps5-controller-stand" video>Making a Dual PS5 Controller Stand</Link>
+      <Link href="/2021/5/so-you-wanna-be-cutting-edge">so you wanna be cutting edge</Link>
+      <Link href="/2021/4/making-a-dual-ps5-controller-stand" video>making a dual PS5 controller stand</Link>
       <Link href="/2021/2/3d-graphics-overview-high-level">3D graphics overview: high level</Link>
       <Link href="/2021/2/on-balance">on balance</Link>
       <Link href="/2021/1/gab-security-vulns">gab security vulns</Link>
