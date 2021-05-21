@@ -122,7 +122,6 @@ figcaption > a {
 }
 
 ol {
-  display: list-item;
   list-style: decimal inside;
 }
 
