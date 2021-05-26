@@ -12,6 +12,10 @@ export default function RandomThoughts() {
       noFooter
     >
       <Thought date="2021-05-07">
+        Posterity will think it's insane that we let random people take an easy test once in their entire life and be able to drive almost any car, in any condition, at any time.
+        The dangers of incompetent people driving these several-ton machines careening at high speeds are so normal to us.
+      </Thought>
+      <Thought date="2021-05-07">
         I graduated! B.S in Computer Science, Howard University
       </Thought>
       <Thought date="2021-04-22">
