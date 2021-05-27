@@ -39,6 +39,26 @@ export default function SoYouWannaBeCuttingEdge() {
           <a target="_blank" href="https://dl.acm.org/journals">Association for Computing Machinery (ACM) Journals</a> (Computing / Computer Science)
         </li>
       </ul>
+      <h3>Watching National Defense Interests</h3>
+      <p>
+        For millenia, defense and intelligence have driven forward innovation in the public and private sector. Watching what
+        the wealthiest and most capable nations focus their interests on can provide hints into people, institutions, and areas of research
+        that have great amounts of funding and attention.
+      </p>
+      <p>
+        Looking at journals in these fields or watching the research that program leaders' institutions are putting out may be insightful.
+      </p>
+      <ul>
+        <li>
+          <a target="_blank" href="https://darpa.mil">Defense Advanced Research Projects Agency</a> (US Defense R&D Agency)
+        </li>
+        <li>
+          <a target="_blank" href="https://iarpa.gov">Intelligence Advanced Research Projects Activity</a> (US Intelligence R&D Organization)
+        </li>
+        <li>
+          <a target="_blank" href="https://fpi.gov.ru">Russian Foundation for Advanced Research Projects</a> (Russian Defense R&D Organization)
+        </li>
+      </ul>
       <h3>Patents</h3>
       <p>
         Patents are inventors' and corporations' second best testament to true innovation, right behind trade secrets. Keeping an eye on the latest patents in a field can give you
