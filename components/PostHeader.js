@@ -2,6 +2,7 @@ export default function PostHeader({
   title,
   subtitle,
   lang,
+  textDirection,
   date
 }) {
   let month = null
@@ -16,7 +17,7 @@ export default function PostHeader({
   }
 
   return (
-    <header>
+    <header lang={lang || 'en'} style={{ textDirection: (textDirection || 'ltr') }}>
       <h1 className="mt-2 lg:mt-0 leading-tight">{title}</h1>
       {subtitle && (
         <h2 className="leading-none">{subtitle}</h2>

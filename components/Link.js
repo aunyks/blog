@@ -37,13 +37,15 @@ export function CardBox({ series, video, postExample }) {
 export default function Link({
   series,
   video,
+  lang,
+  textDirection,
   href,
   children
 }) {
   return (
     <>
-      <li className="link-item list-none mt-4 mb-0 leading-none"
-        style={{ paddingLeft: 0, marginLeft: 0 }}>
+      <li lang={lang || 'en'} className="link-item list-none mt-4 mb-0 leading-none"
+        style={{ paddingLeft: 0, marginLeft: 0, textDirection: (textDirection || 'ltr') }}>
         <a className="no-underline" href={href}>
           <article className="relative link-article pt-5 pb-3 px-3 text-xl lg:text-3xl h-full">
             <header className="relative top-0">

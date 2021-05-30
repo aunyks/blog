@@ -8,6 +8,8 @@ import GAnalytics from 'components/GAnalytics'
 function VideoPostHeader({
   title,
   subtitle,
+  lang,
+  textDirection,
   date
 }) {
   let month = null
@@ -15,14 +17,14 @@ function VideoPostHeader({
   let day = null
   if (date) {
     const d = new Date(date)
-    year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-    month = new Intl.DateTimeFormat('en', { month: 'long' }).format(d)
-    day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+    year = new Intl.DateTimeFormat(lang || 'en', { year: 'numeric' }).format(d)
+    month = new Intl.DateTimeFormat(lang || 'en', { month: 'long' }).format(d)
+    day = new Intl.DateTimeFormat(lang || 'en', { day: '2-digit' }).format(d)
     day = parseInt(day) + 1
   }
 
   return (
-    <header className="mt-2">
+    <header className="mt-2" style={{ textDirection: (textDirection || 'ltr') }}>
       <h1 className="mt-2 lg:mt-0 leading-tight text-xl lg:text-4xl">{title}</h1>
       {subtitle && (
         <h2 className="leading-none text-sm lg:text-xl">{subtitle}</h2>
@@ -38,6 +40,8 @@ export default function VideoPost({
   date,
   description,
   remark,
+  lang,
+  textDirection,
   cardImage,
   poster,
   hasMath,
@@ -62,7 +66,7 @@ export default function VideoPost({
         hasDiagram={hasDiagram}
         hasCodeSnippet={hasCodeSnippet} />
       <Navbar />
-      <PostBody wide={true}>
+      <PostBody lang={lang} wide={true} textDirection={textDirection}>
         <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
           <Video
             src={src}
@@ -70,7 +74,7 @@ export default function VideoPost({
           >
             {fallback}
           </Video>
-          <VideoPostHeader title={title} subtitle={subtitle} date={date} />
+          <VideoPostHeader title={title} subtitle={subtitle} date={date} lang={lang} textDirection={textDirection} />
           {!!timestamps && (
             < details>
               <summary className="text-sm lg:text-md">Key Timestamps</summary>
@@ -94,7 +98,7 @@ export default function VideoPost({
           <hr className="mt-2" style={{ marginBottom: '0.75em' }} />
           {children}
           {!noFooter && (
-            <PostFooter remark={remark || (
+            <PostFooter lang={lang} textDirection={textDirection} remark={remark || (
               <>
                 Thanks for watching. Feel free to follow me on <a href="https://twitter.com/intent/follow?screen_name=aunyks">Twitter</a> if you have any
               questions about this post or just wanna chat.

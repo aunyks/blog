@@ -12,6 +12,7 @@ export default function Post({
   description,
   remark,
   lang,
+  textDirection,
   cardImage,
   hasMath,
   hasDiagram,
@@ -31,12 +32,12 @@ export default function Post({
         hasDiagram={hasDiagram}
         hasCodeSnippet={hasCodeSnippet} />
       <Navbar />
-      <PostBody wide={wide}>
-        <div lang={lang} style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          <PostHeader lang={lang} title={title} subtitle={subtitle} date={date} />
+      <PostBody wide={wide} lang={lang} textDirection={textDirection}>
+        <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <PostHeader lang={lang} textDirection={textDirection} title={title} subtitle={subtitle} date={date} />
           {children}
           {!noFooter && (
-            <PostFooter lang={lang} remark={remark} date={date} />
+            <PostFooter lang={lang} textDirection={textDirection} remark={remark} date={date} />
           )}
         </div>
         <GAnalytics />
