@@ -1,11 +1,11 @@
-export default function PostFooter({ date, remark }) {
+export default function PostFooter({ date, lang, remark }) {
   let year = null
   if (date) {
     const d = new Date(date)
-    year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
+    year = new Intl.DateTimeFormat(lang || 'en', { year: 'numeric' }).format(d)
   }
   return (
-    <footer id="footer">
+    <footer id="footer" lang={lang || 'en'}>
       <hr className="mt-3" />
       <p>
         {remark || (

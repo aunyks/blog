@@ -11,6 +11,7 @@ export default function Post({
   date,
   description,
   remark,
+  lang,
   cardImage,
   hasMath,
   hasDiagram,
@@ -31,11 +32,11 @@ export default function Post({
         hasCodeSnippet={hasCodeSnippet} />
       <Navbar />
       <PostBody wide={wide}>
-        <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          <PostHeader title={title} subtitle={subtitle} date={date} />
+        <div lang={lang} style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <PostHeader lang={lang} title={title} subtitle={subtitle} date={date} />
           {children}
           {!noFooter && (
-            <PostFooter remark={remark} date={date} />
+            <PostFooter lang={lang} remark={remark} date={date} />
           )}
         </div>
         <GAnalytics />

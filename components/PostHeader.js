@@ -1,6 +1,7 @@
 export default function PostHeader({
   title,
   subtitle,
+  lang,
   date
 }) {
   let month = null
@@ -8,9 +9,9 @@ export default function PostHeader({
   let day = null
   if (date) {
     const d = new Date(date)
-    year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-    month = new Intl.DateTimeFormat('en', { month: 'long' }).format(d)
-    day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
+    year = new Intl.DateTimeFormat(lang || 'en', { year: 'numeric' }).format(d)
+    month = new Intl.DateTimeFormat(lang || 'en', { month: 'long' }).format(d)
+    day = new Intl.DateTimeFormat(lang || 'en', { day: '2-digit' }).format(d)
     day = parseInt(day) + 1
   }
 
