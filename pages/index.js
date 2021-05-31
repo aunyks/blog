@@ -26,6 +26,11 @@ const getDeviceSizeFromWidth = (width) => {
 }
 
 function Bolt() {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+    }
+  }, [])
   const model = useLoader(GLTFLoader, '/models/aunyks-bolt.glb')
   const [boltPosition, setBoltPosition] = useState([3, 0, 0])
   const [boltScale, setBoltScale] = useState(2)
@@ -56,14 +61,6 @@ function Bolt() {
     window.addEventListener('resize', calculateInnerWidth)
     return () => window.removeEventListener('resize', calculateInnerWidth)
   }, [])
-
-  /*
-  useEffect(() => {
-    const gltfLoader = new GLTFLoader()
-    gltfLoader.load('/models/aunyks-bolt.glb', gltf => {
-      setModel(gltf.scene)
-    })
-  }, [])*/
 
   useEffect(() => {
     const onDarkModeChange = ({ matches }) => {
@@ -101,7 +98,6 @@ function Bolt() {
   const [targetYRotation, setTargetYRotation] = useState(-Math.PI / 2 + 2 * Math.PI)
   useEffect(() => {
     setTimeout(function refreshYRotation() {
-      console.log(targetYRotation + 2 * Math.PI)
       const newYRotation = targetYRotation + 2 * Math.PI
       setTargetYRotation(newYRotation)
     }, 10000)
@@ -140,6 +136,8 @@ export default function HomePage() {
         <meta name="twitter:description" content="Increasing potential" />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
         <link rel="stylesheet" href="/css/homepage.css" />
+        <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <Navbar />
       <div className="layer-container">

@@ -50,6 +50,7 @@ indigo: #5d44f8;
 :root {
   --color-1: #fab700;
   --color-2: #5d44f8;
+  --dark: #222;
   --selection-color: #ffdd81;
   --code-light-text-color: #fc4f4f;
 }

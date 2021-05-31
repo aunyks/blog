@@ -1,3 +1,6 @@
+import {
+  useEffect
+} from 'react'
 import Head from 'next/head'
 import GAnalytics from 'components/GAnalytics'
 import Navbar from 'components/Navbar'
@@ -10,6 +13,12 @@ export default function LinksPage({
   children
 }) {
   const effectiveTitle = pageTitle ? `${pageTitle} - Hi-Voltage` : `${title} - Hi-Voltage`
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+    }
+  }, [])
   return (
     <>
       <Head>
@@ -26,6 +35,8 @@ export default function LinksPage({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={subtitle} />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
+        <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <Navbar />
       <style>{`

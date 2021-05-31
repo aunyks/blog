@@ -9,6 +9,62 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Simple PWA Service Worker">
+        <p>
+          A very small service worker ready for use in a <a target="_blank" href="https://en.wikipedia.org/wiki/Progressive_web_application">Progressive Web App</a>.
+        </p>
+        <CodeBlock lang="js">{`
+// Name of our cache for reference in-browser
+const cacheName = 'hivoltage-cache'
+// Assets to download to cache on install
+const staticAssets = [
+  '/',
+]
+
+// On app install
+self.addEventListener('install', async e => {
+  const cache = await caches.open(cacheName)
+  await cache.addAll(staticAssets)
+  return self.skipWaiting()
+})
+
+// On app open / activation
+self.addEventListener('activate', e => {
+  self.clients.claim()
+})
+
+// Intercept fetch requests
+self.addEventListener('fetch', async e => {
+  const req = e.request
+  const url = new URL(req.url)
+  e.respondWith(networkAndCache(req))
+})
+
+// Use this to respond to requests from the cache
+// first and fall back to actually fetching
+async function cacheFirst(req) {
+  const cache = await caches.open(cacheName)
+  const cached = await cache.match(req)
+  return cached || fetch(req)
+}
+
+// Use this to respond to requests from the network 
+// first and fall back to cache if not available
+async function networkAndCache(req) {
+  const cache = await caches.open(cacheName)
+  try {
+    const fresh = await fetch(req)
+    if (req.method === 'GET') {
+      await cache.put(req, fresh.clone())
+    }
+    return fresh
+  } catch (e) {
+    const cached = await cache.match(req)
+    return cached
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Map a Number from One Range to Another">
         <p>
           The function is called <code>scale</code>, because <code>map</code> is often associated with the array function in the context of JavaScript. Borrowed from <a href="https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers">August Miller</a>.
