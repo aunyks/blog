@@ -4,7 +4,7 @@ import {
 } from 'react'
 
 const useDarkMode = () => {
-  const [isDark, setDark] = useState(false)
+  const [isDark, setDark] = useState(true)
 
   useEffect(() => {
     const onDarkModeChange = ({ matches }) => {

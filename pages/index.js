@@ -8,97 +8,63 @@ import Head from 'next/head'
 import { Canvas, useLoader, useFrame } from '@react-three/fiber'
 import Navbar from 'components/Navbar'
 import useDarkMode from 'hooks/use-dark-mode'
+import useDeviceSize from 'hooks/use-device-size'
+import usePageVisible from 'hooks/use-page-visible'
 import { MathUtils, MeshBasicMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-const getDeviceSizeFromWidth = (width) => {
-  if (width <= 320) {
-    return 'xs'
-  } else if (width < 415) {
-    return 'sm'
-  } else if (width < 1025) {
-    return 'md'
-  } else if (width >= 1026) {
-    return 'lg'
-  } else {
-    throw new Error('Unexpected device size detected')
-  }
-}
-
 function Bolt() {
+  const model = useLoader(GLTFLoader, '/3d/models/aunyks-bolt.glb')
+  const [boltPosition, setBoltPosition] = useState([3, 0, 0])
+  const [boltScale, setBoltScale] = useState(2)
+  const [boltColor, setBoltColor] = useState(null)
+  const [targetYRotation, setTargetYRotation] = useState(-Math.PI / 2 + 2 * Math.PI)
+  const deviceSize = useDeviceSize()
+  const isDarkMode = useDarkMode()
+  const isPageVisible = usePageVisible()
+  const boltRef = useRef()
+
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
     }
   }, [])
-  const model = useLoader(GLTFLoader, '/models/aunyks-bolt.glb')
-  const [boltPosition, setBoltPosition] = useState([3, 0, 0])
-  const [boltScale, setBoltScale] = useState(2)
-  const [boltColor, setBoltColor] = useState(null)
-  const boltRef = useRef()
 
   useEffect(() => {
-    const calculateInnerWidth = () => {
-      switch (getDeviceSizeFromWidth(window.innerWidth)) {
-        case 'xs':
-          setBoltScale(1)
-          setBoltPosition([0, 1.5, 0])
-          break
-        case 'sm':
-          setBoltScale(1.25)
-          setBoltPosition([0, 1, 0])
-          break
-        case 'md':
-          setBoltScale(1.75)
-          setBoltPosition([0, 1, 0])
-          break
-        default:
-          setBoltScale(2)
-          setBoltPosition([3, 0, 0])
-      }
+    switch (deviceSize) {
+      case 'xs':
+        setBoltScale(1)
+        setBoltPosition([0, 1.5, 0])
+        break
+      case 'sm':
+        setBoltScale(1.25)
+        setBoltPosition([0, 1, 0])
+        break
+      case 'md':
+        setBoltScale(1.75)
+        setBoltPosition([0, 1, 0])
+        break
+      default:
+        setBoltScale(2)
+        setBoltPosition([3, 0, 0])
     }
-    calculateInnerWidth()
-    window.addEventListener('resize', calculateInnerWidth)
-    return () => window.removeEventListener('resize', calculateInnerWidth)
-  }, [])
+  }, [deviceSize])
 
   useEffect(() => {
-    const onDarkModeChange = ({ matches }) => {
-      if (boltRef && boltRef.current) {
-        boltRef.current.traverse(function (modelChild) {
-          if (modelChild.isMesh) {
-            modelChild.material = new MeshBasicMaterial({
-              color: matches ? 0xffffff : 0x000000
-            })
-          }
-        })
-      }
+    if (boltRef && boltRef.current) {
+      boltRef.current.traverse(function (modelChild) {
+        if (modelChild.isMesh) {
+          modelChild.material = new MeshBasicMaterial({
+            color: isDarkMode ? 0xffffff : 0x000000
+          })
+        }
+      })
     }
-    onDarkModeChange(window.matchMedia('(prefers-color-scheme: dark)'))
+  }, [isDarkMode])
 
-    try {
-      // For Chrome / FireFox
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onDarkModeChange)
-    } catch (e) {
-      // For Safari
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(onDarkModeChange)
-    }
-
-    return () => {
-      try {
-        // For Chrome / FireFox
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', onDarkModeChange)
-      } catch (e) {
-        // For Safari
-        window.matchMedia('(prefers-color-scheme: dark)').removeListener(onDarkModeChange)
-      }
-    }
-  }, [])
-
-  const [targetYRotation, setTargetYRotation] = useState(-Math.PI / 2 + 2 * Math.PI)
   useEffect(() => {
     setTimeout(function refreshYRotation() {
-      const newYRotation = targetYRotation + 2 * Math.PI
+      const newYRotation = isPageVisible ? targetYRotation + 2 * Math.PI : targetYRotation + 0.0001
       setTargetYRotation(newYRotation)
     }, 10000)
   }, [targetYRotation])

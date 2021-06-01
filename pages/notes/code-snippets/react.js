@@ -8,6 +8,35 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="usePageVisible Hook">
+        <p>
+          A React hook using the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">Page Visibility API</a> to
+          determine whether the current tab is active / in focus.
+      </p>
+        <CodeBlock lang="jsx">{`
+import {
+  useState,
+  useEffect
+} from 'react'
+
+const usePageVisible = () => {
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      setIsVisible(window.document.visibilityState !== 'hidden')
+    }
+    onVisibilityChange()
+    window.document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => window.document.removeEventListener('visibilitychange', onVisibilityChange)
+  }, [])
+
+  return isVisible
+}
+
+export default usePageVisible
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="useDarkMode Hook">
         <p>
           A React hook for tracking and detecting the browser dark mode state.
@@ -20,7 +49,10 @@ import {
 } from 'react'
 
 const useDarkMode = () => {
-  const [isDark, setDark] = useState(false)
+  // In an extreme case, it\'s better to flash a dark 
+  // screen to a light mode user than a light screen to 
+  // dark mode user, so we assume dark to start
+  const [isDark, setDark] = useState(true)
 
   useEffect(() => {
     const onDarkModeChange = ({ matches }) => {
@@ -80,7 +112,7 @@ const getDeviceSizeFromWidth = (width) => {
 }
 
 const useDeviceSize = () => {
-  const [deviceSize, setDeviceSize] = useState(null)
+  const [deviceSize, setDeviceSize] = useState('lg')
 
   useEffect(() => {
     const calculateInnerWidth = () => {

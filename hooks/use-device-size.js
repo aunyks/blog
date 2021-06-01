@@ -18,7 +18,7 @@ const getDeviceSizeFromWidth = (width) => {
 }
 
 const useDeviceSize = () => {
-  const [deviceSize, setDeviceSize] = useState(null)
+  const [deviceSize, setDeviceSize] = useState('lg')
 
   useEffect(() => {
     const calculateInnerWidth = () => {

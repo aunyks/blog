@@ -1,3 +1,6 @@
+import {
+  useEffect
+} from 'react'
 import Head from 'next/head'
 import Navbar from 'components/Navbar'
 import Hint from 'components/Hint'
@@ -6,6 +9,12 @@ import {
 } from 'components/Link'
 
 export default function AboutPage() {
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+    }
+  }, [])
   return (
     <>
       <Head>
@@ -22,6 +31,8 @@ export default function AboutPage() {
         <meta name="twitter:title" content="About - Hi-Voltage" />
         <meta name="twitter:description" content="On the journey to increase potential." />
         <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
+        <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <Navbar />
       <main className="px-3 lg:px-24 w-full lg:w-3/4 pt-16 lg:pt-16">
