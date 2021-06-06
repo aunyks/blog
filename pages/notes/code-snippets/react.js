@@ -8,6 +8,46 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="useKeyPress Hook">
+        <p>
+          A React hook detecting whether a key is pressed.
+      </p>
+        <CodeBlock lang="jsx">{`
+import {
+  useState,
+  useEffect
+} from 'react'
+
+const useKeyPress = targetKey => {
+  const [keyPressed, setKeyPressed] = useState(false)
+  
+  function onKeyDown({ key }) {
+    if (key === targetKey) {
+      setKeyPressed(true)
+    }
+  }
+  
+  const onKeyUp = ({ key }) => {
+    if (key === targetKey) {
+      setKeyPressed(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+    }
+  }, [])
+
+  return keyPressed
+}
+
+export default useKeyPress
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="usePageVisible Hook">
         <p>
           A React hook using the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">Page Visibility API</a> to
