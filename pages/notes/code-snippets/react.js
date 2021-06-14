@@ -11,7 +11,7 @@ export default function ReactCodeSnippets() {
       <CodeSnippet title="useKeyPress Hook">
         <p>
           A React hook detecting whether a key is pressed.
-      </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import {
   useState,
@@ -52,7 +52,7 @@ export default useKeyPress
         <p>
           A React hook using the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">Page Visibility API</a> to
           determine whether the current tab is active / in focus.
-      </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import {
   useState,
@@ -81,7 +81,7 @@ export default usePageVisible
         <p>
           A React hook for tracking and detecting the browser dark mode state.
           Always returns a boolean indicating whether the device is in dark mode <code>true</code> in dark mode, <code>false</code> when not.
-      </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import {
   useState,
@@ -129,7 +129,7 @@ export default useDarkMode
         <p>
           A React hook for tracking and retrieving the device size. Always returns a
           string indicating the current device size (<code>sm</code>, <code>md</code>, <code>lg</code>, etc).
-      </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import {
   useState,
@@ -172,7 +172,7 @@ export default useDeviceSize
       <CodeSnippet title="Simple Scatter Plot">
         <p>
           Plot some points on a chart and color them in.
-      </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryScatter } from 'victory'
 
@@ -195,7 +195,7 @@ import { VictoryChart, VictoryScatter } from 'victory'
       <CodeSnippet title="Simple Line Chart">
         <p>
           Make a line chart from with domain 0 to 1 and range from y<sub>min</sub> to y<sub>max</sub>. With red line.
-    </p>
+        </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 
@@ -210,8 +210,8 @@ import { VictoryChart, VictoryLine } from 'victory'
       <CodeSnippet title="Line Chart with Custom Domain">
         <p>
           In case you want to see more than just x at the interval [0, 1]. See
-        the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
-    </p>
+          the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
+        </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
 
@@ -234,8 +234,8 @@ import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
       <CodeSnippet title="Line Chart for Parametric Functions">
         <p>
           For when x and y values are dependent on a third value. See
-        the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
-    </p>
+          the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
+        </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
 

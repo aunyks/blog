@@ -1,4 +1,5 @@
 import useDeviceSize from 'hooks/use-device-size'
+import useKeyPress from 'hooks/use-key-press'
 import {
   useState,
   useEffect,
@@ -67,6 +68,12 @@ export default function Modal({
     setModalParent(window.document.body)
     setOnClientSide(true)
   }, [])
+
+  // Modals should always be escape key-closable
+  const escapePressed = useKeyPress('Escape')
+  if (active && escapePressed) {
+    onClose()
+  }
 
   // For keyboard & screen reader users to focus on the modal 
   // once it becomes active
