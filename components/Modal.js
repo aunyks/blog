@@ -109,7 +109,7 @@ export default function Modal({
           onClick={onClose}
           style={{ display: active ? "flex" : "none" }}
           aria-hidden={active ? "false" : "true"}
-          className="absolute inset-0 w-full h-full flex-col justify-center modal-overlay"
+          className="fixed inset-0 w-full h-full flex-col justify-center modal-overlay"
         >
           <aside
             ref={dialogRef}
@@ -127,7 +127,7 @@ export default function Modal({
             className="z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog">
             <header className="py-0 px-4 flex flex-row justify-between">
               <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">{title}</h3>
-              <button className="pr-0" onClick={e => {
+              <button title="Close this dialog" aria-label="Close this dialog" className="pr-0" onClick={e => {
                 onClose(e)
                 // Only want this click event 
                 // to run for this button and no parents
