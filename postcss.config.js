@@ -1,19 +1,6 @@
-const exportedConfig = {
+module.exports = {
   plugins: {
     tailwindcss: {},
-    'postcss-preset-env': {},
+    autoprefixer: {},
   },
 }
-
-if (process.env.NODE_ENV === 'production') {
-  exportedConfig['@fullhuman/postcss-purgecss'] = {
-    content: [
-      './pages/**/*.{js,jsx,ts,tsx}',
-      './components/**/*.{js,jsx,ts,tsx}',
-    ],
-    defaultExtractor: content =>
-      content.match(/[\w-/:]+(?<!:)/g) || [],
-  }
-}
-
-module.exports = exportedConfig
