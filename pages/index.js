@@ -112,10 +112,10 @@ export default function HomePage() {
             <div id="greeting" className="px-3 lg:px-24">
               <h1 className="text-3xl lg:text-5xl">
                 Hi-Voltage
-          </h1>
+              </h1>
               <h2 className="text-lg lg:text-3xl">
                 Increasing potential
-          </h2>
+              </h2>
             </div>
           </section>
         </main>
