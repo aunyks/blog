@@ -40,33 +40,28 @@ export default function CodeBlock({
           }
         }
       `}</style>
-      {
-        isShowingCode ? (
-          <>
-            <pre className={`${className || ''} code-block overflow-x-scroll`}>
-              <code
-                className={`language-${lang}`}
-                dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children.trim(), Prism.languages[lang], lang) }}>
-              </code>
-            </pre>
-            {!noButton &&
-              <button
-                className="no-code-btn my-2 px-2 py-0 text-sm rounded-sm"
-                onClick={() => {
-                  setShowingCode(false)
-                }}>Hide code &#9650;</button>
-            }
-          </>
-        ) : (
-            <button
-              className="code-btn w-full text-center py-2 rounded"
-              onClick={() => {
-                setShowingCode(true)
-              }}>
-              Show Code &#9660;
-            </button>
-          )
-      }
+      <div className={`p-0 m-0 ${isShowingCode ? "block" : "hidden"}`}>
+        <pre className={`${className || ''} code-block overflow-x-scroll`}>
+          <code
+            className={`language-${lang}`}
+            dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children.trim(), Prism.languages[lang], lang) }}>
+          </code>
+        </pre>
+        {!noButton &&
+          <button
+            className="no-code-btn my-2 px-2 py-0 text-sm rounded-sm"
+            onClick={() => {
+              setShowingCode(false)
+            }}>Hide code &#9650;</button>
+        }
+      </div>
+      <button
+        className={`${isShowingCode ? "hidden" : "block"} code-btn w-full text-center py-2 rounded`}
+        onClick={() => {
+          setShowingCode(true)
+        }}>
+        Show Code &#9660;
+      </button>
     </>
   )
 }
