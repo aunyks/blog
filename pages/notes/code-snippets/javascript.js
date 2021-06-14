@@ -15,25 +15,22 @@ export default function JsCodeSnippets() {
         </p>
         <CodeBlock lang="js">{`
 // Name of our cache for reference in-browser
-const cacheName = 'hivoltage-cache'
+const cacheName = 'my-cache'
 // Assets to download to cache on install
 const staticAssets = [
   '/',
 ]
 
-// On app install
 self.addEventListener('install', async e => {
   const cache = await caches.open(cacheName)
   await cache.addAll(staticAssets)
   return self.skipWaiting()
 })
 
-// On app open / activation
 self.addEventListener('activate', e => {
   self.clients.claim()
 })
 
-// Intercept fetch requests
 self.addEventListener('fetch', async e => {
   const req = e.request
   const url = new URL(req.url)
@@ -54,7 +51,10 @@ async function networkAndCache(req) {
   const cache = await caches.open(cacheName)
   try {
     const fresh = await fetch(req)
-    if (req.method === 'GET') {
+    // If we're fetching something useful (not a Chrome extension), 
+    // let's cache it
+    const urlProtocol = new URL(req.url).protocol
+    if (req.method === 'GET' && urlProtocol.startsWith('http')) {
       await cache.put(req, fresh.clone())
     }
     return fresh
@@ -377,7 +377,7 @@ async function sendEthTransaction(toAddr, weiAmount){
       <CodeSnippet title="Request Access to an Ethereum Wallet">
         <p>
           A quick-and-dirty way to request access to a user's <Hint label="What's an Ethereum wallet?" msg="Browser-based Ethereum wallets like MetaMask and Coinbase Wallet allow developers to interface their web apps with the Ethereum blockchain and gain the ability to use money without the need for a bank.">Ethereum wallet</Hint> within
-           the browser. It returns <code>'allowed'</code> if the user gives access, <code>'denied'</code> if
+          the browser. It returns <code>'allowed'</code> if the user gives access, <code>'denied'</code> if
           the user denies access, and <code>'no-wallet'</code> if the user doesn't have a Web3 wallet.
         </p>
         <CodeBlock lang="js">{`
@@ -500,7 +500,7 @@ function lerp(start, end, progress) {
         <p>
           Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter <code>inclusiveOfB</code> is
           set to true, this function will include the given final value at the end of the returned array.
-    </p>
+        </p>
         <CodeBlock lang="js">{`
 const range = (a, b, step, inclusiveOfB = false) => {
   if(a > b) {
@@ -519,7 +519,7 @@ const range = (a, b, step, inclusiveOfB = false) => {
       <CodeSnippet title="Slugify a String">
         <p>
           Turn a string into a slug. Borrowed from <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">Lulu</a>.
-    </p>
+        </p>
         <CodeBlock lang="js">{`
 const slugify = str => {
   str = str.replace(/^\s+|\s+$/g, '')

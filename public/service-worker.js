@@ -35,7 +35,10 @@ async function networkAndCache(req) {
   const cache = await caches.open(cacheName)
   try {
     const fresh = await fetch(req)
-    if (req.method === 'GET') {
+    // If we're fetching something useful (not a Chrome extension), 
+    // let's cache it
+    const urlProtocol = new URL(req.url).protocol
+    if (req.method === 'GET' && urlProtocol.startsWith('http')) {
       await cache.put(req, fresh.clone())
     }
     return fresh
