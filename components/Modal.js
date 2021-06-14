@@ -84,11 +84,11 @@ export default function Modal({
         background: rgba(0,0,0,.5)!important;
         -webkit-backdrop-filter: blur(3px) !important;
         backdrop-filter: blur(3px) !important;
-        z-index: 2;
+        z-index: 3;
       }
 
       .modal-dialog {
-        z-index: 3;
+        z-index: 4;
         background: #fff;
       }
 

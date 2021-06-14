@@ -33,8 +33,8 @@ export default function Navbar() {
       }
     `}</style>
       <nav id="navbar"
-        style={{ boxShadow: '0px 0px 2px #000' }}
-        className="z-1 bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-24">
+        style={{ boxShadow: '0px 0px 2px #000', zIndex: '2' }}
+        className="bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-24">
         <div className="flex items-center flex-shrink-0 mr-6">
           <a href="/" style={{ textColor: 'black' }} className="text-base font-semibold tracking-tight no-underline">
             Hi-Voltage
