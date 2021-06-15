@@ -97,5 +97,6 @@ const withTranspiledModules = (nextConfig = {}) => {
 
 // From https://github.com/wellcometrust/next-plugin-transpile-modules
 module.exports = withTranspiledModules({
-  transpileModules: ['three', '@react-three/fiber', '@react-three/drei']
+  transpileModules: ['three', '@react-three/fiber', '@react-three/drei'],
+  webpack5: false
 })
