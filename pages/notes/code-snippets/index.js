@@ -13,6 +13,7 @@ export default function CodeSnippetsPage() {
       <Link href="/notes/code-snippets/python">python</Link>
       <Link href="/notes/code-snippets/sql">SQL</Link>
       <Link href="/notes/code-snippets/html">HTML</Link>
+      <Link href="/notes/code-snippets/solidity">solidity</Link>
     </LinksPage>
   )
 }

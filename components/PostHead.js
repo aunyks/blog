@@ -77,6 +77,8 @@ export default function PostHead({
           <script src="/js/prism-sql.min.js"></script>
           <script src="/js/prism-glsl.min.js"></script>
           <script src="/js/prism-shell.min.js"></script>
+          <script src="/js/prism-solidity.min.js"></script>
+          <script src="/js/prism-applescript.min.js"></script>
         </>
       )}
     </Head>
