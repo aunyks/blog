@@ -25,6 +25,12 @@ export default function SoYouWannaBeCuttingEdge() {
         <li>
           <a target="_blank" href="https://arxiv.org">Cornell arXiv</a> (lots of fields, pronounced like "archive")
         </li>
+        <li>
+          <a target="_blank" href="https://www.biorxiv.org">bioRxiv</a> (lots of bio-related fields)
+        </li>
+        <li>
+          <a target="_blank" href="https://www.medrxiv.org">medRxiv</a> (lots of bio and medicine-related fields)
+        </li>
       </ul>
       <h3>Journals & Peer Reviewed Papers</h3>
       <p>
