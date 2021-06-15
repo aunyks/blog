@@ -31,6 +31,9 @@ export default function Hint({ msg, label, children }) {
     setHintActive(true)
     e.preventDefault()
   }
+  if (!msg) {
+    throw new Error('Falsey \'msg\' value given to Hint component. Please provide a non-zero length string')
+  }
   return (
     <>
       <Modal

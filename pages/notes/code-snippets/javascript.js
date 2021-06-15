@@ -77,7 +77,7 @@ function scale(num, in_min, in_max, out_min, out_max) {
       </CodeSnippet>
       <CodeSnippet title="Keyboard Manager (Game Dev)">
         <p>
-          A class that provides an easy-to-use interface for using a <Hint msg="">hardware keyboard</Hint> as
+          A class that provides an easy-to-use interface for using a hardware keyboard as
           input in a game. Specifically, it's meant to be instantiated outside of the game loop so that its
           functions can be called in the game loop. This way, the game can update based on the keyboard state on each
           tick.
