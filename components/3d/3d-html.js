@@ -115,11 +115,11 @@ export const Html = React.forwardRef(
     const raycaster = useThree(({ raycaster }) => raycaster)
 
     const [el] = React.useState(() => document.createElement(as))
-    const group = React.useRef < Group > (null!)
+    const group = React.useRef(null)
     const oldZoom = React.useRef(0)
     const oldPosition = React.useRef([0, 0])
-    const transformOuterRef = React.useRef < HTMLDivElement > (null!)
-    const transformInnerRef = React.useRef < HTMLDivElement > (null!)
+    const transformOuterRef = React.useRef(null)
+    const transformInnerRef = React.useRef(null)
     const target = portal?.current ?? gl.domElement.parentNode
 
     React.useEffect(() => {
@@ -209,7 +209,7 @@ export const Html = React.forwardRef(
               raytraceTarget = [scene]
             }
           } else if (Array.isArray(occlude)) {
-            raytraceTarget = occlude.map((item) => item.current) as Object3D[]
+            raytraceTarget = occlude.map((item) => item.current)
           }
 
           const previouslyVisible = visible.current
@@ -229,7 +229,7 @@ export const Html = React.forwardRef(
           if (transform) {
             const [widthHalf, heightHalf] = [size.width / 2, size.height / 2]
             const fov = camera.projectionMatrix.elements[5] * heightHalf
-            const { isOrthographicCamera, top, left, bottom, right } = camera as OrthographicCamera
+            const { isOrthographicCamera, top, left, bottom, right } = camera
             const cameraMatrix = getCameraCSSMatrix(camera.matrixWorldInverse)
             const cameraTransform = isOrthographicCamera
               ? `scale(${fov})translate(${epsilon(-(right + left) / 2)}px,${epsilon((top + bottom) / 2)}px)`

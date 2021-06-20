@@ -4,7 +4,9 @@ import {
   useLayoutEffect,
   useState
 } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import {
+  useFrame
+} from '@react-three/fiber'
 import {
   useSphere
 } from '@react-three/cannon'
@@ -24,14 +26,16 @@ const PLAYER_MOVEMENT_SPEED = 5
 const MIN_CAMERA_PITCH_ANGLE = Math.PI / 3
 const MAX_CAMERA_PITCH_ANGLE = 4 * Math.PI / 6
 
-export default function FirstPersonPlayer() {
+export default function FirstPersonPlayer({
+  startPosition = [0, 3, 0]
+}) {
   const deviceSize = useDeviceSize()
 
   // The player has a spherical physics body to 
   // allow for smooth movement
   const [playerPhysicsMesh, playerPhysicsObject] = useSphere(() => ({
     mass: 1,
-    position: [0, 1.5, 0]
+    position: startPosition
   }))
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
@@ -55,7 +59,12 @@ export default function FirstPersonPlayer() {
   const velocity = useRef(new Vector3(0, 0, 0))
   useEffect(() => {
     playerPhysicsObject.velocity.subscribe(newVelocity => {
-      velocity.current = new Vector3(newVelocity[0], newVelocity[1], newVelocity[2])
+      velocity.current.fromArray(newVelocity)
+    })
+    // Whenever the physics object changes in position, 
+    // the visible mesh moves to the same position
+    playerPhysicsObject.position.subscribe(newPosition => {
+      playerMesh.current.position.fromArray(newPosition)
     })
   }, [])
 
@@ -72,18 +81,11 @@ export default function FirstPersonPlayer() {
 
   // On each frame tick in our graphics world...
   useFrame(({ camera }) => {
-    // Restrict
-    // @ts-ignore
+    // Restrict camera pitch
     cameraEuler.current.setFromQuaternion(playerMesh.current.quaternion, 'YXZ')
     cameraEuler.current.x = Math.max(Math.PI / 2 - MAX_CAMERA_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_CAMERA_PITCH_ANGLE, cameraEuler.current.x))
-    // @ts-ignore
     playerMesh.current.quaternion.setFromEuler(cameraEuler.current)
 
-    // Put our camera in the center of the player sphere (the position of which is 
-    // calculated in the physics world), wherever it may be in this frame
-    if (playerPhysicsMesh.current !== undefined && playerMesh.current !== undefined) {
-      playerMesh.current.position.copy(playerPhysicsMesh.current.position)
-    }
     // Calculate the forward-back and left-right motion 
     // vectors. Values are 0 or 1 to indicate motion or lack thereof.
     // Motion will be scaled to velocity later

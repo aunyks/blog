@@ -5,13 +5,13 @@ import {
 import {
   Object3D
 } from 'three'
-import useKeyPress from 'hooks/use-keys-pressed'
+import useKeysPressed from 'hooks/use-keys-pressed'
 
 export default function KeyboardControls({ onForwardBack, onLeftRight, ...props }) {
-  const kbdForward = useKeyPress(['w', 'W', 'ArrowUp'])
-  const kbdLeft = useKeyPress(['a', 'A', 'ArrowLeft'])
-  const kbdBack = useKeyPress(['s', 'S', 'ArrowDown'])
-  const kbdRight = useKeyPress(['d', 'D', 'ArrowRight'])
+  const kbdForward = useKeysPressed(['w', 'W', 'ArrowUp'])
+  const kbdLeft = useKeysPressed(['a', 'A', 'ArrowLeft'])
+  const kbdBack = useKeysPressed(['s', 'S', 'ArrowDown'])
+  const kbdRight = useKeysPressed(['d', 'D', 'ArrowRight'])
 
   let forwardBackValue = 0
   let leftRightValue = 0
@@ -30,8 +30,12 @@ export default function KeyboardControls({ onForwardBack, onLeftRight, ...props 
 
   useEffect(() => {
     onForwardBack(forwardBackValue)
+  }, [kbdForward, kbdBack])
+
+
+  useEffect(() => {
     onLeftRight(leftRightValue)
-  }, [kbdForward, kbdBack, kbdRight, kbdLeft])
+  }, [kbdRight, kbdLeft])
 
   // R3F requires that a primitive have an object 
   // prop by a Three.js object, so let's give it an empty object
