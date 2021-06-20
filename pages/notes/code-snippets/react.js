@@ -8,9 +8,51 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="useKeysPressed Hook">
+        <p>
+          A React hook detecting whether at least one of a provided set of keys is pressed. Accepts an array of strings
+          each representing a <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key" target="_blank">KeyBoardEvent's <code>key</code> value</a>.
+          Returns a boolean: <code>true</code> if one of them is pressed, <code>false</code> if not.
+        </p>
+        <CodeBlock lang="jsx">{`
+import {
+  useState,
+  useEffect
+} from 'react'
+
+export default function useKeysPressed(targetKeys) {
+  const [aKeyPressed, setAKeyPressed] = useState(false)
+
+  function onKeyDown({ key }) {
+    if (targetKeys.includes(key)) {
+      setAKeyPressed(true)
+    }
+  }
+
+  function onKeyUp({ key }) {
+    if (targetKeys.includes(key)) {
+      setAKeyPressed(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+    }
+  }, [])
+
+  return aKeyPressed
+}
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="useKeyPress Hook">
         <p>
-          A React hook detecting whether a key is pressed.
+          A React hook detecting whether a key is pressed. Accepts a string
+          representing a <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key" target="_blank">KeyBoardEvent's <code>key</code> value</a>.
+          Returns a boolean: <code>true</code> if it's pressed, <code>false</code> if not.
         </p>
         <CodeBlock lang="jsx">{`
 import {
