@@ -5,7 +5,8 @@ import {
   useState
 } from 'react'
 import {
-  useFrame
+  useFrame,
+  useThree
 } from '@react-three/fiber'
 import {
   useSphere
@@ -111,6 +112,8 @@ export default function FirstPersonPlayer({
     playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
   })
 
+  const activeCamera = useThree(({ camera }) => camera)
+
   return (
     <>
       <mesh ref={playerMesh} visible={false}>
@@ -135,10 +138,10 @@ export default function FirstPersonPlayer({
         Enable touch controls on small devices, pointer lock controls on large ones.
       */}
       {controlsEnabled && ['xs', 'sm', 'md'].includes(deviceSize) && (
-        <TouchControls target={playerMesh.current} />
+        <TouchControls yawTarget={playerMesh.current} pitchTarget={activeCamera} />
       )}
       {controlsEnabled && !['xs', 'sm', 'md'].includes(deviceSize) && (
-        <PointerLockControls target={playerMesh.current} />
+        <PointerLockControls yawTarget={playerMesh.current} pitchTarget={activeCamera} />
       )}
       {controlsEnabled && (
         <KeyboardControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />

@@ -11,7 +11,7 @@ import {
   Object3D
 } from 'three'
 
-// Restrict the target object's pitch, 
+// Restrict the pitchTarget object's pitch, 
 // or x axis rotation
 const MIN_PITCH_ANGLE = 0
 const MAX_PITCH_ANGLE = Math.PI
@@ -20,15 +20,16 @@ export default function PointerLockControls({
   // To be used as a possible querySelector arg.
   // On this element click, the canvas will request pointer lock
   selector,
-  target,
+  yawTarget,
+  pitchTarget,
   ...props
 }) {
-  const camera = useThree(({ camera }) => camera)
   const gl = useThree(({ gl }) => gl)
 
   const [isPointerLocked, setPointerLock] = useState(false)
 
-  const euler = useRef(new Euler())
+  const yawEuler = useRef(new Euler())
+  const pitchEuler = useRef(new Euler())
 
   useEffect(() => {
     const pointerLock = () => gl.domElement.requestPointerLock()
@@ -55,15 +56,20 @@ export default function PointerLockControls({
   useEffect(() => {
     const onMouseMove = event => {
       if (isPointerLocked) {
+        // Update yaw euler
         const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0
+        yawEuler.current.setFromQuaternion(yawTarget.quaternion, 'YXZ')
+        yawEuler.current.y -= movementX * 0.002
+        yawTarget.quaternion.setFromEuler(yawEuler.current)
+
+        // Update pitch euler
         const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0
-        euler.current.setFromQuaternion((target || camera).quaternion, 'YXZ')
-        euler.current.y -= movementX * 0.002
-        euler.current.x -= movementY * 0.002
+        pitchEuler.current.setFromQuaternion(pitchTarget.quaternion, 'YXZ')
+        pitchEuler.current.x -= movementY * 0.002
         // Restrict the player to looking betwene straight up and straight down. Can't 
         // let them break their neck
-        euler.current.x = Math.max(Math.PI / 2 - MAX_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_PITCH_ANGLE, euler.current.x));
-        (target || camera).quaternion.setFromEuler(euler.current)
+        pitchEuler.current.x = Math.max(Math.PI / 2 - MAX_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_PITCH_ANGLE, pitchEuler.current.x))
+        pitchTarget.quaternion.setFromEuler(pitchEuler.current)
       }
     }
 
