@@ -9,17 +9,22 @@ export default function DpadControls({ onForwardBack, onLeftRight, ...props }) {
       {...props}>
       <>
         <style jsx>{`
+          .dpad {
+            user-select: none;
+          }
+
           .dpad-button {
             fill: rgba(48, 48, 48, 0.8);
             stroke: white;
             stroke-width: 5px;
+            user-select: none;
           }
 
           .dpad-button:active {
             fill: rgba(48, 48, 48, 0.4);
           }
         `}</style>
-        <svg id="dpad" width={200} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
+        <svg className="dpad" width={200} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
           <path
             onTouchStart={() => onForwardBack(1)}
             onTouchEnd={() => onForwardBack(0)}
