@@ -63,6 +63,26 @@ function updateGameState(dt) {
         <li><a target="_blank" href="https://rapier.rs">Rapier.rs</a> as a 3D WASM physics engine</li>
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/32631/easy-way-to-do-gravity-in-a-simple-game">Add gravity to your game (engine)</a></li>
         <li><a target="_blank" href="https://gamedev.stackexchange.com/questions/60008/smooth-jumping-in-2d-platformers">Add jump physics to your game (engine)</a></li>
+        <li>
+          To make first person rotation controls from scratch (for y-up systems)
+          <ol>
+            <li>
+              Make a persistent Euler rotation with order <em>YXZ</em>
+            </li>
+            <li>
+              On each input or frame, set this Euler from the current quaternion of the object you wanna rotate
+            </li>
+            <li>
+              Assuming common screen coordinates, (0,0) in top left and (1, 1) in bottom right, Euler y axis rotation -= y axis rotation * 0.02 * sensitivity and x axis rotation -= x axis rotation * 0.02 * sensitivity
+            </li>
+            <li>
+              Clamp x axis rotation so you can't look down past your feet and up beyond zenith
+            </li>
+            <li>
+              Set target object quaternion from the Euler
+            </li>
+          </ol>
+        </li>
       </ul>
       <h2>Useful Code Snippets</h2>
       <ul className="mb-4">
@@ -78,6 +98,9 @@ function updateGameState(dt) {
           <ul>
             <li><a href="/notes/code-snippets/javascript#linear-interpolation-lerp">Linear (lerp)</a></li>
           </ul>
+        </li>
+        <li>
+          <a href="/notes/code-snippets/react#simple-first-person-game">A Small First Person Template in R3F</a>
         </li>
       </ul>
     </NotesPost>

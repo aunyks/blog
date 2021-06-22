@@ -116,10 +116,10 @@ export default function FirstPersonPlayer({
 
   return (
     <>
-      <mesh ref={playerMesh} visible={false}>
+      <mesh ref={playerMesh}>
         <boxBufferGeometry attach="geometry" />
-        <meshPhongMaterial attach="material" color={0x0000ff} />
-        <Camera position={[0, 0, 0]} fov={75} near={0.001} far={1000}>
+        <meshPhongMaterial attach="material" color={0xff0000} />
+        <Camera name="First Person Cam" position={[0, 0, 0]} fov={75} near={0.001} far={1000}>
           {/*
             We child dpad controls to the camera so that it's always in front of 
             the camera like a HUD. And we only want it to show on small / touch devices

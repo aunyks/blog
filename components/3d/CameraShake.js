@@ -532,7 +532,7 @@ class SimplexNoise {
 }
 
 // From https://github.com/pmndrs/drei/blob/f7185336c880f7460f067730cc4f1a5ca8b8bedf/src/core/CameraShake.tsx
-export const CameraShake = forwardRef(({
+const CameraShake = forwardRef(({
   intensity = 1,
   decay,
   decayRate = 0.65,
@@ -589,3 +589,5 @@ export const CameraShake = forwardRef(({
 
   return null
 })
+
+export default CameraShake

@@ -8,6 +8,43 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="Simple First Person Game">
+        <p>
+          A React component / page for creating a first person game using <a href="https://github.com/aunyks/blog" target="_blank">this
+            website's source code</a>. It creates a full screen, physics-enabled game using <a href="https://github.com/pmndrs/react-three-fiber" target="_blank">React Three Fiber</a> that serves
+          as a low fidelity template for browser-based video games.
+        </p>
+        <CodeBlock lang="jsx">{`
+import {
+  Canvas
+} from '@react-three/fiber'
+import {
+  Physics
+} from '@react-three/cannon'
+import FlatGround from 'components/3d/FlatGround'
+import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
+import GameDirector from 'components/3d/GameDirector'
+
+export default function Game() {
+  return (
+    <div style={{ height: '100vh', width: '100vw' }}>
+      <Canvas>
+        <Physics>
+          <GameDirector defaultCam="First Person Cam">
+            <mesh position={[0, 0, -2]}>
+              <boxBufferGeometry />
+              <meshBasicMaterial color={0x0000ff} />
+            </mesh>
+            <FirstPersonPlayer />
+            <FlatGround />
+          </GameDirector>
+        </Physics>
+      </Canvas>
+    </div>
+  )
+}
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">
         <p>
           A React hook detecting whether at least one of a provided set of keys is pressed. Accepts an array of strings

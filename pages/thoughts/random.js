@@ -11,6 +11,10 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-06-22">
+        I'm starting to dislike how discrete my CS program was. I'm learning nearby technical fields and everything is full of continuous math mixed with computing.
+        Of course we've taken our fair share of math courses, but in retrospect I think we should've had courses that applied computing knowledge to those fields. Oh well 🤷‍♂️
+      </Thought>
       <Thought date="2021-05-07">
         Posterity will think it's insane that we let random people take an easy test once in their entire life and be able to drive almost any car, in any condition, at any time.
         The dangers of incompetent people driving these several-ton machines careening at high speeds are so normal to us.
@@ -96,56 +100,56 @@ export default function RandomThoughts() {
       <Thought date="2020-12-11">
         I think we’re in the uncanny valley between not quantifying the value of a person’s time at all and having time being as easy to value as the dollar in your pocket. Being at one of
         the extremes feels more natural than the state we're in now.
-    </Thought>
+      </Thought>
       <Thought date="2020-11-26">
         Once the US Military moves to its next gen standard issue rifle, I wonder what will happen to domestic AR-15 sales.
-    </Thought>
+      </Thought>
       <Thought date="2020-12-06">
         I'm suspicious that the delayed/lasting effects of COVID-19 will make a lot of us say "I told you so" to non-believer's in the future.
-    </Thought>
+      </Thought>
       <Thought date="2020-11-26">
         Learning signal processing makes me feel like an electrical engineer.
-    </Thought>
+      </Thought>
       <Thought date="2020-10-28">
         Effective cryptography is the last ubiquitous weapon people have against authoritarianism today.
-    </Thought>
+      </Thought>
       <Thought date="2020-10-24">
         When an innocent person has their life taken by the government, it concerns me when people justify their innocence by saying they're unarmed. I
         legally and responsibly carry my weapon, and exercising my right to do so shouldn't be a reason for me to lose my life.
-    </Thought>
+      </Thought>
       <Thought date="2020-10-14">
         Balance is rarely constant. It's achieved through the continuous shift between all possible states.
-    </Thought>
+      </Thought>
       <Thought date="2020-09-03">
         Thinking in pursuit of a quote yields a bad quote, ironically enough.
-    </Thought>
+      </Thought>
       <Thought date="2020-08-16">
         Trying new experiences always brings some excitement.
-    </Thought>
+      </Thought>
       <Thought date="2020-08-16">
         I find so much joy in challenging myself. It's addicting. Constantly pushing the frontier of knowledge and skill is so fulfilling, even if the original goal isn't achieved.
-    </Thought>
+      </Thought>
       <Thought date="2020-07-29">
         The good thing about today's increased political polarization is that it's a result of increased consciousness
         of the current state of affairs. The bad thing is that the far right believes certain groups of people are
         the problem and the far left believes that the system is the problem.
-    </Thought>
+      </Thought>
       <Thought date="2020-07-28">
         I wonder which countries wish they could export culture as well as Japan exports anime and manga.
-    </Thought>
+      </Thought>
       <Thought date="2020-07-27">
         Is HAM radio the only alternative to the Internet for instant long distance communication?
-    </Thought>
+      </Thought>
       <Thought date="2020-07-26">
         Twitter isn't good for my mental health and I don't know how long Mastodon will survive, so I decided to put some
         thoughts on here.
-    </Thought>
+      </Thought>
       <Thought id="tiktok-middle-class" date="2020-07-26">
         TikTok does so well because of its huge middle class. They give a LOT of creators occasional tastes of
         virality so they keep creating content. The upper class is the verified crowd, who don't make content as high
         of quality as the middle class but reap all the benefits of TikTok's popularity. The lower class is the group
         that just consume the content but are still the backbone of TikTok's popularity (read: economy).
-    </Thought>
+      </Thought>
     </ThoughtsPost>
   )
 }
