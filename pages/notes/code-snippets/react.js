@@ -24,6 +24,7 @@ import {
 import FlatGround from 'components/3d/FlatGround'
 import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
 import GameDirector from 'components/3d/GameDirector'
+import SkyDome from 'components/3d/SkyDome'
 
 export default function Game() {
   return (
@@ -36,6 +37,7 @@ export default function Game() {
               <meshBasicMaterial color={0x0000ff} />
             </mesh>
             <FirstPersonPlayer />
+            <SkyDome />
             <FlatGround />
           </GameDirector>
         </Physics>
