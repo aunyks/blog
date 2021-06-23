@@ -28,7 +28,7 @@ const MIN_CAMERA_PITCH_ANGLE = Math.PI / 3
 const MAX_CAMERA_PITCH_ANGLE = 4 * Math.PI / 6
 
 export default function FirstPersonPlayer({
-  startPosition = [0, 3, 0]
+  startPosition = [0, 2, 0]
 }) {
   const deviceSize = useDeviceSize()
 

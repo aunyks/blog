@@ -28,6 +28,9 @@ const Camera = forwardRef(({
   children,
   ...props
 }, ref) => {
+  if (!name) {
+    throw new Error('Name prop must be provided to a Camera so it can be referenced by a Director')
+  }
   const cameraRef = useRef()
   const set = useThree((state) => state.set)
   const size = useThree(({ size }) => size)

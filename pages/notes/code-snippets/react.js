@@ -216,7 +216,6 @@ import {
 } from 'react'
 
 const getDeviceSizeFromWidth = (width) => {
-  console.log(width)
   if (width <= 320) {
     return 'xs'
   } else if (width < 415) {

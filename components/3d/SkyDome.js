@@ -1,4 +1,13 @@
-import { BackSide } from 'three'
+import {
+  useRef
+} from 'react'
+import {
+  BackSide,
+  Color
+} from 'three'
+import {
+  useFrame
+} from '@react-three/fiber'
 
 const VERTEX_SHADER = `
 // This will hold the v coordinate from the 
@@ -17,6 +26,8 @@ void main() {
 
 const FRAGMENT_SHADER = `
 varying float v;
+uniform vec3 horizonColor;
+uniform vec3 skyColor;
 
 // A sigmoid maps the input in range (-Infinity, Infinity) to 
 // (-1, 1) with most of the change within (-1, 1). We can use this property to map (0, 1) inputs in GLSL 
@@ -42,8 +53,6 @@ vec3 lerpColors(vec3 a, vec3 b, float t) {
 }
 
 void main() {
-  vec3 horizonColor = vec3(0.78, 0.91, 0.96);
-  vec3 skyColor = vec3(0.36, 0.74, 0.89);
   float horizonHandle = horizonCurve(v, 0.005, 0.55);
   vec3 finalColor = lerpColors(horizonColor, skyColor, horizonHandle);
   // RGBA color
@@ -51,12 +60,47 @@ void main() {
 }
 `
 
+// On prop change, this component will smoothly interpolate to the next colors
+export default function SkyDome({
+  horizonColor,
+  skyColor,
+  ...props
+}) {
 
-export default function SkyDome(props) {
+  const targetHorizonColor = new Color(horizonColor || 0xc9e9f6)
+  const targetSkyColor = new Color(skyColor || 0x5bbce4)
+
+  const materialRef = useRef()
+  const uniformsRef = useRef({
+    // Default colors
+    horizonColor: { value: targetHorizonColor },
+    skyColor: { value: targetSkyColor }
+  })
+
+  useFrame(() => {
+    if (horizonColor) {
+      materialRef.current.uniforms.horizonColor.value.lerp(
+        targetHorizonColor,
+        0.05
+      )
+    }
+    if (skyColor) {
+      materialRef.current.uniforms.skyColor.value.lerp(
+        targetSkyColor,
+        0.05
+      )
+    }
+  })
+
   return (
     <mesh {...props}>
       <sphereBufferGeometry args={[1000 * 10, 32, 32]} />
-      <shaderMaterial vertexShader={VERTEX_SHADER} fragmentShader={FRAGMENT_SHADER} side={BackSide} />
+      <shaderMaterial
+        ref={materialRef}
+        vertexShader={VERTEX_SHADER}
+        fragmentShader={FRAGMENT_SHADER}
+        uniforms={uniformsRef.current}
+        side={BackSide} />
     </mesh>
   )
 }
