@@ -97,6 +97,14 @@ export default function Modal({
       .modal-dialog {
         z-index: 4;
         background: #fff;
+        transition: all 0.2s;
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      .modal-dialog.active {
+        transform: translateY(0px);
+        opacity: 1;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -104,12 +112,18 @@ export default function Modal({
           background: #222;
         }
       }
+
+      @media (prefers-reduced-motion) {
+        .modal-dialog {
+          transition: none;
+        }
+      }
   `}</style>
         <div
           onClick={onClose}
-          style={{ display: active ? "flex" : "none" }}
+          style={{ visibility: active ? "visible" : "hidden" }}
           aria-hidden={active ? "false" : "true"}
-          className="fixed inset-0 w-full h-full flex-col justify-center modal-overlay"
+          className="flex fixed inset-0 w-full h-full flex-col justify-center modal-overlay"
         >
           <aside
             ref={dialogRef}
@@ -124,7 +138,7 @@ export default function Modal({
               // close too early
               e.stopPropagation()
             }}
-            className="z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog">
+            className={`z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog ${active ? 'active' : ''}`}>
             <header className="py-0 px-4 flex flex-row justify-between">
               <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">{title}</h3>
               <button title="Close this dialog" aria-label="Close this dialog" className="pr-0" onClick={e => {
