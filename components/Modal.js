@@ -61,10 +61,13 @@ export default function Modal({
   }
 
   const dialogRef = useRef()
+  // To fix SSR hydration issues, this component simply doesn't 
+  // render on the server. Just the client
   const [loadedOnClient, setOnClientSide] = useState(false)
+  // And once it's on the client, we ideally parent ourselves 
+  // to the document body using a portal instead of whatever React parent we're given
   const [modalParent, setModalParent] = useState(null)
   useEffect(() => {
-    // May need to do 
     setModalParent(window.document.body)
     setOnClientSide(true)
   }, [])
@@ -144,7 +147,7 @@ export default function Modal({
               <button title="Close this dialog" aria-label="Close this dialog" className="pr-0" onClick={e => {
                 onClose(e)
                 // Only want this click event 
-                // to run for this button and no parents
+                // to run for this button and no ancestors
                 e.stopPropagation()
               }}>
                 <ModalCross />
@@ -162,6 +165,5 @@ export default function Modal({
     )
     return createPortal(modalComponent, modalParent)
   }
-
   return null
 }
