@@ -48,7 +48,7 @@ export default function InSearchOfGameDAO() {
       </p>
       <p>
         The beauty of the GameDAO is found in each token's portability. Being able to have one token have a meaningful function in a variety of games creates a feeling of cohesion among similar games. It makes them feel as if they exist in the same universe. It's for this exact reason
-        that the existence of GameDAOs is a fundamental component to the creation of the metaverse. And, these organizations align every party in the gaming industry to bring this vision to life in ways that traditional corporations cannot.
+        that the existence of GameDAOs is a fundamental component to the creation of the metaverse. These organizations align every party in the gaming industry to bring this vision to life in ways that traditional corporations cannot.
       </p>
       <p>
         As a GameDAO grows in membership, the share of the DAO's revenue that each member earns may decrease. For this reason, members may decide to form competing GameDAOs in search of more earnings per member. As these organizations proliferate,
