@@ -39,7 +39,10 @@ export default function InSearchOfGameDAO() {
       <p>
         DAOs should organize their tokens into factions relating to popular game genres to ease integration into games. Fantasy tokens, for example, can be created with a specific use in fantasy games. Tokens in this class can grant the player greater
         magic powers or bestow them with a nice skin. When a developer integrates a token, they can have creative freedom in deciding exactly how it behaves or renders in game, as long as it fits the general purpose of the token. For that reason, it's important that each token remains conceptually abstract,
-        as too much specificity will make integration difficult or otherwise undesirable: not every game is exactly alike, after all! When done successfully, a player owning a fantasy token can play a variety of different fantasy games, and their owning the token lets them have the same general ability
+        as too much specificity will make integration difficult or otherwise undesirable: not every game is exactly alike, after all!
+      </p>
+      <p>
+        When done successfully, a player owning a fantasy token can play a variety of different fantasy games, and their owning the token lets them have the same general ability
         in <em>each</em> separate game. This idea applies to any genre or style of game, and layers of composability can be added as well. Some in-game effect also can be achieved when a player has a certain combination of tokens. All of these tokens are entirely owned by the player
         in their wallet, not assigned to the player from the game's servers.
       </p>
