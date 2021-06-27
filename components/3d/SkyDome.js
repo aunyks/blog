@@ -94,7 +94,7 @@ export default function SkyDome({
 
   return (
     <mesh {...props}>
-      <sphereBufferGeometry args={[1000 * 10, 32, 32]} />
+      <sphereBufferGeometry args={[1000 * 10, 9, 17]} />
       <shaderMaterial
         ref={materialRef}
         vertexShader={VERTEX_SHADER}
