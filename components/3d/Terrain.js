@@ -45,8 +45,8 @@ function createHeightfieldMatrix(image, scale) {
   return matrix
 }
 
-// Set elementSize as `size` / matrix[0].length (image width)
-// and rotate heightfield to match (rotation.x = -Math.PI/2)
+// A pixel value of 0xff / 2 will be at height (y value) of 0
+// 1 pixel = 1 square meter. Size the image accordingly
 export function Heightmap({
   // Url must point to a square, black and white image
   heightMap,
@@ -62,10 +62,8 @@ export function Heightmap({
   }, [heightmap])
   const [heightfieldRef] = useHeightfield(() => {
     const calculatedPosition = [
-      // Width
       position[0] - heights[0].length * elementSize / 2,
       position[1],
-      // Height
       position[2] + heights.length * elementSize / 2
     ]
     const calculatedRotation = [
