@@ -143,7 +143,7 @@ export default function FirstPersonPlayer({
             the camera like a HUD. And we only want it to show on small / touch devices
           */}
           {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
-            <DpadControls position={[-0.13, -0.3, -1]} onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
+            <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
           )}
         </Camera>
       </mesh>

@@ -27,7 +27,7 @@ export default function Game() {
     <div style={{ height: '100vh', width: '100vw' }}>
       <Canvas frameloop="demand">
         <Suspense fallback={<GameLoading />}>
-          <Physics>
+          <Physics shouldInvalidate={false}>
             <PauseManager>
               <GameDirector defaultCam="First Person Cam">
                 <FirstPersonPlayer startPosition={[0, 10, 0]} />

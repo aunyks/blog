@@ -1,11 +1,22 @@
 import {
   Html
 } from 'components/3d/3d-html'
+import useLandscape from 'hooks/use-landscape'
 
-export default function DpadControls({ onForwardBack, onLeftRight, ...props }) {
+export default function DpadControls({
+  onForwardBack,
+  onLeftRight,
+  position = [-0.13, -0.3, -1],
+  ...props
+}) {
+  const isLandscape = useLandscape()
+
+  const calculatedPosition = isLandscape ? [position[0] - 0.7, position[1] - 0.05, position[2]] : position
+
   return (
     <Html
       center
+      position={calculatedPosition}
       {...props}>
       <>
         <style jsx>{`
@@ -24,7 +35,7 @@ export default function DpadControls({ onForwardBack, onLeftRight, ...props }) {
             fill: rgba(48, 48, 48, 0.4);
           }
         `}</style>
-        <svg className="dpad" width={200} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
+        <svg className="dpad" width={isLandscape ? 130 : 200} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
           <path
             onTouchStart={() => onForwardBack(1)}
             onTouchEnd={() => onForwardBack(0)}
