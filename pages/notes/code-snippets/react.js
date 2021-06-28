@@ -41,7 +41,7 @@ function GameLoading() {
 
 export default function Game() {
   return (
-    <div style={{ height: '100vh', width: '100vw' }}>
+    <div style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
       <Canvas frameloop="demand">
         <Suspense fallback={<GameLoading />}>
           <Physics shouldInvalidate={false}>
@@ -55,7 +55,7 @@ export default function Game() {
             <Terrain />
           </Physics>
         </Suspense>
-      </Canvas>
+      </Canvas >
     </div >
   )
 }
