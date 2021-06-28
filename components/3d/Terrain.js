@@ -46,14 +46,17 @@ function createHeightfieldMatrix(image, scale) {
 }
 
 // A pixel value of 0xff / 2 will be at height (y value) of 0
-// 1 pixel = 1 square meter. Size the image accordingly
+// 1 pixel = elementSize square meters. Size the image accordingly
+// Use resolution to add graphical vertices between each element. 
+// It smooths the terrain for great visual fidelity but quickly harms performance
 export function Heightmap({
   // Url must point to a square, black and white image
   heightMap,
   elementSize = 1,
+  resolution = 1,
+  maxHeight = 100,
   position = [0, 0, 0],
   rotation = [0, 0, 0],
-  maxHeight = 100,
   ...props
 }) {
   const heightmap = useLoader(TextureLoader, heightMap)
@@ -83,10 +86,10 @@ export function Heightmap({
       position={position}
       rotation={[rotation[0] + -Math.PI / 2, rotation[1] + Math.PI / 2, rotation[2], 'YXZ']}>
       <planeBufferGeometry args={[
-        heightmap.image.width,
-        heightmap.image.height,
-        heightmap.image.width / elementSize,
-        heightmap.image.height / elementSize
+        heightmap.image.width * elementSize,
+        heightmap.image.height * elementSize,
+        heightmap.image.width * elementSize * resolution,
+        heightmap.image.height * elementSize * resolution
       ]} />
       <meshPhongMaterial
         map={heightmap}
