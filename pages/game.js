@@ -28,7 +28,7 @@ function GameLoading() {
 
 export default function Game() {
   return (
-    <div style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
+    <div style={{ height: '100vh', width: '100vw' }}>
       <Canvas frameloop="demand">
         <Suspense fallback={<GameLoading />}>
           <Physics shouldInvalidate={false}>
