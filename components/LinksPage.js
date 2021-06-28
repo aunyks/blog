@@ -2,7 +2,6 @@ import {
   useEffect
 } from 'react'
 import Head from 'next/head'
-import GAnalytics from 'components/GAnalytics'
 import Navbar from 'components/Navbar'
 
 export default function LinksPage({
@@ -101,7 +100,6 @@ export default function LinksPage({
             {children}
           </ul>
         </div>
-        <GAnalytics />
       </main>
     </>
   )

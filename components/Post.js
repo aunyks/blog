@@ -3,7 +3,6 @@ import Navbar from 'components/Navbar'
 import PostHeader from 'components/PostHeader'
 import PostBody from 'components/PostBody'
 import PostFooter from 'components/PostFooter'
-import GAnalytics from 'components/GAnalytics'
 
 export default function Post({
   title,
@@ -40,7 +39,6 @@ export default function Post({
             <PostFooter lang={lang} textDirection={textDirection} remark={remark} date={date} />
           )}
         </div>
-        <GAnalytics />
       </PostBody>
     </>
   )

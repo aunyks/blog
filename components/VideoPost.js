@@ -3,7 +3,6 @@ import Navbar from 'components/Navbar'
 import PostBody from 'components/PostBody'
 import Video from 'components/Video'
 import PostFooter from 'components/PostFooter'
-import GAnalytics from 'components/GAnalytics'
 
 function VideoPostHeader({
   title,
@@ -101,12 +100,11 @@ export default function VideoPost({
             <PostFooter lang={lang} textDirection={textDirection} remark={remark || (
               <>
                 Thanks for watching. Feel free to follow me on <a href="https://twitter.com/intent/follow?screen_name=aunyks">Twitter</a> if you have any
-              questions about this post or just wanna chat.
+                questions about this post or just wanna chat.
               </>
             )} date={date} />
           )}
         </div>
-        <GAnalytics />
       </PostBody>
     </>
   )
