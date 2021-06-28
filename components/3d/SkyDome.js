@@ -104,7 +104,7 @@ export default function SkyDome({
           side={BackSide} />
       </mesh>
       <hemisphereLight
-        intensity={0.8}
+        intensity={0.2}
         color={targetSkyColor}
         groundColor={targetHorizonColor} />
     </>

@@ -8,6 +8,10 @@ import {
 import {
   Physics
 } from '@react-three/cannon'
+import {
+  EffectComposer,
+  Bloom
+} from '@react-three/postprocessing'
 import FlatGround from 'components/3d/FlatGround'
 import Terrain from 'components/3d/Terrain'
 import SkyDome from 'components/3d/SkyDome'
@@ -36,6 +40,9 @@ export default function Game() {
             <Sun position={[0, 1000, -1000]} />
             <SkyDome />
             <Terrain />
+            <EffectComposer>
+              <Bloom luminanceThreshold={0.2} luminanceSmoothing={1.2} intensity={1} />
+            </EffectComposer>
           </Physics>
         </Suspense>
       </Canvas >

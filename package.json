@@ -12,6 +12,7 @@
     "@react-three/cannon": "^2.4.0",
     "@react-three/drei": "^6.2.0",
     "@react-three/fiber": "^7.0.1",
+    "@react-three/postprocessing": "^2.0.4-alpha.2",
     "katex": "^0.12.0",
     "next": "^11.0.0",
     "react": "^17.0.2",

@@ -24,7 +24,7 @@ export default function InSearchOfGameDAO() {
         items and games that compete with its own. This model is a step in the right direction, but we now have tools given to us by the third generation of the web that let us create completely open game platforms.
       </p>
       <p>
-        Today's blockchain technologies give game developers an open identity and currency platform through wallets and tokens, and NFTs now give them the ability to create rare items that can exist in an infinite number of
+        Today's blockchain technologies give game developers an open identity and currency platform through wallets and tokens, and NFTs now grant them the ability to create rare items that can exist in an infinite number of
         games. Even with these tools now available to us, we're left with the same problems as before: why should developers use these open platforms if it means less money in their pockets? Well, when operating alone, they shouldn't: the closed off economy will always be available to those
         who desire the traditional development strategy. But, the new era of the decentralized web lets creators and developers realize the potential of the most open platform on the Internet. To truly capture the
         value of this new generation, there's a new organizing structure that developers need. Enter the GameDAO.
