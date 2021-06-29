@@ -15,6 +15,9 @@ export default function SolidityCodeSnippets() {
         If you want a quick IDE that you can use <em>right now</em> for developing, testing, and / or deploying, use <a target="_blank" href="https://remix.ethereum.org">Remix</a>! Tutorialspoint has a great <a target="_blank" href="https://www.tutorialspoint.com/solidity/index.htm">lesson in
           Solidity</a> for beginners with some prior coding experience.
       </p>
+      <p>
+        For contracts where certain addresses have privileges, consider using OZ's <a href="https://docs.openzeppelin.com/contracts/4.x/access-control#using-access-control" target="_blank">AccessControl</a> contract.
+      </p>
       <CodeSnippet title="Simple ERC1155 Token">
         <p>
           A simple contract for quickly creating a <Hint msg="ERC1155 tokens are more often called semi-fungible tokens, because they're fungible like ERC20 tokens but hold metadata about each token like ERC721 tokens. I call them fungible data tokens, since being fungible and simultaneously containing metadata are what makes them unique.">fungible data token</Hint> that
