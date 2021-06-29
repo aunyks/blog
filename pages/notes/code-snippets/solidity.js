@@ -21,7 +21,7 @@ export default function SolidityCodeSnippets() {
       <CodeSnippet title="Simple ERC1155 Token">
         <p>
           A simple contract for quickly creating a <Hint msg="ERC1155 tokens are more often called semi-fungible tokens, because they're fungible like ERC20 tokens but hold metadata about each token like ERC721 tokens. I call them fungible data tokens, since being fungible and simultaneously containing metadata are what makes them unique.">fungible data token</Hint> that
-          follows the <a target="_blank" href="https://eips.ethereum.org/EIPS/eip-1155">ERC1155</a> standard.  It makes 10<sup>18</sup> Health Boost tokens and 10<sup>27</sup> Elite Skin tokens that can be used to in video games. Metadata about each of these tokens can be found at <code>{"https://example.com/item/{id}.json"}</code>, where
+          follows the <a target="_blank" href="https://eips.ethereum.org/EIPS/eip-1155">ERC1155</a> standard.  It makes 10<sup>18</sup> Health Boost tokens and 10<sup>27</sup> Elite Skin tokens that can be used in video games. Metadata about each of these tokens can be found at <code>{"https://example.com/item/{id}.json"}</code>, where
           <code>{"{id}"}</code> is <Hint msg="0 in the case of the Health Boost, 1 in the case of the Elite Skin">the ID number of the token for which metadata is being requested</Hint>.
         </p>
         <CodeBlock lang="solidity">{`
