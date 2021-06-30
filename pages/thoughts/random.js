@@ -12,6 +12,10 @@ export default function RandomThoughts() {
       noFooter
     >
       <Thought date="2021-06-22">
+        The EU is just a confederacy of the Roman Empire, and China's Belt and Road initiative is just the Silk Road.
+        History never stops rhyming.
+      </Thought>
+      <Thought date="2021-06-22">
         I'm starting to dislike how discrete my CS program was. I'm learning nearby technical fields and everything is full of continuous math mixed with computing.
         Of course we've taken our fair share of math courses, but in retrospect I think we should've had courses that applied computing knowledge to those fields. Oh well 🤷‍♂️
       </Thought>
