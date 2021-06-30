@@ -53,8 +53,6 @@ export default function MouseControls({
 
   useEffect(() => {
     const onMouseMove = event => {
-      console.log('yawTarget', yawTarget)
-      console.log('pitchTarget', pitchTarget)
       if (isMouseDown) {
         // Update yaw euler
         const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0
