@@ -141,8 +141,14 @@ export default function Modal({
               // close too early
               e.stopPropagation()
             }}
-            className={`z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog ${active ? 'active' : ''}`}>
-            <header className="py-0 px-4 flex flex-row justify-between">
+            className={`flex flex-col z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog ${active ? 'active' : ''}`}>
+            <section id={`${id}-body`} className="order-2 px-4 overflow-y-scroll" style={{ maxHeight: '17rem' }}>
+              {children}
+            </section>
+            <footer className="order-3 py-2 px-4">
+              {footing}
+            </footer>
+            <header className="order-1 py-0 px-4 flex flex-row justify-between">
               <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">{title}</h3>
               <button title="Close this dialog" aria-label="Close this dialog" className="pr-0" onClick={e => {
                 onClose(e)
@@ -153,12 +159,6 @@ export default function Modal({
                 <ModalCross />
               </button>
             </header>
-            <section id={`${id}-body`} className="px-4 overflow-y-scroll" style={{ maxHeight: '17rem' }}>
-              {children}
-            </section>
-            <footer className="py-2 px-4">
-              {footing}
-            </footer>
           </aside>
         </div>
       </>
