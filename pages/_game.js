@@ -1,7 +1,8 @@
 import {
-  Suspense
+  Suspense,
+  useEffect
 } from 'react'
-import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import {
   Canvas
 } from '@react-three/fiber'
@@ -27,25 +28,35 @@ function GameLoading() {
 }
 
 export default function Game() {
+  useEffect(() => {
+    // Disable pinch zoom on iOS Safari. I'm aware of a11y conflict, but this 
+    // is for better input and more native-like behavior
+    window.document.addEventListener('gesturechange', e => e.preventDefault())
+  }, [])
   return (
-    <div style={{ height: '100vh', width: '100vw' }}>
-      <Canvas frameloop="demand">
-        <Suspense fallback={<GameLoading />}>
-          <Physics shouldInvalidate={false}>
-            <PauseManager>
-              <GameDirector defaultCam="First Person Cam">
-                <FirstPersonPlayer startPosition={[0, 10, 0]} />
-              </GameDirector>
-            </PauseManager>
-            <Sun position={[0, 1000, -1000]} />
-            <SkyDome />
-            <Terrain />
-            <EffectComposer>
-              <Bloom luminanceThreshold={0.2} luminanceSmoothing={1.2} intensity={1} />
-            </EffectComposer>
-          </Physics>
-        </Suspense>
-      </Canvas >
-    </div >
+    <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+      </Head>
+      <div style={{ height: '100vh', width: '100vw' }}>
+        <Canvas frameloop="demand">
+          <Suspense fallback={<GameLoading />}>
+            <Physics shouldInvalidate={false}>
+              <PauseManager>
+                <GameDirector defaultCam="First Person Cam">
+                  <FirstPersonPlayer startPosition={[0, 10, 0]} />
+                </GameDirector>
+              </PauseManager>
+              <Sun position={[0, 1000, -1000]} />
+              <SkyDome />
+              <Terrain />
+              <EffectComposer>
+                <Bloom luminanceThreshold={0.2} luminanceSmoothing={1.2} intensity={1} />
+              </EffectComposer>
+            </Physics>
+          </Suspense>
+        </Canvas >
+      </div >
+    </>
   )
 }
