@@ -27,12 +27,14 @@ import Camera from 'components/3d/Camera'
 import useDeviceSize from 'hooks/use-device-size'
 
 const PLAYER_MOVEMENT_SPEED = 5
-
+const PHYSICS_SPHERE_DIAMETER = 0.35
+const PHYSICS_SPHERE_RADIUS = PHYSICS_SPHERE_DIAMETER / 2
 const MIN_CAMERA_PITCH_ANGLE = Math.PI / 3
 const MAX_CAMERA_PITCH_ANGLE = 4 * Math.PI / 6
 
 export default function FirstPersonPlayer({
-  startPosition = [0, 2, 0]
+  startPosition = [0, 2, 0],
+  freezeControls
 }) {
   const deviceSize = useDeviceSize()
   const gamepadRef = useRef()
@@ -41,7 +43,9 @@ export default function FirstPersonPlayer({
   // allow for smooth movement
   const [playerPhysicsMesh, playerPhysicsObject] = useSphere(() => ({
     mass: 1,
-    position: startPosition
+    position: startPosition,
+    // Sphere radius should be half the average human shoulder width (35cm)
+    args: [PHYSICS_SPHERE_RADIUS, PHYSICS_SPHERE_RADIUS, PHYSICS_SPHERE_RADIUS]
   }))
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
@@ -58,7 +62,9 @@ export default function FirstPersonPlayer({
   // be defined after first render
   const [controlsEnabled, setControlsEnabled] = useState(false)
   useEffect(() => {
-    setControlsEnabled(true)
+    if (!freezeControls) {
+      setControlsEnabled(true)
+    }
   }, [])
 
   // This is the velocity of the player in the *current* frame. 
@@ -69,9 +75,11 @@ export default function FirstPersonPlayer({
       velocity.current.fromArray(newVelocity)
     })
     // Whenever the physics object changes in position, 
-    // the visible mesh moves to the same position
+    // the visible mesh moves to the same position while 
+    // making sure it's visibly touching the ground (assuming visible mesh origin is at ground)
+    const visibleMeshPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
     playerPhysicsObject.position.subscribe(newPosition => {
-      playerMesh.current.position.fromArray(newPosition)
+      playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
     })
   }, [])
 
@@ -136,7 +144,7 @@ export default function FirstPersonPlayer({
     <>
       <mesh ref={playerMesh}>
         <boxBufferGeometry attach="geometry" />
-        <meshPhongMaterial attach="material" color={0xff0000} />
+        <meshPhongMaterial attach="material" wireframe={true} color={0xff0000} />
         <Camera name="First Person Cam" position={[0, 0, 0]} fov={75} near={0.01} far={1000 * 20}>
           {/*
             We child dpad controls to the camera so that it's always in front of 
