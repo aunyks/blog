@@ -8,7 +8,7 @@ export default function Sun(props) {
       <mesh position={[0, 0, 0]} scale={[100, 100, 100]}>
         <sphereBufferGeometry args={[1, 20, 10]} />
         <meshLambertMaterial
-          emissive={0xfff399}
+          emissive={0xfff3dd}
           emissiveIntensity={1} />
       </mesh>
       <directionalLight

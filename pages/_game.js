@@ -38,6 +38,16 @@ export default function Game() {
       <Head>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
       </Head>
+      <style jsx global>{`
+        html, body {
+          /* Let us fill the viewport without scroll */
+          margin: 0;
+          padding: 0;
+          /* Don't need double-tap zoom */
+          touch-action: manipulation;
+          overflow: hidden;
+        }
+      `}</style>
       <div style={{ height: '100vh', width: '100vw' }}>
         <Canvas frameloop="demand">
           <Suspense fallback={<GameLoading />}>
@@ -51,7 +61,7 @@ export default function Game() {
               <SkyDome />
               <Terrain />
               <EffectComposer>
-                <Bloom luminanceThreshold={0.2} luminanceSmoothing={1.2} intensity={1} />
+                <Bloom luminanceThreshold={0.5} luminanceSmoothing={1.2} intensity={0.7} />
               </EffectComposer>
             </Physics>
           </Suspense>

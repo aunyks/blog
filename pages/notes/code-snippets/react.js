@@ -8,66 +8,6 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
-      <CodeSnippet title="Simple First Person Game">
-        <p>
-          A React component / page for creating a first person game using <a href="https://github.com/aunyks/blog" target="_blank">this
-            website's source code</a>. It creates a full screen, physics-enabled game using <a href="https://github.com/pmndrs/react-three-fiber" target="_blank">React Three Fiber</a> that serves
-          as a low fidelity template for browser-based video games.
-        </p>
-        <CodeBlock lang="jsx">{`
-import {
-  Suspense
-} from 'react'
-import dynamic from 'next/dynamic'
-import {
-  Canvas
-} from '@react-three/fiber'
-import {
-  Physics
-} from '@react-three/cannon'
-import {
-  EffectComposer,
-  Bloom
-} from '@react-three/postprocessing'
-import FlatGround from 'components/3d/FlatGround'
-import Terrain from 'components/3d/Terrain'
-import SkyDome from 'components/3d/SkyDome'
-import Sun from 'components/3d/Sun'
-import GameDirector from 'components/3d/GameDirector'
-import PauseManager from 'components/3d/PauseManager'
-import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
-
-function GameLoading() {
-  return (
-    <p>Loading...</p>
-  )
-}
-
-export default function Game() {
-  return (
-    <div style={{ height: '100vh', width: '100vw' }}>
-      <Canvas frameloop="demand">
-        <Suspense fallback={<GameLoading />}>
-          <Physics shouldInvalidate={false}>
-            <PauseManager>
-              <GameDirector defaultCam="First Person Cam">
-                <FirstPersonPlayer startPosition={[0, 10, 0]} />
-              </GameDirector>
-            </PauseManager>
-            <Sun position={[0, 1000, -1000]} />
-            <SkyDome />
-            <Terrain />
-            <EffectComposer>
-              <Bloom luminanceThreshold={0.2} luminanceSmoothing={1.2} intensity={1} />
-            </EffectComposer>
-          </Physics>
-        </Suspense>
-      </Canvas >
-    </div >
-  )
-}
-`}</CodeBlock>
-      </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">
         <p>
           A React hook detecting whether at least one of a provided set of keys is pressed. Accepts an array of strings
@@ -350,6 +290,6 @@ import { VictoryChart, VictoryLine } from 'victory'
 </VictoryChart>
 `}</CodeBlock>
       </CodeSnippet>
-    </CodeSnippetPost>
+    </CodeSnippetPost >
   )
 }
