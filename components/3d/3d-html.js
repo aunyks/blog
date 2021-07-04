@@ -84,7 +84,7 @@ const getObjectCSSMatrix = ((scaleMultipliers) => {
   return (matrix, factor) => getCSSMatrix(matrix, scaleMultipliers(factor), 'translate(-50%,-50%)')
 })((f) => [1 / f, 1 / f, 1 / f, 1, -1 / f, -1 / f, -1 / f, -1, 1 / f, 1 / f, 1 / f, 1, 1, 1, 1, 1])
 
-export const Html = React.forwardRef(
+const Html = React.forwardRef(
   (
     {
       children,
@@ -259,3 +259,5 @@ export const Html = React.forwardRef(
     return <group {...props} ref={group} />
   }
 )
+
+export default Html

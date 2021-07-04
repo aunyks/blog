@@ -37,7 +37,7 @@ const Gamepad = forwardRef(({
 
   useEffect(() => {
     const onConnect = connectEvent => {
-      console.log(`gamepad ${connectEvent.gamepad.index} connected`)
+      // console.log(`gamepad ${connectEvent.gamepad.index} connected`)
       if (connectEvent.gamepad.index === padIndex) {
         ref.current = new Proxy(connectEvent.gamepad, {
           get: (target, prop, receiver) => {

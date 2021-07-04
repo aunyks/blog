@@ -9,6 +9,41 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+
+      <CodeSnippet title="Custom Event Emitter">
+        <p>
+          A simple event emitter for use in <a href="https://en.wikipedia.org/wiki/Observer_pattern" target="_blank">Observer patterns</a>. Adapted from <a href="https://stackoverflow.com/a/36027952" target="_blank">Eric Muyser's Stack Overflow answer</a>.
+        </p>
+        <CodeBlock lang="js">{`
+class EventEmitter {
+
+  /* optional
+  constructor() {
+
+  }
+  */
+
+  on(type, cb) {
+    this['_on' + type] = this['_on' + type] || []
+    this['_on' + type].push(cb)
+  }
+
+  off(type, cb) {
+    if(cb in this['_on' + type]) {
+      for(let i = 0; i < this['_on' + type].length; i++){
+        if(this['_on' + type][i] === cb) {
+            this['_on' + type].splice(i, 1)
+        }
+      } 
+    }
+  }
+
+  emit(type, args) {
+      this['_on' + type] && this['_on' + type].forEach((cb) => { cb(args) })
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Simple PWA Service Worker">
         <p>
           A very small service worker ready for use in a <a target="_blank" href="https://en.wikipedia.org/wiki/Progressive_web_application">Progressive Web App</a>.

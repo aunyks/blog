@@ -1,6 +1,4 @@
-import {
-  Html
-} from 'components/3d/3d-html'
+import Html from 'components/3d/3d-html'
 import useLandscape from 'hooks/use-landscape'
 
 export default function DpadControls({
