@@ -20,6 +20,7 @@ import {
   Gamepad
 } from 'components/3d/controls/Gamepad'
 import Camera from 'components/3d/Camera'
+import CameraShake from 'components/3d/CameraShake'
 import PointerLockControls from 'components/3d/controls/PointerLockControls'
 import TouchControls from 'components/3d/controls/TouchControls'
 import KeyboardControls from 'components/3d/controls/KeyboardControls'
@@ -41,7 +42,7 @@ export default function FirstPersonPlayer({
 }) {
   const deviceSize = useDeviceSize()
   const gamepadRef = useRef()
-  const movementJoystick = useRef({ x: 0, y: 0 })
+  const movementJoystick = useRef()
 
   // The player has a spherical physics body to 
   // allow for smooth movement
@@ -101,7 +102,6 @@ export default function FirstPersonPlayer({
 
   // On each frame tick in our graphics world...
   useFrame(({ camera }) => {
-
     if (controlsEnabled) {
       // Restrict camera pitch to override what TouchControls and PointerLockControls 
       // moved it to. This logic is repeated for gamepads below
@@ -163,7 +163,7 @@ export default function FirstPersonPlayer({
         <meshPhongMaterial color={0xff0000} />
         <Camera name="First Person Cam" position={cameraPositionOffset.current} fov={75} near={0.01} far={1000 * 20}>
           {/*
-            We child dpad controls to the camera so that it's always in front of 
+            We child virtual controls to the camera so that it's always in front of 
             the camera like a HUD. And we only want it to show on small / touch devices
           */}
           {/* {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
@@ -174,6 +174,7 @@ export default function FirstPersonPlayer({
           )}
         </Camera>
       </mesh>
+      {/* <CameraShake decay intensity={1} decayRate={0.15} /> */}
       <mesh ref={playerPhysicsMesh} visible={false}>
         <sphereBufferGeometry />
         <meshPhongMaterial color={0x00ff00} />

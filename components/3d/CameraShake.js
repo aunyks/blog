@@ -15,13 +15,15 @@ class SimplexNoise {
    * You can pass in a random number generator object if you like.
    * It is assumed to have a random() method.
    */
-  constructor(r: NumberGenerator = Math) {
+  constructor(r = Math) {
+    this.p = []
+    this.perm = []
     for (let i = 0; i < 256; i++) {
-      this.p[i] = Math.floor(r.random() * 256)
+      this.p.push(Math.floor(r.random() * 256))
     }
 
     for (let i = 0; i < 512; i++) {
-      this.perm[i] = this.p[i & 255]
+      this.perm.push(this.p[i & 255])
     }
 
     this.grad3 = [
@@ -74,10 +76,10 @@ class SimplexNoise {
       [-1, -1, -1, 0],
     ]
 
-    this.p = []
+    //this.p = []
 
     // To remove the need for index wrapping, double the permutation table length
-    this.perm = []
+    //this.perm = []
 
     // A lookup table to traverse the simplex around a given point in 4D.
     // Details can be found where this table is used, in the 4D noise method.
@@ -569,7 +571,8 @@ const CameraShake = forwardRef(({
     []
   )
 
-  useFrame(({ clock }, delta) => {
+  useFrame(({ camera, clock }, delta) => {
+    //initialRotation.current.copy(camera.rotation)
     const shake = Math.pow(intensityRef.current, 2)
     const yaw = maxYaw * shake * yawNoise.noise(clock.elapsedTime * yawFrequency, 1)
     const pitch = maxPitch * shake * pitchNoise.noise(clock.elapsedTime * pitchFrequency, 1)

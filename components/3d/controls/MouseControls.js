@@ -77,9 +77,5 @@ export default function MouseControls({
     }
   }, [isMouseDown])
 
-  // R3F requires that a primitive have an object 
-  // prop by a Three.js object, so let's give it an empty object
-  const dummyObject = useRef(new Object3D())
-
-  return <primitive object={dummyObject.current} visible={false} {...props} />
+  return null
 }

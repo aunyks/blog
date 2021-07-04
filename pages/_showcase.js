@@ -9,40 +9,28 @@ import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
 import OrbitControls from 'components/3d/controls/OrbitControls'
 
 function Showcase({
-  usePhysics,
   physicsProps,
+  cameraDistance = 10,
+  origin = [0, 0, 0],
   children
 }) {
-  const mainElements = (
+  return (
     <>
-      {children}
-      <OrbitControls cameraDistance={30} />
+      <Physics {...physicsProps}>
+        <Debug color="black" scale={1.1}>
+          {children}
+          <OrbitControls origin={origin} cameraDistance={cameraDistance} />
+        </Debug>
+      </Physics>
     </>
   )
-  if (usePhysics) {
-    return (
-      <>
-        <Physics {...physicsProps}>
-          <Debug color="black" scale={1.1}>
-            {mainElements}
-          </Debug>
-        </Physics>
-      </>
-    )
-  } else {
-    return (
-      <>
-        {mainElements}
-      </>
-    )
-  }
 }
 
 export default function ShowcasePage() {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <Canvas>
-        <Showcase usePhysics physicsProps={{ gravity: [0, 0, 0] }}>
+        <Showcase physicsProps={{ gravity: [0, 0, 0] }}>
           <pointLight position={[-30, 30, 0]} intensity={1} />
           <FirstPersonPlayer freezeControls />
         </Showcase>

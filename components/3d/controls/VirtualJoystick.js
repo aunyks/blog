@@ -23,6 +23,10 @@ const VirtualJoystick = forwardRef(({
     virtualJoystick.current = window.document.getElementById('virtual-joystick')
     virtualJoystick.current.setAttribute('cx', '184')
     virtualJoystick.current.setAttribute('cy', '184')
+    ref.current = {
+      x: 0,
+      y: 0
+    }
 
     const onTouchStart = event => {
       virtualJoystick.current.classList.add('active')
@@ -56,6 +60,7 @@ const VirtualJoystick = forwardRef(({
       window.document.getElementById('virtual-joystick').removeEventListener('touchstart', onTouchStart)
       window.document.getElementById('virtual-joystick').removeEventListener('touchmove', onTouchMove)
       window.document.getElementById('virtual-joystick').removeEventListener('touchend', onTouchEnd)
+      ref.current = null
     }
   }, [])
 
