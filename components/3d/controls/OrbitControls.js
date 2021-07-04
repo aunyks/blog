@@ -9,7 +9,8 @@ import {
 } from '@react-three/fiber'
 import {
   Euler,
-  Object3D
+  Object3D,
+  Vector3
 } from 'three'
 
 import useDeviceSize from 'hooks/use-device-size'
@@ -29,21 +30,27 @@ export default function OrbitControls({
   const deviceSize = useDeviceSize()
   const [controlsEnabled, setControlsEnabled] = useState(false)
   const originEuler = useRef(new Euler())
+  const calculatedOriginPosition = useRef((new Vector3()).fromArray(origin))
 
   useEffect(() => {
     setControlsEnabled(true)
   }, [])
+  useEffect(() => {
+    calculatedOriginPosition.current.fromArray(origin)
+  }, [origin])
 
   useFrame(() => {
     if (originObject.current) {
       originEuler.current.setFromQuaternion(originObject.current.quaternion, 'YXZ')
       originEuler.current.x = Math.max(Math.PI / 2 - maxPitchAngle, Math.min(Math.PI / 2 - minPitchAngle, originEuler.current.x))
       originObject.current.quaternion.setFromEuler(originEuler.current)
+
+      originObject.current.position.lerp(calculatedOriginPosition.current, 0.5)
     }
   })
   return (
     <>
-      <object3D ref={originObject} position={origin}>
+      <object3D ref={originObject}>
         <SimpleCamera position={[0, 0, cameraDistance]} />
       </object3D>
       {controlsEnabled && !['xs', 'sm', 'md'].includes(deviceSize) && (

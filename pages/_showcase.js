@@ -16,7 +16,7 @@ function Showcase({
   const mainElements = (
     <>
       {children}
-      <OrbitControls cameraDistance={10} />
+      <OrbitControls cameraDistance={30} />
     </>
   )
   if (usePhysics) {
