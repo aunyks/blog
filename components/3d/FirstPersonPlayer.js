@@ -79,16 +79,21 @@ export default function FirstPersonPlayer({
   // Position camera about 6' off the ground
   const cameraPositionOffset = useRef(new Vector3(0, -PHYSICS_SPHERE_RADIUS + 1.85, 0))
   useEffect(() => {
-    playerPhysicsObject.velocity.subscribe(newVelocity => {
+    const velocityUnsubscribe = playerPhysicsObject.velocity.subscribe(newVelocity => {
       velocity.current.fromArray(newVelocity)
     })
     // Whenever the physics object changes in position, 
     // the visible mesh moves to the same position while 
     // making sure it's visibly touching the ground (assuming visible mesh origin is at ground)
     const visibleMeshPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
-    playerPhysicsObject.position.subscribe(newPosition => {
+    const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
     })
+
+    return () => {
+      velocityUnsubscribe()
+      positionUnsubscribe()
+    }
   }, [])
 
   // Create refs for vectors that will be changed 
