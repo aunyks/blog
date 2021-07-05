@@ -8,6 +8,9 @@ export default function InSearchOfGameDAO() {
       description="NFTs in gaming are a stellar match waiting to happen. It can't come to life, though, until developer incentives can align. Enter the GameDAO."
       date="2021-06-22">
       <p>
+        This article is featured in <a href="https://mailchi.mp/d1c82f91c0db/ff-press-issue-43" target="_blank">ForeFront's Newsletter Issue 43 <em>Fresh Take</em></a>.
+      </p>
+      <p>
         Since the recent meteoric rise in popularity of <Hint msg="NFT stands for Non-Fungible token: a token that's neither identical to nor directly interchangeable with the next. Much like a trading card, each NFT has unique characteristics that separate it from similar items.">NFTs</Hint>, creators and developers alike have been
         drawing attention to the variety of applications that these tokens have across industries. A popular area of mention is gaming: many claim that NFTs will be a great addition to video games
         for players and developers alike. While the widespread introduction of NFTs into gaming may seem like it's just a matter of time, there's a glaring issue hindering adoption: the motivators don’t quite exist yet.
