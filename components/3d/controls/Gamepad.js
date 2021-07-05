@@ -48,7 +48,7 @@ const Gamepad = forwardRef(({
       }
     }
     const onDisconnect = disconnectEvent => {
-      console.log(`gamepad ${disconnectEvent.gamepad.index} disconnected`)
+      // console.log(`gamepad ${disconnectEvent.gamepad.index} disconnected`)
       if (disconnectEvent.gamepad.index === padIndex) {
         ref.current = null
         onConnectionChange(false)

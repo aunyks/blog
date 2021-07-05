@@ -9,7 +9,14 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
-
+      <CodeSnippet title="Clamp a Number">
+        <p>
+          A function that clamps a number between two values.
+        </p>
+        <CodeBlock lang="js">{`
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Custom Event Emitter">
         <p>
           A simple event emitter for use in <a href="https://en.wikipedia.org/wiki/Observer_pattern" target="_blank">Observer patterns</a>. Adapted from <a href="https://stackoverflow.com/a/36027952" target="_blank">Eric Muyser's Stack Overflow answer</a>.

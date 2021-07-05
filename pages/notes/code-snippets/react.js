@@ -8,6 +8,48 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
+      <CodeSnippet title="Suspend a Promise">
+        <p>
+          A function that "suspends" a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">Promise</a>, or
+          accepts a Promise and makes it compatible with <a href="https://reactjs.org/docs/concurrent-mode-suspense.html" target="_blank">Suspense</a>. To use this,
+          call this function with your desired Promise as the argument. It will return an object. To get the resolved value, call <code>read()</code> on this object.
+        </p>
+        <p>
+          Something along the lines of <code>const myResource = suspend(fetch('/value.json'))</code>. <code>const value = myResource.read()</code>
+        </p>
+        <CodeBlock lang="jsx">{`
+function suspend(promise) {
+  let status = 'pending'
+  let response = null
+
+  const suspender = promise.then(
+    (res) => {
+      status = 'success'
+      response = res
+    },
+    (err) => {
+      status = 'error'
+      response = err
+    },
+  )
+
+  const read = () => {
+    switch (status) {
+      case 'pending':
+        throw suspender
+      case 'error':
+        throw response
+      default:
+        return response
+    }
+  }
+
+  return { read }
+}
+
+export default suspend
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">
         <p>
           A React hook detecting whether at least one of a provided set of keys is pressed. Accepts an array of strings

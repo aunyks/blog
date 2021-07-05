@@ -9,7 +9,6 @@ export default function SecretPostv1({
   children,
   remark
 }) {
-  console.log('rendering')
   return (
     <Post
       title={title}

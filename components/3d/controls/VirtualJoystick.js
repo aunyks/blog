@@ -10,6 +10,7 @@ const JOYSTICK_CENTER_X = 184
 const JOYSTICK_CENTER_Y = 184
 const MAX_OFFSET_RADIUS = 80
 const SVG_VIEWBOX_SIZE = 384
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
 const VirtualJoystick = forwardRef(({
   position = [-0.13, -0.3, -1],
@@ -36,12 +37,12 @@ const VirtualJoystick = forwardRef(({
       const transformMatrix = virtualJoystick.current.getScreenCTM()
       const newX = (event.touches[0].clientX - transformMatrix.e) / transformMatrix.a
       const newY = (event.touches[0].clientY - transformMatrix.f) / transformMatrix.d
-      if ((newX - JOYSTICK_CENTER_X) ** 2 + (newY - JOYSTICK_CENTER_Y) ** 2 <= MAX_OFFSET_RADIUS ** 2) {
-        virtualJoystick.current.setAttribute('cx', `${newX}`)
-        virtualJoystick.current.setAttribute('cy', `${newY}`)
-        ref.current.x = (newX - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS
-        ref.current.y = (newY - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS
-      }
+      const centeredX = clamp((newX - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS, -1, 1)
+      const centeredY = clamp((newY - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS, -1, 1)
+      virtualJoystick.current.setAttribute('cx', `${clamp(newX, JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS)}`)
+      virtualJoystick.current.setAttribute('cy', `${clamp(newY, JOYSTICK_CENTER_Y - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_Y + MAX_OFFSET_RADIUS)}`)
+      ref.current.x = centeredX
+      ref.current.y = centeredY
     }
     const onTouchEnd = () => {
       virtualJoystick.current.classList.remove('active')
