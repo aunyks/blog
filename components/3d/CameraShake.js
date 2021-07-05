@@ -572,7 +572,6 @@ const CameraShake = forwardRef(({
   )
 
   useFrame(({ camera, clock }, delta) => {
-    //initialRotation.current.copy(camera.rotation)
     const shake = Math.pow(intensityRef.current, 2)
     const yaw = maxYaw * shake * yawNoise.noise(clock.elapsedTime * yawFrequency, 1)
     const pitch = maxPitch * shake * pitchNoise.noise(clock.elapsedTime * pitchFrequency, 1)

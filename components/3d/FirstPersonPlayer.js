@@ -43,6 +43,7 @@ export default function FirstPersonPlayer({
   const deviceSize = useDeviceSize()
   const gamepadRef = useRef()
   const movementJoystick = useRef()
+  const firstPersonCameraAnchor = useRef()
 
   // The player has a spherical physics body to 
   // allow for smooth movement
@@ -96,7 +97,7 @@ export default function FirstPersonPlayer({
   const sideVector = useRef(new Vector3(0, 0, 0))
   const newVelocity = useRef(new Vector3(0, 0, 0))
   // This is just for restricting the camera pitch
-  const cameraEuler = useRef(new Euler())
+  const cameraAnchorEuler = useRef(new Euler())
   // This is for gamepads to control player mesh yaw
   const playerEuler = useRef(new Euler())
 
@@ -105,9 +106,9 @@ export default function FirstPersonPlayer({
     if (controlsEnabled) {
       // Restrict camera pitch to override what TouchControls and PointerLockControls 
       // moved it to. This logic is repeated for gamepads below
-      cameraEuler.current.setFromQuaternion(camera.quaternion, 'YXZ')
-      cameraEuler.current.x = Math.max(Math.PI / 2 - MAX_CAMERA_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_CAMERA_PITCH_ANGLE, cameraEuler.current.x))
-      camera.quaternion.setFromEuler(cameraEuler.current)
+      cameraAnchorEuler.current.setFromQuaternion(firstPersonCameraAnchor.current.quaternion, 'YXZ')
+      cameraAnchorEuler.current.x = Math.max(Math.PI / 2 - MAX_CAMERA_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_CAMERA_PITCH_ANGLE, cameraAnchorEuler.current.x))
+      firstPersonCameraAnchor.current.quaternion.setFromEuler(cameraAnchorEuler.current)
     }
 
     // Calculate the forward-back and left-right motion 
@@ -134,9 +135,9 @@ export default function FirstPersonPlayer({
         playerEuler.current.y -= gamepadRef.current.axes[2] * 0.04
         playerMesh.current.quaternion.setFromEuler(playerEuler.current)
         // Update pitch euler
-        cameraEuler.current.setFromQuaternion(camera.quaternion, 'YXZ')
-        cameraEuler.current.x -= gamepadRef.current.axes[3] * 0.05
-        camera.quaternion.setFromEuler(cameraEuler.current)
+        cameraAnchorEuler.current.setFromQuaternion(camera.quaternion, 'YXZ')
+        cameraAnchorEuler.current.x -= gamepadRef.current.axes[3] * 0.05
+        camera.quaternion.setFromEuler(cameraAnchorEuler.current)
       }
     }
 
@@ -154,27 +155,27 @@ export default function FirstPersonPlayer({
     playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
   })
 
-  const activeCamera = useThree(({ camera }) => camera)
-
   return (
     <>
       <mesh ref={playerMesh}>
         <boxBufferGeometry />
         <meshPhongMaterial color={0xff0000} />
-        <Camera name="First Person Cam" position={cameraPositionOffset.current} fov={75} near={0.01} far={1000 * 20}>
-          {/*
+        <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
+          <Camera name="First Person Cam" fov={75} near={0.01} far={1000 * 20}>
+            {/*
             We child virtual controls to the camera so that it's always in front of 
             the camera like a HUD. And we only want it to show on small / touch devices
           */}
-          {/* {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
+            {/* {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
             <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
           )} */}
-          {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
-            <VirtualJoystick ref={movementJoystick} />
-          )}
-        </Camera>
+            {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
+              <VirtualJoystick ref={movementJoystick} />
+            )}
+            <CameraShake decay intensity={0} />
+          </Camera>
+        </group>
       </mesh>
-      {/* <CameraShake decay intensity={1} decayRate={0.15} /> */}
       <mesh ref={playerPhysicsMesh} visible={false}>
         <sphereBufferGeometry />
         <meshPhongMaterial color={0x00ff00} />
@@ -184,10 +185,10 @@ export default function FirstPersonPlayer({
         Enable touch controls on small devices, pointer lock controls on large ones.
       */}
       {controlsEnabled && ['xs', 'sm', 'md'].includes(deviceSize) && (
-        <TouchControls yawTarget={playerMesh.current} pitchTarget={activeCamera} />
+        <TouchControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
       {controlsEnabled && !['xs', 'sm', 'md'].includes(deviceSize) && (
-        <PointerLockControls yawTarget={playerMesh.current} pitchTarget={activeCamera} />
+        <PointerLockControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
       {controlsEnabled && (
         <KeyboardControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
