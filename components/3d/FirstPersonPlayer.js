@@ -162,7 +162,7 @@ export default function FirstPersonPlayer({
 
   return (
     <>
-      <mesh ref={playerMesh}>
+      <mesh ref={playerMesh} castShadow>
         <boxBufferGeometry />
         <meshPhongMaterial color={0xff0000} />
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>

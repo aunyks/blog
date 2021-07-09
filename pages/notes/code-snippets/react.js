@@ -46,8 +46,6 @@ function suspend(promise) {
 
   return { read }
 }
-
-export default suspend
 `}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">

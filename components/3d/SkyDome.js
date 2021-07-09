@@ -67,8 +67,8 @@ export default function SkyDome({
   ...props
 }) {
 
-  const targetHorizonColor = new Color(horizonColor || 0xc9e9f6)
-  const targetSkyColor = new Color(skyColor || 0x5bbce4)
+  const targetHorizonColor = new Color(horizonColor || 0x8DADBA)
+  const targetSkyColor = new Color(skyColor || 0x47A8D0)
 
   const materialRef = useRef()
   const uniformsRef = useRef({
@@ -78,17 +78,11 @@ export default function SkyDome({
   })
 
   useFrame(() => {
-    if (horizonColor) {
-      materialRef.current.uniforms.horizonColor.value.lerp(
-        targetHorizonColor,
-        0.05
-      )
+    if (horizonColor || horizonColor === 0x000000) {
+      materialRef.current.uniforms.horizonColor.value.lerp(targetHorizonColor, 0.05)
     }
-    if (skyColor) {
-      materialRef.current.uniforms.skyColor.value.lerp(
-        targetSkyColor,
-        0.05
-      )
+    if (skyColor || skyColor === 0x000000) {
+      materialRef.current.uniforms.skyColor.value.lerp(targetSkyColor, 0.05)
     }
   })
 
@@ -104,7 +98,7 @@ export default function SkyDome({
           side={BackSide} />
       </mesh>
       <hemisphereLight
-        intensity={0.2}
+        intensity={0.5}
         color={targetSkyColor}
         groundColor={targetHorizonColor} />
     </>

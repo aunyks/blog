@@ -84,7 +84,8 @@ export function Heightmap({
   return (
     <mesh
       position={position}
-      rotation={[rotation[0] + -Math.PI / 2, rotation[1] + Math.PI / 2, rotation[2], 'YXZ']}>
+      rotation={[rotation[0] + -Math.PI / 2, rotation[1] + Math.PI / 2, rotation[2], 'YXZ']}
+      receiveShadow>
       <planeBufferGeometry args={[
         heightmap.image.width * elementSize,
         heightmap.image.height * elementSize,

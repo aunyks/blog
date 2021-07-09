@@ -61,7 +61,7 @@ export default function Game() {
               <SkyDome />
               <Terrain />
               <EffectComposer>
-                <Bloom luminanceThreshold={0.5} luminanceSmoothing={1.2} intensity={0.7} />
+                <Bloom intensity={10} luminanceThreshold={0.8} />
               </EffectComposer>
             </Physics>
           </Suspense>
