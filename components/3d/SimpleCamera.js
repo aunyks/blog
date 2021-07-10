@@ -1,28 +1,31 @@
 import {
   useRef,
   useEffect,
-  useLayoutEffect
+  useLayoutEffect,
+  forwardRef
 } from 'react'
 import {
   useFrame,
   useThree
 } from '@react-three/fiber'
 
-export default function SimpleCamera(props) {
-  const ref = useRef()
+const SimpleCamera = forwardRef((props, ref) => {
+  const effectiveRef = ref || useRef()
   const set = useThree((state) => state.set)
   const size = useThree(({ size }) => size)
   useLayoutEffect(() => {
-    if (ref.current) {
-      ref.current.aspect = size.width / size.height
-      ref.current.updateProjectionMatrix()
+    if (effectiveRef.current) {
+      effectiveRef.current.aspect = size.width / size.height
+      effectiveRef.current.updateProjectionMatrix()
     }
   }, [size, props])
-  useEffect(() => set({ camera: ref.current }), [])
+  useEffect(() => set({ camera: effectiveRef.current }), [])
   useFrame(() => {
-    if (ref.current) {
-      ref.current.updateMatrixWorld()
+    if (effectiveRef.current) {
+      effectiveRef.current.updateMatrixWorld()
     }
   })
-  return <perspectiveCamera ref={ref} {...props} />
-}
+  return <perspectiveCamera ref={effectiveRef} {...props} />
+})
+
+export default SimpleCamera

@@ -29,7 +29,7 @@ function Showcase({
 export default function ShowcasePage() {
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <Canvas>
+      <Canvas gl={{ powerPreference: 'low-power' }}>
         <Showcase physicsProps={{ gravity: [0, 0, 0] }}>
           <pointLight position={[-30, 30, 0]} intensity={1} />
           <FirstPersonPlayer freezeControls />
