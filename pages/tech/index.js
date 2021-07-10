@@ -7,6 +7,7 @@ export default function Tech() {
       pageTitle="Tech"
       title="Tech"
       subtitle="Writeups, research, and realizations">
+      <Link href="/2021/7/procedural-skydomes-on-the-web">procedural skydomes on the web</Link>
       <Link href="/2021/4/making-a-dual-ps5-controller-stand" video>making a dual PS5 controller stand</Link>
       <Link href="/2021/2/3d-graphics-overview-high-level">3D graphics overview: high level</Link>
       <Link href="/2020/11/demodulating-iq-data" series>demodulating i/q data</Link>

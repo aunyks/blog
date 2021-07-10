@@ -35,7 +35,8 @@ export default function ThreeDFigure({
       figure {
         position: relative;
         height: 50vh;
-        margin-bottom: ${!!caption ? '2em' : '1em'};
+        margin-bottom: ${!!caption ? '3em' : '1em'};
+        overscroll-behavior: contain;
       }
 
       button {

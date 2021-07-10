@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-07-10">
+        If "cupboard" is pronounced "cubberd", then "clipboard" should be pronounced "clibberd".
+      </Thought>
       <Thought date="2021-06-22">
         The EU is just a confederacy of the Roman Empire, and China's Belt and Road initiative is just the Silk Road.
         History never stops rhyming.

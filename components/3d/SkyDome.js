@@ -64,6 +64,7 @@ void main() {
 export default function SkyDome({
   horizonColor,
   skyColor,
+  radius = 1000 * 10,
   ...props
 }) {
 
@@ -89,7 +90,7 @@ export default function SkyDome({
   return (
     <>
       <mesh {...props}>
-        <sphereBufferGeometry args={[1000 * 10, 9, 17]} />
+        <sphereBufferGeometry args={[radius, 9, 17]} />
         <shaderMaterial
           ref={materialRef}
           vertexShader={VERTEX_SHADER}

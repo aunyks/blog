@@ -43,27 +43,27 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
       <p>
         The new year has brought even more memorable events in American politics. This week alone saw the President
         being permanently banned from Twitter which, paired with the perceived fall of social platform Parler, has caused <Hint msg="The Gab founder reported 600,000 signups this past weekend alone.">a
-        large migration to Gab</Hint>. With this in mind, I started checking the platform out and found some vulnerabilities along the way.
+          large migration to Gab</Hint>. With this in mind, I started checking the platform out and found some vulnerabilities along the way.
       </p>
       <h3 id="open-url-redirect">Open URL Redirect Vuln</h3>
       <p>
         When scrolling through the timeline, the platform shows trending news sources.
         When hovering over one of these links, I took note of the format of the destination links.
-        </p>
+      </p>
       <figure>
         <img alt="A screenshot of a Gab timeline. There is a trending article on the right side that is hovered over, showing the link that it points to in the bottom left corner." src="/img/tech/security/gab-tl-hover-over-trend.jpg" />
       </figure>
       <p>
         They follow the form <code>{`https://trends.gab.com/visit?url={destination-url}`}</code>, where passing the
-          destination URL causes Gab to redirect the user to the destination web page. To test whether the redirect is open,
-          we can craft a URL to redirect us wherever we want and, if it takes us there, the redirect is open. Since <code>https://trends.gab.com/visit?url=https%3A%2F%2Fexample.com</code> us
-          to <code>example.com</code>, this is a classic <a href="/2020/2/howd-i-get-here">Open Redirect vulnerability</a>. With this,
-          we can trick victims into visiting malicious web pages, since we can make the link look like it's a trustworthy Gab link.
+        destination URL causes Gab to redirect the user to the destination web page. To test whether the redirect is open,
+        we can craft a URL to redirect us wherever we want and, if it takes us there, the redirect is open. Since <code>https://trends.gab.com/visit?url=https%3A%2F%2Fexample.com</code> us
+        to <code>example.com</code>, this is a classic <a href="/2020/2/howd-i-get-here">Open Redirect vulnerability</a>. With this,
+        we can trick victims into visiting malicious web pages, since we can make the link look like it's a trustworthy Gab link.
       </p>
       <figure>
         <video controls className="w-full mb-2">
           <source src="/img/tech/security/gab-open-redirect-demo.mp4" type="video/mp4" />
-        Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
+          Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
         </video>
       </figure>
       <h3 id="xss">XSS Vuln</h3>
@@ -87,7 +87,7 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
         JavaScript into the Gab preview through its title and description. Long story short, Gab injects whatever metadata description the target page has in its HTML head.
       </p>
       <figure>
-        <figcaption>The code below allows is a minimum viable payload that exploits the vulnerability.</figcaption>
+        <figcaption>The code below is a minimum viable payload that exploits the vulnerability.</figcaption>
         <CodeBlock
           lang="html"
           showCodeByDefault
@@ -112,7 +112,7 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
       <figure>
         <video controls className="w-full mb-2">
           <source src="/img/tech/security/gab-xss-demo.mp4" type="video/mp4" />
-        Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
+          Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
         </video>
       </figure>
       <p>
@@ -149,7 +149,7 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
       <figure>
         <video controls className="w-full mb-2">
           <source src="/img/tech/security/gab-phishing-demo.mp4" type="video/mp4" />
-        Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
+          Looks like your browser doesn't support embedded videos. A video demonstration of the XSS exploit is supposed to be showing.
         </video>
         {/*<figcaption>https://trends.gab.com/item/5fff8526bd189868a903898e</figcaption>*/}
       </figure>
