@@ -40,7 +40,7 @@ export default function FirstPersonPlayer({
   startPosition = [0, 2, 0],
   freezeControls
 }) {
-  const deviceSize = useDeviceSize()
+  //const deviceSize = useDeviceSize()
   const gamepadRef = useRef()
   const movementJoystick = useRef()
   const firstPersonCameraAnchor = useRef()
@@ -67,11 +67,17 @@ export default function FirstPersonPlayer({
   // we only enable them right after mounting, since the ref will 
   // be defined after first render
   const [controlsEnabled, setControlsEnabled] = useState(false)
+  const [isPointerLockAvailable, setPointerLockAvailable] = useState(false)
   useEffect(() => {
     if (!freezeControls) {
       setControlsEnabled(true)
     }
   }, [freezeControls])
+  useEffect(() => {
+    setPointerLockAvailable('pointerLockElement' in window.document ||
+      'mozPointerLockElement' in window.document ||
+      'webkitPointerLockElement' in window.document)
+  }, [])
 
   // This is the velocity of the player in the *current* frame. 
   // It will be updated after each tick in the physics world
@@ -171,10 +177,10 @@ export default function FirstPersonPlayer({
             We child virtual controls to the camera so that it's always in front of 
             the camera like a HUD. And we only want it to show on small / touch devices
           */}
-            {/* {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
+            {/* {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
             <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
           )} */}
-            {controlsEnabled && !gamepadConnected && ['xs', 'sm', 'md'].includes(deviceSize) && (
+            {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
               <VirtualJoystick ref={movementJoystick} />
             )}
             <CameraShake decay intensity={0} />
@@ -189,10 +195,10 @@ export default function FirstPersonPlayer({
         If the device is small, it's likely touch screen.
         Enable touch controls on small devices, pointer lock controls on large ones.
       */}
-      {controlsEnabled && ['xs', 'sm', 'md'].includes(deviceSize) && (
+      {controlsEnabled && !isPointerLockAvailable && (
         <TouchControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
-      {controlsEnabled && !['xs', 'sm', 'md'].includes(deviceSize) && (
+      {controlsEnabled && isPointerLockAvailable && (
         <PointerLockControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
       {controlsEnabled && (
