@@ -46,6 +46,7 @@ const supportedConnectorTypes = [
 ]
 
 export default function Web3Modal({
+  active,
   children,
   ...props
 }) {
@@ -53,9 +54,12 @@ export default function Web3Modal({
     throw new Error('Web3Modal does not accept children')
   }
   const { error, web3, status, connect } = useWeb3()
+  if (active && status === 'connected') {
+    console.warn('Web3Modal set to active while web3 status is connected. Consider logging out / resetting first')
+  }
 
   return (
-    <Modal title="Connect your wallet" {...props}>
+    <Modal title="Connect your wallet" active={active && status !== 'connected'} {...props}>
       <ul>
         {supportedConnectorTypes.map(type => (
           <WalletOption key={type} connectorType={type} onSelect={() => connect(type)} />

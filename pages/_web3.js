@@ -11,10 +11,15 @@ function App() {
       <p>
         Status: {status}
       </p>
-      <button onClick={() => setModalActive(true)}>
+      <button onClick={() => {
+        setModalActive(true)
+      }} disabled={status === 'connected'}>
         Connect Wallet
       </button>
-      <button onClick={() => reset()}>
+      <button onClick={() => {
+        setModalActive(false)
+        reset()
+      }}>
         Reset
       </button>
       <Web3Modal id="web3modal" onClose={() => setModalActive(false)} active={modalActive} />
