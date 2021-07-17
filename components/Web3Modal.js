@@ -122,11 +122,7 @@ function WalletOption({
       <style jsx>{`
       li {
         border-width: 4px;
-      }
-
-      svg {
-        fill: initial;
-        stroke: initial;
+        min-width: 70px;
       }
     `}</style>
       <li className="list-none mx-0 my-2 p-0 rounded solid" >
