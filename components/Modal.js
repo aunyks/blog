@@ -149,7 +149,14 @@ export default function Modal({
               {footing}
             </footer>
             <header className="order-1 py-0 px-4 flex flex-row justify-between">
-              <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">{title}</h3>
+              {typeof title === 'string' ?
+                (
+                  <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">
+                    {title}
+                  </h3>
+                ) : (
+                  { title }
+                )}
               <button title="Close this dialog" aria-label="Close this dialog" className="pr-0" onClick={e => {
                 onClose(e)
                 // Only want this click event 
