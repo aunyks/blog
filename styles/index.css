@@ -370,7 +370,7 @@ button.melody {
     color: white;
   }
 
-  path {
+  svg:not(.force-default-colors) path {
     fill: white;
   }
 
