@@ -122,10 +122,10 @@ function WalletOption({
       <style jsx>{`
       li {
         border-width: 4px;
-        min-width: 70px;
+        min-height: 70px;
       }
     `}</style>
-      <li className="list-none mx-0 my-2 p-0 rounded solid" >
+      <li className="flex flex-col justify-center list-none mx-0 my-2 p-0 rounded solid" >
         <button onClick={onSelect} className="flex items-center m-0 w-full h-full p-2">
           <div className="mx-1 inline-block">
             {(() => {
