@@ -53,6 +53,7 @@ export default function Modal({
   title,
   active,
   onClose,
+  noScroll,
   footing,
   children
 }) {
@@ -142,10 +143,10 @@ export default function Modal({
               e.stopPropagation()
             }}
             className={`flex flex-col z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog ${active ? 'active' : ''}`}>
-            <section id={`${id}-body`} className="order-2 px-4 overflow-y-scroll" style={{ maxHeight: '17rem' }}>
+            <section id={`${id}-body`} className={`order-2 px-4 ${!!noScroll ? '' : 'overflow-y-scroll'}`} style={{ maxHeight: '17rem' }}>
               {children}
             </section>
-            <footer className="order-3 py-2 px-4">
+            <footer className="order-3 px-4">
               {footing}
             </footer>
             <header className="order-1 py-0 px-4 flex flex-row justify-between">

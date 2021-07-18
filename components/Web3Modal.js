@@ -173,7 +173,16 @@ export default function Web3Modal({
   }
 
   return (
-    <Modal title="Connect your wallet" active={active && status !== 'connected'} {...props}>
+    <Modal
+      title="Connect your wallet"
+      active={active && status !== 'connected'}
+      noScroll
+      footing={(
+        <a href="https://ethereum.org/en/wallets" target="_blank" className="inline-block mt-0 md:mt-2 mb-4 italic no-underline hover:underline text-xs">
+          What's a wallet?
+        </a>
+      )}
+      {...props}>
       <ul>
         {supportedConnectorTypes.map(type => (
           <WalletOption key={type} connectorType={type} onSelect={() => connect(type)} />
