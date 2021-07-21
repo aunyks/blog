@@ -2,9 +2,9 @@ import {
   createContext
 } from 'react'
 
-const CameraDirector = createContext({
+const CameraDirectorContext = createContext({
   activeCamera: null,
   setActiveCamera: () => console.warn('No camera director provided to this component')
 })
 
-export default CameraDirector
+export default CameraDirectorContext

@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import CameraDirector from 'contexts/3d/CameraDirector'
+import CameraDirectorContext from 'contexts/3d/CameraDirectorContext'
 
 export default function GameDirector({ defaultCam, children }) {
   const [currentActiveCamera, setCurrentActiveCamera] = useState(defaultCam)
   return (
-    <CameraDirector.Provider value={{
+    <CameraDirectorContext.Provider value={{
       activeCamera: currentActiveCamera,
       setActiveCamera: setCurrentActiveCamera
     }}>
       {children}
-    </CameraDirector.Provider>
+    </CameraDirectorContext.Provider>
   )
 }

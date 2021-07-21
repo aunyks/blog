@@ -8,7 +8,7 @@ import {
   useFrame,
   useThree
 } from '@react-three/fiber'
-import CameraDirector from 'contexts/3d/CameraDirector'
+import CameraDirectorContext from 'contexts/3d/CameraDirectorContext'
 
 function mergeRefs(refs) {
   return value => {
@@ -34,7 +34,7 @@ const Camera = forwardRef(({
   const cameraRef = useRef()
   const set = useThree((state) => state.set)
   const size = useThree(({ size }) => size)
-  const { activeCamera, setActiveCamera } = useContext(CameraDirector)
+  const { activeCamera, setActiveCamera } = useContext(CameraDirectorContext)
 
   useLayoutEffect(() => {
     if (cameraRef.current) {
