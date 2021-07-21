@@ -1,6 +1,6 @@
 import Modal from 'components/Modal'
 import useDeviceSize from 'hooks/use-device-size'
-import useWeb3 from 'hooks/use-web3'
+import useWeb3 from 'hooks/crypto/use-web3'
 
 function MetaMaskVector({ width }) {
   return (

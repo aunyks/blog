@@ -1,7 +1,7 @@
 import { UseWalletProvider } from 'use-wallet'
-import Web3Modal from 'components/Web3Modal'
+import Web3Modal from 'components/crypto/Web3Modal'
 import { useState } from 'react'
-import useWeb3 from 'hooks/use-web3'
+import useWeb3 from 'hooks/crypto/use-web3'
 
 function App() {
   const [modalActive, setModalActive] = useState(false)
