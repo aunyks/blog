@@ -10,6 +10,7 @@ import {
 import {
   useHeightfield
 } from '@react-three/cannon'
+import useSWR from 'swr'
 
 // Returns matrix data to be passed to heightfield
 function createHeightfieldMatrix(image, scale) {
@@ -60,9 +61,9 @@ export function Heightmap({
   ...props
 }) {
   const heightmap = useLoader(TextureLoader, heightMap)
-  const heights = useMemo(() => {
+  const { data: heights } = useSWR('heightfieldMatrix', async () => {
     return createHeightfieldMatrix(heightmap.image, maxHeight)
-  }, [heightmap])
+  }, { suspense: true })
   const [heightfieldRef] = useHeightfield(() => {
     const calculatedPosition = [
       position[0] - heights[0].length * elementSize / 2,

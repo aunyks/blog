@@ -20,10 +20,27 @@ import Sun from 'components/3d/Sun'
 import GameDirector from 'components/3d/GameDirector'
 import PauseManager from 'components/3d/PauseManager'
 import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
+import Html from 'components/3d/3d-html'
+import ErrorBoundary from 'components/ErrorBoundary'
 
 function GameLoading() {
+  console.log('loading')
   return (
-    <p>Loading...</p>
+    <Html fullscreen style={{ zIndex: 2 }}>
+      <div className="flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    </Html>
+  )
+}
+
+function GameError() {
+  return (
+    <Html fullscreen style={{ zIndex: 1 }}>
+      <div className="flex justify-center items-center">
+        <p>Error!</p>
+      </div>
+    </Html>
   )
 }
 
@@ -50,21 +67,23 @@ export default function Game() {
       `}</style>
       <div style={{ height: '100vh', width: '100vw' }}>
         <Canvas frameloop="demand">
-          <Suspense fallback={<GameLoading />}>
-            <Physics shouldInvalidate={false}>
-              <PauseManager>
-                <GameDirector defaultCam="First Person Cam">
-                  <FirstPersonPlayer startPosition={[0, 10, 0]} />
-                </GameDirector>
-              </PauseManager>
-              <Sun position={[0, 1000, -1000]} />
-              <SkyDome />
-              <Terrain />
-              <EffectComposer>
-                <Bloom intensity={10} luminanceThreshold={0.8} />
-              </EffectComposer>
-            </Physics>
-          </Suspense>
+          <ErrorBoundary fallback={<GameError />}>
+            <Suspense fallback={<GameLoading />}>
+              <Physics shouldInvalidate={false}>
+                <PauseManager>
+                  <GameDirector defaultCam="First Person Cam">
+                    <FirstPersonPlayer startPosition={[0, 10, 0]} />
+                  </GameDirector>
+                </PauseManager>
+                <Sun position={[0, 1000, -1000]} />
+                <SkyDome />
+                <Terrain />
+                <EffectComposer>
+                  <Bloom intensity={10} luminanceThreshold={0.8} />
+                </EffectComposer>
+              </Physics>
+            </Suspense>
+          </ErrorBoundary>
         </Canvas >
       </div >
     </>

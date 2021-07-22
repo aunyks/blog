@@ -33,8 +33,8 @@ const PLAYER_MOVEMENT_SPEED = 5
 const PHYSICS_SPHERE_DIAMETER = 0.35
 const PHYSICS_SPHERE_RADIUS = PHYSICS_SPHERE_DIAMETER / 2
 
-const MIN_CAMERA_PITCH_ANGLE = Math.PI / 3
-const MAX_CAMERA_PITCH_ANGLE = 4 * Math.PI / 6
+const MIN_CAMERA_PITCH_ANGLE = Math.PI / 7
+const MAX_CAMERA_PITCH_ANGLE = 6 * Math.PI / 7
 
 export default function FirstPersonPlayer({
   startPosition = [0, 2, 0],
@@ -143,12 +143,13 @@ export default function FirstPersonPlayer({
         sideVector.current.set(-gamepadRef.current.axes[0], 0, 0)
         // Update yaw euler
         playerEuler.current.setFromQuaternion(playerMesh.current.quaternion, 'YXZ')
-        playerEuler.current.y -= gamepadRef.current.axes[2] * 0.04
+        playerEuler.current.y -= gamepadRef.current.axes[2] * 0.06
         playerMesh.current.quaternion.setFromEuler(playerEuler.current)
         // Update pitch euler
-        cameraAnchorEuler.current.setFromQuaternion(camera.quaternion, 'YXZ')
-        cameraAnchorEuler.current.x -= gamepadRef.current.axes[3] * 0.05
-        camera.quaternion.setFromEuler(cameraAnchorEuler.current)
+        // Only uncomment the below if you want pitch to snap to stick position
+        // cameraAnchorEuler.current.setFromQuaternion(firstPersonCameraAnchor.current.quaternion, 'YXZ')
+        cameraAnchorEuler.current.x -= gamepadRef.current.axes[3] * 0.07
+        firstPersonCameraAnchor.current.quaternion.setFromEuler(cameraAnchorEuler.current)
       }
     }
 
