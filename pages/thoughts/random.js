@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-07-23">
+        I want more public benefit and socially responsible corporations to exist. I don't care if they can't hyperscale because of misalignments.
+      </Thought>
       <Thought date="2021-07-10">
         If "cupboard" is pronounced "cubberd", then "clipboard" should be pronounced "clibberd".
       </Thought>
