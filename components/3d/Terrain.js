@@ -62,7 +62,6 @@ export function Heightmap({
 }) {
   const heightmap = useLoader(TextureLoader, heightMap)
   const { data: heights } = useSWR('heightfieldMatrix', async () => {
-    throw new Error('sorry')
     return createHeightfieldMatrix(heightmap.image, maxHeight)
   }, { suspense: true })
   const [heightfieldRef] = useHeightfield(() => {
