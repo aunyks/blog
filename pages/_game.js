@@ -1,38 +1,13 @@
 import {
-  Suspense,
   useEffect
 } from 'react'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import {
   Canvas
 } from '@react-three/fiber'
-import {
-  Physics
-} from '@react-three/cannon'
-import {
-  EffectComposer,
-  Bloom
-} from '@react-three/postprocessing'
-import FlatGround from 'components/3d/FlatGround'
-import Terrain from 'components/3d/Terrain'
-import SkyDome from 'components/3d/SkyDome'
-import Sun from 'components/3d/Sun'
-import GameDirector from 'components/3d/GameDirector'
-import PauseManager from 'components/3d/PauseManager'
-import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
 import Html from 'components/3d/3d-html'
 import ErrorBoundary from 'components/ErrorBoundary'
-
-function GameLoading() {
-  console.log('loading')
-  return (
-    <Html fullscreen style={{ zIndex: 2 }}>
-      <div className="flex justify-center items-center">
-        <p>Loading...</p>
-      </div>
-    </Html>
-  )
-}
 
 function GameError() {
   return (
@@ -43,6 +18,26 @@ function GameError() {
     </Html>
   )
 }
+
+function GameLoading({ error }) {
+  if (!!error) {
+    return (<GameError />)
+  }
+  return (
+    <Html fullscreen style={{ zIndex: 2 }}>
+      <div className="flex justify-center items-center">
+        <p>Loading...</p>
+      </div>
+    </Html>
+  )
+}
+
+// The same loading and error behavior can be achieved 
+// with React Suspense and ErrorBoundary, but
+const FPGame = dynamic(
+  () => import('../components/3d/FirstPersonGame.js'),
+  { loading: GameLoading, ssr: false }
+)
 
 export default function Game() {
   useEffect(() => {
@@ -68,21 +63,7 @@ export default function Game() {
       <div style={{ height: '100vh', width: '100vw' }}>
         <Canvas frameloop="demand">
           <ErrorBoundary fallback={<GameError />}>
-            <Suspense fallback={<GameLoading />}>
-              <Physics shouldInvalidate={false}>
-                <PauseManager>
-                  <GameDirector defaultCam="First Person Cam">
-                    <FirstPersonPlayer startPosition={[0, 10, 0]} />
-                  </GameDirector>
-                </PauseManager>
-                <Sun position={[0, 1000, -1000]} />
-                <SkyDome />
-                <Terrain />
-                <EffectComposer>
-                  <Bloom intensity={10} luminanceThreshold={0.8} />
-                </EffectComposer>
-              </Physics>
-            </Suspense>
+            <FPGame />
           </ErrorBoundary>
         </Canvas >
       </div >
