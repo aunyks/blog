@@ -60,8 +60,16 @@ export default function Navbar() {
             <NavLink href="/about">
               About
             </NavLink>
+            <div className="block lg:hidden">
+              <NavLink href="/thoughts">
+                Thoughts
+              </NavLink>
+              <NavLink href="/notes">
+                Notes
+              </NavLink>
+            </div>
           </div>
-          <div>
+          <div className="hidden lg:block">
             {/* RIGHT SIDE OF NAV (LARGE SCREEN) */}
             <NavLink href="/thoughts">
               Thoughts
