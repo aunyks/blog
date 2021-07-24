@@ -20,6 +20,9 @@ function GameError() {
 }
 
 function GameLoading({ error }) {
+  // Next passes an error prop only on loading error, so 
+  // the dynamic import should still be childed to an 
+  // ErrorBoundary to catch other types of errors
   if (!!error) {
     return (<GameError />)
   }
