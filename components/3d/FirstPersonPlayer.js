@@ -58,8 +58,10 @@ export default function FirstPersonPlayer({
 
   // Movement controls will tell us when and how quickly to move based on 
   // these values
-  const [forwardBack, setForwardBack] = useState(0)
-  const [leftRight, setLeftRight] = useState(0)
+  const forwardBack = useRef(0)
+  const setForwardBack = n => forwardBack.current = n
+  const leftRight = useRef(0)
+  const setLeftRight = n => leftRight.current = n
   // If the gamepad is connected, we don't render the dpad on mobile
   const [gamepadConnected, setGamepadConnected] = useState(false)
   // Controls need to be enabled after first render so that 
@@ -126,10 +128,10 @@ export default function FirstPersonPlayer({
     // vectors. Values are 0 or 1 to indicate motion or lack thereof.
     // Motion will be scaled to velocity later
     forwardVector.current.set(
-      0, 0, -forwardBack
+      0, 0, -forwardBack.current
     )
     sideVector.current.set(
-      -leftRight, 0, 0
+      -leftRight.current, 0, 0
     )
 
     if (controlsEnabled) {
