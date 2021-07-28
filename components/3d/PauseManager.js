@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import PauseContext from 'contexts/3d/PauseContext'
 import { useFrame } from '@react-three/fiber'
+import PauseContext from 'contexts/3d/PauseContext'
 
 export default function PauseManager({ children }) {
   const [isPaused, setPaused] = useState(false)
