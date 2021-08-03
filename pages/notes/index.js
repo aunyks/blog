@@ -11,6 +11,7 @@ export default function NotesPage() {
       <Link href="/notes/web-game-dev">web game dev</Link>
       <Link href="/notes/ffmpeg">FFmpeg</Link>
       <Link href="/notes/electronics">electronics</Link>
+      <Link href="/notes/regex">regex</Link>
     </LinksPage>
   )
 }
