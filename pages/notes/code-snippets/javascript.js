@@ -9,6 +9,73 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="A N-ary Tree Node">
+        <p>
+          An ES6 class that defines a node for use in discrete trees. It makes very few assumptions other
+          than that it's designed for tree structures, so you can extend it for more specific tree applications.
+          A good practice is to add functions that operate on these nodes and their descendants as static functions of the node class.
+          For example, <code>serializeTree</code> below should be called as <code>TreeNode.serializeTree(someNode)</code>. This
+          way, it's apparent to developers how nodes are treated, and you can still take advantage of polymorphism.
+        </p>
+        <CodeBlock lang="js">{`
+class TreeNode {
+  constructor(data) {
+    this._data = data || null
+    this._children = []
+  }
+
+  getData() {
+    return this._data
+  }
+
+  // I don't want this here, but 
+  // using it helps performance in some cases
+  setData(data) {
+    this._data = data
+  }
+
+  toString() {
+    return JSON.stringify(this._data)
+  }
+
+  getChildren() {
+    return this._children
+  }
+
+  addChild(treeNode) {
+    if (treeNode instanceof TreeNode) {
+      this._children.push(treeNode)
+    } else {
+      throw new Error("TreeNode child must be a TreeNode")
+    }
+  }
+
+  equalTo(treeNode) {
+    if (treeNode instanceof TreeNode) {
+      return this._data === treeNode._data
+    } else {
+      throw new Error("TreeNode must be compared to another TreeNode")
+    }
+  }
+
+  setChild(childIndex, treeNodeOrNull) {
+    if (treeNodeOrNull instanceof TreeNode || treeNodeOrNull === null) {
+      if (childIndex < this._children.length && childIndex >= 0) {
+        this._children[childIndex] = treeNodeOrNull
+      } else {
+        throw new Error(`Invalid child index requested. Length: ${this._children.length}, requested index: ${childIndex}`)
+      }
+    } else {
+      throw new Error("TreeNode must be compared to another TreeNode")
+    }
+  }
+
+          static serializeTree(treeNode) {
+            console.log('Just an example')
+          }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Clamp a Number">
         <p>
           A function that clamps a number between two values.
