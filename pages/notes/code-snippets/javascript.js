@@ -63,16 +63,16 @@ class TreeNode {
       if (childIndex < this._children.length && childIndex >= 0) {
         this._children[childIndex] = treeNodeOrNull
       } else {
-        throw new Error(`Invalid child index requested. Length: ${this._children.length}, requested index: ${childIndex}`)
+        throw new Error("Invalid child index requested. Length: " + this._children.length + ", requested index: " + childIndex)
       }
     } else {
       throw new Error("TreeNode must be compared to another TreeNode")
     }
   }
 
-          static serializeTree(treeNode) {
-            console.log('Just an example')
-          }
+  static serializeTree(treeNode) {
+    console.log('Just an example')
+  }
 }
       `}</CodeBlock>
       </CodeSnippet>
