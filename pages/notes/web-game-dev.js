@@ -83,6 +83,28 @@ function updateGameState(dt) {
             </li>
           </ol>
         </li>
+        <li>
+          To sync the position and orientation of two objects that have different ancestors in a 3D (Three.js) scene tree,
+          use these snippets. The variable names should be self-explanatory.
+          <ul>
+            <li>
+              Sync position
+              <CodeBlock lang="js" noButton showCodeByDefault>{`
+destinationWorldPosition.copy(destinationParent.worldToLocal(sourceWorldPosition))
+`}</CodeBlock>
+            </li>
+            <li>
+              Sync rotation
+              <CodeBlock lang="js" noButton showCodeByDefault>{`
+destinationWorldQuaternion
+.multiplyQuaternions(
+  destinationParentWorldQuaternion.inverse(),
+  sourceWorldQuaternion
+)
+`}</CodeBlock>
+            </li>
+          </ul>
+        </li>
       </ul>
       <h2>Useful Code Snippets</h2>
       <ul className="mb-4">
@@ -98,9 +120,6 @@ function updateGameState(dt) {
           <ul>
             <li><a href="/notes/code-snippets/javascript#linear-interpolation-lerp">Linear (lerp)</a></li>
           </ul>
-        </li>
-        <li>
-          <a href="/notes/code-snippets/react#simple-first-person-game">A Small First Person Template in R3F</a>
         </li>
       </ul>
     </NotesPost>

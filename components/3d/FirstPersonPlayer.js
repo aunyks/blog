@@ -27,6 +27,7 @@ import KeyboardControls from 'components/3d/controls/KeyboardControls'
 import DpadControls from 'components/3d/controls/DpadControls'
 import VirtualJoystick from 'components/3d/controls/VirtualJoystick'
 import useDeviceSize from 'hooks/use-device-size'
+import Arms from 'components/3d/Arms'
 
 const PLAYER_MOVEMENT_SPEED = 5
 
@@ -40,7 +41,6 @@ export default function FirstPersonPlayer({
   startPosition = [0, 2, 0],
   freezeControls
 }) {
-  //const deviceSize = useDeviceSize()
   const gamepadRef = useRef()
   const movementJoystick = useRef()
   const firstPersonCameraAnchor = useRef()
@@ -123,7 +123,6 @@ export default function FirstPersonPlayer({
       cameraAnchorEuler.current.x = Math.max(Math.PI / 2 - MAX_CAMERA_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_CAMERA_PITCH_ANGLE, cameraAnchorEuler.current.x))
       firstPersonCameraAnchor.current.quaternion.setFromEuler(cameraAnchorEuler.current)
     }
-
     // Calculate the forward-back and left-right motion 
     // vectors. Values are 0 or 1 to indicate motion or lack thereof.
     // Motion will be scaled to velocity later
@@ -133,13 +132,11 @@ export default function FirstPersonPlayer({
     sideVector.current.set(
       -leftRight.current, 0, 0
     )
-
     if (controlsEnabled) {
       if (movementJoystick.current) {
         forwardVector.current.set(0, 0, movementJoystick.current.y)
         sideVector.current.set(-movementJoystick.current.x, 0, 0)
       }
-
       if (gamepadRef.current) {
         forwardVector.current.set(0, 0, gamepadRef.current.axes[1])
         sideVector.current.set(-gamepadRef.current.axes[0], 0, 0)
@@ -154,7 +151,6 @@ export default function FirstPersonPlayer({
         firstPersonCameraAnchor.current.quaternion.setFromEuler(cameraAnchorEuler.current)
       }
     }
-
     // Determine the direction the camera is facing and 
     // create a velocity-scaled movement vector in that direction
     if (playerMesh.current !== undefined) {
@@ -163,7 +159,6 @@ export default function FirstPersonPlayer({
         .multiplyScalar(PLAYER_MOVEMENT_SPEED)
         .applyEuler(playerMesh.current.rotation)
     }
-
     // Tell the physics world to move the player sphere in that direction.
     // Next frame, the cycle repeats
     playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
@@ -175,6 +170,10 @@ export default function FirstPersonPlayer({
         <boxBufferGeometry />
         <meshPhongMaterial color={0xff0000} />
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
+          <mesh scale={0.25}>
+            <boxBufferGeometry />
+            <meshPhongMaterial color={0x00ff00} />
+          </mesh>
           <Camera name="First Person Cam" fov={75} near={0.01} far={1000 * 20}>
             {/*
             We child virtual controls to the camera so that it's always in front of 
@@ -188,6 +187,7 @@ export default function FirstPersonPlayer({
             )}
             <CameraShake decay intensity={0} />
           </Camera>
+          <Arms position={[0, -0.7, 0]} />
         </group>
       </mesh>
       <mesh ref={playerPhysicsMesh} visible={false}>
