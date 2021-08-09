@@ -9,7 +9,7 @@ import {
   useLoader,
   useFrame
 } from '@react-three/fiber'
-import { Vector3 } from 'three'
+import { Quaternion, Vector3 } from 'three'
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useAnimations from 'hooks/3d/use-animations'
@@ -27,19 +27,20 @@ export default function Arms({
   const { ref, actions, names } = useAnimations(animations)
 
   useEffect(() => {
-    console.log(actions)
-    console.log(nodes)
     swordBone.current = SkeletonUtils.getBoneByName('Xashi_Bone', nodes.Arms_Only_Character.skeleton)
     //actions[AnimAction].play()
-    //nodes.Xashi_Blade.visible = false
   }, [])
 
   const swordBone = useRef()
   const swordRef = useRef()
   const pv = useRef()
   const qv = useRef()
+  const refWorldQuaternion = useRef(new Quaternion())
+  const currentPosition = useRef((new Vector3()).fromArray(position))
 
   useFrame(() => {
+    ref.current.position.lerp(currentPosition.current, 0.7)
+    ref.current.getWorldQuaternion(refWorldQuaternion.current)
     if (swordBone.current) {
       pv.current = swordBone.current.getWorldPosition(pv.current)
       qv.current = swordBone.current.getWorldQuaternion(qv.current)
@@ -50,13 +51,8 @@ export default function Arms({
       swordRef.current.position.copy(ref.current.worldToLocal(pv.current))
       swordRef.current.
         quaternion
-        .multiplyQuaternions(ref.current.getWorldQuaternion().inverse(), qv.current)
+        .multiplyQuaternions(refWorldQuaternion.current.invert(), qv.current)
     }
-  })
-
-  const currentPosition = useRef((new Vector3()).fromArray(position))
-  useFrame(() => {
-    ref.current.position.lerp(currentPosition.current, 0.7)
   })
 
   return (

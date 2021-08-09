@@ -15,6 +15,7 @@ import {
   Euler,
   Vector3
 } from 'three'
+import useInnerWidth from 'hooks/use-inner-width'
 import {
   Buttons,
   Gamepad
@@ -26,7 +27,6 @@ import TouchControls from 'components/3d/controls/TouchControls'
 import KeyboardControls from 'components/3d/controls/KeyboardControls'
 import DpadControls from 'components/3d/controls/DpadControls'
 import VirtualJoystick from 'components/3d/controls/VirtualJoystick'
-import useDeviceSize from 'hooks/use-device-size'
 import Arms from 'components/3d/Arms'
 
 const PLAYER_MOVEMENT_SPEED = 5
@@ -80,6 +80,14 @@ export default function FirstPersonPlayer({
       'mozPointerLockElement' in window.document ||
       'webkitPointerLockElement' in window.document)
   }, [])
+
+  const innerWidth = useInnerWidth()
+  let cameraFov = 75
+  if (innerWidth <= 1024 && innerWidth > 500) {
+    cameraFov = 115
+  } else if (innerWidth <= 500) {
+    cameraFov = 135
+  }
 
   // This is the velocity of the player in the *current* frame. 
   // It will be updated after each tick in the physics world
@@ -170,11 +178,7 @@ export default function FirstPersonPlayer({
         <boxBufferGeometry />
         <meshPhongMaterial color={0xff0000} />
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
-          <mesh scale={0.25}>
-            <boxBufferGeometry />
-            <meshPhongMaterial color={0x00ff00} />
-          </mesh>
-          <Camera name="First Person Cam" fov={75} near={0.01} far={1000 * 20}>
+          <Camera name="First Person Cam" fov={cameraFov} near={0.01} far={1000 * 20}>
             {/*
             We child virtual controls to the camera so that it's always in front of 
             the camera like a HUD. And we only want it to show on small / touch devices

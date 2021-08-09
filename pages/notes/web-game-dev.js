@@ -98,7 +98,7 @@ destinationWorldPosition.copy(destinationParent.worldToLocal(sourceWorldPosition
               <CodeBlock lang="js" noButton showCodeByDefault>{`
 destinationWorldQuaternion
 .multiplyQuaternions(
-  destinationParentWorldQuaternion.inverse(),
+  destinationParentWorldQuaternion.invert(),
   sourceWorldQuaternion
 )
 `}</CodeBlock>
