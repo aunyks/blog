@@ -195,7 +195,7 @@ export default function FirstPersonPlayer({
             {/* {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
             <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
           )} */}
-            {(
+            {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
               <VirtualJoystick ref={movementJoystick} />
             )}
             <CameraShake decay intensity={0} />
