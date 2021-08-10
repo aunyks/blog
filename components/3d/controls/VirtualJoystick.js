@@ -4,7 +4,7 @@ import {
   forwardRef
 } from 'react'
 import Html from 'components/3d/3d-html'
-import useLandscape from 'hooks/use-landscape'
+import useInnerWidth from 'hooks/use-inner-width'
 
 const JOYSTICK_CENTER_X = 184
 const JOYSTICK_CENTER_Y = 184
@@ -13,11 +13,23 @@ const SVG_VIEWBOX_SIZE = 384
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
 const VirtualJoystick = forwardRef(({
-  position = [-0.5, -0.85, -1],
   ...props
 }, ref) => {
-  const isLandscape = useLandscape()
-  const calculatedPosition = isLandscape ? [position[0] - 1.2, position[1] + 0.75, position[2]] : position
+  const innerWidth = useInnerWidth()
+  let position = null
+  if (innerWidth > 1024) {
+    position = [-0.9, -0.4, -1]
+  } else if (innerWidth <= 1024 && innerWidth > 900) {
+    position = [-0.65, -0.75, -1]
+  } else if (innerWidth <= 900 && innerWidth > 770) {
+    position = [-1, -0.1, -1]
+  } else if (innerWidth <= 770 && innerWidth > 420) {
+    position = [-0.8, -0.1, -1]
+  } else if (innerWidth <= 420 && innerWidth > 375) {
+    position = [-0.425, -0.85, -1]
+  } else {
+    position = [-0.3, -0.8, -1]
+  }
 
   const virtualJoystick = useRef(null)
   useEffect(() => {
@@ -68,7 +80,7 @@ const VirtualJoystick = forwardRef(({
   return (
     <Html
       center
-      position={calculatedPosition}
+      position={position}
       {...props}>
       <style jsx>{`
           svg {
@@ -88,7 +100,7 @@ const VirtualJoystick = forwardRef(({
             fill: rgba(48, 48, 48, 0.4);
           }
         `}</style>
-      <svg width={isLandscape ? 160 : 180} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
+      <svg width="160" viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
         {/* Background Circle */}
         <circle cx="184" cy="184" r="110" />
         {/* The actual stick */}

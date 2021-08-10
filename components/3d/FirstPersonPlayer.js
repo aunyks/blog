@@ -82,9 +82,19 @@ export default function FirstPersonPlayer({
   }, [])
 
   const innerWidth = useInnerWidth()
-  let cameraFov = 70
-  if (innerWidth <= 1024 && innerWidth > 500) {
-    cameraFov = 104
+  let cameraFov = null
+  if (innerWidth <= 1366 && innerWidth > 1024) {
+    cameraFov = 80
+  } else if (innerWidth <= 1024 && innerWidth > 900) {
+    cameraFov = 100
+  } else if (innerWidth <= 900 && innerWidth > 830) {
+    cameraFov = 105
+  } else if (innerWidth <= 830 && innerWidth > 420) {
+    cameraFov = 70
+  } else if (innerWidth <= 420 && innerWidth > 376) {
+    cameraFov = 120
+  } else {
+    cameraFov = 120
   }
 
   // This is the velocity of the player in the *current* frame. 

@@ -3,6 +3,7 @@ import {
   useEffect
 } from 'react'
 
+// More fine grained than useDeviceSize
 const useInnerWidth = () => {
   const [innerWidth, setInnerWidth] = useState(0)
 
