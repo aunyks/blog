@@ -32,6 +32,11 @@ const VirtualJoystick = forwardRef(({
   }
 
   const virtualJoystick = useRef(null)
+  const transformMatrix = useRef(null)
+  const newX = useRef(null)
+  const newY = useRef(null)
+  const centeredX = useRef(null)
+  const centeredY = useRef(null)
   useEffect(() => {
     virtualJoystick.current = window.document.getElementById('virtual-joystick')
     virtualJoystick.current.setAttribute('cx', '184')
@@ -46,15 +51,15 @@ const VirtualJoystick = forwardRef(({
     }
     const onTouchMove = event => {
       virtualJoystick.current.classList.remove('active')
-      const transformMatrix = virtualJoystick.current.getScreenCTM()
-      const newX = (event.touches[0].clientX - transformMatrix.e) / transformMatrix.a
-      const newY = (event.touches[0].clientY - transformMatrix.f) / transformMatrix.d
-      const centeredX = clamp((newX - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS, -1, 1)
-      const centeredY = clamp((newY - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS, -1, 1)
-      virtualJoystick.current.setAttribute('cx', `${clamp(newX, JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS)}`)
-      virtualJoystick.current.setAttribute('cy', `${clamp(newY, JOYSTICK_CENTER_Y - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_Y + MAX_OFFSET_RADIUS)}`)
-      ref.current.x = centeredX
-      ref.current.y = centeredY
+      transformMatrix.current = virtualJoystick.current.getScreenCTM()
+      newX.current = (event.touches[0].clientX - transformMatrix.current.e) / transformMatrix.current.a
+      newY.current = (event.touches[0].clientY - transformMatrix.current.f) / transformMatrix.d
+      centeredX.current = clamp((newX.current - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS, -1, 1)
+      centeredY.current = clamp((newY.current - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS, -1, 1)
+      virtualJoystick.current.setAttribute('cx', `${clamp(newX.current, JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS)}`)
+      virtualJoystick.current.setAttribute('cy', `${clamp(newY.current, JOYSTICK_CENTER_Y - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_Y + MAX_OFFSET_RADIUS)}`)
+      ref.current.x = centeredX.current
+      ref.current.y = centeredY.current
     }
     const onTouchEnd = () => {
       virtualJoystick.current.classList.remove('active')

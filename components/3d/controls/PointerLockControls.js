@@ -53,19 +53,21 @@ export default function PointerLockControls({
     }
   }, [])
 
+  const movementX = useRef(null)
+  const movementY = useRef(null)
   useEffect(() => {
     const onMouseMove = event => {
       if (isPointerLocked) {
         // Update yaw euler
-        const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0
+        movementX.current = event.movementX || event.mozMovementX || event.webkitMovementX || 0
         yawEuler.current.setFromQuaternion(yawTarget.quaternion, 'YXZ')
-        yawEuler.current.y -= movementX * 0.002
+        yawEuler.current.y -= movementX.current * 0.002
         yawTarget.quaternion.setFromEuler(yawEuler.current)
 
         // Update pitch euler
-        const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0
+        movementY.current = event.movementY || event.mozMovementY || event.webkitMovementY || 0
         pitchEuler.current.setFromQuaternion(pitchTarget.quaternion, 'YXZ')
-        pitchEuler.current.x -= movementY * 0.002
+        pitchEuler.current.x -= movementY.current * 0.002
         // Restrict the player to looking betwene straight up and straight down. Can't 
         // let them break their neck
         pitchEuler.current.x = Math.max(Math.PI / 2 - MAX_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_PITCH_ANGLE, pitchEuler.current.x))

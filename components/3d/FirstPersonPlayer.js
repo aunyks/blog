@@ -2,13 +2,15 @@ import {
   useRef,
   useEffect,
   useLayoutEffect,
-  useState
+  useState,
+  useCallback
 } from 'react'
 import {
   useFrame,
   useThree
 } from '@react-three/fiber'
 import {
+  useBox,
   useSphere
 } from '@react-three/cannon'
 import {
@@ -31,7 +33,7 @@ import Arms from 'components/3d/Arms'
 
 const PLAYER_MOVEMENT_SPEED = 5
 
-const PHYSICS_SPHERE_DIAMETER = 0.35
+const PHYSICS_SPHERE_DIAMETER = 1.5
 const PHYSICS_SPHERE_RADIUS = PHYSICS_SPHERE_DIAMETER / 2
 
 const MIN_CAMERA_PITCH_ANGLE = Math.PI / 7
@@ -53,15 +55,35 @@ export default function FirstPersonPlayer({
     // Sphere radius should be half the average human shoulder width (35cm)
     args: PHYSICS_SPHERE_RADIUS
   }))
+  const [isOnGround, setOnGround] = useState(false)
+  const [groundDetectorMesh, groundDetectorPhysicsObject] = useBox(() => ({
+    isTrigger: true,
+    position: [0, 0, 0],
+    args: [0.5, 0.5, 0.5],
+    onCollideBegin: (({ target }) => {
+      console.log('begin', target)
+      // if target is ground
+      //setOnGround(true)
+    }),
+    onCollideEnd: (({ target }) => {
+      console.log('end', target)
+      // if target is ground
+      //setOnGround(false)
+    })
+  }))
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
 
   // Movement controls will tell us when and how quickly to move based on 
   // these values
   const forwardBack = useRef(0)
-  const setForwardBack = n => forwardBack.current = n
+  const setForwardBack = useCallback(n => {
+    forwardBack.current = n
+  }, [])
   const leftRight = useRef(0)
-  const setLeftRight = n => leftRight.current = n
+  const setLeftRight = useCallback(n => {
+    leftRight.current = n
+  }, [])
   // If the gamepad is connected, we don't render the dpad on mobile
   const [gamepadConnected, setGamepadConnected] = useState(false)
   // Controls need to be enabled after first render so that 
@@ -82,7 +104,7 @@ export default function FirstPersonPlayer({
   }, [])
 
   const innerWidth = useInnerWidth()
-  let cameraFov = null
+  let cameraFov = 70
   if (innerWidth <= 1366 && innerWidth > 1024) {
     cameraFov = 80
   } else if (innerWidth <= 1024 && innerWidth > 900) {
@@ -94,7 +116,9 @@ export default function FirstPersonPlayer({
   } else if (innerWidth <= 420 && innerWidth > 376) {
     cameraFov = 120
   } else {
-    cameraFov = 120
+    if (innerWidth <= 376) {
+      cameraFov = 120
+    }
   }
 
   // This is the velocity of the player in the *current* frame. 
@@ -110,8 +134,12 @@ export default function FirstPersonPlayer({
     // the visible mesh moves to the same position while 
     // making sure it's visibly touching the ground (assuming visible mesh origin is at ground)
     const visibleMeshPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
+    const groundTriggerPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
+    //let groundTriggerPhysicsVector = new Vector3()
     const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
+      groundDetectorPhysicsObject.position.copy(playerMesh.current.position)
+      //groundDetectorPhysicsObject.position.copy(groundTriggerPhysicsVector.fromArray(newPosition).add(groundTriggerPositionOffset))
     })
 
     return () => {
@@ -197,10 +225,10 @@ export default function FirstPersonPlayer({
     <>
       <group ref={playerMesh}>
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
-          <Camera name="First Person Cam" fov={cameraFov} near={0.01} far={1000 * 20}>
+          <Camera name="First Person Cam" position={[0, 0, PHYSICS_SPHERE_RADIUS]} fov={cameraFov} near={0.01} far={1000 * 20}>
             {/*
             We child virtual controls to the camera so that it's always in front of 
-            the camera like a HUD. And we only want it to show on small / touch devices
+            the camera like a HUD. And we only want it to show on touch devices
           */}
             {/* {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
             <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
@@ -211,18 +239,18 @@ export default function FirstPersonPlayer({
             <CameraShake decay intensity={0} />
           </Camera>
           <Arms
-            position={[0, -0.5, 0]}
+            position={[0, -0.5, PHYSICS_SPHERE_RADIUS]}
             currentAction={animationState} />
         </group>
       </group>
       <mesh ref={playerPhysicsMesh} visible={false}>
         <sphereBufferGeometry />
-        <meshPhongMaterial color={0x00ff00} />
+        <meshBasicMaterial color={0x00ff00} />
       </mesh>
-      {/*
-        If the device is small, it's likely touch screen.
-        Enable touch controls on small devices, pointer lock controls on large ones.
-      */}
+      <mesh ref={groundDetectorMesh} visible={false}>
+        <boxBufferGeometry />
+        <meshBasicMaterial color={0x00ff00} />
+      </mesh>
       {controlsEnabled && !isPointerLockAvailable && (
         <TouchControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
