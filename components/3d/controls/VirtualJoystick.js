@@ -13,7 +13,7 @@ const SVG_VIEWBOX_SIZE = 384
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
 const VirtualJoystick = forwardRef(({
-  position = [-0.5, -1.3, -1],
+  position = [-0.5, -0.85, -1],
   ...props
 }, ref) => {
   const isLandscape = useLandscape()

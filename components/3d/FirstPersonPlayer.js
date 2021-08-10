@@ -84,9 +84,7 @@ export default function FirstPersonPlayer({
   const innerWidth = useInnerWidth()
   let cameraFov = 70
   if (innerWidth <= 1024 && innerWidth > 500) {
-    cameraFov = 115
-  } else if (innerWidth <= 500) {
-    cameraFov = 135
+    cameraFov = 104
   }
 
   // This is the velocity of the player in the *current* frame. 
@@ -142,17 +140,6 @@ export default function FirstPersonPlayer({
     sideVector.current.set(
       -leftRight.current, 0, 0
     )
-    if (forwardBack.current !== 0 || leftRight.current !== 0) {
-      if (animationState !== "Walk_Sword_Forward") {
-        // DANGEROUS
-        setAnimState("Walk_Sword_Forward")
-      }
-    } else {
-      if (animationState !== "Idle_Sword_Forward") {
-        // DANGEROUS
-        setAnimState("Idle_Sword_Forward")
-      }
-    }
     if (controlsEnabled) {
       if (movementJoystick.current) {
         forwardVector.current.set(0, 0, movementJoystick.current.y)
@@ -170,6 +157,17 @@ export default function FirstPersonPlayer({
         // cameraAnchorEuler.current.setFromQuaternion(firstPersonCameraAnchor.current.quaternion, 'YXZ')
         cameraAnchorEuler.current.x -= gamepadRef.current.axes[3] * 0.07
         firstPersonCameraAnchor.current.quaternion.setFromEuler(cameraAnchorEuler.current)
+      }
+    }
+    if (forwardVector.current.z !== 0 || sideVector.current.x !== 0) {
+      if (animationState !== "Walk_Sword_Forward") {
+        // DANGEROUS
+        setAnimState("Walk_Sword_Forward")
+      }
+    } else {
+      if (animationState !== "Idle_Sword_Forward") {
+        // DANGEROUS
+        setAnimState("Idle_Sword_Forward")
       }
     }
     // Determine the direction the camera is facing and 
@@ -197,7 +195,7 @@ export default function FirstPersonPlayer({
             {/* {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
             <DpadControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
           )} */}
-            {controlsEnabled && !gamepadConnected && !isPointerLockAvailable && (
+            {(
               <VirtualJoystick ref={movementJoystick} />
             )}
             <CameraShake decay intensity={0} />
