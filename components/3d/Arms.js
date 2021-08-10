@@ -15,10 +15,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useAnimations from 'hooks/3d/use-animations'
 import Xashi from 'components/3d/Xashi'
 
-const AnimAction = 'Arms Only ArmatureAction'
-
 export default function Arms({
   position = [0, 0, 0],
+  currentAction = 'Idle_Sword_Forward',
   ...props
 }) {
   const { scene, animations } = useLoader(GLTFLoader, '/3d/models/slice-n-dice-3d-assets.glb')
@@ -28,8 +27,16 @@ export default function Arms({
 
   useEffect(() => {
     swordBone.current = SkeletonUtils.getBoneByName('Xashi_Bone', nodes.Arms_Only_Character.skeleton)
-    //actions[AnimAction].play()
   }, [])
+
+  const previousAction = useRef(currentAction)
+  useEffect(() => {
+    actions[currentAction].reset()
+    actions[currentAction]
+      .crossFadeFrom(actions[previousAction.current], 0.1, true)
+      .play()
+    previousAction.current = currentAction
+  }, [currentAction])
 
   const swordBone = useRef()
   const swordRef = useRef()
@@ -57,7 +64,7 @@ export default function Arms({
 
   return (
     <group
-      ref={ref} {...props} scale={0.25}>
+      ref={ref} {...props} scale={0.2} rotation={[0, Math.PI, 0]}>
       <primitive object={nodes.Root_Bone} rotation={[0, Math.PI, 0]} />
       <skinnedMesh
         castShadow

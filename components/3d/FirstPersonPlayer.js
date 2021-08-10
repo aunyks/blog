@@ -82,7 +82,7 @@ export default function FirstPersonPlayer({
   }, [])
 
   const innerWidth = useInnerWidth()
-  let cameraFov = 75
+  let cameraFov = 70
   if (innerWidth <= 1024 && innerWidth > 500) {
     cameraFov = 115
   } else if (innerWidth <= 500) {
@@ -122,6 +122,8 @@ export default function FirstPersonPlayer({
   // This is for gamepads to control player mesh yaw
   const playerEuler = useRef(new Euler())
 
+  const [animationState, setAnimState] = useState("Idle_Sword_Forward")
+
   // On each frame tick in our graphics world...
   useFrame(({ camera }) => {
     if (controlsEnabled) {
@@ -140,6 +142,17 @@ export default function FirstPersonPlayer({
     sideVector.current.set(
       -leftRight.current, 0, 0
     )
+    if (forwardBack.current !== 0 || leftRight.current !== 0) {
+      if (animationState !== "Walk_Sword_Forward") {
+        // DANGEROUS
+        setAnimState("Walk_Sword_Forward")
+      }
+    } else {
+      if (animationState !== "Idle_Sword_Forward") {
+        // DANGEROUS
+        setAnimState("Idle_Sword_Forward")
+      }
+    }
     if (controlsEnabled) {
       if (movementJoystick.current) {
         forwardVector.current.set(0, 0, movementJoystick.current.y)
@@ -174,9 +187,7 @@ export default function FirstPersonPlayer({
 
   return (
     <>
-      <mesh ref={playerMesh} castShadow>
-        <boxBufferGeometry />
-        <meshPhongMaterial color={0xff0000} />
+      <group ref={playerMesh}>
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
           <Camera name="First Person Cam" fov={cameraFov} near={0.01} far={1000 * 20}>
             {/*
@@ -191,9 +202,11 @@ export default function FirstPersonPlayer({
             )}
             <CameraShake decay intensity={0} />
           </Camera>
-          <Arms position={[0, -0.7, 0]} />
+          <Arms
+            position={[0, -0.5, 0]}
+            currentAction={animationState} />
         </group>
-      </mesh>
+      </group>
       <mesh ref={playerPhysicsMesh} visible={false}>
         <sphereBufferGeometry />
         <meshPhongMaterial color={0x00ff00} />

@@ -13,11 +13,11 @@ const SVG_VIEWBOX_SIZE = 384
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
 const VirtualJoystick = forwardRef(({
-  position = [-0.13, -0.3, -1],
+  position = [-0.5, -1.3, -1],
   ...props
 }, ref) => {
   const isLandscape = useLandscape()
-  const calculatedPosition = isLandscape ? [position[0] - 0.7, position[1] - 0.05, position[2]] : position
+  const calculatedPosition = isLandscape ? [position[0] - 1.2, position[1] + 0.75, position[2]] : position
 
   const virtualJoystick = useRef(null)
   useEffect(() => {
@@ -88,7 +88,7 @@ const VirtualJoystick = forwardRef(({
             fill: rgba(48, 48, 48, 0.4);
           }
         `}</style>
-      <svg width={isLandscape ? 160 : 200} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
+      <svg width={isLandscape ? 160 : 180} viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
         {/* Background Circle */}
         <circle cx="184" cy="184" r="110" />
         {/* The actual stick */}
