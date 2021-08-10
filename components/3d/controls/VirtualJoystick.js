@@ -53,7 +53,7 @@ const VirtualJoystick = forwardRef(({
       virtualJoystick.current.classList.remove('active')
       transformMatrix.current = virtualJoystick.current.getScreenCTM()
       newX.current = (event.touches[0].clientX - transformMatrix.current.e) / transformMatrix.current.a
-      newY.current = (event.touches[0].clientY - transformMatrix.current.f) / transformMatrix.d
+      newY.current = (event.touches[0].clientY - transformMatrix.current.f) / transformMatrix.current.d
       centeredX.current = clamp((newX.current - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS, -1, 1)
       centeredY.current = clamp((newY.current - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS, -1, 1)
       virtualJoystick.current.setAttribute('cx', `${clamp(newX.current, JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS)}`)
