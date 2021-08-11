@@ -1,5 +1,5 @@
 import {
-  useMemo
+  useMemo, useRef
 } from 'react'
 import {
   useLoader
@@ -11,6 +11,7 @@ import {
   useHeightfield
 } from '@react-three/cannon'
 import useSWR from 'swr'
+import createUserData from 'lib/3d/createUserData'
 
 // Returns matrix data to be passed to heightfield
 function createHeightfieldMatrix(image, scale) {
@@ -82,11 +83,18 @@ export function Heightmap({
     })
   }, null, [heights, elementSize, position, rotation, maxHeight])
 
+  const userData = useRef(createUserData({
+    type: 'Ground',
+    name: 'Terrain'
+  }))
+
   return (
     <mesh
       position={position}
-      rotation={[rotation[0] + -Math.PI / 2, rotation[1] + Math.PI / 2, rotation[2], 'YXZ']}
-      receiveShadow>
+      rotation={[rotation[0] - Math.PI / 2, rotation[1] + Math.PI / 2, rotation[2], 'YXZ']}
+      receiveShadow
+      userData={userData.current}
+      {...props}>
       <planeBufferGeometry args={[
         heightmap.image.width * elementSize,
         heightmap.image.height * elementSize,

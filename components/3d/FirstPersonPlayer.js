@@ -30,6 +30,7 @@ import KeyboardControls from 'components/3d/controls/KeyboardControls'
 import DpadControls from 'components/3d/controls/DpadControls'
 import VirtualJoystick from 'components/3d/controls/VirtualJoystick'
 import Arms from 'components/3d/Arms'
+import createUserData from 'lib/3d/createUserData'
 
 const PLAYER_MOVEMENT_SPEED = 5
 
@@ -61,14 +62,14 @@ export default function FirstPersonPlayer({
     position: [0, 0, 0],
     args: [0.5, 0.5, 0.5],
     onCollideBegin: (({ target }) => {
-      console.log('begin', target)
-      // if target is ground
-      //setOnGround(true)
+      if (target.userData.type === 'Ground') {
+        setOnGround(true)
+      }
     }),
     onCollideEnd: (({ target }) => {
-      console.log('end', target)
-      // if target is ground
-      //setOnGround(false)
+      if (target.userData.type === 'Ground') {
+        setOnGround(false)
+      }
     })
   }))
   // Also has a separate mesh that will be rendered to the screen
@@ -138,7 +139,11 @@ export default function FirstPersonPlayer({
     //let groundTriggerPhysicsVector = new Vector3()
     const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
-      groundDetectorPhysicsObject.position.copy(playerMesh.current.position)
+      groundDetectorPhysicsObject.position.set(
+        playerMesh.current.position.x,
+        playerMesh.current.position.y - 0.23,
+        playerMesh.current.position.z
+      )
       //groundDetectorPhysicsObject.position.copy(groundTriggerPhysicsVector.fromArray(newPosition).add(groundTriggerPositionOffset))
     })
 
@@ -158,7 +163,20 @@ export default function FirstPersonPlayer({
   // This is for gamepads to control player mesh yaw
   const playerEuler = useRef(new Euler())
 
+  const [isMoving, setMoving] = useState(false)
   const [animationState, setAnimState] = useState("Idle_Sword_Forward")
+  useEffect(() => {
+    console.log(isOnGround, isMoving)
+    if (isOnGround) {
+      if (isMoving) {
+        setAnimState("Walk_Sword_Forward")
+      } else {
+        setAnimState("Idle_Sword_Forward")
+      }
+    } else {
+      // in the air
+    }
+  }, [isMoving, isOnGround])
 
   // On each frame tick in our graphics world...
   useFrame(({ camera }) => {
@@ -198,14 +216,14 @@ export default function FirstPersonPlayer({
       }
     }
     if (forwardVector.current.z !== 0 || sideVector.current.x !== 0) {
-      if (animationState !== "Walk_Sword_Forward") {
+      if (!isMoving) {
         // DANGEROUS
-        setAnimState("Walk_Sword_Forward")
+        setMoving(true)
       }
     } else {
-      if (animationState !== "Idle_Sword_Forward") {
+      if (isMoving) {
         // DANGEROUS
-        setAnimState("Idle_Sword_Forward")
+        setMoving(false)
       }
     }
     // Determine the direction the camera is facing and 
@@ -223,7 +241,10 @@ export default function FirstPersonPlayer({
 
   return (
     <>
-      <group ref={playerMesh}>
+      <group ref={playerMesh} userData={createUserData({
+        type: 'Player',
+        name: 'FirstPersonPlayer'
+      })}>
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
           <Camera name="First Person Cam" position={[0, 0, PHYSICS_SPHERE_RADIUS]} fov={cameraFov} near={0.01} far={1000 * 20}>
             {/*
