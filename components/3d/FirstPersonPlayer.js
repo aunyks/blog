@@ -10,7 +10,6 @@ import {
   useThree
 } from '@react-three/fiber'
 import {
-  useBox,
   useSphere
 } from '@react-three/cannon'
 import {
@@ -57,21 +56,9 @@ export default function FirstPersonPlayer({
     args: PHYSICS_SPHERE_RADIUS
   }))
   const [isOnGround, setOnGround] = useState(false)
-  const [groundDetectorMesh, groundDetectorPhysicsObject] = useBox(() => ({
-    isTrigger: true,
-    position: [0, 0, 0],
-    args: [0.5, 0.5, 0.5],
-    onCollideBegin: (({ target }) => {
-      if (target.userData.type === 'Ground') {
-        setOnGround(true)
-      }
-    }),
-    onCollideEnd: (({ target }) => {
-      if (target.userData.type === 'Ground') {
-        setOnGround(false)
-      }
-    })
-  }))
+  // if (target.userData.type === 'Ground') {
+  //   setOnGround(true)
+  // }
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
 
@@ -135,16 +122,8 @@ export default function FirstPersonPlayer({
     // the visible mesh moves to the same position while 
     // making sure it's visibly touching the ground (assuming visible mesh origin is at ground)
     const visibleMeshPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
-    const groundTriggerPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
-    //let groundTriggerPhysicsVector = new Vector3()
     const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
-      groundDetectorPhysicsObject.position.set(
-        playerMesh.current.position.x,
-        playerMesh.current.position.y - 0.23,
-        playerMesh.current.position.z
-      )
-      //groundDetectorPhysicsObject.position.copy(groundTriggerPhysicsVector.fromArray(newPosition).add(groundTriggerPositionOffset))
     })
 
     return () => {
@@ -266,10 +245,6 @@ export default function FirstPersonPlayer({
       </group>
       <mesh ref={playerPhysicsMesh} visible={false}>
         <sphereBufferGeometry />
-        <meshBasicMaterial color={0x00ff00} />
-      </mesh>
-      <mesh ref={groundDetectorMesh} visible={false}>
-        <boxBufferGeometry />
         <meshBasicMaterial color={0x00ff00} />
       </mesh>
       {controlsEnabled && !isPointerLockAvailable && (
