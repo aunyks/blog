@@ -1,5 +1,5 @@
 import {
-  useState
+  useContext
 } from 'react'
 import {
   Physics
@@ -13,15 +13,10 @@ export default function TimeSensitivePhysics({
   children,
   ...props
 }) {
-  const [timeScale, setTimeScale] = useState(initialTimeScale)
+  const { timeScale } = useContext(TimeScaleContext)
   return (
-    <TimeScaleContext.Provider value={{
-      timeScale: timeScale,
-      setTimeScale: setTimeScale
-    }}>
-      <Physics step={DEFAULT_STEP * timeScale} {...props}>
-        {children}
-      </Physics>
-    </TimeScaleContext.Provider>
+    <Physics step={DEFAULT_STEP * timeScale} {...props}>
+      {children}
+    </Physics>
   )
 }
