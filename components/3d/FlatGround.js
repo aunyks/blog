@@ -1,7 +1,7 @@
 import {
   usePlane
 } from '@react-three/cannon'
-import createUserData from 'lib/3d/createUserData'
+import createUserData from 'utils/3d/createUserData'
 import { useRef } from 'react'
 
 export default function FlatGround({

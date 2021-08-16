@@ -1,10 +1,8 @@
 import {
-  Physics
-} from '@react-three/cannon'
-import {
   EffectComposer,
   Bloom
 } from '@react-three/postprocessing'
+import TimeSensitivePhysics from 'components/3d/TimeSensitivePhysics'
 import FlatGround from 'components/3d/FlatGround'
 import Terrain from 'components/3d/Terrain'
 import SkyDome from 'components/3d/SkyDome'
@@ -16,7 +14,7 @@ import GameEventManager from 'components/3d/GameEventManager'
 
 export default function FPGame() {
   return (
-    <Physics shouldInvalidate={false}>
+    <TimeSensitivePhysics shouldInvalidate={false}>
       <GameEventManager>
         <PauseManager>
           <GameDirector defaultCam="First Person Cam">
@@ -30,6 +28,6 @@ export default function FPGame() {
           <Bloom intensity={10} luminanceThreshold={0.8} />
         </EffectComposer>
       </GameEventManager>
-    </Physics>
+    </TimeSensitivePhysics>
   )
 }

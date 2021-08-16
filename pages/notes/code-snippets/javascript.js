@@ -9,6 +9,26 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Debounce a Function">
+        <p>
+          Adapted from <a href="https://ondrabus.com" target="_blank">Ondrej Polesny's</a> <a href="https://www.freecodecamp.org/news/javascript-debounce-example" target="_blank">article on the topic</a>, this
+          function lets you debounce the execution of the function that's passed as an argument. For example,
+          writing <code>const mashButton = debounce(() => console.log('thanks for waiting'), 500)</code> lets you
+          repeatedly call <code>mashButton</code>. It will debounce the log function until 500 milliseconds have passed without the
+          function being called again. After 500 milliseconds, the log function will be invoked.
+        </p>
+        <CodeBlock lang="js">{`
+function debounce(func, timeout = 300) {
+  let timer = null
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, timeout)
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="A N-ary Tree Node">
         <p>
           An ES6 class that defines a node for use in discrete trees. It makes very few assumptions other

@@ -3,10 +3,12 @@ import {
   useEffect,
   useState,
   useRef,
-  useImperativeHandle
+  useImperativeHandle,
+  useContext
 } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Euler } from 'three'
+import TimeScaleContext from 'contexts/3d/TimeScaleContext'
 
 // From https://github.com/pmndrs/three-stdlib/blob/acfbca94567b589a1f71c912874be4031887919b/src/math/SimplexNoise.ts
 class SimplexNoise {
@@ -545,6 +547,7 @@ const CameraShake = forwardRef(({
   pitchFrequency = 1,
   rollFrequency = 1,
 }, ref) => {
+  const { timeScale } = useContext(TimeScaleContext)
   const camera = useThree((state) => state.camera)
   const intensityRef = useRef(intensity)
   const initialRotation = useRef(camera.rotation.clone())
@@ -584,7 +587,7 @@ const CameraShake = forwardRef(({
     )
 
     if (decay && intensityRef.current > 0) {
-      intensityRef.current -= decayRate * delta
+      intensityRef.current -= decayRate * delta * timeScale
       constrainIntensity()
     }
   })

@@ -29,7 +29,8 @@ import KeyboardControls from 'components/3d/controls/KeyboardControls'
 import DpadControls from 'components/3d/controls/DpadControls'
 import VirtualJoystick from 'components/3d/controls/VirtualJoystick'
 import Arms from 'components/3d/Arms'
-import createUserData from 'lib/3d/createUserData'
+import createUserData from 'utils/3d/createUserData'
+import debounce from 'utils/debounce'
 
 const PLAYER_MOVEMENT_SPEED = 5
 
@@ -39,6 +40,9 @@ const PHYSICS_SPHERE_RADIUS = PHYSICS_SPHERE_DIAMETER / 2
 const MIN_CAMERA_PITCH_ANGLE = Math.PI / 7
 const MAX_CAMERA_PITCH_ANGLE = 6 * Math.PI / 7
 
+const DOWN_VECTOR = new Vector3(0, -1, 0)
+const DEBOUNCE_GROUND_CALC_MS = 200
+
 export default function FirstPersonPlayer({
   startPosition = [0, 2, 0],
   freezeControls
@@ -46,6 +50,8 @@ export default function FirstPersonPlayer({
   const gamepadRef = useRef()
   const movementJoystick = useRef()
   const firstPersonCameraAnchor = useRef()
+  const objectUnderPlayerUuid = useRef(null)
+  const underPlayerNormalVector = useRef(new Vector3())
 
   // The player has a spherical physics body to 
   // allow for smooth movement
@@ -53,12 +59,27 @@ export default function FirstPersonPlayer({
     mass: 1,
     position: startPosition,
     // Sphere radius should be half the average human shoulder width (35cm)
-    args: PHYSICS_SPHERE_RADIUS
+    args: PHYSICS_SPHERE_RADIUS,
+    onCollide: debounce(({ body, contact }) => {
+      underPlayerNormalVector.current.fromArray(contact.contactNormal)
+      if (underPlayerNormalVector.current.dot(DOWN_VECTOR) < 0.6) {
+        if (!isOnGround) {
+          objectUnderPlayerUuid.current = body.uuid
+          setOnGround(true)
+        }
+      }
+    }, DEBOUNCE_GROUND_CALC_MS),
+    onCollideEnd: debounce(({ body }) => {
+      if (body.uuid === objectUnderPlayerUuid.current) {
+        if (isOnGround) {
+          objectUnderPlayerUuid.current = null
+          setOnGround(false)
+        }
+      }
+    }, DEBOUNCE_GROUND_CALC_MS)
   }))
   const [isOnGround, setOnGround] = useState(false)
-  // if (target.userData.type === 'Ground') {
-  //   setOnGround(true)
-  // }
+
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
 
@@ -125,7 +146,6 @@ export default function FirstPersonPlayer({
     const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
     })
-
     return () => {
       velocityUnsubscribe()
       positionUnsubscribe()
@@ -145,7 +165,6 @@ export default function FirstPersonPlayer({
   const [isMoving, setMoving] = useState(false)
   const [animationState, setAnimState] = useState("Idle_Sword_Forward")
   useEffect(() => {
-    console.log(isOnGround, isMoving)
     if (isOnGround) {
       if (isMoving) {
         setAnimState("Walk_Sword_Forward")

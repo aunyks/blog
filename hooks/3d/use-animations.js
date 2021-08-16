@@ -1,7 +1,8 @@
 import {
   useRef,
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react'
 import {
   useFrame
@@ -10,6 +11,7 @@ import {
   Object3D,
   AnimationMixer
 } from 'three'
+import TimeScaleContext from 'contexts/3d/TimeScaleContext'
 
 // From 
 // https://github.com/pmndrs/drei/blob/ac5f687f2b6d38c3aaac4c6d700987e95adfc14c/src/core/useAnimations.tsx
@@ -17,6 +19,7 @@ export default function useAnimations(
   clips,
   root
 ) {
+  const { timeScale } = useContext(TimeScaleContext)
   const ref = useRef()
   const [actualRef] = useState(() => (root ? (root instanceof Object3D ? { current: root } : root) : ref))
   const [mixer] = useState(() => new AnimationMixer(null))
@@ -38,7 +41,7 @@ export default function useAnimations(
     )
     return { ref: actualRef, clips, actions, names: clips.map((c) => c.name), mixer }
   })
-  useFrame((state, delta) => mixer.update(delta))
+  useFrame((state, delta) => mixer.update(delta * timeScale))
   useEffect(() => {
     const currentRoot = actualRef.current
     return () => {

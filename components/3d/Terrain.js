@@ -11,7 +11,7 @@ import {
   useHeightfield
 } from '@react-three/cannon'
 import useSWR from 'swr'
-import createUserData from 'lib/3d/createUserData'
+import createUserData from 'utils/3d/createUserData'
 
 // Returns matrix data to be passed to heightfield
 function createHeightfieldMatrix(image, scale) {

@@ -1,7 +1,6 @@
 const path = require('path');
 
 const PATH_DELIMITER = '[\\\\/]'; // match 2 antislashes or one slash
-
 /**
  * Stolen from https://stackoverflow.com/questions/10776600/testing-for-equality-of-regular-expressions
  */
@@ -9,15 +8,15 @@ const regexEqual = (x, y) => {
   return (x instanceof RegExp) && (y instanceof RegExp) &&
     (x.source === y.source) && (x.global === y.global) &&
     (x.ignoreCase === y.ignoreCase) && (x.multiline === y.multiline);
-};
+}
 
 const generateIncludes = (modules) => {
   return modules.map(module => (new RegExp(`${safePath(module)}(?!.*node_modules)`)));
-};
+}
 
 const generateExcludes = (modules) => {
   return [new RegExp(`node_modules${PATH_DELIMITER}(?!(${modules.map(safePath).join('|')})(?!.*node_modules))`)];
-};
+}
 
 /**
  * On Windows, the Regex won't match as Webpack tries to resolve the
@@ -29,9 +28,9 @@ const safePath = (module) => module.split('/').join(PATH_DELIMITER);
  * Actual Next.js plugin
  */
 const withTranspiledModules = (nextConfig = {}) => {
-  const { transpileModules = [] } = nextConfig;
-  const includes = generateIncludes(transpileModules);
-  const excludes = generateExcludes(transpileModules);
+  const { transpileModules = [] } = nextConfig
+  const includes = generateIncludes(transpileModules)
+  const excludes = generateExcludes(transpileModules)
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
@@ -39,12 +38,10 @@ const withTranspiledModules = (nextConfig = {}) => {
       if (!options.defaultLoaders) {
         throw new Error(
           'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
-        );
+        )
       }
-
       // Avoid Webpack to resolve transpiled modules path to their real path
       config.resolve.symlinks = false;
-
       if (Array.isArray(config.externals)) {
         config.externals = config.externals.map(external => {
           if (typeof external !== 'function') return external;
@@ -55,25 +52,21 @@ const withTranspiledModules = (nextConfig = {}) => {
                 : include.test(req)
             )
               ? cb()
-              : external(ctx, req, cb);
-          };
-        });
+              : external(ctx, req, cb)
+          }
+        })
       }
-
       // Add a rule to include and parse all modules
       config.module.rules.push({
         test: /\.+(js|jsx|ts|tsx)$/,
         loader: options.defaultLoaders.babel,
         include: includes
-      });
-
+      })
       if (typeof nextConfig.webpack === 'function') {
         return nextConfig.webpack(config, options);
       }
-
-      return config;
+      return config
     },
-
     // webpackDevMiddleware needs to be told to watch the changes in the
     // transpiled modules directories
     webpackDevMiddleware(config) {
@@ -82,18 +75,15 @@ const withTranspiledModules = (nextConfig = {}) => {
       // https://github.com/zeit/next.js/blob/815f2e91386a0cd046c63cbec06e4666cff85971/packages/next/server/hot-reloader.js#L335
       const ignored = config.watchOptions.ignored.filter(
         regexp => !regexEqual(regexp, /[\\/]node_modules[\\/]/)
-      ).concat(excludes);
-
+      ).concat(excludes)
       config.watchOptions.ignored = ignored;
-
       if (typeof nextConfig.webpackDevMiddleware === 'function') {
-        return nextConfig.webpackDevMiddleware(config);
+        return nextConfig.webpackDevMiddleware(config)
       }
-
-      return config;
+      return config
     }
-  });
-};
+  })
+}
 
 // From https://github.com/wellcometrust/next-plugin-transpile-modules
 module.exports = withTranspiledModules({
