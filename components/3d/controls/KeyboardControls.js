@@ -9,12 +9,19 @@ import {
 import useKeysPressed from 'hooks/use-keys-pressed'
 import PauseContext from 'contexts/3d/PauseContext'
 
-export default function KeyboardControls({ onForwardBack, onLeftRight, ...props }) {
+export default function KeyboardControls({
+  onForwardBack,
+  onLeftRight,
+  onJump = () => { },
+  ...props
+}) {
   const kbdForward = useKeysPressed(['w', 'W', 'ArrowUp'])
   const kbdLeft = useKeysPressed(['a', 'A', 'ArrowLeft'])
   const kbdBack = useKeysPressed(['s', 'S', 'ArrowDown'])
   const kbdRight = useKeysPressed(['d', 'D', 'ArrowRight'])
+  const spacebar = useKeysPressed([' '])
   const p = useKeysPressed(['p', 'P'])
+
   const { isPaused, setPaused } = useContext(PauseContext)
   useEffect(() => {
     if (p) {
@@ -22,28 +29,36 @@ export default function KeyboardControls({ onForwardBack, onLeftRight, ...props 
     }
   }, [p])
 
-  let forwardBackValue = 0
-  let leftRightValue = 0
-  if (kbdForward) {
-    forwardBackValue = 1
-  }
-  if (kbdBack) {
-    forwardBackValue = -1
-  }
-  if (kbdRight) {
-    leftRightValue = 1
-  }
-  if (kbdLeft) {
-    leftRightValue = -1
-  }
+  useEffect(() => {
+    if (spacebar) {
+      onJump(2)
+    } else {
+      onJump(0)
+    }
+  }, [spacebar])
 
   useEffect(() => {
-    onForwardBack(forwardBackValue)
+    if (kbdForward) {
+      onForwardBack(1)
+    }
+    if (kbdBack) {
+      onForwardBack(-1)
+    }
+    if (!kbdBack && !kbdForward) {
+      onForwardBack(0)
+    }
   }, [kbdForward, kbdBack])
 
-
   useEffect(() => {
-    onLeftRight(leftRightValue)
+    if (kbdRight) {
+      onLeftRight(1)
+    }
+    if (kbdLeft) {
+      onLeftRight(-1)
+    }
+    if (!kbdLeft && !kbdRight) {
+      onLeftRight(0)
+    }
   }, [kbdRight, kbdLeft])
 
   return null

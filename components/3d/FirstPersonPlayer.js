@@ -41,7 +41,8 @@ const MIN_CAMERA_PITCH_ANGLE = Math.PI / 7
 const MAX_CAMERA_PITCH_ANGLE = 6 * Math.PI / 7
 
 const DOWN_VECTOR = new Vector3(0, -1, 0)
-const DEBOUNCE_GROUND_CALC_MS = 200
+const ON_GROUND_DEBOUNCE_CALC_MS = 200
+const OFF_GROUND_DEBOUNCE_CALC_MS = 1000
 
 export default function FirstPersonPlayer({
   startPosition = [0, 2, 0],
@@ -52,10 +53,33 @@ export default function FirstPersonPlayer({
   const firstPersonCameraAnchor = useRef()
   const objectUnderPlayerUuid = useRef(null)
   const underPlayerNormalVector = useRef(new Vector3())
+  const isOnGround = useRef(false)
+  const setOnGround = useCallback(bv => {
+    isOnGround.current = bv
+  }, [])
+  const [groundCount, setGroundCount] = useState(0)
+
+
+  useEffect(() => {
+    const onOnGroundMessage = ({ origin, data }) => {
+      if (origin === window.origin) {
+        if (data !== isOnGround.current) {
+          setOnGround(data)
+          // this is horribly hacky
+          setGroundCount(Math.random())
+        }
+      }
+    }
+    window.addEventListener('message', onOnGroundMessage)
+    return () => {
+      window.removeEventListener('message', onOnGroundMessage)
+    }
+  }, [])
 
   // The player has a spherical physics body to 
   // allow for smooth movement
-  const [playerPhysicsMesh, playerPhysicsObject] = useSphere(() => ({
+  const playerPhysicsMesh = useRef()
+  const [_, playerPhysicsObject] = useSphere(() => ({
     mass: 1,
     position: startPosition,
     // Sphere radius should be half the average human shoulder width (35cm)
@@ -63,22 +87,17 @@ export default function FirstPersonPlayer({
     onCollide: debounce(({ body, contact }) => {
       underPlayerNormalVector.current.fromArray(contact.contactNormal)
       if (underPlayerNormalVector.current.dot(DOWN_VECTOR) < 0.6) {
-        if (!isOnGround) {
-          objectUnderPlayerUuid.current = body.uuid
-          setOnGround(true)
-        }
+        objectUnderPlayerUuid.current = body.uuid
+        window.postMessage(true, window.origin)
       }
-    }, DEBOUNCE_GROUND_CALC_MS),
+    }, ON_GROUND_DEBOUNCE_CALC_MS),
     onCollideEnd: debounce(({ body }) => {
       if (body.uuid === objectUnderPlayerUuid.current) {
-        if (isOnGround) {
-          objectUnderPlayerUuid.current = null
-          setOnGround(false)
-        }
+        objectUnderPlayerUuid.current = null
+        window.postMessage(false, window.origin)
       }
-    }, DEBOUNCE_GROUND_CALC_MS)
-  }))
-  const [isOnGround, setOnGround] = useState(false)
+    }, OFF_GROUND_DEBOUNCE_CALC_MS)
+  }), playerPhysicsMesh, [])
 
   // Also has a separate mesh that will be rendered to the screen
   const playerMesh = useRef()
@@ -110,6 +129,13 @@ export default function FirstPersonPlayer({
     setPointerLockAvailable('pointerLockElement' in window.document ||
       'mozPointerLockElement' in window.document ||
       'webkitPointerLockElement' in window.document)
+  }, [])
+
+  const jump = useRef(0)
+  const setJump = useCallback(n => {
+    if (isOnGround.current) {
+      jump.current = n
+    }
   }, [])
 
   const innerWidth = useInnerWidth()
@@ -165,18 +191,17 @@ export default function FirstPersonPlayer({
   const [isMoving, setMoving] = useState(false)
   const [animationState, setAnimState] = useState("Idle_Sword_Forward")
   useEffect(() => {
-    if (isOnGround) {
+    if (isOnGround.current) {
       if (isMoving) {
         setAnimState("Walk_Sword_Forward")
       } else {
         setAnimState("Idle_Sword_Forward")
       }
     } else {
-      // in the air
+      setAnimState("Falling_Sword_Forward")
     }
-  }, [isMoving, isOnGround])
+  }, [isMoving, groundCount])
 
-  // On each frame tick in our graphics world...
   useFrame(({ camera }) => {
     if (controlsEnabled) {
       // Restrict camera pitch to override what TouchControls and PointerLockControls 
@@ -234,7 +259,7 @@ export default function FirstPersonPlayer({
     }
     // Tell the physics world to move the player sphere in that direction.
     // Next frame, the cycle repeats
-    playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
+    playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y + jump.current, newVelocity.current.z)
   })
 
   return (
@@ -273,7 +298,10 @@ export default function FirstPersonPlayer({
         <PointerLockControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
       {controlsEnabled && (
-        <KeyboardControls onForwardBack={setForwardBack} onLeftRight={setLeftRight} />
+        <KeyboardControls
+          onForwardBack={setForwardBack}
+          onLeftRight={setLeftRight}
+          onJump={setJump} />
       )}
       <Gamepad
         ref={gamepadRef}

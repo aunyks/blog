@@ -15,7 +15,7 @@ const Xashi = forwardRef((props, ref) => {
     return () => nodes.Xashi.geometry.dispose()
   }, [])
   return (
-    <mesh ref={ref} geometry={nodes.Xashi.geometry} scale={3.25}>
+    <mesh ref={ref} geometry={nodes.Xashi.geometry} scale={3.4}>
       <meshBasicMaterial color={0x00ff00} />
     </mesh>
   )

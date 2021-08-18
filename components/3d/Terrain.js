@@ -65,7 +65,8 @@ export function Heightmap({
   const { data: heights } = useSWR('heightfieldMatrix', async () => {
     return createHeightfieldMatrix(heightmap.image, maxHeight)
   }, { suspense: true })
-  const [heightfieldRef] = useHeightfield(() => {
+  const heightfieldRef = useRef()
+  useHeightfield(() => {
     const calculatedPosition = [
       position[0] - heights[0].length * elementSize / 2,
       position[1],
@@ -81,7 +82,7 @@ export function Heightmap({
       position: calculatedPosition,
       rotation: calculatedRotation
     })
-  }, null, [heights, elementSize, position, rotation, maxHeight])
+  }, heightfieldRef, [heights, elementSize, position, rotation, maxHeight])
 
   const userData = useRef(createUserData({
     type: 'Ground',

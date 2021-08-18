@@ -9,6 +9,26 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Leading Debounce a Function">
+        <p>
+          Like the below function, except this executes on the first invocation and debounces subsequent invocations
+          until the timeout is satisfied.
+        </p>
+        <CodeBlock lang="js">{`
+function leadingDebounce(func, timeout = 300){
+  let timer = null
+  return (...args) => {
+    if (!timer) {
+      func.apply(this, args)
+    }
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      timer = undefined
+    }, timeout)
+  }
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Debounce a Function">
         <p>
           Adapted from <a href="https://ondrabus.com" target="_blank">Ondrej Polesny's</a> <a href="https://www.freecodecamp.org/news/javascript-debounce-example" target="_blank">article on the topic</a>, this
