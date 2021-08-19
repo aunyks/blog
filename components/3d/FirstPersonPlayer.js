@@ -10,6 +10,7 @@ import {
   useThree
 } from '@react-three/fiber'
 import {
+  useBox,
   useSphere
 } from '@react-three/cannon'
 import {
@@ -51,22 +52,13 @@ export default function FirstPersonPlayer({
   const gamepadRef = useRef()
   const movementJoystick = useRef()
   const firstPersonCameraAnchor = useRef()
-  const objectUnderPlayerUuid = useRef(null)
-  const underPlayerNormalVector = useRef(new Vector3())
-  const isOnGround = useRef(false)
-  const setOnGround = useCallback(bv => {
-    isOnGround.current = bv
-  }, [])
-  const [groundCount, setGroundCount] = useState(0)
-
+  const [isOnGround, setOnGround] = useState(false)
 
   useEffect(() => {
     const onOnGroundMessage = ({ origin, data }) => {
       if (origin === window.origin) {
-        if (data !== isOnGround.current) {
+        if (data !== isOnGround) {
           setOnGround(data)
-          // this is horribly hacky
-          setGroundCount(Math.random())
         }
       }
     }
@@ -83,20 +75,7 @@ export default function FirstPersonPlayer({
     mass: 1,
     position: startPosition,
     // Sphere radius should be half the average human shoulder width (35cm)
-    args: PHYSICS_SPHERE_RADIUS,
-    onCollide: debounce(({ body, contact }) => {
-      underPlayerNormalVector.current.fromArray(contact.contactNormal)
-      if (underPlayerNormalVector.current.dot(DOWN_VECTOR) < 0.6) {
-        objectUnderPlayerUuid.current = body.uuid
-        window.postMessage(true, window.origin)
-      }
-    }, ON_GROUND_DEBOUNCE_CALC_MS),
-    onCollideEnd: debounce(({ body }) => {
-      if (body.uuid === objectUnderPlayerUuid.current) {
-        objectUnderPlayerUuid.current = null
-        window.postMessage(false, window.origin)
-      }
-    }, OFF_GROUND_DEBOUNCE_CALC_MS)
+    args: PHYSICS_SPHERE_RADIUS
   }), playerPhysicsMesh, [])
 
   // Also has a separate mesh that will be rendered to the screen
@@ -129,13 +108,6 @@ export default function FirstPersonPlayer({
     setPointerLockAvailable('pointerLockElement' in window.document ||
       'mozPointerLockElement' in window.document ||
       'webkitPointerLockElement' in window.document)
-  }, [])
-
-  const jump = useRef(0)
-  const setJump = useCallback(n => {
-    if (isOnGround.current) {
-      jump.current = n
-    }
   }, [])
 
   const innerWidth = useInnerWidth()
@@ -191,7 +163,7 @@ export default function FirstPersonPlayer({
   const [isMoving, setMoving] = useState(false)
   const [animationState, setAnimState] = useState("Idle_Sword_Forward")
   useEffect(() => {
-    if (isOnGround.current) {
+    if (isOnGround) {
       if (isMoving) {
         setAnimState("Walk_Sword_Forward")
       } else {
@@ -200,7 +172,7 @@ export default function FirstPersonPlayer({
     } else {
       setAnimState("Falling_Sword_Forward")
     }
-  }, [isMoving, groundCount])
+  }, [isMoving, isOnGround])
 
   useFrame(({ camera }) => {
     if (controlsEnabled) {
@@ -259,7 +231,7 @@ export default function FirstPersonPlayer({
     }
     // Tell the physics world to move the player sphere in that direction.
     // Next frame, the cycle repeats
-    playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y + jump.current, newVelocity.current.z)
+    playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
   })
 
   return (
@@ -287,10 +259,6 @@ export default function FirstPersonPlayer({
             currentAction={animationState} />
         </group>
       </group>
-      <mesh ref={playerPhysicsMesh} visible={false}>
-        <sphereBufferGeometry />
-        <meshBasicMaterial color={0x00ff00} />
-      </mesh>
       {controlsEnabled && !isPointerLockAvailable && (
         <TouchControls yawTarget={playerMesh.current} pitchTarget={firstPersonCameraAnchor.current} />
       )}
@@ -300,8 +268,7 @@ export default function FirstPersonPlayer({
       {controlsEnabled && (
         <KeyboardControls
           onForwardBack={setForwardBack}
-          onLeftRight={setLeftRight}
-          onJump={setJump} />
+          onLeftRight={setLeftRight} />
       )}
       <Gamepad
         ref={gamepadRef}
