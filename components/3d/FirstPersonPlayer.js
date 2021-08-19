@@ -31,7 +31,6 @@ import DpadControls from 'components/3d/controls/DpadControls'
 import VirtualJoystick from 'components/3d/controls/VirtualJoystick'
 import Arms from 'components/3d/Arms'
 import createUserData from 'utils/3d/createUserData'
-import debounce from 'utils/debounce'
 
 const PLAYER_MOVEMENT_SPEED = 5
 
@@ -52,34 +51,39 @@ export default function FirstPersonPlayer({
   const gamepadRef = useRef()
   const movementJoystick = useRef()
   const firstPersonCameraAnchor = useRef()
-  const [isOnGround, setOnGround] = useState(false)
+  const userData = useRef(createUserData({
+    type: 'Player',
+    name: 'FirstPersonPlayer'
+  }))
 
   useEffect(() => {
-    const onOnGroundMessage = ({ origin, data }) => {
-      if (origin === window.origin) {
-        if (data !== isOnGround) {
-          setOnGround(data)
-        }
+    window.addEventListener('message', ({ data }) => {
+      switch (data.type) {
+        case 'PLAYER_JUMP':
+          setUpDown(data.velocity)
+          setTimeout(() => {
+            setUpDown(0)
+          }, 50)
+          break
       }
-    }
-    window.addEventListener('message', onOnGroundMessage)
-    return () => {
-      window.removeEventListener('message', onOnGroundMessage)
-    }
+    })
+  }, [])
+  const emit = useCallback((data) => {
+    window.postMessage(data, window.origin)
   }, [])
 
   // The player has a spherical physics body to 
   // allow for smooth movement
   const playerPhysicsMesh = useRef()
+  // Also has a separate mesh that will be rendered to the screen
+  const playerMesh = useRef()
   const [_, playerPhysicsObject] = useSphere(() => ({
     mass: 1,
     position: startPosition,
     // Sphere radius should be half the average human shoulder width (35cm)
-    args: PHYSICS_SPHERE_RADIUS
+    args: PHYSICS_SPHERE_RADIUS,
+    userData: userData.current
   }), playerPhysicsMesh, [])
-
-  // Also has a separate mesh that will be rendered to the screen
-  const playerMesh = useRef()
 
   // Movement controls will tell us when and how quickly to move based on 
   // these values
@@ -90,6 +94,10 @@ export default function FirstPersonPlayer({
   const leftRight = useRef(0)
   const setLeftRight = useCallback(n => {
     leftRight.current = n
+  }, [])
+  const upDown = useRef(0)
+  const setUpDown = useCallback(n => {
+    upDown.current = n
   }, [])
   // If the gamepad is connected, we don't render the dpad on mobile
   const [gamepadConnected, setGamepadConnected] = useState(false)
@@ -163,16 +171,12 @@ export default function FirstPersonPlayer({
   const [isMoving, setMoving] = useState(false)
   const [animationState, setAnimState] = useState("Idle_Sword_Forward")
   useEffect(() => {
-    if (isOnGround) {
-      if (isMoving) {
-        setAnimState("Walk_Sword_Forward")
-      } else {
-        setAnimState("Idle_Sword_Forward")
-      }
+    if (isMoving) {
+      setAnimState("Walk_Sword_Forward")
     } else {
-      setAnimState("Falling_Sword_Forward")
+      setAnimState("Idle_Sword_Forward")
     }
-  }, [isMoving, isOnGround])
+  }, [isMoving])
 
   useFrame(({ camera }) => {
     if (controlsEnabled) {
@@ -231,15 +235,15 @@ export default function FirstPersonPlayer({
     }
     // Tell the physics world to move the player sphere in that direction.
     // Next frame, the cycle repeats
-    playerPhysicsObject.velocity.set(newVelocity.current.x, velocity.current.y, newVelocity.current.z)
+    playerPhysicsObject.velocity.set(
+      newVelocity.current.x,
+      velocity.current.y + upDown.current,
+      newVelocity.current.z
+    )
   })
-
   return (
     <>
-      <group ref={playerMesh} userData={createUserData({
-        type: 'Player',
-        name: 'FirstPersonPlayer'
-      })}>
+      <group ref={playerMesh} userData={userData.current}>
         <group ref={firstPersonCameraAnchor} position={cameraPositionOffset.current}>
           <Camera name="First Person Cam" position={[0, 0, PHYSICS_SPHERE_RADIUS]} fov={cameraFov} near={0.01} far={1000 * 20}>
             {/*

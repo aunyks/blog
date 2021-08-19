@@ -11,25 +11,24 @@ import Sun from 'components/3d/Sun'
 import GameDirector from 'components/3d/GameDirector'
 import PauseManager from 'components/3d/PauseManager'
 import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
-import GameEventManager from 'components/3d/GameEventManager'
+import JumpBoost from 'components/3d/JumpBoost'
 
 export default function FPGame() {
   return (
     <TimeScaleManager>
       <TimeSensitivePhysics shouldInvalidate={false}>
-        <GameEventManager>
-          <PauseManager>
-            <GameDirector defaultCam="First Person Cam">
-              <FirstPersonPlayer startPosition={[0, 10, 0]} />
-            </GameDirector>
-          </PauseManager>
-          <Sun position={[0, 1000, -1000]} />
-          <SkyDome />
-          <Terrain />
-          <EffectComposer>
-            <Bloom intensity={10} luminanceThreshold={0.8} />
-          </EffectComposer>
-        </GameEventManager>
+        <PauseManager>
+          <GameDirector defaultCam="First Person Cam">
+            <FirstPersonPlayer startPosition={[0, 10, 0]} />
+          </GameDirector>
+          <JumpBoost position={[0, -6.5, -1]} velocity={3} />
+        </PauseManager>
+        <Sun position={[0, 1000, -1000]} />
+        <SkyDome />
+        <Terrain />
+        <EffectComposer>
+          <Bloom intensity={10} luminanceThreshold={0.8} />
+        </EffectComposer>
       </TimeSensitivePhysics>
     </TimeScaleManager>
   )
