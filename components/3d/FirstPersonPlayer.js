@@ -40,6 +40,8 @@ const PHYSICS_SPHERE_RADIUS = PHYSICS_SPHERE_DIAMETER / 2
 const MIN_CAMERA_PITCH_ANGLE = Math.PI / 7
 const MAX_CAMERA_PITCH_ANGLE = 6 * Math.PI / 7
 
+const DASH_DISTANCE = 5
+
 const DOWN_VECTOR = new Vector3(0, -1, 0)
 const ON_GROUND_DEBOUNCE_CALC_MS = 200
 const OFF_GROUND_DEBOUNCE_CALC_MS = 1000
@@ -135,6 +137,17 @@ export default function FirstPersonPlayer({
       cameraFov = 120
     }
   }
+  const currentPhysicsPosition = useRef(new Vector3())
+  const onDash = useCallback(() => {
+    forwardBack.current = 0
+    leftRight.current = 0
+    const playerDirection = playerMesh.current.rotation.clone()
+    playerDirection.x = firstPersonCameraAnchor.current.rotation.x
+    currentPhysicsPosition.current.z -= DASH_DISTANCE
+    currentPhysicsPosition.current
+      .applyEuler(playerDirection)
+    playerPhysicsObject.position.copy(currentPhysicsPosition.current)
+  }, [])
 
   // This is the velocity of the player in the *current* frame. 
   // It will be updated after each tick in the physics world
@@ -150,6 +163,7 @@ export default function FirstPersonPlayer({
     // making sure it's visibly touching the ground (assuming visible mesh origin is at ground)
     const visibleMeshPositionOffset = new Vector3(0, -PHYSICS_SPHERE_RADIUS, 0)
     const positionUnsubscribe = playerPhysicsObject.position.subscribe(newPosition => {
+      currentPhysicsPosition.current.fromArray(newPosition)
       playerMesh.current.position.fromArray(newPosition).add(visibleMeshPositionOffset)
     })
     return () => {
@@ -272,7 +286,8 @@ export default function FirstPersonPlayer({
       {controlsEnabled && (
         <KeyboardControls
           onForwardBack={setForwardBack}
-          onLeftRight={setLeftRight} />
+          onLeftRight={setLeftRight}
+          onDash={onDash} />
       )}
       <Gamepad
         ref={gamepadRef}

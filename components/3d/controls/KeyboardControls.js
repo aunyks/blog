@@ -12,6 +12,7 @@ import PauseContext from 'contexts/3d/PauseContext'
 export default function KeyboardControls({
   onForwardBack,
   onLeftRight,
+  onDash,
   ...props
 }) {
   const kbdForward = useKeysPressed(['w', 'W', 'ArrowUp'])
@@ -19,6 +20,7 @@ export default function KeyboardControls({
   const kbdBack = useKeysPressed(['s', 'S', 'ArrowDown'])
   const kbdRight = useKeysPressed(['d', 'D', 'ArrowRight'])
   const p = useKeysPressed(['p', 'P'])
+  const f = useKeysPressed(['f', 'F'])
 
   const { isPaused, setPaused } = useContext(PauseContext)
   useEffect(() => {
@@ -26,6 +28,12 @@ export default function KeyboardControls({
       setPaused(!isPaused)
     }
   }, [p])
+
+  useEffect(() => {
+    if (f) {
+      onDash()
+    }
+  }, [f])
 
   useEffect(() => {
     if (kbdForward) {
