@@ -9,6 +9,39 @@ export default function JsCodeSnippets() {
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite."
     >
+      <CodeSnippet title="Save Binary File">
+        <p>
+          This function lets you prompt the user for downloading a binary file to their device. I'm not sure
+          how it handles endianness.
+        </p>
+        <CodeBlock lang="js">{`
+function saveBinaryFile(arrayBuffer, fileName) {
+  const bytesBlob = new Blob([arrayBuffer], { type: 'application/octet-stream' })
+  const link = document.createElement('a')
+  link.style.display = 'none'
+  link.href = URL.createObjectURL(bytesBlob)
+  link.download = fileName
+  document.body.appendChild(link)
+  link.click()
+}
+      `}</CodeBlock>
+      </CodeSnippet>
+      <CodeSnippet title="Save Text File">
+        <p>
+          This function lets you prompt the user for downloading a text file to their device.
+        </p>
+        <CodeBlock lang="js">{`
+function saveTextFile(string, fileName, charset='utf8') {
+  const textBlob = new Blob([string], { type: ('text/plain;' + 'charset=' + charset) })
+  const link = document.createElement('a')
+  link.style.display = 'none'
+  link.href = URL.createObjectURL(textBlob)
+  link.download = fileName
+  document.body.appendChild(link)
+  link.click()
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Leading Debounce a Function">
         <p>
           Like the below function, except this executes on the first invocation and debounces subsequent invocations
