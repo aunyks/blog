@@ -1,6 +1,7 @@
 import {
   useState,
-  useEffect
+  useEffect,
+  useRef
 } from 'react'
 import {
   Canvas, useFrame
@@ -28,6 +29,16 @@ export default function ThreeDFigure({
   ...props
 }) {
   const [isPaused, setPaused] = useState(false)
+  const figureRef = useRef()
+  useEffect(() => {
+    const onPointerMove = e => { e.preventDefault() }
+    figureRef.current.addEventListener('pointermove', onPointerMove, { passive: false })
+    figureRef.current.addEventListener('touchmove', onPointerMove, { passive: false })
+    return () => {
+      figureRef.current.removeEventListener('pointermove', onPointerMove)
+      figureRef.current.removeEventListener('touchmove', onPointerMove)
+    }
+  }, [])
 
   return (
     <>
@@ -47,13 +58,13 @@ export default function ThreeDFigure({
         z-index: 1;
       }
     `}</style>
-      <figure>
+      <figure ref={figureRef}>
         <Canvas
           frameloop="demand"
           gl={{
             powerPreference: 'low-power'
           }}
-          {...props}>
+          {...props} onPointerMove={e => e.preventDefault()} onTouchMove={e => e.preventDefault()}>
           <FrameManager isPaused={isPaused}>
             {children}
           </FrameManager>
