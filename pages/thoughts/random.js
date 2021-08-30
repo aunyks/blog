@@ -11,6 +11,18 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-08-30">
+        Wait until people find out that the metaverse is just the Internet and all
+        that's left is better interoperability, accessibility, and maybe more 3D
+      </Thought>
+      <Thought date="2021-08-20">
+        Turns out running a decentralized and resilient community online (collectives,
+        DAOs, etc) just requires git, email, and motivation. The only new thing that
+        DAOs brought to the table is an easier way to economically motivate people
+      </Thought>
+      <Thought date="2021-08-02">
+        Can’t wait to hear an HBCU band play Industry Baby
+      </Thought>
       <Thought date="2021-08-01">
         You don't have to play clean against powers greater than you.
       </Thought>
