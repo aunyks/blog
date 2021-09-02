@@ -11,6 +11,13 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-09-02">
+        Monchy & Alexandra's voices complemented each other so well.
+      </Thought>
+      <Thought date="2021-08-31">
+        I must say, a lot of US Federal Government websites are of incredible quality. People should use them
+        as templates instead of the trendiest startup.
+      </Thought>
       <Thought date="2021-08-30">
         Wait until people find out that the metaverse is just the Internet and all
         that's left is better interoperability, accessibility, and maybe more 3D
