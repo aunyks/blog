@@ -11,6 +11,7 @@ import {
 } from '@react-three/fiber'
 import {
   useBox,
+  useRaycastClosest,
   useSphere
 } from '@react-three/cannon'
 import {
@@ -137,7 +138,18 @@ export default function FirstPersonPlayer({
       cameraFov = 120
     }
   }
+  const [downRayOptions, updateDownRayOptions] = useState({ from: 0, to: 0 })
   const currentPhysicsPosition = useRef(new Vector3())
+  const underPhysicsPosition = useRef(new Vector3())
+  const onJump = () => {
+    underPhysicsPosition.current.copy(currentPhysicsPosition.current)
+    underPhysicsPosition.current.y = currentPhysicsPosition.current.y - 300000
+    updateDownRayOptions({
+      from: currentPhysicsPosition.current.toArray(),
+      to: underPhysicsPosition.current.toArray(),
+    })
+  }
+  const forwardPhysicsPosition = useRef(new Vector3())
   const onDash = useCallback(() => {
     forwardBack.current = 0
     leftRight.current = 0
@@ -171,6 +183,15 @@ export default function FirstPersonPlayer({
       positionUnsubscribe()
     }
   }, [])
+
+  useRaycastClosest(downRayOptions, (downRayHitEvent) => {
+    console.log(downRayHitEvent.hasHit, downRayHitEvent)
+    // if (body.userData.name && body.userData.name === userData.current.name) {
+    //   if (body.getWorldPosition().distanceTo(target.getWorldPosition()) < 1) {
+    //     playerPhysicsObject.applyLocalForce([0, 5, 0], [0, 0, 0])
+    //   }
+    // }
+  }, [Object.values(downRayOptions)])
 
   // Create refs for vectors that will be changed 
   // or used on every frame to remove strain from the garbage collector
@@ -287,6 +308,7 @@ export default function FirstPersonPlayer({
         <KeyboardControls
           onForwardBack={setForwardBack}
           onLeftRight={setLeftRight}
+          onJump={onJump}
           onDash={onDash} />
       )}
       <Gamepad
