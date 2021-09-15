@@ -9,7 +9,6 @@ import {
 } from 'components/Link'
 
 export default function AboutPage() {
-
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
@@ -39,18 +38,18 @@ export default function AboutPage() {
         <h1>Increasing potential</h1>
         <p>
           Hi-Voltage is <a href="https://aunyks.com/about" target="_blank">my</a> blog, my digital garden, if you will. It's my place to
-        write, record, discuss, and document whatever I feel like. Feel free to look around. If
-        you wanna talk about something, <a href="https://aunyks.com/contact" target="_blank">hit me up</a>.
-      </p>
+          write, record, discuss, and document whatever I feel like. Feel free to look around. If
+          you wanna talk about something, <a href="https://aunyks.com/contact" target="_blank">hit me up</a>.
+        </p>
         <p>
           "Increasing potential" is a double entendre. It's a reference to the electromotive force in physics
           and also to human growth. A key to life is to always be growing and changing.
           And, to gain knowledge, skill, wisdom, and experience along the way is to increase your potential as a person.
-      </p>
+        </p>
         <p>
           When looking for posts, you'll probably see a white box in the corner of a post. If the box has a <Hint msg="If it just looks like a plain white box">white outline</Hint>,
-        it's a normal text post. If it has a yellow outline, it's part of a series. If it has an indigo outline, it's a video post.
-      </p>
+          it's a normal text post. If it has a yellow outline, it's part of a series. If it has an indigo outline, it's a video post.
+        </p>
         <style jsx>{`
         li {
           list-style: none;
@@ -59,7 +58,7 @@ export default function AboutPage() {
         <ul className="my-4 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 list-none">
           <li>
             <CardBox postExample /> Text
-            </li>
+          </li>
           <li>
             <CardBox series /> Series
           </li>

@@ -2,14 +2,12 @@ import {
   useState,
   useEffect
 } from 'react'
-import NextLink from 'next/link'
+import A from 'components/A'
 
 const NavLink = ({ href, children }) => (
-  <NextLink href={href}>
-    <a className="text-sm no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
-      {children}
-    </a>
-  </NextLink>
+  <A href={href} className="text-sm no-underline block mt-4 lg:inline-block lg:mt-0 mr-4">
+    {children}
+  </A>
 )
 
 export default function Navbar() {
