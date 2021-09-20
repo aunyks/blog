@@ -8,44 +8,72 @@ export default function ReactCodeSnippets() {
       title="React.js Code Snippets"
       description="Useful bites of React code that I often write and rewrite."
     >
-      <CodeSnippet title="Suspend a Promise">
+      <CodeSnippet title="Auth / User Provider and Hook">
         <p>
-          A function that "suspends" a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">Promise</a>, or
-          accepts a Promise and makes it compatible with <a href="https://reactjs.org/docs/concurrent-mode-suspense.html" target="_blank">Suspense</a>. To use this,
-          call this function with your desired Promise as the argument. It will return an object. To get the resolved value, call <code>read()</code> on this object.
-        </p>
-        <p>
-          Something along the lines of <code>const myResource = suspend(fetch('/value.json'))</code>. <code>const value = myResource.read()</code>
+          A context provider and consuming hook that manage polling for user login status. This is useful for any
+          app that has any semblance of authentication.
         </p>
         <CodeBlock lang="jsx">{`
-function suspend(promise) {
-  let status = 'pending'
-  let response = null
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext
+} from 'react'
 
-  const suspender = promise.then(
-    (res) => {
-      status = 'success'
-      response = res
-    },
-    (err) => {
-      status = 'error'
-      response = err
-    },
-  )
+const USER_ENDPOINT = '/api/user'
+const POLL_TIMEOUT_MS = 10_000
+const AuthContext = createContext({
+  data: null,
+  error: false
+})
 
-  const read = () => {
-    switch (status) {
-      case 'pending':
-        throw suspender
-      case 'error':
-        throw response
-      default:
-        return response
+export function AuthProvider({children}) {
+  const [userData, setUserData] = useState(null)
+  const [authError, setAuthError] = useState(false)
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch(USER_ENDPOINT)
+        if(parseInt(res.status / 100) !== 2) {
+          setAuthError(true)
+        } else {
+          setUserData(await res.json())
+          setAuthError(false)
+        }
+      } catch(e) {
+        setAuthError(true)
+      }
     }
-  }
 
-  return { read }
+    let pollForUser = setTimeout(function getUser() {
+      fetchUser()
+      pollForUser = setTimeout(getUser, POLL_TIMEOUT_MS)
+    }, 0)
+
+    return () => {
+      clearTimeout(pollForUser)
+    }
+  }, [])
+
+  return (
+    <AuthContext.Provider value={{
+      data: userData,
+      error: authError
+    }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
+
+export function useUser() {
+  const authCtx = useContext(AuthContext)
+  if(!authCtx) {
+    throw new Error('useUser() must be used with AuthProvider')
+  }
+  return authCtx
+}
+
 `}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">
