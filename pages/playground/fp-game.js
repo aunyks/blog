@@ -38,7 +38,7 @@ function GameLoading({ error }) {
 // The same loading and error behavior can be achieved 
 // with React Suspense and ErrorBoundary, but
 const FPGame = dynamic(
-  () => import('../components/3d/FirstPersonGame.js'),
+  () => import('../../components/3d/FirstPersonGame.js'),
   { loading: GameLoading, ssr: false }
 )
 
