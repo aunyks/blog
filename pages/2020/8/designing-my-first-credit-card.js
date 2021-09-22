@@ -7,6 +7,7 @@ import Post from 'components/Post'
 import Hint from 'components/Hint'
 import ThreeDFigure from 'components/3d/ThreeDFigure'
 import OrbitControls from 'components/3d/controls/OrbitControls'
+import useDeviceSize from 'hooks/use-device-size'
 
 function Card() {
   const { scene } = useLoader(GLTFLoader, '/3d/models/true-potential-card-v1.glb')
@@ -16,6 +17,7 @@ function Card() {
 }
 
 export default function DesigningMyFirstCreditCard() {
+  const deviceSize = useDeviceSize()
   return (
     <Post
       title="Designing My First Credit Card"
@@ -96,7 +98,7 @@ export default function DesigningMyFirstCreditCard() {
           <Card />
         </Suspense>
         <ambientLight intensity={1} />
-        <OrbitControls cameraDistance={1.5} />
+        <OrbitControls cameraDistance={deviceSize === 'sm' ? 2.5 : 1.5} />
       </ThreeDFigure>
       <h4>Tools Used</h4>
       <ul>

@@ -9,7 +9,6 @@ export default function Video({
       <video
         src={src}
         poster={poster}
-        preload="auto"
         controls
         className="w-full"
       >
