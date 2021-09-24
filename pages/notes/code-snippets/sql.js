@@ -10,7 +10,7 @@ export default function SQLCodeSnippets() {
     >
       <p>
         I strongly recommend owning / reading <a target="_blank" href="https://www.goodreads.com/book/show/173346.Sams_Teach_Yourself_SQL_in_10_Minutes">Sam's Teach Yourself SQL in 10 Minutes</a>.
-        It's the only book on a programming language that I recommand actually owning a copy of.
+        It's the only book on a programming language that I recommend actually owning a copy of.
       </p>
       <CodeSnippet title="Delete a Table">
         <p>
