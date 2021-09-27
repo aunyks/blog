@@ -55,12 +55,12 @@ body {
 
 
 #loading-screen {
-  background: white;
+  background: var(--white);
 }
 
 @media (prefers-color-scheme: dark) {
   #loading-screen {
-    background: #222;
+    background: var(--dark-gray);
   }
 }
 

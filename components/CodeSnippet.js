@@ -31,7 +31,7 @@ export default function CodeSnippet({ title, children }) {
 
         .snippet-title:hover {
           text-decoration: underline;
-          text-decoration-color: #fab700;
+          text-decoration-color: var(--yellow);
         }
       `}</style>
       <a className="snippet-title" href={`#${titleSlug}`}><h3 className="text-xl leading-tight">{title}</h3></a>

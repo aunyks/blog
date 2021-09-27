@@ -20,13 +20,13 @@ export default function MakingSerenitysArrival() {
         @media (prefers-color-scheme: dark) {
           video {
             border-style: solid;
-            border-color: white;
+            border-color: var(--white);
           }
         }
       `}</style>
       <p>
         I approached <a target="_blank" href="https://art.aunyks.com/2020/serenitys-arrival">this project</a> in a way a bit different from previous ones. It was actually the audio
-      that accompanies this piece that inspired me to make it.
+        that accompanies this piece that inspired me to make it.
       </p>
       <p>
         I was scrolling through TikTok when I stumbled upon a video that played the sound in the background. I was so mesmerized by the sound that I neither
@@ -35,8 +35,8 @@ export default function MakingSerenitysArrival() {
       </p>
       <p>
         "imperial. [] by j^p^n" quickly came up in the suggestions as I went to type it in the search bar. I clicked <a target="_blank" href="https://www.youtube.com/watch?v=mrWjrTG3I8k">the first video to come up</a>. I was met with the same entrancing sound
-      but this time accompanied by some captivating visuals from the <a target="_blank" href="https://www.imdb.com/title/tt0983213/">5 Centimeters Per Second movie</a>. I immediately knew that I wanted to make visuals for the song and that I wanted to feature
-      landscape shots.
+        but this time accompanied by some captivating visuals from the <a target="_blank" href="https://www.imdb.com/title/tt0983213/">5 Centimeters Per Second movie</a>. I immediately knew that I wanted to make visuals for the song and that I wanted to feature
+        landscape shots.
       </p>
       <p>
         I put off the project for some time, because I knew that the ideas I had in mind couldn't yet be brought to life with my current skill level. After some thought, I told myself to just try
@@ -90,23 +90,23 @@ export default function MakingSerenitysArrival() {
       <figure className="mb-2">
         <video controls className="mx-auto w-full mb-2 lg:w-2/3">
           <source src="https://art.aunyks.com/assets/vid/serenitys-arrival.mp4" type="video/mp4" />
-        Looks like your browser doesn't support embedded videos.
+          Looks like your browser doesn't support embedded videos.
         </video>
         <figcaption className="text-sm text-center">The final product!</figcaption>
       </figure>
       <p>
         In the end, I learned more of Blender's Ocean Modifier, animation keyframing, and scene features. While the final result didn't quite bring my original idea to life, I was happy that I <a target="_blank" href="https://salman.io/blog/expectation/">overcame expectations</a> and reached satisfaction. I enjoy this song so that much
-      that I'm certain I'll use it in a future project. May my skillset enable an even better piece in the future!
+        that I'm certain I'll use it in a future project. May my skillset enable an even better piece in the future!
       </p>
       <h4>Tools Used</h4>
       <p>
         <ul>
           <li>
             <a href="https://www.blender.org/">Blender</a> - Building and rendering the scenes
-        </li>
+          </li>
           <li>
             <a href="https://www.apple.com/imovie">iMovie</a> - Editing the audio and rendered video together to produce the final product
-        </li>
+          </li>
         </ul>
       </p>
       <h4>Things Learned</h4>

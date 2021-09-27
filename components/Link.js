@@ -5,7 +5,7 @@ export function CardBox({ series, video, postExample }) {
       <style>{`
     .card-footer-block {
       display: inline-block;
-      fill: white;
+      fill: var(--white);
       width: 30px;
       height: 30px;
       transition: all 0.7s ease;
@@ -13,12 +13,12 @@ export function CardBox({ series, video, postExample }) {
     }
 
     .card-footer-block.series {
-      stroke: #fab700;
+      stroke: var(--yellow);
       stroke-width: 3;
     }
 
     .card-footer-block.video {
-      stroke: #5d44f8;
+      stroke: var(--indigo);
       stroke-width: 3;
     }
 

@@ -23,22 +23,22 @@ export default function CodeBlock({
     <>
       <style jsx>{`
         .no-code-btn {
-          background: #fab700;
+          background: var(--yellow);
         }
 
         .code-btn {
-          background: #fab700;
+          background: var(--yellow);
         }
 
         @media (prefers-color-scheme: dark) {
           .code-btn {
-            background: #5d44f8;
+            background: var(--indigo);
           }
         }
         
         @media (prefers-color-scheme: dark) {
           .no-code-btn {
-            background: #5d44f8;
+            background: var(--indigo);
           }
         }
       `}</style>

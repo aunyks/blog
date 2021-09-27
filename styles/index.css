@@ -41,22 +41,32 @@
 @tailwind utilities;
 
 /*
-white: #fff;
 black: #000;
+white: #fff;
+dark gray: #222;
+light gray: #dadada or #e7e7e7;
 yellow: #fab700;
 indigo: #5d44f8;
+green: #8fe388;
+scarlet: #f42b03;
 */
 
 :root {
-  --color-1: #fab700;
-  --color-2: #5d44f8;
-  --dark: #222;
+  --yellow: #fab700;
+  --indigo: #5d44f8;
+  --green: #8fe388;
+  --scarlet: #f42b03;
+  --light-gray: #e7e7e7;
+  --dark-gray: #222;
+  --white: #fff;
+  --black: #000;
+
   --selection-color: #ffdd81;
   --code-light-text-color: #fc4f4f;
 }
 
 *::selection {
- background: #ffdd81;
+ background: var(--selection-color);
 }
 
 html {
@@ -113,7 +123,7 @@ html {
 }
 
 div.mermaid {
-  background: white;
+  background: var(--white);
   padding: 5px 10px;
   border-radius: 10px;
 }
@@ -136,9 +146,9 @@ ul > li {
 }
 
 a {
-  color: black;
+  color: var(--black);
   text-decoration: underline;
-  text-decoration-color: #fab700;
+  text-decoration-color: var(--yellow);
 }
 
 p {
@@ -175,12 +185,12 @@ h4, h5, h6 {
 }
 
 #navbar {
-  background: white;
-  box-shadow: 0px 0px 2px #000;
+  background: var(--white);
+  box-shadow: 0px 0px 2px var(--black);
 }
 
 #navbar a {
-  color: black;
+  color: var(--black);
 }
 
 img {
@@ -196,7 +206,7 @@ pre {
 
 code {
   font-family: monospace;
-  background: #eee;
+  background: var(--light-gray);
   padding: 0 5px;
   border-radius: 5px;
   color: #fc4f4f;
@@ -205,7 +215,7 @@ code {
 .hint {
   text-decoration: underline;
   text-decoration-style: dotted;
-  text-decoration-color: #fab700;
+  text-decoration-color: var(--yellow);
   cursor: pointer;
 }
 
@@ -241,7 +251,7 @@ code {
   position: relative;
   height: 70%;
   background-color: #474747;
-  color: white;
+  color: var(--white);
   width: 8%;
   max-width: 12%;
   margin: 0 -7%;
@@ -252,38 +262,38 @@ code {
   justify-content: flex-end;
   outline: 3px solid #474747;
   color: #474747;
-  background-color: #ffffff;
+  background-color: var(--white);
   padding-bottom: 1%;
 }
 
 .note.white.emphasized {
   background-color: #00f;
-  color: white;
+  color: var(--white);
 }
 
 .note.black.emphasized {
   background-color: rgb(0, 0, 114);
-  color: white;
+  color: var(--white);
 }
 
 .note.white.pressed {
   background-color: #f00 !important;
-  color: white;
+  color: var(--white);
 }
 
 .note.black.pressed {
   background-color: rgb(114, 0, 0) !important;
-  color: white;
+  color: var(--white);
 }
 
 .note.white.emphasized.pressed {
   background-color: #f00;
-  color: white;
+  color: var(--white);
 }
 
 .note.black.emphasized.pressed {
   background-color: rgb(114, 0, 0);
-  color: white;
+  color: var(--white);
 }
 
 button {
@@ -299,12 +309,12 @@ button.centered {
 }
 
 button.melody {
-  background: black;
-  color:white;
+  background: var(--black);
+  color:var(--white);
 }
 
 .code-block  {
-  background: #eee;
+  background: var(--light-gray);
 }
 
 .code-block * {
@@ -362,16 +372,16 @@ button.melody {
 @media (prefers-color-scheme: dark) {
 
   *::selection {
-    background: #5d44f8;
+    background: var(--indigo);
    }
 
   html, body {
-    background-color: #222;
-    color: white;
+    background-color: var(--dark-gray);
+    color: var(--white);
   }
 
   svg:not(.force-default-colors) path {
-    fill: white;
+    fill: var(--white);
   }
 
   img {
@@ -379,20 +389,20 @@ button.melody {
   }
 
   a {
-    color: white;
+    color: var(--white);
   }
 
   #navbar {
-    background: #222;
-    box-shadow: 0px 0px 2px #fff;
+    background: var(--dark-gray);
+    box-shadow: 0px 0px 2px var(--white);
   }
 
   #navbar a {
-    color: white;
+    color: var(--white);
   }
 
   #body > pre {
-    background: #222;
+    background: var(--dark-gray);
   }
 
   code {
@@ -408,17 +418,8 @@ button.melody {
     background: #fee;
   }
 
-  #newsletterSignupForm {
-    border-color: #fff;
-  }
-  
-  #newsletterSignupBtn {
-    background: white;
-    color: black;
-  }
-
   button.melody {
-    color: black;
+    color: var(--black);
     background: rgb(216, 216, 216);
   }
 }
