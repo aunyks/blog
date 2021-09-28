@@ -13,14 +13,14 @@ export default function MakingSerenitysArrival() {
         video {
           border-style: none;
           border-width: 5px;
-          border-color: black;
+          border-color: var(--black);
           border-radius: 10px;
         }
 
         @media (prefers-color-scheme: dark) {
           video {
             border-style: solid;
-            border-color: var(--white);
+            border-color: var(--light-gray);
           }
         }
       `}</style>

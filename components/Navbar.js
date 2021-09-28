@@ -25,16 +25,40 @@ export default function Navbar() {
     <>
       <style jsx>{`
       @media print {
-        #navbar {
+        nav {
           display: none;
+        }
+      }
+
+      nav {
+        background: var(--white);
+        box-shadow: 0px 0px 2px var(--black);
+        z-index: 2;
+      }
+
+      nav a {
+        color: var(--black);
+      }
+
+      .logo-text {
+        color: var(--black);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background: var(--dark-gray);
+          box-shadow: 0px 0px 2px var(--light-gray);
+        }
+      
+        nav a {
+          color: var(--light-gray);
         }
       }
     `}</style>
       <nav id="navbar"
-        style={{ boxShadow: '0px 0px 2px #000', zIndex: '2' }}
-        className="bg-white top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-24">
+        className="top-0 inset-x-0 fixed flex items-center justify-between flex-wrap px-3 py-3 lg:px-24">
         <div className="flex items-center flex-shrink-0 mr-6">
-          <a href="/" style={{ textColor: 'black' }} className="text-base font-semibold tracking-tight no-underline">
+          <a href="/" className="logo-text text-base font-semibold tracking-tight no-underline">
             Hi-Voltage
           </a>
         </div>

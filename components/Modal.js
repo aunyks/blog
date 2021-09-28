@@ -100,7 +100,7 @@ export default function Modal({
 
       .modal-dialog {
         z-index: 4;
-        background: var(--white);
+        background: var(--light-gray);
         transition: all 0.2s;
         transform: translateY(20px);
         opacity: 0;

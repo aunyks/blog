@@ -43,8 +43,7 @@ export default function AboutPage() {
         </p>
         <p>
           "Increasing potential" is a double entendre. It's a reference to the electromotive force in physics
-          and also to human growth. A key to life is to always be growing and changing.
-          And, to gain knowledge, skill, wisdom, and experience along the way is to increase your potential as a person.
+          and also to human growth. To gain knowledge, skill, wisdom, and experience is to increase your potential as a person.
         </p>
         <p>
           When looking for posts, you'll probably see a white box in the corner of a post. If the box has a <Hint msg="If it just looks like a plain white box">white outline</Hint>,

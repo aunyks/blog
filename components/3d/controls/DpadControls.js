@@ -24,7 +24,7 @@ export default function DpadControls({
 
           .dpad-button {
             fill: rgba(48, 48, 48, 0.8);
-            stroke: var(--white);
+            stroke: var(--light-gray);
             stroke-width: 5px;
             user-select: none;
           }

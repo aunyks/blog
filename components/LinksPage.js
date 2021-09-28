@@ -41,13 +41,13 @@ export default function LinksPage({
       <style>{`
         /* FOR LinksPage.js */
         #link-pg-header {
-          color: black;
+          color: var(--black);
           background: var(--yellow);
         }
 
         @media (prefers-color-scheme: dark) {
           #link-pg-header {
-            color: white;
+            color: var(--white);
             background: var(--indigo);
           }
         }
@@ -58,7 +58,7 @@ export default function LinksPage({
         }
 
         .link-article {
-          color: var(--white);
+          color: var(--light-gray);
           background: #333;
           border-radius: 7px;
           transition: all 0.2s ease;
@@ -85,7 +85,7 @@ export default function LinksPage({
 
         @media (prefers-color-scheme: dark) {
           .link-article {
-            color: white;
+            color: var(--white);
             background: #333;
           }
         }

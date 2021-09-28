@@ -123,7 +123,7 @@ html {
 }
 
 div.mermaid {
-  background: var(--white);
+  background: var(--light-gray);
   padding: 5px 10px;
   border-radius: 10px;
 }
@@ -184,15 +184,6 @@ h4, h5, h6 {
   margin: -10px 0;
 }
 
-#navbar {
-  background: var(--white);
-  box-shadow: 0px 0px 2px var(--black);
-}
-
-#navbar a {
-  color: var(--black);
-}
-
 img {
   margin: 20px auto;
   display: block;
@@ -251,7 +242,7 @@ code {
   position: relative;
   height: 70%;
   background-color: #474747;
-  color: var(--white);
+  color: var(--light-gray);
   width: 8%;
   max-width: 12%;
   margin: 0 -7%;
@@ -262,38 +253,38 @@ code {
   justify-content: flex-end;
   outline: 3px solid #474747;
   color: #474747;
-  background-color: var(--white);
+  background-color: var(--light-gray);
   padding-bottom: 1%;
 }
 
 .note.white.emphasized {
   background-color: #00f;
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 .note.black.emphasized {
   background-color: rgb(0, 0, 114);
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 .note.white.pressed {
   background-color: #f00 !important;
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 .note.black.pressed {
   background-color: rgb(114, 0, 0) !important;
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 .note.white.emphasized.pressed {
   background-color: #f00;
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 .note.black.emphasized.pressed {
   background-color: rgb(114, 0, 0);
-  color: var(--white);
+  color: var(--light-gray);
 }
 
 button {
@@ -310,7 +301,7 @@ button.centered {
 
 button.melody {
   background: var(--black);
-  color:var(--white);
+  color:var(--light-gray);
 }
 
 .code-block  {
@@ -351,22 +342,6 @@ button.melody {
   /*
     iPhone 5
   */
-
-  #logo {
-    font-size: 1em;
-  }
-
-  .navbar-right {
-    font-size: 0.75em;
-  }
-
-  #header > h1 {
-    margin-left: 0;
-  }
-}
-
-.links-page #logo {
-  font-size: 3em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -377,11 +352,11 @@ button.melody {
 
   html, body {
     background-color: var(--dark-gray);
-    color: var(--white);
+    color: var(--light-gray);
   }
 
   svg:not(.force-default-colors) path {
-    fill: var(--white);
+    fill: var(--light-gray);
   }
 
   img {
@@ -389,16 +364,7 @@ button.melody {
   }
 
   a {
-    color: var(--white);
-  }
-
-  #navbar {
-    background: var(--dark-gray);
-    box-shadow: 0px 0px 2px var(--white);
-  }
-
-  #navbar a {
-    color: var(--white);
+    color: var(--light-gray);
   }
 
   #body > pre {
