@@ -47,7 +47,7 @@ export default function Navbar() {
       @media (prefers-color-scheme: dark) {
         nav {
           background: var(--dark-gray);
-          box-shadow: 0px 0px 2px var(--light-gray);
+          box-shadow: 0px 0px 2px var(--black);
         }
       
         nav a {
