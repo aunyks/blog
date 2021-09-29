@@ -18,6 +18,47 @@ export default function SolidityCodeSnippets() {
       <p>
         For contracts where certain addresses have privileges, consider using OZ's <a href="https://docs.openzeppelin.com/contracts/4.x/access-control#using-access-control" target="_blank">AccessControl</a> contract.
       </p>
+      <CodeSnippet title="Hi-Voltage Token v1">
+        <p>
+          The source code for $HV1, my first personal token.
+        </p>
+        <CodeBlock lang="solidity">{`
+// SPDX-License-Identifier: GPL-v3.0
+
+pragma solidity 0.8.4;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import '@openzeppelin/contracts/token/ERC20/extensions/ERC20Snapshot.sol';
+import 'delegated-transfer-token/contracts/DTT.sol';
+
+contract HiVoltageToken is Ownable, ERC20Snapshot, DTT {
+    constructor(
+        string memory name,
+        string memory symbol,
+        // Number of whole tokens to mint
+        uint256 initialTokenSupply
+    ) ERC20(name, symbol) {
+        _mint(msg.sender, initialTokenSupply * (10 ** uint256(decimals())));
+    }
+    
+    function supportsInterface(bytes4 interfaceId) public pure returns (bool) {
+        return hasDTTInterface(interfaceId);
+    }
+    
+    function takeSnapshot() public onlyOwner {
+        _snapshot();
+    } 
+    
+    function _beforeTokenTransfer(address from, address to, uint256 amount)
+        internal
+        override(ERC20, ERC20Snapshot)
+    {
+        super._beforeTokenTransfer(from, to, amount);
+    }
+}
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Simple ERC1155 Token">
         <p>
           A simple contract for quickly creating a <Hint msg="ERC1155 tokens are more often called semi-fungible tokens, because they're fungible like ERC20 tokens but hold metadata about each token like ERC721 tokens. I call them fungible data tokens, since being fungible and simultaneously containing metadata are what makes them unique.">fungible data token</Hint> that
