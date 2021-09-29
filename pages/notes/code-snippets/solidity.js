@@ -46,6 +46,14 @@ contract HiVoltageToken is Ownable, ERC20Snapshot, DTT {
         return hasDTTInterface(interfaceId);
     }
     
+    function mint(address recipient, uint256 amount) public onlyOwner {
+        _mint(recipient, amount);
+    }
+    
+    function burn(address from, uint256 amount) public onlyOwner {
+        _burn(from, amount);
+    }
+    
     function takeSnapshot() public onlyOwner {
         _snapshot();
     } 
