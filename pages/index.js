@@ -94,6 +94,7 @@ export default function HomePage() {
         <meta name="description" content="Increasing potential" />
         <meta name="author" content="Gerald Nash" />
         <meta name="theme-color" content="#ffffff" />
+        <link rel="preload" href="/3d/models/aunyks-bolt.glb" as="fetch" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@aunyks" />
