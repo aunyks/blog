@@ -11,6 +11,9 @@ export default function RandomThoughts() {
       description="Miscellaneous thoughts with no category."
       noFooter
     >
+      <Thought date="2021-10-01">
+        Formal Verification is a science, Test-Driven Development is its engineering analogue.
+      </Thought>
       <Thought date="2021-09-02">
         Monchy & Alexandra's voices complemented each other so well.
       </Thought>
