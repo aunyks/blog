@@ -8,13 +8,79 @@ export default function GoCodeSnippets() {
       title="Go Code Snippets"
       description="Useful bites of Go code that I often write and rewrite."
     >
+      <CodeSnippet title="Parse a SQL Connection URI">
+        <p>
+          A function for easily converting a SQL connection URI to a flavor and connection details that can be passed
+          directly into Go's <a href="https://pkg.go.dev/database/sql#Open" target="_blank">sql.Open()</a> function.
+        </p>
+        <CodeBlock lang="go">{`
+package main
+
+import (
+	"fmt"
+	"net"
+	"net/url"
+	"strings"
+)
+
+func ParseSqlConnectionUri(connectionUri string) (string, string, error) {
+	parsedUrl, err := url.Parse(connectionUri)
+	if err != nil {
+		return "", "", err
+	}
+
+	flavor := parsedUrl.Scheme
+	switch flavor {
+	case "sqlite":
+		connectionDetails := connectionUri[len("sqlite://"):]
+		return flavor, connectionDetails, nil
+	case "postgres":
+		detailsBuilder := strings.Builder{}
+		host := parsedUrl.Host
+		hostAndPort, port, err := net.SplitHostPort(host)
+		if err == nil {
+			host = strings.Split(hostAndPort, ":")[0]
+			detailsBuilder.WriteString(fmt.Sprintf("port=%s ", port))
+		} else {
+			// Do nothing. No port was found
+		}
+		dbName := parsedUrl.Path[1:]
+		detailsBuilder.WriteString(fmt.Sprintf("host=%s ", host))
+		detailsBuilder.WriteString(fmt.Sprintf("dbname=%s ", dbName))
+		if parsedUrl.User != nil {
+			user := parsedUrl.User.Username()
+			password, passwordIsSet := parsedUrl.User.Password()
+
+			detailsBuilder.WriteString(fmt.Sprintf("user=%s ", user))
+			if passwordIsSet {
+				detailsBuilder.WriteString(fmt.Sprintf("password='%s' ", password))
+			}
+		}
+		connectionDetails := strings.TrimSpace(detailsBuilder.String())
+		return flavor, connectionDetails, nil
+	default:
+		return "", "", fmt.Errorf("Unrecognized SQL flavor found while parsing connection string: %s", flavor)
+	}
+}
+
+func main() {
+	s := "postgres://user:pass@host.com:5432/path?k=v#f"
+	flavor, detailsString, err := ParseSqlConnectionUri(s)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(flavor, detailsString)
+}
+
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Simple Unit Test">
         <p>
           This is what a basic unit test looks like in Go. It must exist in a file named with the form <code>*_test.go</code>,
-        and the name of each test must follow the form <code>TestXxx</code> where the first letter after "Test" is capitalized.
-        Execute <code>go test</code> in the terminal to run unit tests. A <code>t.Error(str)</code> is equivalent to a <code>t.Log(str)</code> followed
-        by a <code>t.Fail()</code>.
-      </p>
+          and the name of each test must follow the form <code>TestXxx</code> where the first letter after "Test" is capitalized.
+          Execute <code>go test</code> in the terminal to run unit tests. A <code>t.Error(str)</code> is equivalent to a <code>t.Log(str)</code> followed
+          by a <code>t.Fail()</code>.
+        </p>
         <CodeBlock lang="go">{`
 package mypackage
 
