@@ -3,17 +3,17 @@ import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
 
 export default function GoCodeSnippets() {
-  return (
-    <CodeSnippetPost
-      title="Go Code Snippets"
-      description="Useful bites of Go code that I often write and rewrite."
-    >
-      <CodeSnippet title="Parse a SQL Connection URI">
-        <p>
-          A function for easily converting a SQL connection URI to a flavor and connection details that can be passed
-          directly into Go's <a href="https://pkg.go.dev/database/sql#Open" target="_blank">sql.Open()</a> function.
-        </p>
-        <CodeBlock lang="go">{`
+	return (
+		<CodeSnippetPost
+			title="Go Code Snippets"
+			description="Useful bites of Go code that I often write and rewrite."
+		>
+			<CodeSnippet title="Parse a SQL Connection URI">
+				<p>
+					A function for easily converting a SQL connection URI to a flavor and connection details that can be passed
+					directly into Go's <a href="https://pkg.go.dev/database/sql#Open" target="_blank">sql.Open()</a> function.
+				</p>
+				<CodeBlock lang="go">{`
 package main
 
 import (
@@ -56,6 +56,10 @@ func ParseSqlConnectionUri(connectionUri string) (string, string, error) {
 				detailsBuilder.WriteString(fmt.Sprintf("password='%s' ", password))
 			}
 		}
+		queryParams := parsedUrl.Query()
+		for paramKey := range queryParams {
+			detailsBuilder.WriteString(fmt.Sprintf("%s=%s ", paramKey, queryParams.Get(paramKey)))
+		}
 		connectionDetails := strings.TrimSpace(detailsBuilder.String())
 		return flavor, connectionDetails, nil
 	default:
@@ -71,17 +75,16 @@ func main() {
 	}
 	fmt.Println(flavor, detailsString)
 }
-
 `}</CodeBlock>
-      </CodeSnippet>
-      <CodeSnippet title="Simple Unit Test">
-        <p>
-          This is what a basic unit test looks like in Go. It must exist in a file named with the form <code>*_test.go</code>,
-          and the name of each test must follow the form <code>TestXxx</code> where the first letter after "Test" is capitalized.
-          Execute <code>go test</code> in the terminal to run unit tests. A <code>t.Error(str)</code> is equivalent to a <code>t.Log(str)</code> followed
-          by a <code>t.Fail()</code>.
-        </p>
-        <CodeBlock lang="go">{`
+			</CodeSnippet>
+			<CodeSnippet title="Simple Unit Test">
+				<p>
+					This is what a basic unit test looks like in Go. It must exist in a file named with the form <code>*_test.go</code>,
+					and the name of each test must follow the form <code>TestXxx</code> where the first letter after "Test" is capitalized.
+					Execute <code>go test</code> in the terminal to run unit tests. A <code>t.Error(str)</code> is equivalent to a <code>t.Log(str)</code> followed
+					by a <code>t.Fail()</code>.
+				</p>
+				<CodeBlock lang="go">{`
 package mypackage
 
 import "testing"
@@ -94,7 +97,7 @@ func TestSomething(t *testing.T) {
   }
 }
 `}</CodeBlock>
-      </CodeSnippet>
-    </CodeSnippetPost>
-  )
+			</CodeSnippet>
+		</CodeSnippetPost>
+	)
 }
