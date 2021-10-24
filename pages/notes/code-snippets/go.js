@@ -9,8 +9,8 @@ export default function GoCodeSnippets() {
 			description="Useful bites of Go code that I often write and rewrite.">
 			<CodeSnippet title="Static File Server">
 				<p>
-					A simple static file server that binds to localhost. Use <code>port</code> (<code>p</code>) to specify the port 
-					and <code>dir</code> (<code>d</code>) to specify the directory, otherwise it'll default to port 3000 and the current 
+					A simple static file server that binds to localhost. Use <code>--port</code> (<code>-p</code>) to specify the port 
+					and <code>--dir</code> (<code>-d</code>) to specify the directory, otherwise it'll default to port 3000 and the current 
 					working directory, respectively.
 				</p>
 				<CodeBlock lang="go">{`
