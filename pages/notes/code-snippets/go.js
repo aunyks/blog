@@ -6,8 +6,55 @@ export default function GoCodeSnippets() {
 	return (
 		<CodeSnippetPost
 			title="Go Code Snippets"
-			description="Useful bites of Go code that I often write and rewrite."
-		>
+			description="Useful bites of Go code that I often write and rewrite.">
+			<CodeSnippet title="Static File Server">
+				<p>
+					A simple static file server that binds to localhost. Use <code>port</code> (<code>p</code>) to specify the port 
+					and <code>dir</code> (<code>d</code>) to specify the directory, otherwise it'll default to port 3000 and the current 
+					working directory, respectively.
+				</p>
+				<CodeBlock lang="go">{`
+package main
+
+import (
+	"fmt"
+	"flag"
+	"log"
+	"os"
+	"net/http"
+	"path/filepath"
+)
+
+const (
+	DEFAULT_PORT = 3000
+	DEFAULT_STATIC_DIRECTORY = "."
+)
+
+func main() {
+	var port int
+	var staticDirectory string
+	flag.IntVar(&port, "port", DEFAULT_PORT, "the port to which the server will bind")
+	flag.IntVar(&port, "p", DEFAULT_PORT, "the port to which the server will bind")
+	flag.StringVar(&staticDirectory, "dir", DEFAULT_STATIC_DIRECTORY, "the directory that will be served")
+	flag.StringVar(&staticDirectory, "d", DEFAULT_STATIC_DIRECTORY, "the directory that will be served")
+	flag.Parse()
+
+	workingDir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fs := http.FileServer(http.Dir(filepath.Join(workingDir, staticDirectory)))
+	http.Handle("/", fs)
+
+	fmt.Printf("Listening on http://localhost:%d\n", port)
+	err = http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+`}</CodeBlock>
+			</CodeSnippet>
 			<CodeSnippet title="Parse a SQL Connection URI">
 				<p>
 					A function for easily converting a SQL connection URI to a flavor and connection details that can be passed
