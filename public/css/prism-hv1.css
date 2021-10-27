@@ -13,7 +13,7 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  /* font-size: 1em; */
+  font-size: 1.125rem;
   line-height: 1.5em;
 
   -moz-tab-size: 4;
@@ -49,7 +49,7 @@ pre[class*='language-'] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
-  border: 1px solid #bbb;
+  border: 1px solid #f7f7f7;
   background-color: white;
 }
 
@@ -59,7 +59,7 @@ pre[class*='language-'] {
   padding-top: 1px;
   padding-bottom: 1px;
   background: #f8f8f8;
-  border: 1px solid #bbb;
+  border: 1px solid #f7f7f7;
 }
 
 .token.comment,
@@ -202,6 +202,23 @@ code[class*='language-css'] {
     hyphens: none;
   }
 
+  pre[class*='language-'] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border: 1px solid #bbb;
+    background-color: white;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*='language-'] {
+    padding: 0.2em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background: #f8f8f8;
+    border: 1px solid #bbb;
+  }
+
   code[class*='language-']::-moz-selection,
   pre[class*='language-']::-moz-selection,
   code[class*='language-'] ::-moz-selection,
@@ -216,10 +233,19 @@ code[class*='language-css'] {
     background: #363636;
   }
 
+  pre[class*='language-'] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+
+    background-color: white;
+  }
+
   :not(pre) > code[class*='language-'] {
     white-space: normal;
     border-radius: 0.2em;
     padding: 0.1em;
+    border: 1px solid #bbb;
   }
 
   pre[class*='language-'] {
@@ -227,6 +253,7 @@ code[class*='language-css'] {
     position: relative;
     margin: 0.5em 0;
     padding: 1.25em 1em;
+    border: 1px solid #bbb;
   }
 
   .language-css > code,
