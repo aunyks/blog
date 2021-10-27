@@ -13,8 +13,8 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 0.9em;
-  line-height: 1.2em;
+  font-size: 1em;
+  line-height: 1.5em;
 
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -191,9 +191,6 @@ code[class*='language-css'] {
     word-wrap: normal;
     color: var(--white);
     background: #2f2f2f;
-    font-family: monospace;
-    font-size: 1em;
-    line-height: 1.5em;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;
