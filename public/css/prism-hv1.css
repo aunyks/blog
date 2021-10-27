@@ -13,7 +13,7 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  font-size: 1em;
+  /* font-size: 1em; */
   line-height: 1.5em;
 
   -moz-tab-size: 4;
@@ -27,7 +27,7 @@ pre[class*='language-'] {
 }
 
 pre > code[class*='language-'] {
-  font-size: 1em;
+  /* font-size: 1em; */
 }
 
 pre[class*='language-']::-moz-selection,
