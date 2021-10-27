@@ -1,7 +1,4 @@
-import {
-  useEffect,
-  useState
-} from 'react'
+import { useEffect, useState } from 'react'
 
 export default function CodeBlock({
   className,
@@ -9,7 +6,7 @@ export default function CodeBlock({
   showCodeByDefault,
   noClipboardButton,
   noButton,
-  children
+  children,
 }) {
   const [Prism, setPrism] = useState(null)
   const [cbWriteSuccess, setCbWriteSuccess] = useState(false)
@@ -17,7 +14,9 @@ export default function CodeBlock({
     setPrism(window.Prism)
   }, [])
 
-  const [isShowingCode, setShowingCode] = useState(showCodeByDefault ? true : false)
+  const [isShowingCode, setShowingCode] = useState(
+    showCodeByDefault ? true : false
+  )
 
   return (
     <>
@@ -35,19 +34,30 @@ export default function CodeBlock({
             background: var(--indigo);
           }
         }
-        
+
         @media (prefers-color-scheme: dark) {
           .no-code-btn {
             background: var(--indigo);
           }
         }
       `}</style>
-      <div className={`p-0 m-0 ${isShowingCode ? "block" : "hidden"}`}>
-        <pre className={`${className || ''} code-block overflow-x-scroll`}>
+      <div className={`p-0 m-0 ${isShowingCode ? 'block' : 'hidden'}`}>
+        <pre
+          className={`${
+            className || ''
+          } code-block overflow-x-scroll language-${lang}`}>
           <code
             className={`language-${lang}`}
-            dangerouslySetInnerHTML={{ __html: Prism === null ? '' : Prism.highlight(children.trim(), Prism.languages[lang], lang) }}>
-          </code>
+            dangerouslySetInnerHTML={{
+              __html:
+                Prism === null
+                  ? ''
+                  : Prism.highlight(
+                      children.trim(),
+                      Prism.languages[lang],
+                      lang
+                    ),
+            }}></code>
         </pre>
         <div className="flex flex-row p-0 m-0">
           {!noClipboardButton && (
@@ -60,7 +70,8 @@ export default function CodeBlock({
                   setCbWriteSuccess(false)
                 }, 2000)
               }}>
-              {cbWriteSuccess ? 'Copied' : 'Copy'} to clipboard {cbWriteSuccess && <>&#10003;</>}
+              {cbWriteSuccess ? 'Copied' : 'Copy'} to clipboard{' '}
+              {cbWriteSuccess && <>&#10003;</>}
             </button>
           )}
           {!noButton && (
@@ -75,7 +86,9 @@ export default function CodeBlock({
         </div>
       </div>
       <button
-        className={`${isShowingCode ? "hidden" : "block"} code-btn w-full text-center py-2 rounded`}
+        className={`${
+          isShowingCode ? 'hidden' : 'block'
+        } code-btn w-full text-center py-2 rounded`}
         onClick={() => {
           setShowingCode(true)
         }}>

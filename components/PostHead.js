@@ -1,6 +1,4 @@
-import {
-  useEffect
-} from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 
 export default function PostHead({
@@ -10,7 +8,7 @@ export default function PostHead({
   cardImage,
   hasMath,
   hasDiagram,
-  hasCodeSnippet
+  hasCodeSnippet,
 }) {
   const effectiveTitle = !!subtitle ? `${title}: ${subtitle}` : title
 
@@ -23,7 +21,11 @@ export default function PostHead({
     <Head>
       <title>{effectiveTitle}</title>
       <meta key="charset" charSet="UTF-8" />
-      <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+        key="viewport"
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+      />
       <meta key="description" name="description" content={description} />
       <meta key="author" name="author" content="Gerald Nash" />
       <meta key="theme-color" name="theme-color" content="#ffffff" />
@@ -37,11 +39,21 @@ export default function PostHead({
       <meta name="twitter:creator" content="@aunyks" />
       <meta name="twitter:title" content={effectiveTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
+      <meta
+        name="twitter:image"
+        content={
+          cardImage || 'https://blog.aunyks.com/img/default-card-image.png'
+        }
+      />
       <meta property="og:title" content={effectiveTitle} />
       <meta property="og:site_name" content="Hi-Voltage" />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={cardImage || 'https://blog.aunyks.com/img/default-card-image.png'} />
+      <meta
+        property="og:image"
+        content={
+          cardImage || 'https://blog.aunyks.com/img/default-card-image.png'
+        }
+      />
       <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
       <link rel="manifest" href="/manifest.json" />
       {hasMath && (
@@ -62,6 +74,7 @@ export default function PostHead({
           {/* Find supported languages here: https://prismjs.com/#supported-languages */}
           {/* Find their CDN links here: https://prismjs.com/#basic-usage-cdn */}
           <link href="/css/prism.css" rel="stylesheet" />
+          <link href="/css/prism-hv1.css" rel="stylesheet" />
           <script>{`
           window.Prism = window.Prism || {};
           window.Prism.manual = true;     
