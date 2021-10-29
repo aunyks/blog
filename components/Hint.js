@@ -26,7 +26,7 @@ const slugify = (str) => {
   return str
 }
 
-export default function Hint({ title, msg, linkLabel, children }) {
+export default function Hint({ id, title, msg, linkLabel, children }) {
   const [hintActive, setHintActive] = useState(false)
   const onInteraction = (e) => {
     setHintActive(true)
@@ -40,7 +40,7 @@ export default function Hint({ title, msg, linkLabel, children }) {
   return (
     <>
       <Modal
-        id={slugify(msg)}
+        id={id || slugify(msg)}
         active={hintActive}
         title={title || 'Note'}
         onClose={() => {
