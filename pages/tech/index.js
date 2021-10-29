@@ -11,6 +11,9 @@ export default function Tech() {
       <Link href="/2021/7/procedural-skydomes-on-the-web">
         procedural skydomes on the web
       </Link>
+      <Link href="/2021/5/so-you-wanna-be-cutting-edge">
+        so you wanna be cutting edge
+      </Link>
       <Link href="/2021/4/making-a-dual-ps5-controller-stand" video>
         making a dual PS5 controller stand
       </Link>
