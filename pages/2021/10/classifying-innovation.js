@@ -72,11 +72,23 @@ export default function ClassifyingInnovation() {
         <a href="https://en.wikipedia.org/wiki/Pasteur%27s_quadrant">
           "Pasteur's Quadrant"
         </a>
-        . When looking up what it is, I found that David Stokes, who coined the
+        . When looking up what it is, I found that Donald Stokes, who coined the
         term in{' '}
         <Hint
+          id="book-modal"
+          title="Disclaimer"
           linkLabel="Disclaimer"
-          msg="I haven't yet read the book, so please excuse me if I'm repeating what he said!">
+          msg={
+            <>
+              I haven't yet read{' '}
+              <a
+                target="_blank"
+                href="https://www.amazon.com/Pasteurs-Quadrant-Science-Technological-Innovation/dp/0815781776">
+                the book
+              </a>
+              , so please excuse me if I'm repeating what he said!
+            </>
+          }>
           his book of the same name
         </Hint>
         , used it in the context of classifying different types of research
@@ -134,6 +146,17 @@ export default function ClassifyingInnovation() {
         commercialized, but many of his creations didn't advance our fundamental
         understanding of a field.
       </p>
+      <p>
+        The matrix is a pretty simple framework in which all forms of innovation
+        can be classified. My only update would be to "blur" the lines dividing
+        each quadrant, as not all types of innovation are as cut-and-dry as the
+        examples above. There are instances, like many of Nikola Tesla's
+        studies, where the motive for research was exclusively applied, but
+        fundamental insights of the world were discovered. The inverse also
+        holds true: there are instances where the motives of research were
+        exclusively basic, but a solution to an immediate problem was found as a
+        result.
+      </p>
       <h2>Using Literature</h2>
       <p>
         An interesting result of Stokes' matrix is that you can also classify
@@ -173,17 +196,6 @@ export default function ClassifyingInnovation() {
           numerous patents
         </a>{' '}
         but no research papers.
-      </p>
-      <p>
-        The matrix is a pretty simple framework in which all forms of innovation
-        can be classified. My only update would be to "blur" the lines dividing
-        each quadrant, as not all types of innovation are as cut-and-dry as the
-        examples above. There are instances, like many of Nikola Tesla's
-        studies, where the motive for research was exclusively applied, but
-        fundamental insights of the world were discovered. The inverse also
-        holds true: there are instances where the motives of research were
-        exclusively basic, but a solution to an immediate problem was found as a
-        result.
       </p>
       <h2>You and I</h2>
       <p>
