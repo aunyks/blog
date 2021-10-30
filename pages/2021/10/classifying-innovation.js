@@ -49,7 +49,7 @@ function Matrix({ role = 'img', ariaLabel, className, children }) {
   )
 }
 
-export default function InSearchOfGameDAO() {
+export default function ClassifyingInnovation() {
   return (
     <Post
       title="Classifying Innovation"
@@ -82,6 +82,7 @@ export default function InSearchOfGameDAO() {
         , used it in the context of classifying different types of research
         based on their motives and discoveries.
       </p>
+      <h2>The Quadrants</h2>
       <p>
         Stokes devised a matrix with four quadrants. Three of the quadrants were
         assigned to different types of scientific research: purely basic
@@ -133,10 +134,50 @@ export default function InSearchOfGameDAO() {
         commercialized, but many of his creations didn't advance our fundamental
         understanding of a field.
       </p>
+      <h2>Using Literature</h2>
       <p>
-        It's a pretty simple framework in which all forms of innovation can be
-        classified. My only update would be to "blur" the lines dividing each
-        quadrant, as not all types of innovation are as cut-and-dry as the
+        An interesting result of Stokes' matrix is that you can also classify
+        the types of innovation by the types of formal documents they can
+        produce. Basic research often produces peer reviewed research papers,
+        and applied research produces often produces patents. Of course, this
+        means that basic applied research can produce both research papers{' '}
+        <em>and</em> patents.
+      </p>
+      <p>
+        For example, Bohr published{' '}
+        <a target="_blank" href="https://philpapers.org/s/Niels%20Bohr">
+          several papers
+        </a>{' '}
+        but{' '}
+        <a
+          target="_blank"
+          href="https://patents.google.com/?inventor=Niels+Bohr&oq=inventor:(Niels+Bohr)">
+          no patents
+        </a>
+        . Louis Pasteur published{' '}
+        <a
+          target="_blank"
+          href="https://scholar.google.com/scholar?hl=en&as_ylo=1800&as_yhi=1960&q=author%3A%28Louis+Pasteur%29">
+          several papers
+        </a>{' '}
+        <em>and</em>{' '}
+        <a
+          target="_blank"
+          href="https://patents.google.com/?inventor=Louis+Pasteur&before=priority:19700101">
+          several patents
+        </a>
+        . Edison published{' '}
+        <a
+          target="_blank"
+          href="https://patents.google.com/?inventor=Thomas+Edison&before=priority:19700101&oq=inventor:(Thomas+Edison)+before:priority:19700101">
+          numerous patents
+        </a>{' '}
+        but no research papers.
+      </p>
+      <p>
+        The matrix is a pretty simple framework in which all forms of innovation
+        can be classified. My only update would be to "blur" the lines dividing
+        each quadrant, as not all types of innovation are as cut-and-dry as the
         examples above. There are instances, like many of Nikola Tesla's
         studies, where the motive for research was exclusively applied, but
         fundamental insights of the world were discovered. The inverse also
@@ -144,6 +185,7 @@ export default function InSearchOfGameDAO() {
         exclusively basic, but a solution to an immediate problem was found as a
         result.
       </p>
+      <h2>You and I</h2>
       <p>
         If I were to put myself on the matrix, I'd say I'm in the bottom left
         quadrant right now, where I'm tinkering and it's not clear that I'm
