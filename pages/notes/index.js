@@ -3,8 +3,7 @@ import Link from 'components/Link'
 
 export default function NotesPage() {
   return (
-    <LinksPage
-      title="Notes">
+    <LinksPage title="Notes">
       <Link href="/notes/code-snippets">code snippets</Link>
       <Link href="/notes/frequency-reference">radio frequency reference</Link>
       <Link href="/notes/applied-dsp">applied digital signal processing</Link>
@@ -12,6 +11,7 @@ export default function NotesPage() {
       <Link href="/notes/ffmpeg">FFmpeg</Link>
       <Link href="/notes/electronics">electronics</Link>
       <Link href="/notes/regex">regex</Link>
+      <Link href="/notes/raspberry-pi">raspberry pi</Link>
     </LinksPage>
   )
 }

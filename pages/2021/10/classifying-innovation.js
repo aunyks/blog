@@ -169,15 +169,9 @@ export default function ClassifyingInnovation() {
       <p>
         For example, Bohr published{' '}
         <a target="_blank" href="https://philpapers.org/s/Niels%20Bohr">
-          several papers
+          lots of papers
         </a>{' '}
-        but{' '}
-        <a
-          target="_blank"
-          href="https://patents.google.com/?inventor=Niels+Bohr&oq=inventor:(Niels+Bohr)">
-          no patents
-        </a>
-        . Louis Pasteur published{' '}
+        but no patents . Louis Pasteur published{' '}
         <a
           target="_blank"
           href="https://scholar.google.com/scholar?hl=en&as_ylo=1800&as_yhi=1960&q=author%3A%28Louis+Pasteur%29">

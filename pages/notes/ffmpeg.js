@@ -1,25 +1,22 @@
 import NotesPost from 'components/NotesPost'
 import CodeBlock from 'components/CodeBlock'
 import CodeSnippet from 'components/CodeSnippet'
-import Hint from 'components/Hint'
 
 export default function FFmpegNotes() {
   return (
-    <NotesPost
-      title="FFmpeg"
-      description=""
-      hasCodeSnippet
-    >
+    <NotesPost title="FFmpeg" description="" hasCodeSnippet>
       <p>
-        FFmpeg commands I find on the web look insanely confusing even for seemingly
-        simple operations. Here's some stuff I find myself using every now and then.
+        FFmpeg commands I find on the web look insanely confusing even for
+        seemingly simple operations. Here's some stuff I find myself using every
+        now and then.
       </p>
       <h2>Commands</h2>
       <CodeSnippet title="Convert video file format">
         <p>
           This converts a MOV file to MP4, but it should be able to be modified
-          to do any kind of video conversion as long as you know the video codecs for them.
-      </p>
+          to do any kind of video conversion as long as you know the video
+          codecs for them.
+        </p>
         <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
 ffmpeg \\ 
 \t-i my-video.mov \\ # The input file
@@ -31,9 +28,11 @@ ffmpeg \\
       </CodeSnippet>
       <CodeSnippet title="Change Frame Rate">
         <p>
-          This changes the frame rate of the input video. If the target rate is lower than source rate, it removes some frames.
-        If greater, it <em>probably</em> duplicates some frames: I haven't tried it for that case before.
-      </p>
+          This changes the frame rate of the input video. If the target rate is
+          lower than source rate, it removes some frames. If greater, it{' '}
+          <em>probably</em> duplicates some frames: I haven't tried it for that
+          case before.
+        </p>
         <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
 ffmpeg \\ 
 \t-i my-video.mp4 \\ # The input file
@@ -43,8 +42,14 @@ ffmpeg \\
       </CodeSnippet>
       <CodeSnippet title="Apply a LUT Cube / 3D LUT to a Video">
         <p>
-          This applies a <a href="https://en.wikipedia.org/wiki/3D_lookup_table" target="_blank">3D Color Lookup Table</a> to a video.
-      </p>
+          This applies a{' '}
+          <a
+            href="https://en.wikipedia.org/wiki/3D_lookup_table"
+            target="_blank">
+            3D Color Lookup Table
+          </a>{' '}
+          to a video.
+        </p>
         <CodeBlock lang="shell-session" noButton showCodeByDefault>{`
 ffmpeg \\ 
 \t-i my-video.mp4 \\ # The input file
