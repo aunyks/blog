@@ -37,7 +37,7 @@ raspi-config
       <CodeSnippet title="Run Setup Script">
         <p>
           Next, we update all of the packages on device, installs curl, and then
-          runs a custom script that I use. The script installs Go, Nginx,
+          runs a custom script that I use. The script installs Go, Caddy,
           Docker, Pyenv, Node Version Manager and ZSH. It also asks whether you
           want to change the hostname of the device and creates a small{' '}
           <code>.zshrc</code> for you. Remember to run all of this as{' '}
