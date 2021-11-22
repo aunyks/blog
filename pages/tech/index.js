@@ -7,6 +7,9 @@ export default function Tech() {
       pageTitle="Tech"
       title="Tech"
       subtitle="Writeups, research, and realizations">
+      <Link href="/2021/11/you-wouldnt-download-a-guitar-right">
+        you wouldn't download a guitar, right?
+      </Link>
       <Link href="/2021/10/classifying-innovation">classifying innovation</Link>
       <Link href="/2021/7/procedural-skydomes-on-the-web">
         procedural skydomes on the web
