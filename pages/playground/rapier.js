@@ -10,6 +10,7 @@ function Physics({ children }) {
     )
     workerRef.current.onmessage = (evt) =>
       alert(`WebWorker Response => ${evt.data}`)
+    window.rapierWorker = workerRef.current
     return () => {
       workerRef.current.terminate()
     }

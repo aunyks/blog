@@ -1,40 +1,188 @@
 import RAPIER from '@dimforge/rapier3d-compat'
+/*
+// For testing this worker
+rapierWorker.onmessage = console.log
+rapierWorker.postMessage({op: 'init', gravity: {x: 0, y: -9.81, z: 0}})
+rapierWorker.postMessage({op: 'addBodies', uuid: ['uuid0'], type: 'Sphere', props: [{}]})
+rapierWorker.postMessage({op: 'step', gravity: {x: 0, y: -9.81, z: 0}})
+*/
+
+let bodyFromProperties = null
+let physicsWorld = null
+let bodies = null
+let subscriptions = null
 
 RAPIER.init().then(() => {
-  postMessage('ready')
-  // Use the RAPIER module here.
-  let gravity = { x: 0.0, y: -9.81, z: 0.0 }
-  let world = new RAPIER.World(gravity)
+  bodies = {}
+  subscriptions = {}
+  bodyFromProperties = (uuid, props, type) => {
+    const {
+      args = [],
+      position = [0, 0, 0],
+      quaternion = [1, 0, 0, 0],
+      velocity = [0, 0, 0],
+      angularVelocity = [0, 0, 0],
+      linearFactor = [1, 1, 1],
+      angularFactor = [1, 1, 1],
+      type: bodyType,
+      mass = 1,
+      material,
+      shapes,
+      onCollide,
+      collisionResponse,
+      ...extra
+    } = props
+    let collider = null
+    switch (type) {
+      case 'Box':
+        collider = RAPIER.ColliderDesc.cuboid(args[0], args[1], args[2])
+        break
+      case 'Plane':
+        collider = RAPIER.ColliderDesc.cuboid(args[0], 0.1, args[1]) // args[0] x distance, args[1] z distance
+        break
+      case 'Sphere':
+        collider = RAPIER.ColliderDesc.ball(args) // radius = args
+        break
+      case 'Heightfield':
+        collider = RAPIER.ColliderDesc.heightfield(
+          args[0],
+          args[1],
+          args[2],
+          args[3]
+        )
+        break // [ number of rows, number of columns, heightData 1D array, vertical scale ] = args
+      case 'Cylinder':
+        collider = RAPIER.ColliderDesc.cylinder(args[0] * 2, args[1])
+        break // [ halfheight, radius ] = args
+      case 'Capsule':
+        collider = RAPIER.ColliderDesc.capsule(args[0] * 2, args[1])
+        break // [ halfheight, radius] = args
+      case 'ConvexPolyhedron':
+        // collider = RAPIER.ColliderDesc.convex(scale[0], scale[1], scale[2])
+        break
+      case 'Particle':
+        break // no args
+      case 'Trimesh':
+        break //
+      default:
+        throw new Error(`Unrecognized body type found: ${type}`)
+    }
+    collider.setDensity(0)
 
-  // Create the ground
-  let groundColliderDesc = RAPIER.ColliderDesc.cuboid(10.0, 0.1, 10.0)
-  world.createCollider(groundColliderDesc)
-
-  // Create a dynamic rigid-body.
-  let rigidBodyDesc = RAPIER.RigidBodyDesc.newDynamic().setTranslation(
-    0.0,
-    1.0,
-    0.0
-  )
-  let rigidBody = world.createRigidBody(rigidBodyDesc)
-
-  // Create a cuboid collider attached to the dynamic rigidBody.
-  let colliderDesc = RAPIER.ColliderDesc.cuboid(0.5, 0.5, 0.5)
-  let collider = world.createCollider(colliderDesc, rigidBody.handle)
-
-  // Game loop. Replace by your own game loop system.
-  let gameLoop = () => {
-    // Ste the simulation forward.
-    world.step()
-
-    // Get and print the rigid-body's position.
-    let position = rigidBody.translation()
-    postMessage(
-      `Rigid-body position: ${position.x}, ${position.y}, ${position.z}`
-    )
-
-    setTimeout(gameLoop, 16)
+    let rigidBody = RAPIER.RigidBodyDesc.newDynamic()
+      .setTranslation(position[0], position[1], position[2])
+      .setRotation({
+        w: quaternion[0],
+        x: quaternion[1],
+        y: quaternion[2],
+        z: quaternion[3],
+      })
+      .setLinvel(velocity[0], velocity[1], velocity[2])
+      .setAngvel({
+        x: angularVelocity[0],
+        y: angularVelocity[1],
+        z: angularVelocity[2],
+      })
+      .setAdditionalMass(mass)
+    rigidBody.uuid = uuid
+    return {
+      collider: collider,
+      body: rigidBody,
+    }
   }
+  postMessage({ op: 'ready', data: null })
+})
 
-  gameLoop()
+addEventListener('message', (e) => {
+  const { op, uuid, type, props } = e.data
+  switch (op) {
+    case 'init':
+      physicsWorld = new RAPIER.World(e.data.gravity)
+      break
+    case 'step':
+      physicsWorld.step()
+      let observations = []
+      for (const id of Object.keys(subscriptions)) {
+        let uuid = subscriptions[id]
+        let object = bodies[uuid]
+        if (!object) continue
+        const bodyTranslation = object.translation()
+        const bodyQuaternion = object.rotation()
+        observations.push([id, bodyTranslation, bodyQuaternion])
+      }
+      let steppedBodies = {}
+      Object.keys(bodies).forEach((bodyUuid) => {
+        const bodyTranslation = bodies[bodyUuid].translation()
+        const bodyQuaternion = bodies[bodyUuid].rotation()
+        steppedBodies[bodyUuid] = {
+          position: {
+            x: bodyTranslation.x,
+            y: bodyTranslation.y,
+            z: bodyTranslation.z,
+          },
+          quaternion: {
+            w: bodyQuaternion.w,
+            x: bodyQuaternion.x,
+            y: bodyQuaternion.y,
+            z: bodyQuaternion.z,
+          },
+        }
+      })
+      postMessage({
+        op: 'frame',
+        data: { bodies: steppedBodies, observations: observations },
+      })
+      break
+    case 'addBodies':
+      for (let i = 0; i < uuid.length; i++) {
+        const { collider, body } = bodyFromProperties(uuid[i], props[i], type)
+        let rigidBody = physicsWorld.createRigidBody(body)
+        physicsWorld.createCollider(collider, rigidBody.handle)
+        bodies[uuid] = rigidBody
+      }
+      break
+    case 'removeBodies':
+      physicsWorld.removeRigidBody(bodies[uuid])
+      delete bodies[uuid]
+      break
+    case 'subscribe': {
+      const { id } = props
+      subscriptions[id] = uuid
+      break
+    }
+    case 'unsubscribe': {
+      const { id } = props
+      delete subscriptions[id]
+      break
+    }
+    case 'setPosition':
+      bodies[uuid].setTranslation(
+        { x: props[0], y: props[1], z: props[2] },
+        true
+      )
+      break
+    case 'setQuaternion':
+    case 'setRotation':
+      bodies[uuid].setRotation(
+        {
+          w: props[0],
+          x: props[1],
+          y: props[2],
+          z: props[3],
+        },
+        true
+      )
+      break
+    case 'setVelocity':
+      bodies[uuid].setLinvel({ x: props[0], y: props[1], z: props[2] }, true)
+      break
+    case 'setAngularVelocity':
+      bodies[uuid].setAngvel({ x: props[0], y: props[1], z: props[2] }, true)
+      break
+    case 'applyForce':
+      bodies[uuid].applyForce({ x: props[0], y: props[1], z: props[2] }, true)
+      break
+    default:
+      throw new Error(`Unrecognized operation, ${op} received`)
+  }
 })
