@@ -6,11 +6,21 @@ export default function PythonCodeSnippets() {
   return (
     <CodeSnippetPost
       title="Python Code Snippets"
-      description="Useful bites of Python code I've probably written by hand too often."
-    >
+      description="Useful bites of Python code I've probably written by hand too often.">
+      <CodeSnippet title="Print the System Path of This Python Executable">
+        <p>
+          This is like running <code>which python</code> in a Unix-like
+          terminal, except Python will be more honest with where it's located.
+        </p>
+        <CodeBlock lang="python">{`
+import sys
+print(sys.exec_prefix)
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Hash a String with SHA-256">
         <p>
-          Using <code>hash_string('hi')</code> returns <code>'8f434346648...'</code>.
+          Using <code>hash_string('hi')</code> returns{' '}
+          <code>'8f434346648...'</code>.
         </p>
         <CodeBlock lang="python">{`
 import hashlib
@@ -22,7 +32,8 @@ def hash_string(msg_string):
       </CodeSnippet>
       <CodeSnippet title="Plot a Circle on a 2D Plane">
         <p>
-          Using <code>matplotlib</code> to plot a blue circle on a two-dimensional plane.
+          Using <code>matplotlib</code> to plot a blue circle on a
+          two-dimensional plane.
         </p>
         <CodeBlock lang="python">{`
 import matplotlib.pyplot as plt
@@ -44,8 +55,8 @@ plt.show()
       </CodeSnippet>
       <CodeSnippet title="Plot Complex Numbers on 2D Plane">
         <p>
-          Using <code>matplotlib</code> and <code>numpy</code> to plot a list of imaginary numbers
-          on a two-dimensional plane.
+          Using <code>matplotlib</code> and <code>numpy</code> to plot a list of
+          imaginary numbers on a two-dimensional plane.
         </p>
         <CodeBlock lang="python">{`
 import matplotlib.pyplot as plt
