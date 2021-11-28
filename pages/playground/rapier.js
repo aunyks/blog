@@ -4,13 +4,9 @@ import OrbitControls from 'components/3d/controls/OrbitControls'
 import { Physics, useBox } from 'components/3d/RapierPhysics'
 
 function Box(props) {
-  const [boxRef] = useBox(
-    () => {
-      return { mass: 1, position: [0, 50, 0] }
-    },
-    null,
-    []
-  )
+  const [boxRef] = useBox(() => {
+    return { mass: 1 }
+  })
   return (
     <mesh ref={boxRef} {...props}>
       <boxBufferGeometry />

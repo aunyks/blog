@@ -12,8 +12,6 @@ let physicsWorld = null
 let bodies = null
 let subscriptions = null
 let inited = false
-// Bodies that called addBodies before init
-let earlyBodies = []
 
 RAPIER.init().then(() => {
   bodies = {}
@@ -109,17 +107,14 @@ addEventListener('message', (e) => {
   switch (op) {
     case 'init':
       physicsWorld = new RAPIER.World(e.data.gravity)
-      earlyBodies.forEach(({ uuid, props, type }) => {
-        const { collider, body } = bodyFromProperties(uuid, props, type)
-        let rigidBody = physicsWorld.createRigidBody(body)
-        physicsWorld.createCollider(collider, rigidBody.handle)
-        bodies[uuid] = rigidBody
-      })
       inited = true
       postMessage({ op: 'inited' })
       break
     case 'step':
+      debugger
+      let a = bodies[Object.keys(bodies)[0]].translation()
       physicsWorld.step()
+      let b = bodies[Object.keys(bodies)[0]].translation()
       let observations = []
       for (const id of Object.keys(subscriptions)) {
         let uuid = subscriptions[id]
@@ -154,14 +149,10 @@ addEventListener('message', (e) => {
       })
       break
     case 'addBodies':
-      if (inited) {
-        const { collider, body } = bodyFromProperties(uuid, props, type)
-        let rigidBody = physicsWorld.createRigidBody(body)
-        physicsWorld.createCollider(collider, rigidBody.handle)
-        bodies[uuid] = rigidBody
-      } else {
-        earlyBodies.push({ uuid, props, type })
-      }
+      const { collider, body } = bodyFromProperties(uuid, props, type)
+      let rigidBody = physicsWorld.createRigidBody(body)
+      physicsWorld.createCollider(collider, rigidBody.handle)
+      bodies[uuid] = rigidBody
       break
     case 'removeBodies':
       physicsWorld.removeRigidBody(bodies[uuid])

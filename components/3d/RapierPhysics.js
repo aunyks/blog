@@ -45,12 +45,13 @@ export function Physics({
       worker.onmessage = (event) => {
         switch (event.data.op) {
           case 'frame':
+            debugger
             Object.keys(event.data.bodies).forEach((bodyUuid) => {
               const rapierBody = event.data.bodies[bodyUuid]
               const threeObject = scene.getObjectByProperty('uuid', bodyUuid)
-              threeObjectWorldPosition.current = threeObject
-                .getWorldPosition()
-                .clone()
+              threeObjectWorldPosition.current = threeObject.getWorldPosition(
+                threeObjectWorldPosition.current
+              )
               threeObject.worldToLocal(threeObjectWorldPosition.current)
               threeObject.quaternion.set(
                 rapierBody.quaternion.x,
@@ -81,8 +82,8 @@ export function Physics({
     }
   }, [workerReady, workerInited])
   const api = useMemo(
-    () => ({ worker, subscriptions }),
-    [worker, subscriptions]
+    () => ({ worker, workerReady, workerInited, subscriptions }),
+    [worker, workerReady, workerInited, subscriptions]
   )
   return <RapierContext.Provider value={api}>{children}</RapierContext.Provider>
 }
@@ -92,7 +93,7 @@ function useForwardedRef(ref) {
   return ref && typeof ref !== 'function' ? ref : nullRef
 }
 
-function useBody(type, fn, fwdRef, deps) {
+function useBody(type, fn, fwdRef, deps = []) {
   const ref = useForwardedRef(fwdRef)
   const { worker, workerReady, workerInited } = useContext(RapierContext)
 
@@ -117,7 +118,9 @@ function useBody(type, fn, fwdRef, deps) {
         props: props,
       })
       return () => {
-        currentWorker.postMessage({ op: 'removeBodies', uuid })
+        if (workerReady && workerInited) {
+          currentWorker.postMessage({ op: 'removeBodies', uuid })
+        }
       }
     }
   }, [workerInited, workerReady, ...deps])
