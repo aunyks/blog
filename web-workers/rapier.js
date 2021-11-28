@@ -11,6 +11,9 @@ let bodyFromProperties = null
 let physicsWorld = null
 let bodies = null
 let subscriptions = null
+let inited = false
+// Bodies that called addBodies before init
+let earlyBodies = []
 
 RAPIER.init().then(() => {
   bodies = {}
@@ -26,6 +29,7 @@ RAPIER.init().then(() => {
       angularFactor = [1, 1, 1],
       type: bodyType,
       mass = 1,
+      isTrigger = false,
       material,
       shapes,
       onCollide,
@@ -68,8 +72,15 @@ RAPIER.init().then(() => {
         throw new Error(`Unrecognized body type found: ${type}`)
     }
     collider.setDensity(0)
+    collider.setSensor(isTrigger)
 
-    let rigidBody = RAPIER.RigidBodyDesc.newDynamic()
+    let rigidBody = null
+    if (['Plane', 'Heightfield'].includes(type)) {
+      rigidBody = RAPIER.RigidBodyDesc.newStatic()
+    } else {
+      rigidBody = RAPIER.RigidBodyDesc.newDynamic()
+    }
+    rigidBody
       .setTranslation(position[0], position[1], position[2])
       .setRotation({
         w: quaternion[0],
@@ -90,7 +101,7 @@ RAPIER.init().then(() => {
       body: rigidBody,
     }
   }
-  postMessage({ op: 'ready', data: null })
+  postMessage({ op: 'ready' })
 })
 
 addEventListener('message', (e) => {
@@ -98,6 +109,14 @@ addEventListener('message', (e) => {
   switch (op) {
     case 'init':
       physicsWorld = new RAPIER.World(e.data.gravity)
+      earlyBodies.forEach(({ uuid, props, type }) => {
+        const { collider, body } = bodyFromProperties(uuid, props, type)
+        let rigidBody = physicsWorld.createRigidBody(body)
+        physicsWorld.createCollider(collider, rigidBody.handle)
+        bodies[uuid] = rigidBody
+      })
+      inited = true
+      postMessage({ op: 'inited' })
       break
     case 'step':
       physicsWorld.step()
@@ -130,15 +149,18 @@ addEventListener('message', (e) => {
       })
       postMessage({
         op: 'frame',
-        data: { bodies: steppedBodies, observations: observations },
+        bodies: steppedBodies,
+        observations: observations,
       })
       break
     case 'addBodies':
-      for (let i = 0; i < uuid.length; i++) {
-        const { collider, body } = bodyFromProperties(uuid[i], props[i], type)
+      if (inited) {
+        const { collider, body } = bodyFromProperties(uuid, props, type)
         let rigidBody = physicsWorld.createRigidBody(body)
         physicsWorld.createCollider(collider, rigidBody.handle)
         bodies[uuid] = rigidBody
+      } else {
+        earlyBodies.push({ uuid, props, type })
       }
       break
     case 'removeBodies':
@@ -156,25 +178,14 @@ addEventListener('message', (e) => {
       break
     }
     case 'setPosition':
-      bodies[uuid].setTranslation(
-        { x: props[0], y: props[1], z: props[2] },
-        true
-      )
+      bodies[uuid].setTranslation(props, true)
       break
     case 'setQuaternion':
     case 'setRotation':
-      bodies[uuid].setRotation(
-        {
-          w: props[0],
-          x: props[1],
-          y: props[2],
-          z: props[3],
-        },
-        true
-      )
+      bodies[uuid].setRotation(props, true)
       break
     case 'setVelocity':
-      bodies[uuid].setLinvel({ x: props[0], y: props[1], z: props[2] }, true)
+      bodies[uuid].setLinvel(props, true)
       break
     case 'setAngularVelocity':
       bodies[uuid].setAngvel({ x: props[0], y: props[1], z: props[2] }, true)
