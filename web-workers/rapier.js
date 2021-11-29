@@ -37,15 +37,28 @@ RAPIER.init().then(() => {
     let collider = null
     switch (type) {
       case 'Box':
-        collider = RAPIER.ColliderDesc.cuboid(args[0], args[1], args[2])
+        collider = RAPIER.ColliderDesc.cuboid(
+          args[0] || 1,
+          args[1] || 1,
+          args[2] || 1
+        )
         break
       case 'Plane':
-        collider = RAPIER.ColliderDesc.cuboid(args[0], 0.1, args[1]) // args[0] x distance, args[1] z distance
+        collider = RAPIER.ColliderDesc.cuboid(
+          args[0] || 10000,
+          args[1] || 10000,
+          0.1
+        ) // args[0] x distance, args[1] z distance
         break
       case 'Sphere':
-        collider = RAPIER.ColliderDesc.ball(args) // radius = args
+        collider = RAPIER.ColliderDesc.ball(args || 1) // radius = args
         break
       case 'Heightfield':
+        if (!args[0] || !args[1] || !args[2] || !args[3]) {
+          throw new Error(
+            'At least one argument given to Heightfield constructor'
+          )
+        }
         collider = RAPIER.ColliderDesc.heightfield(
           args[0],
           args[1],
@@ -54,10 +67,20 @@ RAPIER.init().then(() => {
         )
         break // [ number of rows, number of columns, heightData 1D array, vertical scale ] = args
       case 'Cylinder':
-        collider = RAPIER.ColliderDesc.cylinder(args[0] * 2, args[1])
+        if (args[0] === undefined) {
+          throw new Error(
+            'Halfheight argument for Cylinder constructor is undefined'
+          )
+        }
+        collider = RAPIER.ColliderDesc.cylinder(args[0] * 2 || 1, args[1] || 1)
         break // [ halfheight, radius ] = args
       case 'Capsule':
-        collider = RAPIER.ColliderDesc.capsule(args[0] * 2, args[1])
+        if (args[0] === undefined) {
+          throw new Error(
+            'Halfheight argument for Capsule contrustor is undefined'
+          )
+        }
+        collider = RAPIER.ColliderDesc.capsule(args[0] * 2 || 1, args[1] || 1)
         break // [ halfheight, radius] = args
       case 'ConvexPolyhedron':
         // collider = RAPIER.ColliderDesc.convex(scale[0], scale[1], scale[2])
@@ -111,10 +134,7 @@ addEventListener('message', (e) => {
       postMessage({ op: 'inited' })
       break
     case 'step':
-      debugger
-      let a = bodies[Object.keys(bodies)[0]].translation()
       physicsWorld.step()
-      let b = bodies[Object.keys(bodies)[0]].translation()
       let observations = []
       for (const id of Object.keys(subscriptions)) {
         let uuid = subscriptions[id]
@@ -149,6 +169,7 @@ addEventListener('message', (e) => {
       })
       break
     case 'addBodies':
+      debugger
       const { collider, body } = bodyFromProperties(uuid, props, type)
       let rigidBody = physicsWorld.createRigidBody(body)
       physicsWorld.createCollider(collider, rigidBody.handle)

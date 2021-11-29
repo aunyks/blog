@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import RapierContext from 'contexts/3d/RapierContext'
-import { Vector3 } from 'three'
+import { Matrix4, Quaternion, Vector3 } from 'three'
 
 export function Physics({
   shouldInvalidate = true,
@@ -23,6 +23,8 @@ export function Physics({
   )
   const [subscriptions] = useState(null)
   const threeObjectWorldPosition = useRef(new Vector3())
+  const threeObjectWorldQuaternion = useRef(new Quaternion())
+  const threeObjectMatrix4 = useRef(new Matrix4())
   const gameLoop = useCallback(() => {
     if (workerInited) {
       worker.postMessage({ op: 'step' })
@@ -45,20 +47,21 @@ export function Physics({
       worker.onmessage = (event) => {
         switch (event.data.op) {
           case 'frame':
-            debugger
             Object.keys(event.data.bodies).forEach((bodyUuid) => {
+              // Update the world position and rotation of the three object
+              // based on the same values of its physics body
               const rapierBody = event.data.bodies[bodyUuid]
+              console.log(rapierBody.position, rapierBody.quaternion)
               const threeObject = scene.getObjectByProperty('uuid', bodyUuid)
-              threeObjectWorldPosition.current = threeObject.getWorldPosition(
-                threeObjectWorldPosition.current
+              threeObjectWorldPosition.current.copy(rapierBody.position)
+              threeObjectWorldQuaternion.current.copy(rapierBody.quaternion)
+              threeObjectMatrix4.current.compose(
+                threeObjectWorldPosition.current,
+                threeObjectWorldQuaternion.current,
+                threeObject.scale
               )
-              threeObject.worldToLocal(threeObjectWorldPosition.current)
-              threeObject.quaternion.set(
-                rapierBody.quaternion.x,
-                rapierBody.quaternion.y,
-                rapierBody.quaternion.z,
-                rapierBody.quaternion.w
-              )
+              threeObject.matrixAutoUpdate = false
+              threeObject.matrix.copy(threeObjectMatrix4.current)
             })
             event.data.observations.forEach(([id, position, quaternion]) => {
               const callback = subscriptions[id] || {}
@@ -117,10 +120,10 @@ function useBody(type, fn, fwdRef, deps = []) {
         uuid,
         props: props,
       })
-      return () => {
-        if (workerReady && workerInited) {
-          currentWorker.postMessage({ op: 'removeBodies', uuid })
-        }
+    }
+    return () => {
+      if (workerReady && workerInited) {
+        currentWorker.postMessage({ op: 'removeBodies', uuid })
       }
     }
   }, [workerInited, workerReady, ...deps])
