@@ -47,7 +47,7 @@ RAPIER.init().then(() => {
         collider = RAPIER.ColliderDesc.cuboid(
           args[0] || 10000,
           args[1] || 10000,
-          0.1
+          0.001
         ) // args[0] x distance, args[1] z distance
         break
       case 'Sphere':

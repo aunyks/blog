@@ -180,18 +180,18 @@ export function useBox(fn, fwdRef, deps) {
   return useBody('Box', fn, fwdRef, deps)
 }
 
-export function Sphere(fn, fwdRef, deps) {
+export function useSphere(fn, fwdRef, deps) {
   return useBody('Sphere', fn, fwdRef, deps)
 }
 
-export function Heightfield(fn, fwdRef, deps) {
+export function useHeightfield(fn, fwdRef, deps) {
   return useBody('Heightfield', fn, fwdRef, deps)
 }
 
-export function Cylinder(fn, fwdRef, deps) {
+export function useCylinder(fn, fwdRef, deps) {
   return useBody('Cylinder', fn, fwdRef, deps)
 }
 
-export function Capsule(fn, fwdRef, deps) {
+export function useCapsule(fn, fwdRef, deps) {
   return useBody('Capsule', fn, fwdRef, deps)
 }

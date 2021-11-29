@@ -1,16 +1,16 @@
 import { Canvas } from '@react-three/fiber'
 import { useEffect, useRef, useCallback } from 'react'
 import OrbitControls from 'components/3d/controls/OrbitControls'
-import { Physics, useBox, usePlane } from 'components/3d/RapierPhysics'
+import { Physics, useSphere, usePlane } from 'components/3d/RapierPhysics'
 import { Euler, Quaternion } from 'three'
 
-function Box(props) {
-  const [boxRef] = useBox(() => {
-    return { mass: 1, position: [0, 5, 0] }
+function Sphere(props) {
+  const [sphereRef] = useSphere(() => {
+    return { mass: 1, args: 2, position: [0, 5, 0], velocity: [-2, -2, -2] }
   })
   return (
-    <mesh ref={boxRef} {...props}>
-      <boxBufferGeometry />
+    <mesh ref={sphereRef} {...props}>
+      <sphereBufferGeometry />
       <meshBasicMaterial color={0xff0000} />
     </mesh>
   )
@@ -36,7 +36,7 @@ export default function CannonDemo() {
       <div style={{ height: '100vh', width: '100vw' }}>
         <Canvas>
           <Physics>
-            <Box />
+            <Sphere />
             <FlatGround />
             <ambientLight intensity={1} />
             <OrbitControls origin={[0, 2, 0]} cameraDistance={5} />
