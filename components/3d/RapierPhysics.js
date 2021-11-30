@@ -10,6 +10,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 import RapierContext from 'contexts/3d/RapierContext'
 import { Matrix4, Quaternion, Vector3 } from 'three'
 
+let subscriptionId = 0
+
 export function Physics({
   shouldInvalidate = true,
   gravity = { x: 0, y: -9.81, z: 0 },
@@ -21,7 +23,7 @@ export function Physics({
   const [worker] = useState(
     () => new Worker(new URL('../../web-workers/rapier.js', import.meta.url))
   )
-  const [subscriptions] = useState(null)
+  const [subscriptions] = useState({})
   const threeObjectWorldPosition = useRef(new Vector3())
   const threeObjectWorldQuaternion = useRef(new Quaternion())
   const threeObjectMatrix4 = useRef(new Matrix4())
@@ -51,7 +53,6 @@ export function Physics({
               // Update the world position and rotation of the three object
               // based on the same values of its physics body
               const rapierBody = event.data.bodies[bodyUuid]
-              console.log(rapierBody.position, rapierBody.quaternion)
               const threeObject = scene.getObjectByProperty('uuid', bodyUuid)
               threeObjectWorldPosition.current.copy(rapierBody.position)
               threeObjectWorldQuaternion.current.copy(rapierBody.quaternion)
@@ -64,7 +65,7 @@ export function Physics({
               threeObject.matrix.copy(threeObjectMatrix4.current)
             })
             event.data.observations.forEach(([id, position, quaternion]) => {
-              const callback = subscriptions[id] || {}
+              const callback = subscriptions[id] || (() => {})
               callback(position, quaternion)
             })
             if (shouldInvalidate) {
@@ -98,10 +99,10 @@ function useForwardedRef(ref) {
 
 function useBody(type, fn, fwdRef, deps = []) {
   const ref = useForwardedRef(fwdRef)
-  const { worker, workerReady, workerInited } = useContext(RapierContext)
+  const { worker, workerInited, subscriptions } = useContext(RapierContext)
 
   useLayoutEffect(() => {
-    if (workerReady && workerInited) {
+    if (workerInited) {
       if (!ref.current) {
         // When the reference isn't used we create a stub
         // The body doesn't have a visual representation but can still be constrained
@@ -112,21 +113,44 @@ function useBody(type, fn, fwdRef, deps = []) {
       const uuid = object.uuid
       // or argsFn()?
       const props = fn()
+      const args = props.args
+      switch (type) {
+        case 'Box':
+          ref.current.scale.fromArray(args || [1, 1, 1], 0)
+          break
+        case 'Sphere':
+          if (!args) {
+            ref.current.scale.set(1, 1, 1)
+          } else {
+            ref.current.scale.set(args, args, args)
+          }
+          break
+        case 'Plane':
+          ref.current.scale.set(1, 1, 1)
+          break
+        default:
+        // not sure what to do
+      }
 
+      const quat = ref.current.quaternion
       // Register on mount, unregister on unmount
       currentWorker.postMessage({
         op: 'addBodies',
         type,
         uuid,
-        props: props,
+        props: {
+          ...props,
+          position: props.position || ref.current.position.toArray(),
+          quaternion: props.quaternion || [quat.w, quat.x, quat.y, quat.z],
+        },
       })
     }
     return () => {
-      if (workerReady && workerInited) {
+      if (workerInited) {
         currentWorker.postMessage({ op: 'removeBodies', uuid })
       }
     }
-  }, [workerInited, workerReady, ...deps])
+  }, [workerInited, ...deps])
 
   const api = useMemo(() => {
     return {
@@ -166,9 +190,21 @@ function useBody(type, fn, fwdRef, deps = []) {
           }
         },
       },
+      subscribe: (callback) => {
+        const id = subscriptionId++
+        subscriptions[id] = callback
+        if (ref.current) {
+          const uuid = ref.current.uuid
+          worker.postMessage({ op: 'subscribe', uuid, props: { id } })
+        }
+        return () => {
+          delete subscriptions[id]
+          worker.postMessage({ op: 'unsubscribe', props: { id } })
+        }
+      },
       // TODO: applyForce, setAngularVelocity
     }
-  }, [])
+  }, [workerInited])
   return [ref, api]
 }
 

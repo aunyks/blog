@@ -25,7 +25,7 @@ RAPIER.init().then(() => {
       angularVelocity = [0, 0, 0],
       linearFactor = [1, 1, 1],
       angularFactor = [1, 1, 1],
-      type: bodyType,
+      bodyType = 'Dynamic',
       mass = 1,
       isTrigger = false,
       material,
@@ -94,12 +94,21 @@ RAPIER.init().then(() => {
     }
     collider.setDensity(0)
     collider.setSensor(isTrigger)
+    collider.setActiveCollisionTypes(
+      RAPIER.ActiveCollisionTypes.DEFAULT |
+        RAPIER.ActiveCollisionTypes.KINEMATIC_STATIC
+    )
 
     let rigidBody = null
-    if (['Plane', 'Heightfield'].includes(type)) {
+    if (bodyType === 'Static' || ['Plane', 'Heightfield'].includes(type)) {
       rigidBody = RAPIER.RigidBodyDesc.newStatic()
-    } else {
+    } else if (bodyType === 'Dynamic') {
       rigidBody = RAPIER.RigidBodyDesc.newDynamic()
+    } else if (bodyType === 'KinematicPositionBased') {
+      rigidBody = RAPIER.RigidBodyDesc.newKinematicPositionBased()
+    } else {
+      // KinematicVelocityBased
+      rigidBody = RAPIER.RigidBodyDesc.newKinematicVelocityBased()
     }
     rigidBody
       .setTranslation(position[0], position[1], position[2])
@@ -148,7 +157,9 @@ addEventListener('message', (e) => {
       Object.keys(bodies).forEach((bodyUuid) => {
         const bodyTranslation = bodies[bodyUuid].translation()
         const bodyQuaternion = bodies[bodyUuid].rotation()
+        const bodyArgs = bodies[bodyUuid].args
         steppedBodies[bodyUuid] = {
+          args: bodyArgs,
           position: {
             x: bodyTranslation.x,
             y: bodyTranslation.y,
@@ -169,8 +180,8 @@ addEventListener('message', (e) => {
       })
       break
     case 'addBodies':
-      debugger
       const { collider, body } = bodyFromProperties(uuid, props, type)
+      body.args = props.args
       let rigidBody = physicsWorld.createRigidBody(body)
       physicsWorld.createCollider(collider, rigidBody.handle)
       bodies[uuid] = rigidBody

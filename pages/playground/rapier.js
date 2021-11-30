@@ -4,12 +4,16 @@ import OrbitControls from 'components/3d/controls/OrbitControls'
 import { Physics, useSphere, usePlane } from 'components/3d/RapierPhysics'
 import { Euler, Quaternion } from 'three'
 
-function Sphere(props) {
+function Sphere() {
   const [sphereRef] = useSphere(() => {
-    return { mass: 1, args: 2, position: [0, 5, 0], velocity: [-2, -2, -2] }
+    return {
+      args: 5,
+      velocity: [-4, -2, -4],
+      angularVelocity: [-Math.PI / 16, Math.PI / 16, 0],
+    }
   })
   return (
-    <mesh ref={sphereRef} {...props}>
+    <mesh ref={sphereRef} position={[0, 7, 0]}>
       <sphereBufferGeometry />
       <meshBasicMaterial color={0xff0000} />
     </mesh>
@@ -20,10 +24,9 @@ function FlatGround({ color = 0xff00ff, width = 10000, length = 10000 }) {
   const quat = new Quaternion().setFromEuler(new Euler(-Math.PI / 2, 0, 0))
   const [physicsRef] = usePlane(() => ({
     mass: 0,
-    quaternion: [quat.w, quat.x, quat.y, quat.z],
   }))
   return (
-    <mesh ref={physicsRef}>
+    <mesh ref={physicsRef} quaternion={quat}>
       <planeBufferGeometry args={[width, length]} />
       <meshBasicMaterial color={color} />
     </mesh>
