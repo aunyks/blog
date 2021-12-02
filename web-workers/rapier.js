@@ -23,13 +23,12 @@ RAPIER.init().then(() => {
       quaternion = [1, 0, 0, 0],
       velocity = [0, 0, 0],
       angularVelocity = [0, 0, 0],
-      linearFactor = [1, 1, 1],
-      angularFactor = [1, 1, 1],
+      linearDamping = 0.25,
+      angularDamping = 0.25,
       bodyType = 'Dynamic',
       mass = 1,
-      isTrigger = false,
-      material,
-      shapes,
+      isSensor = false,
+      restitution = 0,
       onCollide,
       collisionResponse,
       ...extra
@@ -92,8 +91,9 @@ RAPIER.init().then(() => {
       default:
         throw new Error(`Unrecognized body type found: ${type}`)
     }
-    collider.setDensity(0)
-    collider.setSensor(isTrigger)
+    collider.setDensity(mass)
+    collider.setSensor(isSensor)
+    collider.setRestitution(restitution)
     collider.setActiveCollisionTypes(
       RAPIER.ActiveCollisionTypes.DEFAULT |
         RAPIER.ActiveCollisionTypes.KINEMATIC_STATIC
@@ -124,7 +124,8 @@ RAPIER.init().then(() => {
         y: angularVelocity[1],
         z: angularVelocity[2],
       })
-      .setAdditionalMass(mass)
+      .setLinearDamping(linearDamping)
+      .setAngularDamping(angularDamping)
     rigidBody.uuid = uuid
     return {
       collider: collider,
@@ -138,7 +139,8 @@ addEventListener('message', (e) => {
   const { op, uuid, type, props } = e.data
   switch (op) {
     case 'init':
-      physicsWorld = new RAPIER.World(e.data.gravity)
+      physicsWorld = new RAPIER.World(props.gravity)
+      physicsWorld
       inited = true
       postMessage({ op: 'inited' })
       break

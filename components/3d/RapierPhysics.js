@@ -38,7 +38,7 @@ export function Physics({
     if (!workerReady || !workerInited) {
       worker.onmessage = (event) => {
         if (event.data.op === 'ready' && !workerReady) {
-          worker.postMessage({ op: 'init', gravity: gravity })
+          worker.postMessage({ op: 'init', props: { gravity: gravity } })
           setWorkerReady(true)
         }
         if (event.data.op === 'inited' && !workerInited) {
@@ -116,10 +116,26 @@ function useBody(type, fn, fwdRef, deps = []) {
       const args = props.args
       switch (type) {
         case 'Box':
-          ref.current.scale.fromArray(args || [1, 1, 1], 0)
+          if (Array.isArray(args)) {
+            if (args.length === 3) {
+              ref.current.scale.fromArray(args, 0)
+            } else {
+              console.warn(
+                `useBox args property must be of length three, found: ${args.length}`
+              )
+              ref.current.scale.set(1, 1, 1)
+            }
+          } else if (typeof args === 'number') {
+            ref.current.scale.set(args, args, args)
+          } else {
+            ref.current.scale.set(1, 1, 1)
+          }
           break
         case 'Sphere':
-          if (!args) {
+          if (!args || typeof args !== 'number') {
+            console.warn(
+              'Invalid props argument given to useSphere. Must be a number for radius'
+            )
             ref.current.scale.set(1, 1, 1)
           } else {
             ref.current.scale.set(args, args, args)
