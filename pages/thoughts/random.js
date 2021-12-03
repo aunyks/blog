@@ -10,6 +10,12 @@ export default function RandomThoughts() {
       title="Random Thoughts"
       description="Miscellaneous thoughts with no category."
       noFooter>
+      <Thought date="2021-12-02">
+        Imagine life-based PCs and phones. Instead of silicon there are
+        biological cells. Don't have power? You probably forgot to feed your
+        computer. Image an actual disease infecting your computer and causing it
+        to run slowly or even die! Can we do updates via stem cells?
+      </Thought>
       <Thought date="2021-11-12">
         <p>
           I want all projects built on crypto to have a datasheet page on their
