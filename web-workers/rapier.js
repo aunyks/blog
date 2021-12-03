@@ -6,12 +6,36 @@ let bodies = null
 let handleToBody = null
 let subscriptions = null
 let eventQueue = null
+let onContactDrain = null
+let onIntersectionDrain = null
 let inited = false
 
 RAPIER.init().then(() => {
   bodies = {}
   handleToBody = {}
   subscriptions = {}
+  onContactDrain = (handle1, handle2, started) => {
+    postMessage({
+      op: 'event',
+      props: {
+        type: 'contact',
+        bodyA: handleToBody[handle1],
+        bodyB: handleToBody[handle2],
+        started: started,
+      },
+    })
+  }
+  onIntersectionDrain = (handle1, handle2, intersecting) => {
+    postMessage({
+      op: 'event',
+      props: {
+        type: 'intersect',
+        bodyA: handleToBody[handle1],
+        bodyB: handleToBody[handle2],
+        intersecting: intersecting,
+      },
+    })
+  }
   bodyFromProperties = (uuid, props, type) => {
     const {
       args = [],
@@ -141,57 +165,13 @@ addEventListener('message', (e) => {
     case 'init':
       physicsWorld = new RAPIER.World(props.gravity)
       eventQueue = new RAPIER.EventQueue(true)
-      // eventQueue.drainContactEvents((handle1, handle2, started) => {
-      //   debugger
-      //   postMessage({
-      //     op: 'event',
-      //     props: {
-      //       type: 'contact',
-      //       bodyA: handleToBody[handle1],
-      //       bodyB: handleToBody[handle2],
-      //       started: started,
-      //     },
-      //   })
-      // })
-      // eventQueue.drainIntersectionEvents((handle1, handle2, intersecting) => {
-      //   debugger
-      //   postMessage({
-      //     op: 'event',
-      //     props: {
-      //       type: 'intersect',
-      //       bodyA: handleToBody[handle1],
-      //       bodyB: handleToBody[handle2],
-      //       intersecting: intersecting,
-      //     },
-      //   })
-      // })
       inited = true
       postMessage({ op: 'inited' })
       break
     case 'step':
       physicsWorld.step(eventQueue)
-      eventQueue.drainContactEvents((handle1, handle2, started) => {
-        postMessage({
-          op: 'event',
-          props: {
-            type: 'contact',
-            bodyA: handleToBody[handle1],
-            bodyB: handleToBody[handle2],
-            started: started,
-          },
-        })
-      })
-      eventQueue.drainIntersectionEvents((handle1, handle2, intersecting) => {
-        postMessage({
-          op: 'event',
-          props: {
-            type: 'intersect',
-            bodyA: handleToBody[handle1],
-            bodyB: handleToBody[handle2],
-            intersecting: intersecting,
-          },
-        })
-      })
+      eventQueue.drainContactEvents(onContactDrain)
+      eventQueue.drainIntersectionEvents(onIntersectionDrain)
       let observations = []
       for (const id of Object.keys(subscriptions)) {
         let uuid = subscriptions[id]
