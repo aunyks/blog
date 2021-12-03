@@ -1,20 +1,16 @@
 import RAPIER from '@dimforge/rapier3d-compat'
-/*
-// For testing this worker
-rapierWorker.onmessage = console.log
-rapierWorker.postMessage({op: 'init', gravity: {x: 0, y: -9.81, z: 0}})
-rapierWorker.postMessage({op: 'addBodies', uuid: ['uuid0'], type: 'Sphere', props: [{}]})
-rapierWorker.postMessage({op: 'step', gravity: {x: 0, y: -9.81, z: 0}})
-*/
 
 let bodyFromProperties = null
 let physicsWorld = null
 let bodies = null
+let handleToBody = null
 let subscriptions = null
+let eventQueue = null
 let inited = false
 
 RAPIER.init().then(() => {
   bodies = {}
+  handleToBody = {}
   subscriptions = {}
   bodyFromProperties = (uuid, props, type) => {
     const {
@@ -98,6 +94,10 @@ RAPIER.init().then(() => {
       RAPIER.ActiveCollisionTypes.DEFAULT |
         RAPIER.ActiveCollisionTypes.KINEMATIC_STATIC
     )
+    collider.setActiveEvents(
+      RAPIER.ActiveEvents.CONTACT_EVENTS |
+        RAPIER.ActiveEvents.INTERSECTION_EVENTS
+    )
 
     let rigidBody = null
     if (bodyType === 'Static' || ['Plane', 'Heightfield'].includes(type)) {
@@ -140,12 +140,58 @@ addEventListener('message', (e) => {
   switch (op) {
     case 'init':
       physicsWorld = new RAPIER.World(props.gravity)
-      physicsWorld
+      eventQueue = new RAPIER.EventQueue(true)
+      // eventQueue.drainContactEvents((handle1, handle2, started) => {
+      //   debugger
+      //   postMessage({
+      //     op: 'event',
+      //     props: {
+      //       type: 'contact',
+      //       bodyA: handleToBody[handle1],
+      //       bodyB: handleToBody[handle2],
+      //       started: started,
+      //     },
+      //   })
+      // })
+      // eventQueue.drainIntersectionEvents((handle1, handle2, intersecting) => {
+      //   debugger
+      //   postMessage({
+      //     op: 'event',
+      //     props: {
+      //       type: 'intersect',
+      //       bodyA: handleToBody[handle1],
+      //       bodyB: handleToBody[handle2],
+      //       intersecting: intersecting,
+      //     },
+      //   })
+      // })
       inited = true
       postMessage({ op: 'inited' })
       break
     case 'step':
-      physicsWorld.step()
+      physicsWorld.step(eventQueue)
+      eventQueue.drainContactEvents((handle1, handle2, started) => {
+        postMessage({
+          op: 'event',
+          props: {
+            type: 'contact',
+            bodyA: handleToBody[handle1],
+            bodyB: handleToBody[handle2],
+            started: started,
+          },
+        })
+      })
+      eventQueue.drainIntersectionEvents((handle1, handle2, intersecting) => {
+        postMessage({
+          op: 'event',
+          props: {
+            type: 'intersect',
+            bodyA: handleToBody[handle1],
+            bodyB: handleToBody[handle2],
+            intersecting: intersecting,
+          },
+        })
+      })
       let observations = []
       for (const id of Object.keys(subscriptions)) {
         let uuid = subscriptions[id]
@@ -186,10 +232,12 @@ addEventListener('message', (e) => {
       body.args = props.args
       let rigidBody = physicsWorld.createRigidBody(body)
       physicsWorld.createCollider(collider, rigidBody.handle)
+      handleToBody[rigidBody.handle] = uuid
       bodies[uuid] = rigidBody
       break
     case 'removeBodies':
       physicsWorld.removeRigidBody(bodies[uuid])
+      delete handleToBody[bodies[uuid].handle]
       delete bodies[uuid]
       break
     case 'subscribe': {

@@ -23,6 +23,7 @@ export function Physics({
   const [worker] = useState(
     () => new Worker(new URL('../../web-workers/rapier.js', import.meta.url))
   )
+  const [events] = useState({})
   const [subscriptions] = useState({})
   const threeObjectWorldPosition = useRef(new Vector3())
   const threeObjectWorldQuaternion = useRef(new Quaternion())
@@ -73,6 +74,43 @@ export function Physics({
             }
             break
           case 'event':
+            const { type } = event.data.props
+            if (type === 'intersect') {
+              const bodyACallback = events[event.data.props.bodyA]
+              const bodyBCallback = events[event.data.props.bodyB]
+              if (bodyACallback) {
+                bodyACallback(
+                  event.data.props.bodyA,
+                  event.data.props.bodyB,
+                  event.data.props.intersecting
+                )
+              }
+              if (bodyBCallback) {
+                bodyBCallback(
+                  event.data.props.bodyB,
+                  event.data.props.bodyA,
+                  event.data.props.intersecting
+                )
+              }
+            } else {
+              // type === 'contact'
+              const bodyACallback = events[event.data.props.bodyA]
+              const bodyBCallback = events[event.data.props.bodyB]
+              if (bodyACallback) {
+                bodyACallback(
+                  event.data.props.bodyA,
+                  event.data.props.bodyB,
+                  event.data.props.started
+                )
+              }
+              if (bodyBCallback) {
+                bodyBCallback(
+                  event.data.props.bodyB,
+                  event.data.props.bodyA,
+                  event.data.props.started
+                )
+              }
+            }
             break
         }
       }
@@ -86,8 +124,8 @@ export function Physics({
     }
   }, [workerReady, workerInited])
   const api = useMemo(
-    () => ({ worker, workerReady, workerInited, subscriptions }),
-    [worker, workerReady, workerInited, subscriptions]
+    () => ({ worker, workerReady, workerInited, events, subscriptions }),
+    [worker, workerReady, workerInited, events, subscriptions]
   )
   return <RapierContext.Provider value={api}>{children}</RapierContext.Provider>
 }
@@ -99,7 +137,8 @@ function useForwardedRef(ref) {
 
 function useBody(type, fn, fwdRef, deps = []) {
   const ref = useForwardedRef(fwdRef)
-  const { worker, workerInited, subscriptions } = useContext(RapierContext)
+  const { worker, workerInited, events, subscriptions } =
+    useContext(RapierContext)
 
   useLayoutEffect(() => {
     if (workerInited) {
@@ -113,6 +152,7 @@ function useBody(type, fn, fwdRef, deps = []) {
       const uuid = object.uuid
       // or argsFn()?
       const props = fn()
+      events[uuid] = props.onCollide || props.onSense
       const args = props.args
       switch (type) {
         case 'Box':
@@ -149,6 +189,10 @@ function useBody(type, fn, fwdRef, deps = []) {
       }
 
       const quat = ref.current.quaternion
+      // Functions can't be copied over so just
+      // give them any value
+      props.onCollide = null
+      props.onSense = null
       // Register on mount, unregister on unmount
       currentWorker.postMessage({
         op: 'addBodies',
@@ -163,6 +207,7 @@ function useBody(type, fn, fwdRef, deps = []) {
     }
     return () => {
       if (workerInited) {
+        delete events[uuid]
         currentWorker.postMessage({ op: 'removeBodies', uuid })
       }
     }

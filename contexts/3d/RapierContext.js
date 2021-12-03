@@ -4,6 +4,7 @@ const RapierContext = createContext({
   worker: null,
   workerReady: null,
   workerInited: null,
+  events: null,
   subscriptions: null,
 })
 
