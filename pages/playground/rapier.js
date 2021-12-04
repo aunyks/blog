@@ -10,7 +10,7 @@ import {
 import { Euler, Quaternion } from 'three'
 
 function Sphere() {
-  const [sphereRef] = useSphere(() => {
+  const [sphereRef, sphere] = useSphere(() => {
     return {
       args: 5,
       velocity: [-2, -8, -4],
@@ -26,20 +26,6 @@ function Sphere() {
 }
 
 function TriggerBox() {
-  useRay(
-    () => {
-      return {
-        origin: { x: -10, y: 2.5, z: -4 },
-        direction: { x: 1, y: 0, z: 0 },
-        maxToI: 20,
-      }
-    },
-    (x) => {
-      console.log(x)
-    },
-    []
-  )
-
   return (
     <mesh position={[-2, 2.5, -6]}>
       <boxBufferGeometry />

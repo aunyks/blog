@@ -203,7 +203,7 @@ addEventListener('message', (e) => {
         )
       }
       let observations = []
-      for (const id of Object.keys(subscriptions)) {
+      for (const id in subscriptions) {
         let uuid = subscriptions[id]
         let object = bodies[uuid]
         if (!object) continue
@@ -212,7 +212,7 @@ addEventListener('message', (e) => {
         observations.push([id, bodyTranslation, bodyQuaternion])
       }
       let steppedBodies = {}
-      Object.keys(bodies).forEach((bodyUuid) => {
+      for (const bodyUuid in bodies) {
         const bodyTranslation = bodies[bodyUuid].translation()
         const bodyQuaternion = bodies[bodyUuid].rotation()
         const bodyArgs = bodies[bodyUuid].args
@@ -230,7 +230,7 @@ addEventListener('message', (e) => {
             z: bodyQuaternion.z,
           },
         }
-      })
+      }
       postMessage({
         op: 'frame',
         bodies: steppedBodies,
@@ -271,10 +271,13 @@ addEventListener('message', (e) => {
       bodies[uuid].setLinvel(props, true)
       break
     case 'setAngularVelocity':
-      bodies[uuid].setAngvel({ x: props[0], y: props[1], z: props[2] }, true)
+      bodies[uuid].setAngvel(props, true)
       break
     case 'applyForce':
-      bodies[uuid].applyForce({ x: props[0], y: props[1], z: props[2] }, true)
+      bodies[uuid].applyForce(props, true)
+      break
+    case 'applyForceAtPoint':
+      bodies[uuid].applyForceAtPoint(props.force, props.point, true)
       break
     case 'addRay':
       const newRay = new RAPIER.Ray(props.origin, props.direction)

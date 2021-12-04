@@ -267,7 +267,39 @@ function useBody(type, fn, fwdRef, deps = []) {
           worker.postMessage({ op: 'unsubscribe', props: { id } })
         }
       },
-      // TODO: applyForce, setAngularVelocity
+      applyForce: (vector) => {
+        // vector must have x, y, z components
+        if (ref.current) {
+          worker.postMessage({
+            op: 'applyForce',
+            uuid: ref.current.uuid,
+            props: vector,
+          })
+        }
+      },
+      setAngularVelocity: (vector) => {
+        // vector must have x, y, z components
+        if (ref.current) {
+          worker.postMessage({
+            op: 'setAngularVelocity',
+            uuid: ref.current.uuid,
+            props: vector,
+          })
+        }
+      },
+      applyForceAtPoint: (point, force) => {
+        // point and force must both have x, y, z components
+        if (ref.current) {
+          worker.postMessage({
+            op: 'applyForceAtPoint',
+            uuid: ref.current.uuid,
+            props: {
+              point,
+              force,
+            },
+          })
+        }
+      },
     }
   }, [workerInited])
   return [ref, api]
