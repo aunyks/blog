@@ -5,10 +5,11 @@ import {
   useCallback,
   useState,
   useMemo,
+  useEffect,
 } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import RapierContext from 'contexts/3d/RapierContext'
-import { Matrix4, Quaternion, Vector3 } from 'three'
+import { MathUtils, Matrix4, Quaternion, Vector3 } from 'three'
 
 let subscriptionId = 0
 
@@ -92,8 +93,7 @@ export function Physics({
                   event.data.props.intersecting
                 )
               }
-            } else {
-              // type === 'contact'
+            } else if (type === 'contact') {
               const bodyACallback = events[event.data.props.bodyA]
               const bodyBCallback = events[event.data.props.bodyB]
               if (bodyACallback) {
@@ -110,6 +110,10 @@ export function Physics({
                   event.data.props.started
                 )
               }
+            } else {
+              // type === 'rayhit'
+              const rayCallback = events[event.data.props.uuid]
+              rayCallback(event.data.props)
             }
             break
         }
@@ -291,4 +295,25 @@ export function useCylinder(fn, fwdRef, deps) {
 
 export function useCapsule(fn, fwdRef, deps) {
   return useBody('Capsule', fn, fwdRef, deps)
+}
+
+export function useRay(optionsFn, onHit, deps) {
+  const { worker, events, workerInited } = useContext(RapierContext)
+  const [uuid] = useState(() => MathUtils.generateUUID())
+  useEffect(() => {
+    if (workerInited) {
+      if (!onHit) {
+        console.warn('No onHit function provided to useRay()')
+      }
+      events[uuid] = onHit || (() => {})
+      const options = optionsFn()
+      worker.postMessage({ op: 'addRay', uuid, props: options })
+    }
+    return () => {
+      if (workerInited) {
+        worker.postMessage({ op: 'removeRay', uuid })
+        delete events[uuid]
+      }
+    }
+  }, [workerInited, ...deps])
 }

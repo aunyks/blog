@@ -8,11 +8,13 @@ let subscriptions = null
 let eventQueue = null
 let onContactDrain = null
 let onIntersectionDrain = null
-let inited = false
+let rays = null
+let onRayHit = null
 
 RAPIER.init().then(() => {
   bodies = {}
   handleToBody = {}
+  rays = {}
   subscriptions = {}
   onContactDrain = (handle1, handle2, started) => {
     postMessage({
@@ -35,6 +37,25 @@ RAPIER.init().then(() => {
         intersecting: intersecting,
       },
     })
+  }
+  onRayHit = (ray) => {
+    return (hit) => {
+      postMessage({
+        op: 'event',
+        type: 'rayhit',
+        props: {
+          uuid: ray.uuid,
+          normal: hit.normal,
+          body: handleToBody[
+            physicsWorld.getRigidBody(
+              physicsWorld.getCollider(hit.colliderHandle).parent()
+            ).handle
+          ],
+          point: ray.pointAt(hit.toi),
+        },
+      })
+      return true
+    }
   }
   bodyFromProperties = (uuid, props, type) => {
     const {
@@ -165,13 +186,22 @@ addEventListener('message', (e) => {
     case 'init':
       physicsWorld = new RAPIER.World(props.gravity)
       eventQueue = new RAPIER.EventQueue(true)
-      inited = true
       postMessage({ op: 'inited' })
       break
     case 'step':
       physicsWorld.step(eventQueue)
       eventQueue.drainContactEvents(onContactDrain)
       eventQueue.drainIntersectionEvents(onIntersectionDrain)
+      for (const rayUuid in rays) {
+        let thisRay = rays[rayUuid]
+        physicsWorld.intersectionsWithRay(
+          thisRay,
+          thisRay.maxToI,
+          thisRay.solid,
+          thisRay.groups,
+          onRayHit(thisRay)
+        )
+      }
       let observations = []
       for (const id of Object.keys(subscriptions)) {
         let uuid = subscriptions[id]
@@ -245,6 +275,23 @@ addEventListener('message', (e) => {
       break
     case 'applyForce':
       bodies[uuid].applyForce({ x: props[0], y: props[1], z: props[2] }, true)
+      break
+    case 'addRay':
+      const newRay = new RAPIER.Ray(props.origin, props.direction)
+      newRay.uuid = uuid
+      newRay.maxToI = props.maxToI || 100
+      newRay.solid = props.solid || false
+      newRay.groups = props.groups || 0xfffffffff
+      physicsWorld.castRay(
+        newRay,
+        props.maxToI,
+        props.solid || false,
+        props.groups || 0xfffffffff
+      )
+      rays[uuid] = newRay
+      break
+    case 'removeRay':
+      delete rays[uuid]
       break
     default:
       throw new Error(`Unrecognized operation, ${op} received`)
