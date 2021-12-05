@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import RapierContext from 'contexts/3d/RapierContext'
-import { MathUtils, Matrix4, Quaternion, Vector3 } from 'three'
+import { Object3D, MathUtils, Matrix4, Quaternion, Vector3 } from 'three'
 
 let subscriptionId = 0
 
@@ -56,15 +56,17 @@ export function Physics({
               // based on the same values of its physics body
               const rapierBody = event.data.bodies[bodyUuid]
               const threeObject = scene.getObjectByProperty('uuid', bodyUuid)
-              threeObjectWorldPosition.current.copy(rapierBody.position)
-              threeObjectWorldQuaternion.current.copy(rapierBody.quaternion)
-              threeObjectMatrix4.current.compose(
-                threeObjectWorldPosition.current,
-                threeObjectWorldQuaternion.current,
-                threeObject.scale
-              )
-              threeObject.matrixAutoUpdate = false
-              threeObject.matrix.copy(threeObjectMatrix4.current)
+              if (threeObject) {
+                threeObjectWorldPosition.current.copy(rapierBody.position)
+                threeObjectWorldQuaternion.current.copy(rapierBody.quaternion)
+                threeObjectMatrix4.current.compose(
+                  threeObjectWorldPosition.current,
+                  threeObjectWorldQuaternion.current,
+                  threeObject.scale
+                )
+                threeObject.matrixAutoUpdate = false
+                threeObject.matrix.copy(threeObjectMatrix4.current)
+              }
             })
             event.data.observations.forEach(([id, position, quaternion]) => {
               const callback = subscriptions[id] || (() => {})

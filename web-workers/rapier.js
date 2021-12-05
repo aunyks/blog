@@ -105,7 +105,7 @@ RAPIER.init().then(() => {
           args[2],
           args[3]
         )
-        break // [ number of rows, number of columns, heightData 1D array, vertical scale ] = args
+        break // [ number of rows, number of columns, heightData 1D array, scale vector ] = args
       case 'Cylinder':
         if (args[0] === undefined) {
           throw new Error(
