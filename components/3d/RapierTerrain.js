@@ -46,6 +46,7 @@ export function Heightmap({
   resolution = 1,
   maxHeight = 100,
   position = [0, 0, 0],
+  //
   rotation = [0, 0, 0],
   // x direction
   width,
@@ -61,9 +62,15 @@ export function Heightmap({
     },
     { suspense: true }
   )
+  const yOrigin = -maxHeight / 2
   const heightfieldRef = useRef(null)
-  let fieldQuaternion = useRef(
-    new Quaternion().setFromEuler(new Euler(0, -Math.PI / 2, 0, 'YXZ'))
+  let fieldQuaternion = new Quaternion().setFromEuler(
+    new Euler(
+      0 + rotation[0],
+      -Math.PI / 2 + rotation[1],
+      0 + rotation[2],
+      'YXZ'
+    )
   )
   const scale = useRef({
     x: length || heightmap.image.height,
@@ -79,12 +86,12 @@ export function Heightmap({
           fieldData.heightValues,
           scale.current,
         ],
-        position: [0, -maxHeight / 2, 0],
+        position: [0, yOrigin, 0],
         quaternion: [
-          fieldQuaternion.current.w,
-          fieldQuaternion.current.x,
-          fieldQuaternion.current.y,
-          fieldQuaternion.current.z,
+          fieldQuaternion.w,
+          fieldQuaternion.x,
+          fieldQuaternion.y,
+          fieldQuaternion.z,
         ],
       }
     },
@@ -92,8 +99,14 @@ export function Heightmap({
     [fieldData]
   )
   return (
-    <mesh position={position} rotation={rotation}>
-      <mesh rotation={[-Math.PI / 2, 0, 0, 'YXZ']} receiveShadow {...props}>
+    <mesh
+      position={position}
+      rotation={[rotation[0], rotation[1], rotation[2], 'YXZ']}>
+      <mesh
+        position={[0, 0, 0]}
+        rotation={[-Math.PI / 2, 0, 0, 'YXZ']}
+        receiveShadow
+        {...props}>
         <planeBufferGeometry
           args={[
             scale.current.z,
@@ -106,7 +119,7 @@ export function Heightmap({
           map={heightmap}
           displacementMap={heightmap}
           displacementScale={maxHeight}
-          displacementBias={-maxHeight / 2}
+          displacementBias={yOrigin}
         />
       </mesh>
     </mesh>
@@ -114,5 +127,5 @@ export function Heightmap({
 }
 
 export default function Terrain(props) {
-  return <Heightmap heightMapUrl="/3d/textures/gradient.png" {...props} />
+  return <Heightmap heightMapUrl="/3d/textures/heightmap.jpg" {...props} />
 }
