@@ -43,11 +43,14 @@ function createHeightfieldMatrix(image) {
 export function Heightmap({
   // Url must point to a square, black and white image
   heightMapUrl,
-  elementSize = 1,
   resolution = 1,
   maxHeight = 100,
   position = [0, 0, 0],
   rotation = [0, 0, 0],
+  // x direction
+  width,
+  // z direction
+  length,
   ...props
 }) {
   const heightmap = useLoader(TextureLoader, heightMapUrl)
@@ -63,9 +66,9 @@ export function Heightmap({
     new Quaternion().setFromEuler(new Euler(0, -Math.PI / 2, 0, 'YXZ'))
   )
   const scale = useRef({
-    x: heightmap.image.height,
+    x: length || heightmap.image.height,
     y: maxHeight,
-    z: heightmap.image.width,
+    z: width || heightmap.image.width,
   })
   useHeightfield(
     () => {
@@ -89,29 +92,23 @@ export function Heightmap({
     [fieldData]
   )
   return (
-    <mesh
-      position={[
-        position[0] - scale.current.z / 4,
-        position[1],
-        position[2] + scale.current.x / 4,
-      ]}
-      rotation={[-Math.PI / 2, 0, 0, 'YXZ']}
-      receiveShadow
-      {...props}>
-      <planeBufferGeometry
-        args={[
-          scale.current.z,
-          scale.current.x,
-          scale.current.z * resolution,
-          scale.current.x * resolution,
-        ]}
-      />
-      <meshPhongMaterial
-        map={heightmap}
-        displacementMap={heightmap}
-        displacementScale={maxHeight}
-        displacementBias={-maxHeight / 4}
-      />
+    <mesh position={position} rotation={rotation}>
+      <mesh rotation={[-Math.PI / 2, 0, 0, 'YXZ']} receiveShadow {...props}>
+        <planeBufferGeometry
+          args={[
+            scale.current.z,
+            scale.current.x,
+            scale.current.z * resolution,
+            scale.current.x * resolution,
+          ]}
+        />
+        <meshPhongMaterial
+          map={heightmap}
+          displacementMap={heightmap}
+          displacementScale={maxHeight}
+          displacementBias={-maxHeight / 2}
+        />
+      </mesh>
     </mesh>
   )
 }
