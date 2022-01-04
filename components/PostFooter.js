@@ -4,6 +4,7 @@ export default function PostFooter({ date, lang, textDirection, remark }) {
     const d = new Date(date)
     year = new Intl.DateTimeFormat(lang || 'en', { year: 'numeric' }).format(d)
   }
+  let yearString = year < 2022 ? `${year}-2022` : `2022`
   return (
     <footer
       id="footer"
@@ -22,7 +23,7 @@ export default function PostFooter({ date, lang, textDirection, remark }) {
         )}
       </p>
       <p className="select-none">
-        Copyright &copy; {date && `${year}-2021`} Gerald Nash
+        Copyright &copy; {date && `${yearString}`} Gerald Nash
       </p>
     </footer>
   )
