@@ -1,10 +1,14 @@
 export default function PostFooter({ date, lang, textDirection, remark }) {
   let year = null
+  // Calculated at build time, not render / request time
+  let thisYear = new Intl.DateTimeFormat(lang || 'en', {
+    year: 'numeric',
+  }).format(new Date())
   if (date) {
     const d = new Date(date)
     year = new Intl.DateTimeFormat(lang || 'en', { year: 'numeric' }).format(d)
   }
-  let yearString = year < 2022 ? `${year}-2022` : `2022`
+  let yearString = year < thisYear ? `${year}-${thisYear}` : `${thisYear}`
   return (
     <footer
       id="footer"
