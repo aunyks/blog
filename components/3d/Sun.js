@@ -1,5 +1,3 @@
-
-
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Color } from 'three'
@@ -25,13 +23,18 @@ export default function Sun({
     <group {...props}>
       <mesh position={[0, 0, 0]} scale={[radius / 2, radius / 2, radius / 2]}>
         <sphereBufferGeometry args={[1, 20, 10]} />
-        <meshLambertMaterial ref={materialRef} emissiveIntensity={100} fog={false} />
+        <meshLambertMaterial
+          ref={materialRef}
+          emissiveIntensity={100}
+          fog={false}
+        />
       </mesh>
       {!noLight && (
         <directionalLight
           position={[0, 0, 0]}
           intensity={0.4}
-          color={lightRef.current} />
+          color={lightRef.current}
+        />
       )}
     </group>
   )

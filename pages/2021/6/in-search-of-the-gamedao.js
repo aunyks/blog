@@ -8,62 +8,139 @@ export default function InSearchOfGameDAO() {
       description="NFTs in gaming are a stellar match waiting to happen. It can't come to life, though, until developer incentives can align. Enter the GameDAO."
       date="2021-06-22">
       <p>
-        This article is featured in <a href="https://mailchi.mp/d1c82f91c0db/ff-press-issue-43" target="_blank">ForeFront's Newsletter Issue 43 <em>Fresh Take</em></a>.
+        This article is featured in{' '}
+        <a
+          href="https://mailchi.mp/d1c82f91c0db/ff-press-issue-43"
+          target="_blank">
+          ForeFront's Newsletter Issue 43 <em>Fresh Take</em>
+        </a>
+        .
       </p>
       <p>
-        Since the recent meteoric rise in popularity of <Hint msg="NFT stands for Non-Fungible token: a token that's neither identical to nor directly interchangeable with the next. Much like a trading card, each NFT has unique characteristics that separate it from similar items.">NFTs</Hint>, creators and developers alike have been
-        drawing attention to the variety of applications that these tokens have across industries. A popular area of mention is gaming: many claim that NFTs will be a great addition to video games
-        for players and developers alike. While the widespread introduction of NFTs into gaming may seem like it's just a matter of time, there's a glaring issue hindering adoption: the motivators don’t quite exist yet.
+        Since the recent meteoric rise in popularity of{' '}
+        <Hint msg="NFT stands for Non-Fungible token: a token that's neither identical to nor directly interchangeable with the next. Much like a trading card, each NFT has unique characteristics that separate it from similar items.">
+          NFTs
+        </Hint>
+        , creators and developers alike have been drawing attention to the
+        variety of applications that these tokens have across industries. A
+        popular area of mention is gaming: many claim that NFTs will be a great
+        addition to video games for players and developers alike. While the
+        widespread introduction of NFTs into gaming may seem like it's just a
+        matter of time, there's a glaring issue hindering adoption: the
+        motivators don’t quite exist yet.
       </p>
       <h3>The Status Quo</h3>
       <p>
-        Large game studios like Epic, EA, and Activision have created large platforms fit with their own player identity, skins, achievements, accessories, and more. With proprietary infrastructure, these companies can build their own
-        economies into their games, letting players sign-in to the platform, buy in-game currencies, and use these currencies to buy virtual goods. With ownership of the platform and, thus, the economy in their hands, these large game
-        studios have no reason to open their technology to others. The financial incentives to do so simply don’t yet exist.
+        Large game studios like Epic, EA, and Activision have created large
+        platforms fit with their own player identity, skins, achievements,
+        accessories, and more. With proprietary infrastructure, these companies
+        can build their own economies into their games, letting players sign-in
+        to the platform, buy in-game currencies, and use these currencies to buy
+        virtual goods. With ownership of the platform and, thus, the economy in
+        their hands, these large game studios have no reason to open their
+        technology to others. The financial incentives to do so simply don’t yet
+        exist.
       </p>
       <p>
-        Some ecosystems like Roblox have gained popularity by letting creators and developers create their own games or accessories. Ultimately, though, key platform features like identity and currency are controlled by the company. With the company maintaining sole ownership of the platform, creators and developers remain at
-        the mercy of the platform owner. In this model, the platform owner can always deplatform items and games that compete with its own. This model is a step in the right direction, but we now have tools given to us by web3 that let us create completely open game platforms.
+        Some ecosystems like Roblox have gained popularity by letting creators
+        and developers create their own games or accessories. Ultimately,
+        though, key platform features like identity and currency are controlled
+        by the company. With the company maintaining sole ownership of the
+        platform, creators and developers remain at the mercy of the platform
+        owner. In this model, the platform owner can always deplatform items and
+        games that compete with its own. This model is a step in the right
+        direction, but we now have tools given to us by web3 that let us create
+        completely open game platforms.
       </p>
       <p>
-        Today's blockchain technologies give game developers an open identity and currency platform through wallets and tokens, and NFTs now grant them the ability to create rare items that can exist in an infinite number of games. Even with these tools now available to us,
-        we're left with the same problems as before: why should developers use these open platforms if it means less money in their pockets?
+        Today's blockchain technologies give game developers an open identity
+        and currency platform through wallets and tokens, and NFTs now grant
+        them the ability to create rare items that can exist in an infinite
+        number of games. Even with these tools now available to us, we're left
+        with the same problems as before: why should developers use these open
+        platforms if it means less money in their pockets?
       </p>
       <p>
-        When operating alone, they shouldn't: the closed off economy will always be available to those who desire the traditional development strategy. But the new era of the decentralized web lets creators and developers realize the potential of the
-        most open platform on the Internet. To truly capture the value of this new generation, developers need a new means of organizing. Enter the GameDAO.
+        When operating alone, they shouldn't: the closed off economy will always
+        be available to those who desire the traditional development strategy.
+        But the new era of the decentralized web lets creators and developers
+        realize the potential of the most open platform on the Internet. To
+        truly capture the value of this new generation, developers need a new
+        means of organizing. Enter the GameDAO.
       </p>
       <h3>The Next Generation</h3>
       <p>
-        A GameDAO is a decentralized, internet-first collective of game developers, designers, and artists that coordinates the creation of gameplay items using crypto-first tools. In doing so, the GameDAO generates revenue by selling these items
-        in-game or on a marketplace. Members of the DAO generate demand for the items by integrating them into their games (if relevant) and granting owners of the items certain functional or aesthetic improvements, like power-ups or skins.
-        Revenue generated by the DAO will be distributed among the members to incentivize further participation. Membership in a GameDAO should be granted as a reward to any developer
-        who integrates the DAO's items into their games, as wider item adoption creates more demand for each item and thus revenue for the DAO.
+        A GameDAO is a decentralized, internet-first collective of game
+        developers, designers, and artists that coordinates the creation of
+        gameplay items using crypto-first tools. In doing so, the GameDAO
+        generates revenue by selling these items in-game or on a marketplace.
+        Members of the DAO generate demand for the items by integrating them
+        into their games (if relevant) and granting owners of the items certain
+        functional or aesthetic improvements, like power-ups or skins. Revenue
+        generated by the DAO will be distributed among the members to
+        incentivize further participation. Membership in a GameDAO should be
+        granted as a reward to any developer who integrates the DAO's items into
+        their games, as wider item adoption creates more demand for each item
+        and thus revenue for the DAO.
       </p>
       <p>
-        DAOs should organize their tokens into factions relating to popular game genres to ease integration into games. Fantasy tokens, for example, can be created with a specific use in fantasy games. Tokens in this class can grant the player greater
-        magic powers or bestow them with a nice skin. When a developer integrates a token, they can have creative freedom in deciding exactly how it behaves or renders in game, as long as it fits the general purpose of the token. For that reason, it's
-        important that each token remains conceptually abstract, as too much specificity will make integration difficult or otherwise undesirable — not every game is exactly alike, after all!
+        DAOs should organize their tokens into factions relating to popular game
+        genres to ease integration into games. Fantasy tokens, for example, can
+        be created with a specific use in fantasy games. Tokens in this class
+        can grant the player greater magic powers or bestow them with a nice
+        skin. When a developer integrates a token, they can have creative
+        freedom in deciding exactly how it behaves or renders in game, as long
+        as it fits the general purpose of the token. For that reason, it's
+        important that each token remains conceptually abstract, as too much
+        specificity will make integration difficult or otherwise undesirable —
+        not every game is exactly alike, after all!
       </p>
       <p>
-        When done successfully, a player owning a fantasy token can play a variety of different fantasy games, and owning the token lets them have the same general ability in <em>each</em> individual game. This idea applies to any genre or style of game, and layers
-        of composability can be added as well. Some in-game effect also can be achieved when a player has a certain combination of tokens. All of these tokens are entirely owned by the player in their wallet, not assigned to the player from the game's servers.
+        When done successfully, a player owning a fantasy token can play a
+        variety of different fantasy games, and owning the token lets them have
+        the same general ability in <em>each</em> individual game. This idea
+        applies to any genre or style of game, and layers of composability can
+        be added as well. Some in-game effect also can be achieved when a player
+        has a certain combination of tokens. All of these tokens are entirely
+        owned by the player in their wallet, not assigned to the player from the
+        game's servers.
       </p>
       <p>
-        The beauty of the GameDAO is found in each token's portability. Being able to have one token have a meaningful function in a variety of games creates a feeling of cohesion among similar games. It makes them feel as if they exist in the same universe. It's for this exact reason
-        that the existence of GameDAOs is a fundamental component to the creation of the metaverse. These organizations align every party in the gaming industry to bring this vision to life in ways that traditional corporations cannot.
+        The beauty of the GameDAO is found in each token's portability. Being
+        able to have one token have a meaningful function in a variety of games
+        creates a feeling of cohesion among similar games. It makes them feel as
+        if they exist in the same universe. It's for this exact reason that the
+        existence of GameDAOs is a fundamental component to the creation of the
+        metaverse. These organizations align every party in the gaming industry
+        to bring this vision to life in ways that traditional corporations
+        cannot.
       </p>
       <p>
-        As a GameDAO grows in membership, the share of the DAO's revenue that each member earns may decrease. For this reason, members may decide to form competing GameDAOs in search of more earnings per member. As these organizations proliferate,
-        we'll see competition that reminds us of corporate competition we see today. With this in mind, it may seem like we'll come full circle in the future, but the reality is that, amidst this change, the newly formed metaverse will see a grand shift toward player-centrism.
+        As a GameDAO grows in membership, the share of the DAO's revenue that
+        each member earns may decrease. For this reason, members may decide to
+        form competing GameDAOs in search of more earnings per member. As these
+        organizations proliferate, we'll see competition that reminds us of
+        corporate competition we see today. With this in mind, it may seem like
+        we'll come full circle in the future, but the reality is that, amidst
+        this change, the newly formed metaverse will see a grand shift toward
+        player-centrism.
       </p>
       <p>
-        The rise of GameDAOs will create a world where players keep their own identities in their wallet and on the blockchain. They'll no longer need a different gamertag and password for each different game. Any data that a game will have will be mostly ephemeral and derivative of the
-        information that’s given by the player. All of this is because they'll be built on open platforms, giving players more control over the often overlooked aspects of their gameplay experience.
+        The rise of GameDAOs will create a world where players keep their own
+        identities in their wallet and on the blockchain. They'll no longer need
+        a different gamertag and password for each different game. Any data that
+        a game will have will be mostly ephemeral and derivative of the
+        information that’s given by the player. All of this is because they'll
+        be built on open platforms, giving players more control over the often
+        overlooked aspects of their gameplay experience.
       </p>
       <p>
-        The tools to create and run a GameDAO are already here. DAO creation is easier than ever, several NFT platforms are readily available, and every major game engine now has a plugin for using Ethereum APIs. All that's left is an ambitious group of founders willing to bring the GameDAO
-        into fruition. When the GameDAOs reach critical mass, nobody will own the platform, because everybody will.
+        The tools to create and run a GameDAO are already here. DAO creation is
+        easier than ever, several NFT platforms are readily available, and every
+        major game engine now has a plugin for using Ethereum APIs. All that's
+        left is an ambitious group of founders willing to bring the GameDAO into
+        fruition. When the GameDAOs reach critical mass, nobody will own the
+        platform, because everybody will.
       </p>
     </Post>
   )

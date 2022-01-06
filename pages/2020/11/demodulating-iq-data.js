@@ -101,7 +101,7 @@ function RFPhasor({ isDark }) {
           <VictoryLine
             data={range(0, 4, 0.01).map((x) => ({ x }))}
             style={{
-              data: { stroke: isDark ? '#fff' : '#000', strokeWidth: 3 },
+              data: { stroke: isDark ? '#fff' : '#000', strokeWidth: 3 }
             }}
             y={({ x }) =>
               amplitude * -1 * Math.sin(x - angle * ((2 * Math.PI) / 1))

@@ -1,17 +1,8 @@
-import {
-  useRef,
-  useEffect,
-  useState
-} from 'react'
-import {
-  useThree
-} from '@react-three/fiber'
-import {
-  Euler,
-  Object3D
-} from 'three'
+import { useRef, useEffect, useState } from 'react'
+import { useThree } from '@react-three/fiber'
+import { Euler, Object3D } from 'three'
 
-// Restrict the pitchTarget object's pitch, 
+// Restrict the pitchTarget object's pitch,
 // or x axis rotation
 const MIN_PITCH_ANGLE = 0
 const MAX_PITCH_ANGLE = Math.PI
@@ -32,7 +23,7 @@ export default function TouchControls({
   const pitchEuler = useRef(new Euler())
 
   useEffect(() => {
-    const onTouchStart = event => {
+    const onTouchStart = (event) => {
       screenTouchX.current = event.changedTouches[0].screenX
       screenTouchY.current = event.changedTouches[0].screenY
       setTouchDown(true)
@@ -54,21 +45,28 @@ export default function TouchControls({
   }, [])
 
   useEffect(() => {
-    const onTouchMove = event => {
+    const onTouchMove = (event) => {
       if (isTouchDown) {
         // Update yaw euler
-        const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0
+        const movementX =
+          event.movementX || event.mozMovementX || event.webkitMovementX || 0
         yawEuler.current.setFromQuaternion(yawTarget.quaternion, 'YXZ')
-        yawEuler.current.y -= (event.changedTouches[0].screenX - screenTouchX.current) * 0.0002
+        yawEuler.current.y -=
+          (event.changedTouches[0].screenX - screenTouchX.current) * 0.0002
         yawTarget.quaternion.setFromEuler(yawEuler.current)
 
         // Update pitch euler
-        const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0
+        const movementY =
+          event.movementY || event.mozMovementY || event.webkitMovementY || 0
         pitchEuler.current.setFromQuaternion(pitchTarget.quaternion, 'YXZ')
-        pitchEuler.current.x -= (event.changedTouches[0].screenY - screenTouchY.current) * 0.0002
-        // Restrict the player to looking betwene straight up and straight down. Can't 
+        pitchEuler.current.x -=
+          (event.changedTouches[0].screenY - screenTouchY.current) * 0.0002
+        // Restrict the player to looking betwene straight up and straight down. Can't
         // let them break their neck
-        pitchEuler.current.x = Math.max(Math.PI / 2 - MAX_PITCH_ANGLE, Math.min(Math.PI / 2 - MIN_PITCH_ANGLE, pitchEuler.current.x))
+        pitchEuler.current.x = Math.max(
+          Math.PI / 2 - MAX_PITCH_ANGLE,
+          Math.min(Math.PI / 2 - MIN_PITCH_ANGLE, pitchEuler.current.x)
+        )
         pitchTarget.quaternion.setFromEuler(pitchEuler.current)
       }
     }

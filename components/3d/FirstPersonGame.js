@@ -1,7 +1,4 @@
-import {
-  EffectComposer,
-  Bloom
-} from '@react-three/postprocessing'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import TimeScaleManager from 'components/3d/TimeScaleManager'
 import TimeSensitivePhysics from 'components/3d/TimeSensitivePhysics'
 import FlatGround from 'components/3d/FlatGround'

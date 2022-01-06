@@ -1,9 +1,5 @@
-import {
-  useContext
-} from 'react'
-import {
-  Physics
-} from '@react-three/cannon'
+import { useContext } from 'react'
+import { Physics } from '@react-three/cannon'
 import TimeScaleContext from 'contexts/3d/TimeScaleContext'
 
 const DEFAULT_STEP = 1 / 60

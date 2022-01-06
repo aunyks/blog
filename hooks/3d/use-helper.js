@@ -1,7 +1,4 @@
-import {
-  useEffect,
-  useRef
-} from 'react'
+import { useEffect, useRef } from 'react'
 import { Object3D } from 'three'
 import { useThree, useFrame } from '@react-three/fiber'
 
@@ -12,7 +9,7 @@ export function useHelper(object3D, proto, ...args) {
   const scene = useThree((state) => state.scene)
   useEffect(() => {
     if (proto && object3D.current) {
-      helper.current = new (proto)(object3D.current, ...args)
+      helper.current = new proto(object3D.current, ...args)
       if (helper.current) {
         scene.add(helper.current)
       }

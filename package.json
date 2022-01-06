@@ -2,7 +2,7 @@
   "name": "blog-next",
   "version": "0.1.0",
   "scripts": {
-    "prettier": "prettier .",
+    "prettier": "prettier --write .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -1,7 +1,4 @@
-import {
-  useState,
-  useEffect
-} from 'react'
+import { useState, useEffect } from 'react'
 
 const usePageVisible = () => {
   const [isVisible, setIsVisible] = useState(true)
@@ -12,7 +9,11 @@ const usePageVisible = () => {
     }
     onVisibilityChange()
     window.document.addEventListener('visibilitychange', onVisibilityChange)
-    return () => window.document.removeEventListener('visibilitychange', onVisibilityChange)
+    return () =>
+      window.document.removeEventListener(
+        'visibilitychange',
+        onVisibilityChange
+      )
   }, [])
 
   return isVisible

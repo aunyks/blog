@@ -1,13 +1,9 @@
-import {
-  forwardRef,
-  useLayoutEffect,
-  useRef,
-} from 'react'
+import { forwardRef, useLayoutEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 
 function mergeRefs(refs) {
-  return value => {
-    refs.forEach(ref => {
+  return (value) => {
+    refs.forEach((ref) => {
       if (typeof ref === 'function') {
         ref(value)
       } else if (ref != null) {
@@ -23,10 +19,12 @@ export const LOD = forwardRef(({ children, distances, ...props }, ref) => {
 
   useLayoutEffect(() => {
     lodRef.current.levels.length = 0
-    lodRef.current.children.forEach((object, index) => lodRef.current.levels.push({ object, distance: distances[index] }))
+    lodRef.current.children.forEach((object, index) =>
+      lodRef.current.levels.push({ object, distance: distances[index] })
+    )
   })
 
-  useFrame(state => {
+  useFrame((state) => {
     if (lodRef) {
       lodRef.current.update(state.camera)
     }

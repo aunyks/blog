@@ -9,7 +9,7 @@ function Sphere() {
     return {
       args: 5,
       velocity: [-4, -2, -4],
-      angularVelocity: [-Math.PI / 16, Math.PI / 16, 0],
+      angularVelocity: [-Math.PI / 16, Math.PI / 16, 0]
     }
   })
   return (
@@ -23,7 +23,7 @@ function Sphere() {
 function FlatGround({ color = 0xff00ff, width = 10000, length = 10000 }) {
   const quat = new Quaternion().setFromEuler(new Euler(-Math.PI / 2, 0, 0))
   const [physicsRef] = usePlane(() => ({
-    mass: 0,
+    mass: 0
   }))
   return (
     <mesh ref={physicsRef} quaternion={quat}>

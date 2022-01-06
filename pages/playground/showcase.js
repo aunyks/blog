@@ -1,10 +1,5 @@
-import {
-  Canvas, useFrame
-} from '@react-three/fiber'
-import {
-  Debug,
-  Physics
-} from '@react-three/cannon'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { Debug, Physics } from '@react-three/cannon'
 import FirstPersonPlayer from 'components/3d/FirstPersonPlayer'
 import OrbitControls from 'components/3d/controls/OrbitControls'
 import Arms from 'components/3d/Arms'

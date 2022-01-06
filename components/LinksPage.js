@@ -1,6 +1,4 @@
-import {
-  useEffect
-} from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from 'components/Navbar'
 
@@ -11,7 +9,9 @@ export default function LinksPage({
   hasInstructions,
   children
 }) {
-  const effectiveTitle = pageTitle ? `${pageTitle} - Hi-Voltage` : `${title} - Hi-Voltage`
+  const effectiveTitle = pageTitle
+    ? `${pageTitle} - Hi-Voltage`
+    : `${title} - Hi-Voltage`
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -33,7 +33,10 @@ export default function LinksPage({
         <meta name="twitter:creator" content="@aunyks" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={subtitle} />
-        <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
+        <meta
+          name="twitter:image"
+          content="https://blog.aunyks.com/img/default-card-image.png"
+        />
         <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
@@ -91,12 +94,20 @@ export default function LinksPage({
         }
       `}</style>
       <main className="h-screen w-full flex flex-col">
-        <header id="link-pg-header" className="pt-16 lg:pt-24 pb-4 lg:pb-8 px-6 lg:px-24 w-full">
+        <header
+          id="link-pg-header"
+          className="pt-16 lg:pt-24 pb-4 lg:pb-8 px-6 lg:px-24 w-full">
           <h1 className="font-bold text-3xl lg:text-5xl">{title}</h1>
-          {subtitle && <h2 className="font-normal text-lg lg:text-2xl mb-2 lg:mb-0">{subtitle}</h2>}
+          {subtitle && (
+            <h2 className="font-normal text-lg lg:text-2xl mb-2 lg:mb-0">
+              {subtitle}
+            </h2>
+          )}
         </header>
         <div className="px-6 lg:px-24">
-          <ul id="links" className="list-none py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-4">
+          <ul
+            id="links"
+            className="list-none py-8 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-4">
             {children}
           </ul>
         </div>

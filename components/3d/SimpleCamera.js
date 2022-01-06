@@ -1,13 +1,5 @@
-import {
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  forwardRef
-} from 'react'
-import {
-  useFrame,
-  useThree
-} from '@react-three/fiber'
+import { useRef, useEffect, useLayoutEffect, forwardRef } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 
 const SimpleCamera = forwardRef((props, ref) => {
   const effectiveRef = ref || useRef()

@@ -2,7 +2,7 @@ export default function PostFooter({ date, lang, textDirection, remark }) {
   let year = null
   // Calculated at build time, not render / request time
   let thisYear = new Intl.DateTimeFormat(lang || 'en', {
-    year: 'numeric',
+    year: 'numeric'
   }).format(new Date())
   if (date) {
     const d = new Date(date)

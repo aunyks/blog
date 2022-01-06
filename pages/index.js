@@ -1,9 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-  Suspense
-} from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import Head from 'next/head'
 import { Canvas, useLoader, useFrame } from '@react-three/fiber'
 import Navbar from 'components/Navbar'
@@ -18,7 +13,9 @@ function Bolt() {
   const [boltPosition, setBoltPosition] = useState([3, 0, 0])
   const [boltScale, setBoltScale] = useState(2)
   const [boltColor, setBoltColor] = useState(null)
-  const [targetYRotation, setTargetYRotation] = useState(-Math.PI / 2 + 2 * Math.PI)
+  const [targetYRotation, setTargetYRotation] = useState(
+    -Math.PI / 2 + 2 * Math.PI
+  )
   const deviceSize = useDeviceSize()
   const isDarkMode = useDarkMode()
   const isPageVisible = usePageVisible()
@@ -64,14 +61,20 @@ function Bolt() {
 
   useEffect(() => {
     setTimeout(function refreshYRotation() {
-      const newYRotation = isPageVisible ? targetYRotation + 2 * Math.PI : targetYRotation + 0.0001
+      const newYRotation = isPageVisible
+        ? targetYRotation + 2 * Math.PI
+        : targetYRotation + 0.0001
       setTargetYRotation(newYRotation)
     }, 10000)
   }, [targetYRotation])
 
   useFrame(() => {
     if (boltRef && boltRef.current) {
-      boltRef.current.rotation.y = MathUtils.lerp(boltRef.current.rotation.y, targetYRotation, 0.02)
+      boltRef.current.rotation.y = MathUtils.lerp(
+        boltRef.current.rotation.y,
+        targetYRotation,
+        0.02
+      )
     }
   })
   return (
@@ -101,7 +104,10 @@ export default function HomePage() {
         <meta name="twitter:creator" content="@aunyks" />
         <meta name="twitter:title" content="Hi-Voltage" />
         <meta name="twitter:description" content="Increasing potential" />
-        <meta name="twitter:image" content="https://blog.aunyks.com/img/default-card-image.png" />
+        <meta
+          name="twitter:image"
+          content="https://blog.aunyks.com/img/default-card-image.png"
+        />
         <link rel="stylesheet" href="/css/homepage.css" />
         <link rel="apple-touch-icon" href="/pwa/icon-192x192.png" />
         <link rel="manifest" href="/manifest.json" />
@@ -109,14 +115,12 @@ export default function HomePage() {
       <Navbar />
       <div className="layer-container">
         <main className="layer w-full">
-          <section id="greeting-section" className="flex flex-col justify-end lg:justify-center w-full h-full">
+          <section
+            id="greeting-section"
+            className="flex flex-col justify-end lg:justify-center w-full h-full">
             <div id="greeting" className="px-3 lg:px-24">
-              <h1 className="text-3xl lg:text-5xl">
-                Hi-Voltage
-              </h1>
-              <h2 className="text-lg lg:text-3xl">
-                Increasing potential
-              </h2>
+              <h1 className="text-3xl lg:text-5xl">Hi-Voltage</h1>
+              <h2 className="text-lg lg:text-3xl">Increasing potential</h2>
             </div>
           </section>
         </main>

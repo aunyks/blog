@@ -7,16 +7,29 @@ export default function JsCodeSnippets() {
   return (
     <CodeSnippetPost
       title="JavaScript Code Snippets"
-      description="Useful bites of JS code that I often write and rewrite."
-    >
+      description="Useful bites of JS code that I often write and rewrite.">
       <CodeSnippet title="Suspend a Promise">
         <p>
-          A function that "suspends" a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">Promise</a>, or
-          accepts a Promise and makes it compatible with <a href="https://reactjs.org/docs/concurrent-mode-suspense.html" target="_blank">Suspense</a>.To use this,
-          call this function with your desired Promise as the argument.It will return an object.To get the resolved value, call <code>read()</code> on this object.
+          A function that "suspends" a{' '}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+            target="_blank">
+            Promise
+          </a>
+          , or accepts a Promise and makes it compatible with{' '}
+          <a
+            href="https://reactjs.org/docs/concurrent-mode-suspense.html"
+            target="_blank">
+            Suspense
+          </a>
+          .To use this, call this function with your desired Promise as the
+          argument.It will return an object.To get the resolved value, call{' '}
+          <code>read()</code> on this object.
         </p>
         <p>
-          Something along the lines of <code>const myResource = suspend(fetch('/value.json'))</code>.<code>const value = myResource.read()</code>
+          Something along the lines of{' '}
+          <code>const myResource = suspend(fetch('/value.json'))</code>.
+          <code>const value = myResource.read()</code>
         </p>
         <CodeBlock lang="jsx">{`
 function suspend(promise) {
@@ -51,8 +64,8 @@ function suspend(promise) {
       </CodeSnippet>
       <CodeSnippet title="Save Binary File">
         <p>
-          This function lets you prompt the user for downloading a binary file to their device.I'm not sure
-          how it handles endianness.
+          This function lets you prompt the user for downloading a binary file
+          to their device.I'm not sure how it handles endianness.
         </p>
         <CodeBlock lang="js">{`
 function saveBinaryFile(arrayBuffer, fileName) {
@@ -68,7 +81,8 @@ function saveBinaryFile(arrayBuffer, fileName) {
       </CodeSnippet>
       <CodeSnippet title="Save Text File">
         <p>
-          This function lets you prompt the user for downloading a text file to their device.
+          This function lets you prompt the user for downloading a text file to
+          their device.
         </p>
         <CodeBlock lang="js">{`
 function saveTextFile(string, fileName, charset='utf8') {
@@ -84,8 +98,8 @@ function saveTextFile(string, fileName, charset='utf8') {
       </CodeSnippet>
       <CodeSnippet title="Leading Debounce a Function">
         <p>
-          Like the below function, except this executes on the first invocation and debounces subsequent invocations
-          until the timeout is satisfied.
+          Like the below function, except this executes on the first invocation
+          and debounces subsequent invocations until the timeout is satisfied.
         </p>
         <CodeBlock lang="js">{`
 function leadingDebounce(func, timeout = 300){
@@ -104,11 +118,25 @@ function leadingDebounce(func, timeout = 300){
       </CodeSnippet>
       <CodeSnippet title="Debounce a Function">
         <p>
-          Adapted from <a href="https://ondrabus.com" target="_blank">Ondrej Polesny's</a> <a href="https://www.freecodecamp.org/news/javascript-debounce-example" target="_blank">article on the topic</a>, this
-          function lets you debounce the execution of the function that's passed as an argument. For example,
-          writing <code>const mashButton = debounce(() => console.log('thanks for waiting'), 500)</code> lets you
-          repeatedly call <code>mashButton</code>.It will debounce the log function until 500 milliseconds have passed without the
-          function being called again.After 500 milliseconds, the log function will be invoked.
+          Adapted from{' '}
+          <a href="https://ondrabus.com" target="_blank">
+            Ondrej Polesny's
+          </a>{' '}
+          <a
+            href="https://www.freecodecamp.org/news/javascript-debounce-example"
+            target="_blank">
+            article on the topic
+          </a>
+          , this function lets you debounce the execution of the function that's
+          passed as an argument. For example, writing{' '}
+          <code>
+            const mashButton = debounce(() => console.log('thanks for waiting'),
+            500)
+          </code>{' '}
+          lets you repeatedly call <code>mashButton</code>.It will debounce the
+          log function until 500 milliseconds have passed without the function
+          being called again.After 500 milliseconds, the log function will be
+          invoked.
         </p>
         <CodeBlock lang="js">{`
 function debounce(func, timeout = 300) {
@@ -124,11 +152,15 @@ function debounce(func, timeout = 300) {
       </CodeSnippet>
       <CodeSnippet title="A N-ary Tree Node">
         <p>
-          An ES6 class that defines a node for use in discrete trees.It makes very few assumptions other
-          than that it's designed for tree structures, so you can extend it for more specific tree applications.
-          A good practice is to add functions that operate on these nodes and their descendants as static functions of the node class.
-          For example, <code>serializeTree</code> below should be called as <code>TreeNode.serializeTree(someNode)</code>.This
-          way, it's apparent to developers how nodes are treated, and you can still take advantage of polymorphism.
+          An ES6 class that defines a node for use in discrete trees.It makes
+          very few assumptions other than that it's designed for tree
+          structures, so you can extend it for more specific tree applications.
+          A good practice is to add functions that operate on these nodes and
+          their descendants as static functions of the node class. For example,{' '}
+          <code>serializeTree</code> below should be called as{' '}
+          <code>TreeNode.serializeTree(someNode)</code>.This way, it's apparent
+          to developers how nodes are treated, and you can still take advantage
+          of polymorphism.
         </p>
         <CodeBlock lang="js">{`
 class TreeNode {
@@ -190,16 +222,24 @@ class TreeNode {
       `}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Clamp a Number">
-        <p>
-          A function that clamps a number between two values.
-        </p>
+        <p>A function that clamps a number between two values.</p>
         <CodeBlock lang="js">{`
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
       `}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Custom Event Emitter">
         <p>
-          A simple event emitter for use in <a href="https://en.wikipedia.org/wiki/Observer_pattern" target="_blank">Observer patterns</a>.Adapted from <a href="https://stackoverflow.com/a/36027952" target="_blank">Eric Muyser's Stack Overflow answer</a>.
+          A simple event emitter for use in{' '}
+          <a
+            href="https://en.wikipedia.org/wiki/Observer_pattern"
+            target="_blank">
+            Observer patterns
+          </a>
+          .Adapted from{' '}
+          <a href="https://stackoverflow.com/a/36027952" target="_blank">
+            Eric Muyser's Stack Overflow answer
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 class EventEmitter {
@@ -233,7 +273,13 @@ class EventEmitter {
       </CodeSnippet>
       <CodeSnippet title="Simple PWA Service Worker">
         <p>
-          A very small service worker ready for use in a <a target="_blank" href="https://en.wikipedia.org/wiki/Progressive_web_application">Progressive Web App</a>.
+          A very small service worker ready for use in a{' '}
+          <a
+            target="_blank"
+            href="https://en.wikipedia.org/wiki/Progressive_web_application">
+            Progressive Web App
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 // Name of our cache for reference in-browser
@@ -289,7 +335,13 @@ async function networkAndCache(req) {
       </CodeSnippet>
       <CodeSnippet title="Map a Number from One Range to Another">
         <p>
-          The function is called <code>scale</code>, because <code>map</code> is often associated with the array function in the context of JavaScript.Borrowed from <a href="https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers">August Miller</a>.
+          The function is called <code>scale</code>, because <code>map</code> is
+          often associated with the array function in the context of
+          JavaScript.Borrowed from{' '}
+          <a href="https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers">
+            August Miller
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 function scale(num, in_min, in_max, out_min, out_max) {
@@ -299,10 +351,11 @@ function scale(num, in_min, in_max, out_min, out_max) {
       </CodeSnippet>
       <CodeSnippet title="Keyboard Manager (Game Dev)">
         <p>
-          A class that provides an easy-to-use interface for using a hardware keyboard as
-          input in a game.Specifically, it's meant to be instantiated outside of the game loop so that its
-          functions can be called in the game loop.This way, the game can update based on the keyboard state on each
-          tick.
+          A class that provides an easy-to-use interface for using a hardware
+          keyboard as input in a game.Specifically, it's meant to be
+          instantiated outside of the game loop so that its functions can be
+          called in the game loop.This way, the game can update based on the
+          keyboard state on each tick.
         </p>
         <CodeBlock lang="js">{`
 class KeyboardInput {
@@ -388,12 +441,39 @@ class KeyboardInput {
       </CodeSnippet>
       <CodeSnippet title="Gamepad Manager (Browser)">
         <p>
-          A class that provides an <Hint msg="The browser Gamepad API is pretty verbose and difficult to use.">easier-to-use</Hint> interface for interacting with
-          gamepads like PlayStation and XBox controllers.This class assumes the controller has
-          a <Hint msg="Standard control layout involves a left and right joystick, directional pad, four-button pad, select and start buttons, left and right bumpers, and left and right triggers. PlayStation and XBox controllers have standard mappings.">standard</Hint> control mapping.
-          Construct it outside of the game loop, and call its member functions on each tick in the loop.Only call its functions
-          when the instance's <code>ready()</code> function returns true.
-          See <a target="_blank" title="Google web.dev gamepad walkthrough" href="https://web.dev/gamepad">this</a>, <a target="_blank" title="MDN Gamepad tutorial" href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API">this</a>, and <a title="Gamepad tester and debugger" target="_blank" href="https://gamepad-tester.com">this</a>.
+          A class that provides an{' '}
+          <Hint msg="The browser Gamepad API is pretty verbose and difficult to use.">
+            easier-to-use
+          </Hint>{' '}
+          interface for interacting with gamepads like PlayStation and XBox
+          controllers.This class assumes the controller has a{' '}
+          <Hint msg="Standard control layout involves a left and right joystick, directional pad, four-button pad, select and start buttons, left and right bumpers, and left and right triggers. PlayStation and XBox controllers have standard mappings.">
+            standard
+          </Hint>{' '}
+          control mapping. Construct it outside of the game loop, and call its
+          member functions on each tick in the loop.Only call its functions when
+          the instance's <code>ready()</code> function returns true. See{' '}
+          <a
+            target="_blank"
+            title="Google web.dev gamepad walkthrough"
+            href="https://web.dev/gamepad">
+            this
+          </a>
+          ,{' '}
+          <a
+            target="_blank"
+            title="MDN Gamepad tutorial"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API">
+            this
+          </a>
+          , and{' '}
+          <a
+            title="Gamepad tester and debugger"
+            target="_blank"
+            href="https://gamepad-tester.com">
+            this
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 class GamepadInput {
@@ -537,8 +617,9 @@ class GamepadInput {
       </CodeSnippet>
       <CodeSnippet title="Check Whether the Current Browser has an Ethereum Wallet">
         <p>
-          This function returns a boolean value determining whether the current browser has a Web3 wallet
-          available.It returns <code>true</code> if the wallet is available and <code>false</code> if it isn't.
+          This function returns a boolean value determining whether the current
+          browser has a Web3 wallet available.It returns <code>true</code> if
+          the wallet is available and <code>false</code> if it isn't.
         </p>
         <CodeBlock lang="js">{`
 function hasWeb3Wallet() {
@@ -548,10 +629,15 @@ function hasWeb3Wallet() {
       </CodeSnippet>
       <CodeSnippet title="Send Ether to an Address">
         <p>
-          A quick-and-dirty way to send Ether to an Ethereum address.It's compatible with all of
-          the <a target="_blank" href="https://eips.ethereum.org/EIPS/eip-1102">EIP-1102 implementations</a> and older Web3 browser implementations.This function
-          accepts the recipient address as a string and the hex-encoded amount in Wei to send as a string.It returns a promise
-          that resolves to the transaction receipt or hash, depending on the Web3 version used.
+          A quick-and-dirty way to send Ether to an Ethereum address.It's
+          compatible with all of the{' '}
+          <a target="_blank" href="https://eips.ethereum.org/EIPS/eip-1102">
+            EIP-1102 implementations
+          </a>{' '}
+          and older Web3 browser implementations.This function accepts the
+          recipient address as a string and the hex-encoded amount in Wei to
+          send as a string.It returns a promise that resolves to the transaction
+          receipt or hash, depending on the Web3 version used.
         </p>
         <CodeBlock lang="js">{`
 async function sendEthTransaction(toAddr, weiAmount){
@@ -598,9 +684,15 @@ async function sendEthTransaction(toAddr, weiAmount){
       </CodeSnippet>
       <CodeSnippet title="Request Access to an Ethereum Wallet">
         <p>
-          A quick-and-dirty way to request access to a user's <Hint label="What's an Ethereum wallet?" msg="Browser-based Ethereum wallets like MetaMask and Coinbase Wallet allow developers to interface their web apps with the Ethereum blockchain and gain the ability to use money without the need for a bank.">Ethereum wallet</Hint> within
-          the browser.It returns <code>'allowed'</code> if the user gives access, <code>'denied'</code> if
-          the user denies access, and <code>'no-wallet'</code> if the user doesn't have a Web3 wallet.
+          A quick-and-dirty way to request access to a user's{' '}
+          <Hint
+            label="What's an Ethereum wallet?"
+            msg="Browser-based Ethereum wallets like MetaMask and Coinbase Wallet allow developers to interface their web apps with the Ethereum blockchain and gain the ability to use money without the need for a bank.">
+            Ethereum wallet
+          </Hint>{' '}
+          within the browser.It returns <code>'allowed'</code> if the user gives
+          access, <code>'denied'</code> if the user denies access, and{' '}
+          <code>'no-wallet'</code> if the user doesn't have a Web3 wallet.
         </p>
         <CodeBlock lang="js">{`
 async function requestWeb3Wallet() {
@@ -632,10 +724,16 @@ async function requestWeb3Wallet() {
       </CodeSnippet>
       <CodeSnippet title="Promisify a Function Accepting a Callback">
         <p>
-          Turn a function that accepts a callback function as a argument into another
-          that <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">returns a Promise</a>.
-          Here, <code>someFunction</code> accepts a callback as the second argument.<code>somePromisifiedFunction</code> is the promisified version
-          of <code>someFunction</code>.
+          Turn a function that accepts a callback function as a argument into
+          another that{' '}
+          <a
+            target="_blank"
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">
+            returns a Promise
+          </a>
+          . Here, <code>someFunction</code> accepts a callback as the second
+          argument.<code>somePromisifiedFunction</code> is the promisified
+          version of <code>someFunction</code>.
         </p>
         <CodeBlock lang="js">{`
 const somePromisifiedFunction = (someArg) => {
@@ -653,7 +751,13 @@ const somePromisifiedFunction = (someArg) => {
       </CodeSnippet>
       <CodeSnippet title="Detect Dark Mode in the Browser">
         <p>
-          Detect dark mode and changes to dark mode in the browser in JS, when <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">CSS isn't enough</a>.
+          Detect dark mode and changes to dark mode in the browser in JS, when{' '}
+          <a
+            target="_blank"
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme">
+            CSS isn't enough
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 try {
@@ -672,8 +776,17 @@ try {
       </CodeSnippet>
       <CodeSnippet title="Send a Single SMS Message (Twilio)">
         <p>
-          To run this Node.js script, the Twilio JavaScript library must first <Hint msg="Execute `npm i -S twilio` while in the directory of your project to install it.">be installed</Hint>.Here, <code>sendingNumber</code> and <code>receivingNumber</code> include the <Hint msg="The USA's is +1.">country code</Hint>.
-          Note that the Account SID and Auth Token are provided to the script as <a href="https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa">environment variables</a>.You can find these values in your Twilio dashboard.
+          To run this Node.js script, the Twilio JavaScript library must first{' '}
+          <Hint msg="Execute `npm i -S twilio` while in the directory of your project to install it.">
+            be installed
+          </Hint>
+          .Here, <code>sendingNumber</code> and <code>receivingNumber</code>{' '}
+          include the <Hint msg="The USA's is +1.">country code</Hint>. Note
+          that the Account SID and Auth Token are provided to the script as{' '}
+          <a href="https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa">
+            environment variables
+          </a>
+          .You can find these values in your Twilio dashboard.
         </p>
         <CodeBlock lang="js">{`
 const accountSid = process.env.TWILIO_SID
@@ -695,8 +808,17 @@ sendText()`}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Node.js Unit Testing (Jest)">
         <p>
-          The structure of a test suite in Node.js.First, <a href="https://jestjs.io" target="_blank">Jest</a> must be <Hint msg="Execute `npm i -D jest` while in the directory of your project to install it.">installed</Hint>.
-          This code should be in a file titled <code>mytest.test.js</code>, and it can be ran by executing the <code>jest</code> command in the terminal.
+          The structure of a test suite in Node.js.First,{' '}
+          <a href="https://jestjs.io" target="_blank">
+            Jest
+          </a>{' '}
+          must be{' '}
+          <Hint msg="Execute `npm i -D jest` while in the directory of your project to install it.">
+            installed
+          </Hint>
+          . This code should be in a file titled <code>mytest.test.js</code>,
+          and it can be ran by executing the <code>jest</code> command in the
+          terminal.
         </p>
         <CodeBlock lang="js">{`
 const sumFunction = require('./someModule')
@@ -710,7 +832,8 @@ describe('My Test Suite', () => {
       </CodeSnippet>
       <CodeSnippet title="Linear Interpolation (lerp)">
         <p>
-          A simple lerp implementation.<code>progress</code> ranges from 0 (start) to 1 (end).
+          A simple lerp implementation.<code>progress</code> ranges from 0
+          (start) to 1 (end).
         </p>
         <CodeBlock lang="js">{`
 function lerp(start, end, progress) {
@@ -720,8 +843,12 @@ function lerp(start, end, progress) {
       </CodeSnippet>
       <CodeSnippet title="Generate list of numbers in range">
         <p>
-          Like Python's <code>range</code> function, this returns an array of numbers, starting from the given initial value, and increments by <code>step</code>, and stops before the given final value. If the optional boolean parameter <code>inclusiveOfB</code> is
-          set to true, this function will include the given final value at the end of the returned array.
+          Like Python's <code>range</code> function, this returns an array of
+          numbers, starting from the given initial value, and increments by{' '}
+          <code>step</code>, and stops before the given final value. If the
+          optional boolean parameter <code>inclusiveOfB</code> is set to true,
+          this function will include the given final value at the end of the
+          returned array.
         </p>
         <CodeBlock lang="js">{`
 const range = (a, b, step, inclusiveOfB = false) => {
@@ -740,7 +867,11 @@ const range = (a, b, step, inclusiveOfB = false) => {
       </CodeSnippet>
       <CodeSnippet title="Slugify a String">
         <p>
-          Turn a string into a slug.Borrowed from <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">Lulu</a>.
+          Turn a string into a slug.Borrowed from{' '}
+          <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">
+            Lulu
+          </a>
+          .
         </p>
         <CodeBlock lang="js">{`
 const slugify = str => {

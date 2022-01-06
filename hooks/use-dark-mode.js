@@ -1,7 +1,4 @@
-import {
-  useState,
-  useEffect
-} from 'react'
+import { useState, useEffect } from 'react'
 
 const useDarkMode = () => {
   const [isDark, setDark] = useState(true)
@@ -14,19 +11,27 @@ const useDarkMode = () => {
 
     try {
       // For Chrome / FireFox
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', onDarkModeChange)
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', onDarkModeChange)
     } catch (e) {
       // For Safari
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(onDarkModeChange)
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addListener(onDarkModeChange)
     }
 
     return () => {
       try {
         // For Chrome / FireFox
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', onDarkModeChange)
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .removeEventListener('change', onDarkModeChange)
       } catch (e) {
         // For Safari
-        window.matchMedia('(prefers-color-scheme: dark)').removeListener(onDarkModeChange)
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .removeListener(onDarkModeChange)
       }
     }
   }, [])

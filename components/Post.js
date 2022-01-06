@@ -29,14 +29,26 @@ export default function Post({
         cardImage={cardImage}
         hasMath={hasMath}
         hasDiagram={hasDiagram}
-        hasCodeSnippet={hasCodeSnippet} />
+        hasCodeSnippet={hasCodeSnippet}
+      />
       <Navbar />
       <PostBody wide={wide} lang={lang} textDirection={textDirection}>
         <div style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          <PostHeader lang={lang} textDirection={textDirection} title={title} subtitle={subtitle} date={date} />
+          <PostHeader
+            lang={lang}
+            textDirection={textDirection}
+            title={title}
+            subtitle={subtitle}
+            date={date}
+          />
           {children}
           {!noFooter && (
-            <PostFooter lang={lang} textDirection={textDirection} remark={remark} date={date} />
+            <PostFooter
+              lang={lang}
+              textDirection={textDirection}
+              remark={remark}
+              date={date}
+            />
           )}
         </div>
       </PostBody>

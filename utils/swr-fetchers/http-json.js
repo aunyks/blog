@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 
-// This assumes that the api will return json 
+// This assumes that the api will return json
 // *even if the status code isn't 2xx*
-const httpJsonFetcher = async url => {
+const httpJsonFetcher = async (url) => {
   const res = await fetch(url)
   // If the status code is not in the range 200-299,
   // we still try to parse and throw it
@@ -16,8 +16,8 @@ const httpJsonFetcher = async url => {
   return res.json()
 }
 
-// Example user / auth hook. Can call sign in and out separately 
-// since on they'll handle cookies. This will just work, as long as those handle 
+// Example user / auth hook. Can call sign in and out separately
+// since on they'll handle cookies. This will just work, as long as those handle
 // receiving & deleting cookies
 // function useUser (id) {
 //   const { data, error } = useSWR(`/api/user/${id}`, httpJsonFetcher)
@@ -27,7 +27,6 @@ const httpJsonFetcher = async url => {
 //     error
 //   }
 // }
-
 
 //   if (error) return <div>failed to load</div>
 //   if (!data) return <div>loading...</div>

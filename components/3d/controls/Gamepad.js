@@ -1,9 +1,6 @@
-const {
-  useEffect,
-  forwardRef
-} = require('react')
+const { useEffect, forwardRef } = require('react')
 
-// An enum letting us reference each button 
+// An enum letting us reference each button
 // by name which maps to its index via the Gamepad API
 const Buttons = Object.freeze({
   // Button pad
@@ -30,13 +27,9 @@ const Buttons = Object.freeze({
   DPAD_EAST: 15
 })
 
-const Gamepad = forwardRef(({
-  padIndex,
-  onConnectionChange
-}, ref) => {
-
+const Gamepad = forwardRef(({ padIndex, onConnectionChange }, ref) => {
   useEffect(() => {
-    const onConnect = connectEvent => {
+    const onConnect = (connectEvent) => {
       // console.log(`gamepad ${connectEvent.gamepad.index} connected`)
       if (connectEvent.gamepad.index === padIndex) {
         ref.current = new Proxy(connectEvent.gamepad, {
@@ -47,7 +40,7 @@ const Gamepad = forwardRef(({
         onConnectionChange(true)
       }
     }
-    const onDisconnect = disconnectEvent => {
+    const onDisconnect = (disconnectEvent) => {
       // console.log(`gamepad ${disconnectEvent.gamepad.index} disconnected`)
       if (disconnectEvent.gamepad.index === padIndex) {
         ref.current = null
@@ -67,7 +60,4 @@ const Gamepad = forwardRef(({
   return null
 })
 
-export {
-  Buttons,
-  Gamepad
-}
+export { Buttons, Gamepad }

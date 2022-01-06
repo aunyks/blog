@@ -22,17 +22,12 @@ export default function Diagram({ alt, children }) {
         aria-hidden="true"
         className="mermaid max-w-full overflow-x-scroll"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: children.trim() }}>
-      </div>
+        dangerouslySetInnerHTML={{ __html: children.trim() }}></div>
       {/* 
       Hidden visually but still accessible
       to screen readers 
       */}
-      {alt && (
-        <p>
-          {alt}
-        </p>
-      )}
+      {alt && <p>{alt}</p>}
     </>
   )
 }
