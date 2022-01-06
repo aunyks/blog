@@ -7,14 +7,13 @@ export default function RustCodeSnippets() {
     <CodeSnippetPost
       title="Rust Code Snippets"
       description="Useful bites of Rust code that I often write and rewrite."
-      hasCodeSnippet
-    >
+      hasCodeSnippet>
       <CodeSnippet title="Simple Unit Test">
         <p>
-          These are basic unit tests in Rust. They often populate the same file as
-        the functions and modules they're built to test. You can run them by executing <code>cargo test</code> in
-        the terminal.
-      </p>
+          These are basic unit tests in Rust. They often populate the same file
+          as the functions and modules they're built to test. You can run them
+          by executing <code>cargo test</code> in the terminal.
+        </p>
         <CodeBlock lang="rust">{`
 fn add_one(num: u16) -> u16 {
   num + 1

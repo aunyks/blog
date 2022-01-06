@@ -8,30 +8,36 @@ function App() {
   const { status, reset } = useWeb3()
   return (
     <div>
-      <p>
-        Status: {status}
-      </p>
-      <button onClick={() => {
-        setModalActive(true)
-      }} disabled={status === 'connected'}>
+      <p>Status: {status}</p>
+      <button
+        onClick={() => {
+          setModalActive(true)
+        }}
+        disabled={status === 'connected'}>
         Connect Wallet
       </button>
-      <button onClick={() => {
-        setModalActive(false)
-        reset()
-      }}>
+      <button
+        onClick={() => {
+          setModalActive(false)
+          reset()
+        }}>
         Reset
       </button>
-      <Web3Modal id="web3modal" onClose={() => setModalActive(false)} active={modalActive} />
+      <Web3Modal
+        id="web3modal"
+        onClose={() => setModalActive(false)}
+        active={modalActive}
+      />
     </div>
   )
 }
 
 export default function Web3Page() {
   return (
-    <UseWalletProvider connectors={{
-      walletconnect: { rpcUrl: 'https://bridge.walletconnect.org' }
-    }}>
+    <UseWalletProvider
+      connectors={{
+        walletconnect: { rpcUrl: 'https://bridge.walletconnect.org' }
+      }}>
       <App />
     </UseWalletProvider>
   )

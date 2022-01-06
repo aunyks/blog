@@ -6,15 +6,15 @@ export default function PauseManager({ children }) {
   const [isPaused, setPaused] = useState(false)
   const invalidate = useThree(({ invalidate }) => invalidate)
 
-  // On every frame, request another frame by invalidating this one 
-  // if we're not paused. 
+  // On every frame, request another frame by invalidating this one
+  // if we're not paused.
   useFrame(({ invalidate }) => {
     if (!isPaused) {
       invalidate()
     }
   })
 
-  // Once paused, another frame won't be requested 
+  // Once paused, another frame won't be requested
   // so we need another way to kick it off again
   useEffect(() => {
     if (!isPaused) {
@@ -22,10 +22,11 @@ export default function PauseManager({ children }) {
     }
   }, [isPaused])
   return (
-    <PauseContext.Provider value={{
-      isPaused: isPaused,
-      setPaused: setPaused
-    }}>
+    <PauseContext.Provider
+      value={{
+        isPaused: isPaused,
+        setPaused: setPaused
+      }}>
       {children}
     </PauseContext.Provider>
   )

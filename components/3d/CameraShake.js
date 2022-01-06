@@ -12,7 +12,6 @@ import TimeScaleContext from 'contexts/3d/TimeScaleContext'
 
 // From https://github.com/pmndrs/three-stdlib/blob/acfbca94567b589a1f71c912874be4031887919b/src/math/SimplexNoise.ts
 class SimplexNoise {
-
   /**
    * You can pass in a random number generator object if you like.
    * It is assumed to have a random() method.
@@ -40,7 +39,7 @@ class SimplexNoise {
       [0, 1, 1],
       [0, -1, 1],
       [0, 1, -1],
-      [0, -1, -1],
+      [0, -1, -1]
     ]
 
     this.grad4 = [
@@ -75,7 +74,7 @@ class SimplexNoise {
       [-1, 1, 1, 0],
       [-1, 1, -1, 0],
       [-1, -1, 1, 0],
-      [-1, -1, -1, 0],
+      [-1, -1, -1, 0]
     ]
 
     //this.p = []
@@ -149,7 +148,7 @@ class SimplexNoise {
       [3, 1, 0, 2],
       [0, 0, 0, 0],
       [3, 2, 0, 1],
-      [3, 2, 1, 0],
+      [3, 2, 1, 0]
     ]
   }
 
@@ -339,8 +338,10 @@ class SimplexNoise {
     const jj = j & 255
     const kk = k & 255
     const gi0 = this.perm[ii + this.perm[jj + this.perm[kk]]] % 12
-    const gi1 = this.perm[ii + i1 + this.perm[jj + j1 + this.perm[kk + k1]]] % 12
-    const gi2 = this.perm[ii + i2 + this.perm[jj + j2 + this.perm[kk + k2]]] % 12
+    const gi1 =
+      this.perm[ii + i1 + this.perm[jj + j1 + this.perm[kk + k1]]] % 12
+    const gi2 =
+      this.perm[ii + i2 + this.perm[jj + j2 + this.perm[kk + k2]]] % 12
     const gi3 = this.perm[ii + 1 + this.perm[jj + 1 + this.perm[kk + 1]]] % 12
     // Calculate the contribution from the four corners
     let t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0
@@ -485,9 +486,12 @@ class SimplexNoise {
     const kk = k & 255
     const ll = l & 255
     const gi0 = perm[ii + perm[jj + perm[kk + perm[ll]]]] % 32
-    const gi1 = perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32
-    const gi2 = perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32
-    const gi3 = perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32
+    const gi1 =
+      perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32
+    const gi2 =
+      perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32
+    const gi3 =
+      perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32
     const gi4 = perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32
     // Calculate the contribution from the five corners
     let t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0 - w0 * w0
@@ -536,63 +540,73 @@ class SimplexNoise {
 }
 
 // From https://github.com/pmndrs/drei/blob/f7185336c880f7460f067730cc4f1a5ca8b8bedf/src/core/CameraShake.tsx
-const CameraShake = forwardRef(({
-  intensity = 1,
-  decay,
-  decayRate = 0.65,
-  maxYaw = 0.1,
-  maxPitch = 0.1,
-  maxRoll = 0.1,
-  yawFrequency = 1,
-  pitchFrequency = 1,
-  rollFrequency = 1,
-}, ref) => {
-  const { timeScale } = useContext(TimeScaleContext)
-  const camera = useThree((state) => state.camera)
-  const intensityRef = useRef(intensity)
-  const initialRotation = useRef(camera.rotation.clone())
+const CameraShake = forwardRef(
+  (
+    {
+      intensity = 1,
+      decay,
+      decayRate = 0.65,
+      maxYaw = 0.1,
+      maxPitch = 0.1,
+      maxRoll = 0.1,
+      yawFrequency = 1,
+      pitchFrequency = 1,
+      rollFrequency = 1
+    },
+    ref
+  ) => {
+    const { timeScale } = useContext(TimeScaleContext)
+    const camera = useThree((state) => state.camera)
+    const intensityRef = useRef(intensity)
+    const initialRotation = useRef(camera.rotation.clone())
 
-  const [yawNoise] = useState(() => new SimplexNoise())
-  const [pitchNoise] = useState(() => new SimplexNoise())
-  const [rollNoise] = useState(() => new SimplexNoise())
+    const [yawNoise] = useState(() => new SimplexNoise())
+    const [pitchNoise] = useState(() => new SimplexNoise())
+    const [rollNoise] = useState(() => new SimplexNoise())
 
-  const constrainIntensity = () => {
-    if (intensityRef.current < 0 || intensityRef.current > 1) {
-      intensityRef.current = intensityRef.current < 0 ? 0 : 1
+    const constrainIntensity = () => {
+      if (intensityRef.current < 0 || intensityRef.current > 1) {
+        intensityRef.current = intensityRef.current < 0 ? 0 : 1
+      }
     }
-  }
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      getIntensity: () => intensityRef.current,
-      setIntensity: val => {
-        intensityRef.current = val
-        constrainIntensity()
-      },
-    }),
-    []
-  )
-
-  useFrame(({ camera, clock }, delta) => {
-    const shake = Math.pow(intensityRef.current, 2)
-    const yaw = maxYaw * shake * yawNoise.noise(clock.elapsedTime * yawFrequency, 1)
-    const pitch = maxPitch * shake * pitchNoise.noise(clock.elapsedTime * pitchFrequency, 1)
-    const roll = maxRoll * shake * rollNoise.noise(clock.elapsedTime * rollFrequency, 1)
-
-    camera.rotation.set(
-      initialRotation.current.x + pitch,
-      initialRotation.current.y + yaw,
-      initialRotation.current.z + roll
+    useImperativeHandle(
+      ref,
+      () => ({
+        getIntensity: () => intensityRef.current,
+        setIntensity: (val) => {
+          intensityRef.current = val
+          constrainIntensity()
+        }
+      }),
+      []
     )
 
-    if (decay && intensityRef.current > 0) {
-      intensityRef.current -= decayRate * delta * timeScale
-      constrainIntensity()
-    }
-  })
+    useFrame(({ camera, clock }, delta) => {
+      const shake = Math.pow(intensityRef.current, 2)
+      const yaw =
+        maxYaw * shake * yawNoise.noise(clock.elapsedTime * yawFrequency, 1)
+      const pitch =
+        maxPitch *
+        shake *
+        pitchNoise.noise(clock.elapsedTime * pitchFrequency, 1)
+      const roll =
+        maxRoll * shake * rollNoise.noise(clock.elapsedTime * rollFrequency, 1)
 
-  return null
-})
+      camera.rotation.set(
+        initialRotation.current.x + pitch,
+        initialRotation.current.y + yaw,
+        initialRotation.current.z + roll
+      )
+
+      if (decay && intensityRef.current > 0) {
+        intensityRef.current -= decayRate * delta * timeScale
+        constrainIntensity()
+      }
+    })
+
+    return null
+  }
+)
 
 export default CameraShake

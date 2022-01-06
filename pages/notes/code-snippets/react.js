@@ -6,12 +6,12 @@ export default function ReactCodeSnippets() {
   return (
     <CodeSnippetPost
       title="React.js Code Snippets"
-      description="Useful bites of React code that I often write and rewrite."
-    >
+      description="Useful bites of React code that I often write and rewrite.">
       <CodeSnippet title="Auth / User Provider and Hook">
         <p>
-          A context provider and consuming hook that manage polling for user login status. This is useful for any
-          app that has any semblance of authentication.
+          A context provider and consuming hook that manage polling for user
+          login status. This is useful for any app that has any semblance of
+          authentication.
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -78,9 +78,15 @@ export function useUser() {
       </CodeSnippet>
       <CodeSnippet title="useKeysPressed Hook">
         <p>
-          A React hook detecting whether at least one of a provided set of keys is pressed. Accepts an array of strings
-          each representing a <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key" target="_blank">KeyBoardEvent's <code>key</code> value</a>.
-          Returns a boolean: <code>true</code> if one of them is pressed, <code>false</code> if not.
+          A React hook detecting whether at least one of a provided set of keys
+          is pressed. Accepts an array of strings each representing a{' '}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key"
+            target="_blank">
+            KeyBoardEvent's <code>key</code> value
+          </a>
+          . Returns a boolean: <code>true</code> if one of them is pressed,{' '}
+          <code>false</code> if not.
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -119,8 +125,14 @@ export default function useKeysPressed(targetKeys) {
       <CodeSnippet title="useKeyPress Hook">
         <p>
           A React hook detecting whether a key is pressed. Accepts a string
-          representing a <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key" target="_blank">KeyBoardEvent's <code>key</code> value</a>.
-          Returns a boolean: <code>true</code> if it's pressed, <code>false</code> if not.
+          representing a{' '}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key"
+            target="_blank">
+            KeyBoardEvent's <code>key</code> value
+          </a>
+          . Returns a boolean: <code>true</code> if it's pressed,{' '}
+          <code>false</code> if not.
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -160,8 +172,13 @@ export default useKeyPress
       </CodeSnippet>
       <CodeSnippet title="usePageVisible Hook">
         <p>
-          A React hook using the <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">Page Visibility API</a> to
-          determine whether the current tab is active / in focus.
+          A React hook using the{' '}
+          <a
+            target="_blank"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">
+            Page Visibility API
+          </a>{' '}
+          to determine whether the current tab is active / in focus.
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -190,7 +207,8 @@ export default usePageVisible
       <CodeSnippet title="useDarkMode Hook">
         <p>
           A React hook for tracking and detecting the browser dark mode state.
-          Always returns a boolean indicating whether the device is in dark mode <code>true</code> in dark mode, <code>false</code> when not.
+          Always returns a boolean indicating whether the device is in dark mode{' '}
+          <code>true</code> in dark mode, <code>false</code> when not.
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -237,8 +255,9 @@ export default useDarkMode
       </CodeSnippet>
       <CodeSnippet title="useDeviceSize Hook">
         <p>
-          A React hook for tracking and retrieving the device size. Always returns a
-          string indicating the current device size (<code>sm</code>, <code>md</code>, <code>lg</code>, etc).
+          A React hook for tracking and retrieving the device size. Always
+          returns a string indicating the current device size (<code>sm</code>,{' '}
+          <code>md</code>, <code>lg</code>, etc).
         </p>
         <CodeBlock lang="jsx">{`
 import {
@@ -279,9 +298,7 @@ export default useDeviceSize
 `}</CodeBlock>
       </CodeSnippet>
       <CodeSnippet title="Simple Scatter Plot">
-        <p>
-          Plot some points on a chart and color them in.
-        </p>
+        <p>Plot some points on a chart and color them in.</p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryScatter } from 'victory'
 
@@ -303,7 +320,8 @@ import { VictoryChart, VictoryScatter } from 'victory'
       </CodeSnippet>
       <CodeSnippet title="Simple Line Chart">
         <p>
-          Make a line chart from with domain 0 to 1 and range from y<sub>min</sub> to y<sub>max</sub>. With red line.
+          Make a line chart from with domain 0 to 1 and range from y
+          <sub>min</sub> to y<sub>max</sub>. With red line.
         </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
@@ -319,7 +337,11 @@ import { VictoryChart, VictoryLine } from 'victory'
       <CodeSnippet title="Line Chart with Custom Domain">
         <p>
           In case you want to see more than just x at the interval [0, 1]. See
-          the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
+          the implementation of the{' '}
+          <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">
+            range()
+          </a>{' '}
+          function.
         </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
@@ -342,8 +364,12 @@ import { VictoryChart, VictoryAxis, VictoryLine } from 'victory'
       </CodeSnippet>
       <CodeSnippet title="Line Chart for Parametric Functions">
         <p>
-          For when x and y values are dependent on a third value. See
-          the implementation of the <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">range()</a> function.
+          For when x and y values are dependent on a third value. See the
+          implementation of the{' '}
+          <a href="/notes/code-snippets/javascript#generate-list-of-numbers-in-range">
+            range()
+          </a>{' '}
+          function.
         </p>
         <CodeBlock lang="jsx">{`
 import { VictoryChart, VictoryLine } from 'victory'
@@ -358,6 +384,6 @@ import { VictoryChart, VictoryLine } from 'victory'
 </VictoryChart>
 `}</CodeBlock>
       </CodeSnippet>
-    </CodeSnippetPost >
+    </CodeSnippetPost>
   )
 }

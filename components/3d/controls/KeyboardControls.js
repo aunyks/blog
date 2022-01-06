@@ -1,11 +1,5 @@
-import {
-  useEffect,
-  useContext,
-  useRef
-} from 'react'
-import {
-  Object3D
-} from 'three'
+import { useEffect, useContext, useRef } from 'react'
+import { Object3D } from 'three'
 import useKeysPressed from 'hooks/use-keys-pressed'
 import PauseContext from 'contexts/3d/PauseContext'
 

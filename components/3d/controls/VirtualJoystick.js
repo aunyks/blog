@@ -1,8 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  forwardRef
-} from 'react'
+import { useEffect, useRef, forwardRef } from 'react'
 import Html from 'components/3d/3d-html'
 import useInnerWidth from 'hooks/use-inner-width'
 
@@ -12,9 +8,7 @@ const MAX_OFFSET_RADIUS = 80
 const SVG_VIEWBOX_SIZE = 384
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
-const VirtualJoystick = forwardRef(({
-  ...props
-}, ref) => {
+const VirtualJoystick = forwardRef(({ ...props }, ref) => {
   const innerWidth = useInnerWidth()
   let position = null
   if (innerWidth > 1024) {
@@ -46,18 +40,44 @@ const VirtualJoystick = forwardRef(({
       y: 0
     }
 
-    const onTouchStart = event => {
+    const onTouchStart = (event) => {
       virtualJoystick.current.classList.add('active')
     }
-    const onTouchMove = event => {
+    const onTouchMove = (event) => {
       virtualJoystick.current.classList.remove('active')
       transformMatrix.current = virtualJoystick.current.getScreenCTM()
-      newX.current = (event.touches[0].clientX - transformMatrix.current.e) / transformMatrix.current.a
-      newY.current = (event.touches[0].clientY - transformMatrix.current.f) / transformMatrix.current.d
-      centeredX.current = clamp((newX.current - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS, -1, 1)
-      centeredY.current = clamp((newY.current - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS, -1, 1)
-      virtualJoystick.current.setAttribute('cx', `${clamp(newX.current, JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS)}`)
-      virtualJoystick.current.setAttribute('cy', `${clamp(newY.current, JOYSTICK_CENTER_Y - MAX_OFFSET_RADIUS, JOYSTICK_CENTER_Y + MAX_OFFSET_RADIUS)}`)
+      newX.current =
+        (event.touches[0].clientX - transformMatrix.current.e) /
+        transformMatrix.current.a
+      newY.current =
+        (event.touches[0].clientY - transformMatrix.current.f) /
+        transformMatrix.current.d
+      centeredX.current = clamp(
+        (newX.current - JOYSTICK_CENTER_X) / MAX_OFFSET_RADIUS,
+        -1,
+        1
+      )
+      centeredY.current = clamp(
+        (newY.current - JOYSTICK_CENTER_Y) / MAX_OFFSET_RADIUS,
+        -1,
+        1
+      )
+      virtualJoystick.current.setAttribute(
+        'cx',
+        `${clamp(
+          newX.current,
+          JOYSTICK_CENTER_X - MAX_OFFSET_RADIUS,
+          JOYSTICK_CENTER_X + MAX_OFFSET_RADIUS
+        )}`
+      )
+      virtualJoystick.current.setAttribute(
+        'cy',
+        `${clamp(
+          newY.current,
+          JOYSTICK_CENTER_Y - MAX_OFFSET_RADIUS,
+          JOYSTICK_CENTER_Y + MAX_OFFSET_RADIUS
+        )}`
+      )
       ref.current.x = centeredX.current
       ref.current.y = centeredY.current
     }
@@ -75,36 +95,39 @@ const VirtualJoystick = forwardRef(({
 
     return () => {
       // window.document because I'm not sure if the ref is defined on unmount
-      window.document.getElementById('virtual-joystick').removeEventListener('touchstart', onTouchStart)
-      window.document.getElementById('virtual-joystick').removeEventListener('touchmove', onTouchMove)
-      window.document.getElementById('virtual-joystick').removeEventListener('touchend', onTouchEnd)
+      window.document
+        .getElementById('virtual-joystick')
+        .removeEventListener('touchstart', onTouchStart)
+      window.document
+        .getElementById('virtual-joystick')
+        .removeEventListener('touchmove', onTouchMove)
+      window.document
+        .getElementById('virtual-joystick')
+        .removeEventListener('touchend', onTouchEnd)
       ref.current = null
     }
   }, [])
 
   return (
-    <Html
-      center
-      position={position}
-      {...props}>
+    <Html center position={position} {...props}>
       <style jsx>{`
-          svg {
-            user-select: none;
-            position: relative;
-          }
+        svg {
+          user-select: none;
+          position: relative;
+        }
 
-          #virtual-joystick {
-            fill: rgba(48, 48, 48, 0.8);
-            stroke: white;
-            stroke-width: 5px;
-            user-select: none;
-            position: absolute;
-          }
+        #virtual-joystick {
+          fill: rgba(48, 48, 48, 0.8);
+          stroke: white;
+          stroke-width: 5px;
+          user-select: none;
+          position: absolute;
+        }
 
-          #virtual-joystick.active {
-            fill: rgba(48, 48, 48, 0.4);
-          }
-        `}</style>
+        #virtual-joystick.active {
+          fill: rgba(48, 48, 48, 0.4);
+        }
+      `}</style>
       <svg width="160" viewBox="0 0 368 368" xmlns="http://www.w3.org/2000/svg">
         {/* Background Circle */}
         <circle cx="184" cy="184" r="110" />

@@ -1,6 +1,4 @@
-import {
-  createContext
-} from 'react'
+import { createContext } from 'react'
 
 const PauseContext = createContext({
   isPaused: false,

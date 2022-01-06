@@ -1,14 +1,5 @@
-import {
-  useRef,
-  useState,
-  useEffect,
-  useMemo
-} from 'react'
-import {
-  useGraph,
-  useLoader,
-  useFrame
-} from '@react-three/fiber'
+import { useRef, useState, useEffect, useMemo } from 'react'
+import { useGraph, useLoader, useFrame } from '@react-three/fiber'
 import { Quaternion, Vector3 } from 'three'
 import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -20,13 +11,19 @@ export default function Arms({
   currentAction = 'Idle_Sword_Forward',
   ...props
 }) {
-  const { scene, animations } = useLoader(GLTFLoader, '/3d/models/slice-n-dice-3d-assets.glb')
+  const { scene, animations } = useLoader(
+    GLTFLoader,
+    '/3d/models/slice-n-dice-3d-assets.glb'
+  )
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes } = useGraph(clone)
   const { ref, actions, names } = useAnimations(animations)
 
   useEffect(() => {
-    swordBone.current = SkeletonUtils.getBoneByName('Xashi_Bone', nodes.Arms_Only_Character.skeleton)
+    swordBone.current = SkeletonUtils.getBoneByName(
+      'Xashi_Bone',
+      nodes.Arms_Only_Character.skeleton
+    )
   }, [])
 
   const previousAction = useRef(currentAction)
@@ -43,7 +40,7 @@ export default function Arms({
   const pv = useRef()
   const qv = useRef()
   const refWorldQuaternion = useRef(new Quaternion())
-  const currentPosition = useRef((new Vector3()).fromArray(position))
+  const currentPosition = useRef(new Vector3().fromArray(position))
 
   useFrame(() => {
     ref.current.position.lerp(currentPosition.current, 0.7)
@@ -53,18 +50,18 @@ export default function Arms({
       qv.current = swordBone.current.getWorldQuaternion(qv.current)
     }
     if (swordRef.current) {
-      // In Blender we only keyframe position and 
+      // In Blender we only keyframe position and
       // rotation so that's all we need to sync
       swordRef.current.position.copy(ref.current.worldToLocal(pv.current))
-      swordRef.current.
-        quaternion
-        .multiplyQuaternions(refWorldQuaternion.current.invert(), qv.current)
+      swordRef.current.quaternion.multiplyQuaternions(
+        refWorldQuaternion.current.invert(),
+        qv.current
+      )
     }
   })
 
   return (
-    <group
-      ref={ref} {...props} scale={0.2} rotation={[0, Math.PI, 0]}>
+    <group ref={ref} {...props} scale={0.2} rotation={[0, Math.PI, 0]}>
       <primitive object={nodes.Root_Bone} rotation={[0, Math.PI, 0]} />
       <skinnedMesh
         castShadow

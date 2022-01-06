@@ -2,6 +2,7 @@
   "name": "blog-next",
   "version": "0.1.0",
   "scripts": {
+    "prettier": "prettier --write .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -28,6 +29,16 @@
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.2.13",
+    "prettier": "^2.5.1",
     "tailwindcss": "^2.1.4"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "bracketSameLine": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "always"
   }
 }

@@ -8,7 +8,7 @@ export default function PostHead({
   cardImage,
   hasMath,
   hasDiagram,
-  hasCodeSnippet,
+  hasCodeSnippet
 }) {
   const effectiveTitle = !!subtitle ? `${title}: ${subtitle}` : title
 

@@ -1,18 +1,10 @@
-import {
-  useRef,
-  useLayoutEffect,
-  forwardRef,
-  useContext
-} from 'react'
-import {
-  useFrame,
-  useThree
-} from '@react-three/fiber'
+import { useRef, useLayoutEffect, forwardRef, useContext } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 import CameraDirectorContext from 'contexts/3d/CameraDirectorContext'
 
 function mergeRefs(refs) {
-  return value => {
-    refs.forEach(ref => {
+  return (value) => {
+    refs.forEach((ref) => {
       if (typeof ref === 'function') {
         ref(value)
       } else if (ref != null) {
@@ -22,48 +14,55 @@ function mergeRefs(refs) {
   }
 }
 
-const Camera = forwardRef(({
-  // Name used to refer to this camera by the director
-  name,
-  children,
-  ...props
-}, ref) => {
-  if (!name) {
-    throw new Error('Name prop must be provided to a Camera so it can be referenced by a Director')
+const Camera = forwardRef(
+  (
+    {
+      // Name used to refer to this camera by the director
+      name,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    if (!name) {
+      throw new Error(
+        'Name prop must be provided to a Camera so it can be referenced by a Director'
+      )
+    }
+    const cameraRef = useRef()
+    const set = useThree((state) => state.set)
+    const size = useThree(({ size }) => size)
+    const { activeCamera, setActiveCamera } = useContext(CameraDirectorContext)
+
+    useLayoutEffect(() => {
+      if (cameraRef.current) {
+        cameraRef.current.aspect = size.width / size.height
+        cameraRef.current.updateProjectionMatrix()
+      }
+    }, [size, props])
+
+    useLayoutEffect(() => {
+      if (activeCamera === name) {
+        set({ camera: cameraRef.current })
+      }
+    }, [activeCamera])
+
+    useFrame(() => {
+      if (cameraRef.current) {
+        cameraRef.current.updateMatrixWorld()
+      }
+    })
+
+    return (
+      <perspectiveCamera
+        ref={mergeRefs([cameraRef, ref])}
+        userData={{ name: name }}
+        {...props}>
+        {/* Only mount children when this camera is active */}
+        {activeCamera === name && children}
+      </perspectiveCamera>
+    )
   }
-  const cameraRef = useRef()
-  const set = useThree((state) => state.set)
-  const size = useThree(({ size }) => size)
-  const { activeCamera, setActiveCamera } = useContext(CameraDirectorContext)
-
-  useLayoutEffect(() => {
-    if (cameraRef.current) {
-      cameraRef.current.aspect = size.width / size.height
-      cameraRef.current.updateProjectionMatrix()
-    }
-  }, [size, props])
-
-  useLayoutEffect(() => {
-    if (activeCamera === name) {
-      set({ camera: cameraRef.current })
-    }
-  }, [activeCamera])
-
-  useFrame(() => {
-    if (cameraRef.current) {
-      cameraRef.current.updateMatrixWorld()
-    }
-  })
-
-  return (
-    <perspectiveCamera
-      ref={mergeRefs([cameraRef, ref])}
-      userData={{ name: name }}
-      {...props}>
-      {/* Only mount children when this camera is active */}
-      {(activeCamera === name) && children}
-    </perspectiveCamera>
-  )
-})
+)
 
 export default Camera

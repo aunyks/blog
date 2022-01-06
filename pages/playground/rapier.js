@@ -9,7 +9,7 @@ function Sphere() {
     return {
       args: 5,
       linearDamping: 0,
-      angularDamping: 0,
+      angularDamping: 0
     }
   })
   return (

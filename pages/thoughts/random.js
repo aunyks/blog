@@ -2,14 +2,46 @@ import ThoughtsPost from 'components/ThoughtsPost'
 import Thought from 'components/Thought'
 import Hint from 'components/Hint'
 
-const Separator = () => <hr className="w-full my-2" />
-
 export default function RandomThoughts() {
   return (
     <ThoughtsPost
       title="Random Thoughts"
       description="Miscellaneous thoughts with no category."
       noFooter>
+      <Thought date="2022-01-02">
+        <p>
+          As we see better UX in crypto, we’ll see more centralization. It
+          happened to the web itself (you use Google, not web rings to find
+          websites). It happened to email (you don’t run a mail server, you use
+          a service). And I think we’ve been seeing it in crypto over the past
+          few years.
+        </p>
+        <p>
+          This is evident with the growing usage of exchanges as daily wallets,
+          node service providers growing in popularity (Infura, Quicknode), and
+          nobody running their own nodes or dapp frontends. I’d hate for the
+          idea of trustless, censorship resistant money to be lost.
+        </p>
+        <p>
+          You need to ask yourself: if a government wanted to take your crypto,
+          would it be easy to do so? Do they just need to tell your exchange to
+          lock your account? Just tell AWS to block your IP from some app? If
+          the answer is yes, you may need to reconsider the threat model of
+          cryptocurrencies. If they become too easy to attack, shut down, or
+          steal, then these are just slow, energy-wasting databases that will
+          try to beat today’s money but never will.
+        </p>
+        <p>
+          I’m optimistic this will get better, but it’s a risk that I don’t
+          think gets enough attention.
+        </p>
+      </Thought>
+      <Thought date="2021-12-02">
+        Imagine life-based PCs and phones. Instead of silicon there are
+        biological cells. Don't have power? You probably forgot to feed your
+        computer. Image an actual disease infecting your computer and causing it
+        to run slowly or even die! Can we do updates via stem cells?
+      </Thought>
       <Thought date="2021-11-12">
         <p>
           I want all projects built on crypto to have a datasheet page on their

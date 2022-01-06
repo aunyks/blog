@@ -6,7 +6,7 @@ export default function CodeBlock({
   showCodeByDefault,
   noClipboardButton,
   noButton,
-  children,
+  children
 }) {
   const [Prism, setPrism] = useState(null)
   const [cbWriteSuccess, setCbWriteSuccess] = useState(false)
@@ -56,7 +56,7 @@ export default function CodeBlock({
                       children.trim(),
                       Prism.languages[lang],
                       lang
-                    ),
+                    )
             }}></code>
         </pre>
         <div className="flex flex-row p-0 m-0">

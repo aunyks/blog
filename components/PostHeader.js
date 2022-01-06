@@ -17,12 +17,16 @@ export default function PostHeader({
   }
 
   return (
-    <header lang={lang || 'en'} style={{ textDirection: (textDirection || 'ltr') }}>
+    <header
+      lang={lang || 'en'}
+      style={{ textDirection: textDirection || 'ltr' }}>
       <h1 className="mt-2 lg:mt-0 leading-tight">{title}</h1>
-      {subtitle && (
-        <h2 className="leading-none">{subtitle}</h2>
+      {subtitle && <h2 className="leading-none">{subtitle}</h2>}
+      {date && (
+        <time
+          className="text-lg"
+          dateTime={date}>{`${month} ${day}, ${year}`}</time>
       )}
-      {date && <time className="text-lg" dateTime={date}>{`${month} ${day}, ${year}`}</time>}
       <hr style={{ marginBottom: '0.75em' }} />
     </header>
   )

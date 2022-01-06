@@ -1,7 +1,4 @@
-import {
-  useState,
-  useEffect
-} from 'react'
+import { useState, useEffect } from 'react'
 
 export default function useKeysPressed(targetKeys) {
   const [aKeyPressed, setAKeyPressed] = useState(false)

@@ -39,7 +39,7 @@ body {
   pointer-events: none;
 }
 
-.layer.touch-through>* {
+.layer.touch-through > * {
   pointer-events: all;
 }
 
@@ -52,7 +52,6 @@ body {
   touch-action: none;
   overflow-y: hidden;
 }
-
 
 #loading-screen {
   background: var(--light-gray);

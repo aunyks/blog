@@ -5,7 +5,7 @@ import {
   useCallback,
   useState,
   useMemo,
-  useEffect,
+  useEffect
 } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import RapierContext from 'contexts/3d/RapierContext'
@@ -16,7 +16,7 @@ let subscriptionId = 0
 export function Physics({
   shouldInvalidate = true,
   gravity = { x: 0, y: -9.81, z: 0 },
-  children,
+  children
 }) {
   const { scene, invalidate } = useThree()
   const [workerReady, setWorkerReady] = useState(false)
@@ -207,8 +207,8 @@ function useBody(type, fn, fwdRef, deps = []) {
         props: {
           ...props,
           position: props.position || ref.current.position.toArray(),
-          quaternion: props.quaternion || [quat.w, quat.x, quat.y, quat.z],
-        },
+          quaternion: props.quaternion || [quat.w, quat.x, quat.y, quat.z]
+        }
       })
     }
     return () => {
@@ -228,10 +228,10 @@ function useBody(type, fn, fwdRef, deps = []) {
             worker.postMessage({
               op: 'setPosition',
               uuid: ref.current.uuid,
-              props: vector,
+              props: vector
             })
           }
-        },
+        }
       },
       quaternion: {
         set: (quat) => {
@@ -240,10 +240,10 @@ function useBody(type, fn, fwdRef, deps = []) {
             worker.postMessage({
               op: 'setRotation',
               uuid: ref.current.uuid,
-              props: quat,
+              props: quat
             })
           }
-        },
+        }
       },
       velocity: {
         set: (vector) => {
@@ -252,10 +252,10 @@ function useBody(type, fn, fwdRef, deps = []) {
             worker.postMessage({
               op: 'setVelocity',
               uuid: ref.current.uuid,
-              props: vector,
+              props: vector
             })
           }
-        },
+        }
       },
       subscribe: (callback) => {
         const id = subscriptionId++
@@ -275,7 +275,7 @@ function useBody(type, fn, fwdRef, deps = []) {
           worker.postMessage({
             op: 'applyForce',
             uuid: ref.current.uuid,
-            props: vector,
+            props: vector
           })
         }
       },
@@ -285,7 +285,7 @@ function useBody(type, fn, fwdRef, deps = []) {
           worker.postMessage({
             op: 'setAngularVelocity',
             uuid: ref.current.uuid,
-            props: vector,
+            props: vector
           })
         }
       },
@@ -297,11 +297,11 @@ function useBody(type, fn, fwdRef, deps = []) {
             uuid: ref.current.uuid,
             props: {
               point,
-              force,
-            },
+              force
+            }
           })
         }
-      },
+      }
     }
   }, [workerInited])
   return [ref, api]

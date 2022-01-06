@@ -1,6 +1,6 @@
 const systemdComment = {
   pattern: /^[;#].*/m,
-  greedy: true,
+  greedy: true
 }
 
 const systemdQuotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source
@@ -15,15 +15,15 @@ Prism.languages.systemd = {
       punctuation: /^\[|\]$/,
       'section-name': {
         pattern: /[\s\S]+/,
-        alias: 'selector',
-      },
-    },
+        alias: 'selector'
+      }
+    }
   },
 
   key: {
     pattern: /^[^\s=]+(?=[ \t]*=)/m,
     greedy: true,
-    alias: 'attr-name',
+    alias: 'attr-name'
   },
   value: {
     // This pattern is quite complex because of two properties:
@@ -58,16 +58,16 @@ Prism.languages.systemd = {
       quoted: {
         pattern: RegExp(/(^|\s)/.source + systemdQuotesSource),
         lookbehind: true,
-        greedy: true,
+        greedy: true
       },
       punctuation: /\\$/m,
 
       boolean: {
         pattern: /^(?:false|no|off|on|true|yes)$/,
-        greedy: true,
-      },
-    },
+        greedy: true
+      }
+    }
   },
 
-  operator: /=/,
+  operator: /=/
 }

@@ -3,9 +3,7 @@ import Link from 'components/Link'
 
 export default function CategoriesPage() {
   return (
-    <LinksPage
-      pageTitle="Post Categories"
-      title="Categories">
+    <LinksPage pageTitle="Post Categories" title="Categories">
       <Link href="/music">music</Link>
       <Link href="/tech">tech</Link>
       <Link href="/art-n-design">art & design</Link>

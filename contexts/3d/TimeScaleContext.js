@@ -1,10 +1,9 @@
-import {
-  createContext
-} from 'react'
+import { createContext } from 'react'
 
 const TimeScaleContext = createContext({
   timeScale: 1,
-  setTimeScale: () => console.warn('No TimeScaleContext provided to this component')
+  setTimeScale: () =>
+    console.warn('No TimeScaleContext provided to this component')
 })
 
 export default TimeScaleContext

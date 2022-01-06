@@ -161,20 +161,20 @@ RAPIER.init().then(() => {
         w: quaternion[0],
         x: quaternion[1],
         y: quaternion[2],
-        z: quaternion[3],
+        z: quaternion[3]
       })
       .setLinvel(velocity[0], velocity[1], velocity[2])
       .setAngvel({
         x: angularVelocity[0],
         y: angularVelocity[1],
-        z: angularVelocity[2],
+        z: angularVelocity[2]
       })
       .setLinearDamping(linearDamping)
       .setAngularDamping(angularDamping)
     rigidBody.uuid = uuid
     return {
       collider: collider,
-      body: rigidBody,
+      body: rigidBody
     }
   }
   postMessage({ op: 'ready' })
@@ -221,20 +221,20 @@ addEventListener('message', (e) => {
           position: {
             x: bodyTranslation.x,
             y: bodyTranslation.y,
-            z: bodyTranslation.z,
+            z: bodyTranslation.z
           },
           quaternion: {
             w: bodyQuaternion.w,
             x: bodyQuaternion.x,
             y: bodyQuaternion.y,
-            z: bodyQuaternion.z,
-          },
+            z: bodyQuaternion.z
+          }
         }
       }
       postMessage({
         op: 'frame',
         bodies: steppedBodies,
-        observations: observations,
+        observations: observations
       })
       break
     case 'addBodies':

@@ -1,7 +1,4 @@
-import {
-  useState,
-  useEffect
-} from 'react'
+import { useState, useEffect } from 'react'
 
 // More fine grained than useDeviceSize
 const useInnerWidth = () => {
