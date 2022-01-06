@@ -45,6 +45,7 @@ export default function Resolutions() {
         <li id="9">
           Design a plasmid and have its genes expressed in a living organism
         </li>
+        <li id="10">Get some professional photos taken</li>
       </ol>
     </Post>
   )
