@@ -6,7 +6,8 @@ export default function Resolutions() {
     <Post
       title="Web Bracelets"
       description="Imagine the getting around the web without needing Google. Web bracelets let that happen."
-      date="2022-01-05">
+      date="2022-01-05"
+      cardImage="https://blog.aunyks.com/img/misc/web-bracelet.jpg">
       <p>
         Imagine the web if we didn't need to use Google to get around and find
         things. What if the web stayed as large as it is but <em>felt</em>{' '}
