@@ -4,6 +4,10 @@ import Link from 'components/Link'
 export default function Misc() {
   return (
     <LinksPage pageTitle="Misc" title="Misc" subtitle="Posts of no category">
+      <Link href="/2022/1/resolutions">2022 resolutions</Link>
+      <Link href="/2021/12/resolutions-in-review">
+        2021 resolutions in review
+      </Link>
       <Link href="/2021/2/on-balance">on balance</Link>
       <Link href="/2020/12/writing-for-expression-not-argument">
         writing for the sake of expression, not argument

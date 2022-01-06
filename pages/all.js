@@ -7,6 +7,11 @@ export default function ArchivePage() {
       pageTitle="Posts"
       title="Posts"
       subtitle="In reverse chronological order...pretty much">
+      <Link href="/2022/1/web-bracelets">web bracelets</Link>
+      <Link href="/2022/1/resolutions">2022 resolutions</Link>
+      <Link href="/2021/12/resolutions-in-review">
+        2021 resolutions in review
+      </Link>
       <Link href="/2021/11/you-wouldnt-download-a-guitar-right">
         you wouldn't download a guitar, right?
       </Link>
