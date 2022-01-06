@@ -6,7 +6,8 @@ export default function Resolutions() {
     <Post
       title="2022 Resolutions"
       description="Review my resolutions for the year."
-      date="2022-01-05">
+      date="2022-01-05"
+      cardImage="https://blog.aunyks.com/img/misc/web-bracelet.jpg">
       <p>
         I've been{' '}
         <a
