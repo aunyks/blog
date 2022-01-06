@@ -1,9 +1,9 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useLoader } from '@react-three/fiber'
-import { TextureLoader } from 'three'
 import { useHeightfield } from '@react-three/cannon'
 import useSWR from 'swr'
 import createUserData from 'utils/3d/createUserData'
+import { TextureLoader, BufferGeometry, Float32BufferAttribute } from 'three'
 
 // Returns matrix data to be passed to heightfield
 function createHeightfieldMatrix(image, scale) {
@@ -61,8 +61,32 @@ export function Heightmap({
     },
     { suspense: true }
   )
-  const heightfieldRef = useRef()
-  useHeightfield(
+  const hookDependencies = [heights, elementSize, position, rotation, maxHeight]
+  const terrainGeometry = useMemo(() => {
+    const geo = new BufferGeometry()
+    const geoPositions = heights.flatMap((row, i) =>
+      row.flatMap((z, j) => [i * elementSize, j * elementSize, z])
+    )
+    const indices = []
+    for (let xi = 0; xi < heights.length - 1; xi++) {
+      for (let yi = 0; yi < heights[xi].length - 1; yi++) {
+        const stride = heights[xi].length
+        const index = xi * stride + yi
+        indices.push(index + 1, index + stride, index + stride + 1)
+        indices.push(index + stride, index + 1, index)
+      }
+    }
+    geo.setIndex(indices)
+    geo.setAttribute('position', new Float32BufferAttribute(geoPositions, 3))
+    geo.computeBoundingSphere()
+    geo.computeVertexNormals()
+    return geo
+  }, hookDependencies)
+  useEffect(() => {
+    return terrainGeometry.dispose()
+  })
+
+  const [ref] = useHeightfield(
     () => {
       const calculatedPosition = [
         position[0] - (heights[0].length * elementSize) / 2,
@@ -83,8 +107,8 @@ export function Heightmap({
         rotation: calculatedRotation
       }
     },
-    heightfieldRef,
-    [heights, elementSize, position, rotation, maxHeight]
+    null,
+    hookDependencies
   )
 
   const userData = useRef(
@@ -95,31 +119,9 @@ export function Heightmap({
   )
 
   return (
-    <mesh
-      position={position}
-      rotation={[
-        rotation[0] - Math.PI / 2,
-        rotation[1] + Math.PI / 2,
-        rotation[2],
-        'YXZ'
-      ]}
-      receiveShadow
-      userData={userData.current}
-      {...props}>
-      <planeBufferGeometry
-        args={[
-          heightmap.image.width * elementSize,
-          heightmap.image.height * elementSize,
-          heightmap.image.width * elementSize * resolution,
-          heightmap.image.height * elementSize * resolution
-        ]}
-      />
-      <meshPhongMaterial
-        map={heightmap}
-        displacementMap={heightmap}
-        displacementScale={maxHeight}
-        displacementBias={-maxHeight / 2}
-      />
+    <mesh ref={ref} receiveShadow userData={userData.current} {...props}>
+      <primitive attach="geometry" object={terrainGeometry} />
+      <meshPhongMaterial map={heightmap} />
     </mesh>
   )
 }
