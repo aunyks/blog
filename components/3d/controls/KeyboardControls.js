@@ -7,7 +7,6 @@ export default function KeyboardControls({
   onForwardBack,
   onLeftRight,
   onJump,
-  onDash,
   ...props
 }) {
   const kbdForward = useKeysPressed(['w', 'W', 'ArrowUp'])
@@ -15,8 +14,7 @@ export default function KeyboardControls({
   const kbdBack = useKeysPressed(['s', 'S', 'ArrowDown'])
   const kbdRight = useKeysPressed(['d', 'D', 'ArrowRight'])
   const p = useKeysPressed(['p', 'P'])
-  const f = useKeysPressed(['f', 'F'])
-  const spacebarDown = useKeysPressed(['space', 'Space'])
+  const spacebarDown = useKeysPressed([' ', 'Space'])
 
   const { isPaused, setPaused } = useContext(PauseContext)
   useEffect(() => {
@@ -24,12 +22,6 @@ export default function KeyboardControls({
       setPaused(!isPaused)
     }
   }, [p])
-
-  useEffect(() => {
-    if (f) {
-      onDash()
-    }
-  }, [f])
 
   useEffect(() => {
     if (spacebarDown) {
