@@ -83,7 +83,7 @@ export default function FirstPersonPlayer({
     )
   )
   const upDown = useRef(0)
-  const onJump = () => {
+  const onJump = useRef(() => {
     // This is hilariously slow I hate it
     jumpRayCaster.current.set(currentPhysicsPosition.current, DOWN_VECTOR)
     // Only jump if there's something right below us
@@ -95,7 +95,7 @@ export default function FirstPersonPlayer({
         upDown.current = 0
       }, 100)
     }
-  }
+  })
   // If the gamepad is connected, we don't render the dpad on mobile
   const [gamepadConnected, setGamepadConnected] = useState(false)
   // Controls need to be enabled after first render so that
@@ -309,7 +309,7 @@ export default function FirstPersonPlayer({
         <KeyboardControls
           onForwardBack={setForwardBack}
           onLeftRight={setLeftRight}
-          onJump={onJump}
+          onJump={onJump.current}
         />
       )}
       <Gamepad
