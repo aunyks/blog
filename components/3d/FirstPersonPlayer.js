@@ -88,7 +88,7 @@ export default function FirstPersonPlayer({
     jumpRayCaster.current.set(currentPhysicsPosition.current, DOWN_VECTOR)
     // Only jump if there's something right below us
     if (
-      jumpRayCaster.current.intersectObjects(scene.children, false).length > 0
+      jumpRayCaster.current.intersectObjects(scene.children, true).length > 0
     ) {
       upDown.current = 0.75
       setTimeout(() => {
