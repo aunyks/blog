@@ -8,6 +8,19 @@ export default function RandomThoughts() {
       title="Random Thoughts"
       description="Miscellaneous thoughts with no category."
       noFooter>
+      <Thought date="2022-02-16">
+        <p>
+          Rust is an incredible language. You can use it in embedded hardware,
+          in web servers, or in video games or something and it feels the exact
+          same everywhere. And you do that while keeping a good idea of what the
+          machine's actually doing (as opposed to Go, TinyGo, or Python).
+        </p>
+        <p>
+          The memory safety is just a cherry on top. It's honestly incredible.
+          It has it drawback of course, but so far the benefits seem to outweigh
+          the costs in my opinion.
+        </p>
+      </Thought>
       <Thought date="2022-01-02">
         <p>
           As we see better UX in crypto, we’ll see more centralization. It
