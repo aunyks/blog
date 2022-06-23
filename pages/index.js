@@ -7,6 +7,7 @@ import useDeviceSize from 'hooks/use-device-size'
 import usePageVisible from 'hooks/use-page-visible'
 import { MathUtils, MeshBasicMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { invoke } from '@tauri-apps/api/tauri'
 
 function Bolt() {
   const model = useLoader(GLTFLoader, '/3d/models/aunyks-bolt.glb')
@@ -88,6 +89,10 @@ function Bolt() {
 }
 
 export default function HomePage() {
+  useEffect(() => {
+    // With the Tauri global script, enabled when `tauri.conf.json > build > withGlobalTauri` is set to true:
+    const invoke = window.__TAURI__.invoke
+  }, [])
   return (
     <>
       <Head>

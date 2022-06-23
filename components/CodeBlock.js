@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import init, { WasmGame } from 'sp-pack'
 
 export default function CodeBlock({
   className,
@@ -65,10 +64,6 @@ export default function CodeBlock({
             <button
               className="no-code-btn my-2 px-2 mr-1 py-0 text-sm rounded-sm"
               onClick={async () => {
-                await init()
-                let w = new WasmGame()
-                w.initialize()
-                console.log(w)
                 await navigator.clipboard.writeText(children.trim())
                 setCbWriteSuccess(true)
                 setTimeout(() => {

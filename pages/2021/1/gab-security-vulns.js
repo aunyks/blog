@@ -79,7 +79,7 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
         a URL to redirect us wherever we want and, if it takes us there, the
         redirect is open. Since{' '}
         <code>https://trends.gab.com/visit?url=https%3A%2F%2Fexample.com</code>{' '}
-        us to <code>example.com</code>, this is a classic{' '}
+        directs us to <code>example.com</code>, this is a classic{' '}
         <a href="/2020/2/howd-i-get-here">Open Redirect vulnerability</a>. With
         this, we can trick victims into visiting malicious web pages, since we
         can make the link look like it's a trustworthy Gab link.
@@ -219,7 +219,7 @@ hash_string('I (@aunyks) have found two low severity and one high severity secur
       <p>
         Here's a demo where I use a malicious trend to prompt the user for their
         email and password to be stored for later. I chose prompting for
-        brevity's sake. I could also make a fake login page that steal
+        brevity's sake. I could also make a fake login page that steals
         credentials for a more convincing scheme.
       </p>
       <figure>
