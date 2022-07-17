@@ -8,6 +8,17 @@ export default function JsCodeSnippets() {
     <CodeSnippetPost
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite.">
+      <CodeSnippet title="Get a Random Integer Between 0 and Some Integer (Exclusively)">
+        <p>
+          This function returns a random integer within the range [0,{' '}
+          <code>max</code>).
+        </p>
+        <CodeBlock lang="js">{`
+function randomIntFromZero(max = 0) {
+  return parseInt(Math.random() * max)
+}
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Suspend a Promise">
         <p>
           A function that "suspends" a{' '}
@@ -65,7 +76,7 @@ function suspend(promise) {
       <CodeSnippet title="Save Binary File">
         <p>
           This function lets you prompt the user for downloading a binary file
-          to their device.I'm not sure how it handles endianness.
+          to their device. I'm not sure how it handles endianness.
         </p>
         <CodeBlock lang="js">{`
 function saveBinaryFile(arrayBuffer, fileName) {
@@ -867,7 +878,7 @@ const range = (a, b, step, inclusiveOfB = false) => {
       </CodeSnippet>
       <CodeSnippet title="Slugify a String">
         <p>
-          Turn a string into a slug.Borrowed from{' '}
+          Turn a string into a slug. Borrowed from{' '}
           <a href="https://lucidar.me/en/web-dev/how-to-slugify-a-string-in-javascript/">
             Lulu
           </a>
