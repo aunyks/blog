@@ -8,6 +8,30 @@ export default function JsCodeSnippets() {
     <CodeSnippetPost
       title="JavaScript Code Snippets"
       description="Useful bites of JS code that I often write and rewrite.">
+      <CodeSnippet title="Basic Finite State Machine">
+        <p>A simple, finite state machine.</p>
+        <CodeBlock lang="js">{`
+// An example set of states:
+// const Light = Object.freeze({
+//   On: 1,
+//   Off: 0,
+// })
+
+class StateMachine {
+  constructor(initialState) {
+    this._state = initialState
+  }
+
+  transitionTo(newState) {
+    this._state = newState
+  }
+
+  current() {
+    return this._state
+  }
+}  
+      `}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Get a Random Integer Between 0 and Some Integer (Exclusively)">
         <p>
           This function returns a random integer within the range [0,{' '}
