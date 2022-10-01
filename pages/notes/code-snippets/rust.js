@@ -8,6 +8,54 @@ export default function RustCodeSnippets() {
       title="Rust Code Snippets"
       description="Useful bites of Rust code that I often write and rewrite."
       hasCodeSnippet>
+      <CodeSnippet title="Generic 1D Complementary Filter">
+        <p>
+          A simple complementary filter that can be used to smoothen noisy
+          signals / inputs.
+        </p>
+        <CodeBlock lang="rust">{`
+// Use as such:
+// let initial_value = 1.0;
+// let alpha = 0.8;
+// let x_k = 2.0;
+
+// let mut comp_filter: ComplementaryFilter<f32> =
+//     ComplementaryFilter::new(initial_value, alpha);
+
+// let next_value = comp_filter.predict_next(x_k);
+#[derive(Copy, Clone)]
+pub struct ComplementaryFilter<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Mul<f32, Output = T> + Copy,
+{
+    /// y_(k - 1)
+    current_value: T,
+    alpha: f32,
+}
+
+impl<T> ComplementaryFilter<T>
+where
+    T: Add<T, Output = T> + Mul<T, Output = T> + Mul<f32, Output = T> + Copy,
+{
+    pub fn new(initial_value: T, alpha: f32) -> Self {
+        ComplementaryFilter {
+            current_value: initial_value,
+            alpha: alpha,
+        }
+    }
+    
+    pub fn set_alpha(&mut self, new_alpha: f32) {
+        self.alpha = new_alpha;
+    }
+    
+    pub fn predict_next(&mut self, value: T) -> T {
+        let y_k = (value * self.alpha) + (self.current_value * (1.0 - self.alpha));
+        self.current_value = y_k;
+        y_k
+    }
+}
+`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Basic Finite State Machine">
         <p>
           A simple, finite state machine. I strongly recommend using an{' '}
