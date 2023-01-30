@@ -8,6 +8,18 @@ export default function RustCodeSnippets() {
       title="Rust Code Snippets"
       description="Useful bites of Rust code that I often write and rewrite."
       hasCodeSnippet>
+      <CodeSnippet title="Generic Scalar Linear Interpolation (lerp)">
+        <p>
+          A lerp function for any scalar value that implements the below traits.
+        </p>
+        <CodeBlock lang="rust">{`
+pub fn lerp<T>(start: T, end: T, progress: T) -> T
+where
+    T: Mul<Output = T> + Add<Output = T> + From<f32> + Sub<T, Output = T> + Copy,
+{
+    start * (T::from(1.0) - progress) + end * progress
+}`}</CodeBlock>
+      </CodeSnippet>
       <CodeSnippet title="Generic 1D Complementary Filter">
         <p>
           A simple complementary filter that can be used to smoothen noisy
