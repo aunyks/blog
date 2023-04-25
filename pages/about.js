@@ -55,10 +55,10 @@ export default function AboutPage() {
           .
         </p>
         <p>
-          "Increasing potential" is a double entendre. It's a reference to the
-          electromotive force in physics and also to human growth. To gain
-          knowledge, skill, wisdom, and experience is to increase your potential
-          as a person.
+          "Increasing potential" is a reference to both the electromotive force
+          in physics (hence the lightning bolt) and also to human growth. To
+          gain knowledge, skill, wisdom, and experience is to increase your
+          potential as a person.
         </p>
         <p>
           When looking for posts, you'll probably see a white box in the corner

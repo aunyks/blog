@@ -24,8 +24,11 @@ export default function ThreeDFigure({ caption, children, ...props }) {
       passive: false
     })
     return () => {
-      figureRef.current.removeEventListener('pointermove', onPointerMove)
-      figureRef.current.removeEventListener('touchmove', onPointerMove)
+      try {
+        figureRef.current.removeEventListener('pointermove', onPointerMove)
+        figureRef.current.removeEventListener('touchmove', onPointerMove)
+      } finally {
+      }
     }
   }, [])
 

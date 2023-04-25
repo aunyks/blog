@@ -17,8 +17,8 @@ export default function RandomThoughts() {
         </p>
         <p>
           The memory safety is just a cherry on top. It's honestly incredible.
-          It has it drawback of course, but so far the benefits seem to outweigh
-          the costs in my opinion.
+          It has its drawbacks of course, but so far the benefits seem to
+          outweigh the costs in my opinion.
         </p>
       </Thought>
       <Thought date="2022-01-02">
