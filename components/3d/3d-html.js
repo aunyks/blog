@@ -1,17 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {
-  Vector3,
-  Group,
-  Object3D,
-  Matrix4,
-  Camera,
-  PerspectiveCamera,
-  OrthographicCamera,
-  Raycaster
-} from 'three'
-import { Assign } from 'utility-types'
-import { ReactThreeFiber, useFrame, useThree } from '@react-three/fiber'
+import { Vector3, PerspectiveCamera, OrthographicCamera } from 'three'
+import { useFrame, useThree } from '@react-three/fiber'
 
 const v1 = new Vector3()
 const v2 = new Vector3()

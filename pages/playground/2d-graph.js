@@ -1,4 +1,4 @@
-import ReactFlow, { Background } from 'react-flow-renderer'
+import ReactFlow, { Background } from 'reactflow'
 
 export default function TwoDGraph() {
   // Only style props work, so probably best

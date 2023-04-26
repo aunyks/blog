@@ -1,14 +1,14 @@
-import { UseWalletProvider } from 'use-wallet'
-import Web3Modal from 'components/crypto/Web3Modal'
-import { useState } from 'react'
-import useWeb3 from 'hooks/crypto/use-web3'
+// import { UseWalletProvider } from 'use-wallet'
+// import Web3Modal from 'components/crypto/Web3Modal'
+// import { useState } from 'react'
+// import useWeb3 from 'hooks/crypto/use-web3'
 
 function App() {
-  const [modalActive, setModalActive] = useState(false)
-  const { status, reset } = useWeb3()
+  // const [modalActive, setModalActive] = useState(false)
+  // const { status, reset } = useWeb3()
   return (
     <div>
-      <p>Status: {status}</p>
+      {/* <p>Status: {status}</p>
       <button
         onClick={() => {
           setModalActive(true)
@@ -27,18 +27,19 @@ function App() {
         id="web3modal"
         onClose={() => setModalActive(false)}
         active={modalActive}
-      />
+      /> */}
     </div>
   )
 }
 
 export default function Web3Page() {
-  return (
-    <UseWalletProvider
-      connectors={{
-        walletconnect: { rpcUrl: 'https://bridge.walletconnect.org' }
-      }}>
-      <App />
-    </UseWalletProvider>
-  )
+  return null
+  // return (
+  //   <UseWalletProvider
+  //     connectors={{
+  //       walletconnect: { rpcUrl: 'https://bridge.walletconnect.org' }
+  //     }}>
+  //     <App />
+  //   </UseWalletProvider>
+  // )
 }

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useMemo } from 'react'
 import { useGraph, useLoader, useFrame } from '@react-three/fiber'
 import { Quaternion, Vector3 } from 'three'
-import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils'
+import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useAnimations from 'hooks/3d/use-animations'
 import Xashi from 'components/3d/Xashi'

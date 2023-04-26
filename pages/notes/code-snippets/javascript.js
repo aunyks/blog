@@ -165,8 +165,8 @@ function leadingDebounce(func, timeout = 300){
           , this function lets you debounce the execution of the function that's
           passed as an argument. For example, writing{' '}
           <code>
-            const mashButton = debounce(() => console.log('thanks for waiting'),
-            500)
+            const mashButton = debounce(() =&gt; console.log('thanks for
+            waiting'), 500)
           </code>{' '}
           lets you repeatedly call <code>mashButton</code>.It will debounce the
           log function until 500 milliseconds have passed without the function
