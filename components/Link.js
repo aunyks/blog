@@ -1,3 +1,5 @@
+import cx from 'classnames'
+
 export function CardBox({ series, video, postExample }) {
   return (
     <>
@@ -27,9 +29,11 @@ export function CardBox({ series, video, postExample }) {
     }
     `}</style>
       <svg
-        className={`card-footer-block ${series && 'series'} ${
-          video && 'video'
-        } ${postExample && 'example'}`}
+        className={cx('card-footer-block', {
+          series: !!series,
+          video: !!video,
+          example: postExample
+        })}
         viewBox="0 0 10 10"
         width="10"
         height="10">

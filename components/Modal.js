@@ -2,6 +2,7 @@ import useDeviceSize from 'hooks/use-device-size'
 import useKeyPress from 'hooks/use-key-press'
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import cx from 'classnames'
 
 function ModalCross() {
   const deviceSize = useDeviceSize()
@@ -152,14 +153,25 @@ export default function Modal({
               // close too early
               e.stopPropagation()
             }}
-            className={`flex flex-col z-10 w-11/12 md:w-4/6 lg:w-1/2 rounded mx-auto modal-dialog ${
-              active ? 'active' : ''
-            }`}>
+            className={cx(
+              'flex',
+              'flex-col',
+              'z-10',
+              'w-11/12',
+              'md:w-4/6',
+              'lg:w-1/2',
+              'rounded',
+              'mx-auto',
+              'modal-dialog',
+              {
+                active: active
+              }
+            )}>
             <section
               id={`${id}-body`}
-              className={`order-2 px-4 ${
-                !!noScroll ? '' : 'overflow-y-scroll'
-              }`}
+              className={cx('order-2', 'px-4', {
+                'overflow-y-scroll': !noScroll
+              })}
               style={{ maxHeight: '17rem' }}>
               {children}
             </section>

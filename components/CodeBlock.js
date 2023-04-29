@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import cx from 'classnames'
 
 export default function CodeBlock({
   className,
@@ -41,7 +42,11 @@ export default function CodeBlock({
           }
         }
       `}</style>
-      <div className={`p-0 m-0 ${isShowingCode ? 'block' : 'hidden'}`}>
+      <div
+        className={cx('p-0', 'm-0', {
+          block: isShowingCode,
+          hidden: !isShowingCode
+        })}>
         <pre
           className={`${
             className || ''
@@ -86,9 +91,10 @@ export default function CodeBlock({
         </div>
       </div>
       <button
-        className={`${
-          isShowingCode ? 'hidden' : 'block'
-        } code-btn w-full text-center py-2 rounded`}
+        className={cx('code-btn', 'w-full', 'text-center', 'py-2', 'rounded', {
+          hidden: isShowingCode,
+          block: !isShowingCode
+        })}
         onClick={() => {
           setShowingCode(true)
         }}>

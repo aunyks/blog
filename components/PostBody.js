@@ -1,3 +1,5 @@
+import cx from 'classnames'
+
 export default function PostBody({ wide, lang, textDirection, children }) {
   return (
     <>
@@ -11,9 +13,19 @@ export default function PostBody({ wide, lang, textDirection, children }) {
       <main
         lang={lang || 'en'}
         style={{ textDirection: textDirection || 'ltr' }}
-        className={`post-body mx-auto px-3 lg:px-0 w-full ${
-          !!wide ? 'lg:px-24' : 'lg:w-1/2'
-        } pt-16 lg:pt-16`}>
+        className={cx(
+          'post-body',
+          'mx-auto',
+          'px-3',
+          'lg:px-0',
+          'w-full',
+          'pt-16',
+          'lg:pt-16',
+          {
+            'lg:px-24': !!wide,
+            'lg:w-1/2': !wide
+          }
+        )}>
         {children}
       </main>
     </>
