@@ -87,7 +87,7 @@ export default function Modal({
 
   // Modals should always be escape key-closable
   const escapePressed = useKeyPress('Escape')
-  if (active && escapePressed) {
+  if (active && escapePressed && !!onClose) {
     onClose()
   }
 
@@ -176,26 +176,32 @@ export default function Modal({
               {children}
             </section>
             <footer className="order-3 px-4">{footing}</footer>
-            <header className="order-1 py-0 px-4 flex flex-row justify-between">
+            <header
+              className={cx('order-1', 'py-0', 'px-4', 'flex', 'flex-row', {
+                'justify-between': !!title,
+                'justify-end': !title
+              })}>
               {typeof title === 'string' ? (
                 <h3 className="text-sm md:text-lg lg:text-xl font-normal my-2">
                   {title}
                 </h3>
               ) : (
-                { title }
+                <>{title}</>
               )}
-              <button
-                title="Close this dialog"
-                aria-label="Close this dialog"
-                className="pr-0"
-                onClick={(e) => {
-                  onClose(e)
-                  // Only want this click event
-                  // to run for this button and no ancestors
-                  e.stopPropagation()
-                }}>
-                <ModalCross />
-              </button>
+              {onClose && (
+                <button
+                  title="Close this dialog"
+                  aria-label="Close this dialog"
+                  className="pr-0"
+                  onClick={(e) => {
+                    onClose(e)
+                    // Only want this click event
+                    // to run for this button and no ancestors
+                    e.stopPropagation()
+                  }}>
+                  <ModalCross />
+                </button>
+              )}
             </header>
           </aside>
         </div>
