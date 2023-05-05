@@ -1,4 +1,4 @@
-import VirtualBtn from './virtual-btn.module.js'
+import VirtualBtn from './VirtualButton.js'
 
 class VirtualCrouchBtnInput extends VirtualBtn {
   constructor(btnElement) {

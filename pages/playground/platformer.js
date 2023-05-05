@@ -6,7 +6,7 @@ import SimulationContext, {
   useFrame,
   useSimulation
 } from 'perigee/context/SimulationContext'
-import GameInput from 'perigee/input/game-input'
+import GameInput from 'perigee/input/Game'
 import mixRefs from 'utils/mix-refs'
 import { Level1Sim } from 'perigee/levels/Level1Sim'
 import {

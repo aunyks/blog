@@ -1,4 +1,4 @@
-import Controller from './controller.module.js'
+import Controller from './Controller.js'
 
 const JOYSTICK_CENTER_X = 184
 const JOYSTICK_CENTER_Y = 184
@@ -98,7 +98,7 @@ class VirtualJoystickInput extends Controller {
     // x: negative is left. y: negative is up
     return {
       x: this._stickX,
-      y: this._stickY,
+      y: this._stickY
     }
   }
 }

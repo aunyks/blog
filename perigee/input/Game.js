@@ -1,10 +1,10 @@
-import GamepadInput from './gamepad.module.js'
-import KeyboardInput from './keyboard.module.js'
-import PointerLockInput from './pointerlock.module.js'
-import TouchInput from './touch.module.js'
-import VirtualJoystickInput from './virtual-joystick.module.js'
-import VirtualJumpBtnInput from './virtual-jumpbtn.module.js'
-import VirtualCrouchBtnInput from './virtual-crouchbtn.module.js'
+import GamepadInput from './Gamepad.js'
+import KeyboardInput from './Keyboard.js'
+import PointerLockInput from './PointerLock.js'
+import TouchInput from './Touch.js'
+import VirtualJoystickInput from './VirtualJoystick.js'
+import VirtualJumpBtnInput from './VirtualJumpButton.js'
+import VirtualCrouchBtnInput from './VirtualCrouchButton.js'
 
 class GameInput {
   constructor({

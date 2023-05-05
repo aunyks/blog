@@ -1,4 +1,4 @@
-import Controller from './controller.module.js'
+import Controller from './Controller.js'
 
 class PointerLockInput extends Controller {
   constructor(domElement) {

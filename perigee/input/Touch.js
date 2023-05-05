@@ -1,4 +1,4 @@
-import Controller from './controller.module.js'
+import Controller from './Controller.js'
 
 class TouchInput extends Controller {
   constructor(domElement) {
