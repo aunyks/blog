@@ -1,4 +1,10 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+  useRef
+} from 'react'
 import dynamic from 'next/dynamic'
 import AssetContext, { AssetStore } from 'perigee/context/AssetContext'
 import SimulationContext, {
@@ -8,6 +14,8 @@ import SimulationContext, {
 } from 'perigee/context/SimulationContext'
 import GameInput from 'perigee/input/Game'
 import mixRefs from 'utils/mix-refs'
+import { parseGltf } from 'perigee/utils/loaders'
+import Modal from 'components/Modal'
 import { Level1Sim } from 'perigee/levels/Level1Sim'
 import {
   PerspectiveCamera,
@@ -15,10 +23,13 @@ import {
   WebGLRenderer,
   DirectionalLight,
   PCFSoftShadowMap,
-  sRGBEncoding
+  ColorManagement,
+  SRGBColorSpace,
+  Vector2
 } from 'three'
-import { parseGltf } from 'perigee/utils/loaders'
-import Modal from 'components/Modal'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 const ASSET_LOAD_STATE = Object.freeze({
   IN_PROGRESS: 'loading',
@@ -80,7 +91,7 @@ function PlatformerGame() {
   }, [])
 
   // Load assets on initial page load and store in AssetStore. Also load WASM into sim
-  useEffect(() => {
+  useEffect(function loadAssetsIntoStore() {
     fetchAssets()
       .then((assetStore) => {
         assetStoreRef.current = assetStore
@@ -95,24 +106,28 @@ function PlatformerGame() {
   // Once assets are loaded, initialize sim and scene
   const cameraRef = useRef(null)
   const sceneRef = useRef(null)
-  useEffect(() => {
-    if (assetsLoadState === ASSET_LOAD_STATE.COMPLETE) {
-      simRef.current.initialize()
-      sceneRef.current = new Scene()
-      sceneRef.current.add(assetStoreRef.current.get('scene-gltf').scene)
-      sceneRef.current.add(new DirectionalLight(0xffffff, 10))
+  useEffect(
+    function initSimAndScene() {
+      if (assetsLoadState === ASSET_LOAD_STATE.COMPLETE) {
+        simRef.current.initialize()
+        ColorManagement.enabled = true
+        sceneRef.current = new Scene()
+        sceneRef.current.add(assetStoreRef.current.get('scene-gltf').scene)
+        sceneRef.current.add(new DirectionalLight(0xffffff, 10))
 
-      assetStoreRef.current.get('scene-gltf').scene.traverse((obj) => {
-        if (!!obj.isMesh && !obj.userData.simSettings.graphics.enabled) {
-          obj.geometry.dispose()
-          obj.material.dispose()
-          obj.visible = false
-        }
-      })
+        assetStoreRef.current.get('scene-gltf').scene.traverse((obj) => {
+          if (!!obj.isMesh && !obj.userData.simSettings.graphics.enabled) {
+            obj.geometry.dispose()
+            obj.material.dispose()
+            obj.visible = false
+          }
+        })
 
-      setSimSetupState(SIM_SETUP_STATE.COMPLETE)
-    }
-  }, [assetsLoadState])
+        setSimSetupState(SIM_SETUP_STATE.COMPLETE)
+      }
+    },
+    [assetsLoadState]
+  )
 
   const finishedLoadingDeps =
     assetsLoadState === ASSET_LOAD_STATE.COMPLETE &&
@@ -123,53 +138,79 @@ function PlatformerGame() {
   // get overwritten across rerenders
   const gameInputRef = useRef(null)
   const rendererRef = useRef(null)
+  const effectComposerRef = useRef(null)
   const pointerTargetRef = useRef()
   const touchTargetRef = useRef()
   const renderCanvasRef = useRef()
-  useEffect(() => {
-    if (finishedLoadingDeps) {
-      if (!wasCrankStarted) {
-        function resetCameraProjection() {
-          const aspect =
-            window[CANVAS_WIDTH_PROPERTY] / window[CANVAS_HEIGHT_PROPERTY]
-          cameraRef.current.aspect = aspect
-          cameraRef.current.updateProjectionMatrix()
-          rendererRef.current.setSize(
-            window[CANVAS_WIDTH_PROPERTY],
-            window[CANVAS_HEIGHT_PROPERTY]
+  useLayoutEffect(
+    function initRendereringAndInputs() {
+      if (finishedLoadingDeps) {
+        if (!wasCrankStarted) {
+          function resetCameraProjection() {
+            const aspect =
+              window[CANVAS_WIDTH_PROPERTY] / window[CANVAS_HEIGHT_PROPERTY]
+            cameraRef.current.aspect = aspect
+            cameraRef.current.updateProjectionMatrix()
+            rendererRef.current.setSize(
+              window[CANVAS_WIDTH_PROPERTY],
+              window[CANVAS_HEIGHT_PROPERTY]
+            )
+            effectComposerRef.current.setSize(
+              window[CANVAS_WIDTH_PROPERTY],
+              window[CANVAS_HEIGHT_PROPERTY]
+            )
+          }
+          window.addEventListener('resize', resetCameraProjection, false)
+
+          gameInputRef.current = new GameInput({
+            pointerLockTarget: pointerTargetRef.current,
+            touchTarget: touchTargetRef.current
+          })
+
+          cameraRef.current = new PerspectiveCamera(
+            45,
+            window[CANVAS_WIDTH_PROPERTY] / window[CANVAS_HEIGHT_PROPERTY],
+            0.01,
+            1000
           )
+
+          rendererRef.current = new WebGLRenderer({
+            canvas: renderCanvasRef.current,
+            antialias: window.devicePixelRatio > 1 ? false : true,
+            logarithmicDepthBuffer: true
+          })
+          rendererRef.current.setPixelRatio(window.devicePixelRatio)
+          rendererRef.current.physicallyCorrectLights = true
+          rendererRef.current.shadowMap.enabled = true
+          rendererRef.current.shadowMap.type = PCFSoftShadowMap
+          rendererRef.current.toneMappingExposure = 1
+          rendererRef.current.outputColorSpace = SRGBColorSpace
+
+          effectComposerRef.current = new EffectComposer(rendererRef.current)
+          effectComposerRef.current.addPass(
+            new RenderPass(sceneRef.current, cameraRef.current)
+          )
+          const bloomPass = new UnrealBloomPass(
+            new Vector2(
+              window[CANVAS_WIDTH_PROPERTY],
+              window[CANVAS_HEIGHT_PROPERTY]
+            ),
+            1.5,
+            0.4,
+            0.85
+          )
+          bloomPass.threshold = 0
+          bloomPass.strength = 0.4
+          bloomPass.radius = 0
+          effectComposerRef.current.addPass(bloomPass)
+
+          resetCameraProjection()
+        } else {
         }
-        window.addEventListener('resize', resetCameraProjection, false)
-
-        gameInputRef.current = new GameInput({
-          pointerLockTarget: pointerTargetRef.current,
-          touchTarget: touchTargetRef.current
-        })
-
-        cameraRef.current = new PerspectiveCamera(
-          45,
-          window[CANVAS_WIDTH_PROPERTY] / window[CANVAS_HEIGHT_PROPERTY],
-          0.01,
-          1000
-        )
-
-        rendererRef.current = new WebGLRenderer({
-          canvas: renderCanvasRef.current,
-          antialias: window.devicePixelRatio > 1 ? false : true
-        })
-        rendererRef.current.setPixelRatio(window.devicePixelRatio)
-        rendererRef.current.physicallyCorrectLights = true
-        rendererRef.current.shadowMap.enabled = true
-        rendererRef.current.shadowMap.type = PCFSoftShadowMap
-        rendererRef.current.outputEncoding = sRGBEncoding
-
-        rendererRef.current.render(sceneRef.current, cameraRef.current)
-
-        resetCameraProjection()
-      } else {
       }
-    }
-  }, [finishedLoadingDeps, wasCrankStarted])
+    },
+    [finishedLoadingDeps, wasCrankStarted]
+  )
 
   const gameplayDependencies = [finishedLoadingDeps, wasCrankStarted, isPaused]
 
@@ -202,7 +243,7 @@ function PlatformerGame() {
       gameInputRef.current.copyToSim(simRef.current)
       simRef.current.step(desiredTimestep.current)
 
-      rendererRef.current.render(sceneRef.current, cameraRef.current)
+      effectComposerRef.current.render()
     }
 
     frameListenersRef.current.forEach((listener) => {
@@ -227,7 +268,7 @@ function PlatformerGame() {
     rafRef.current = window.requestAnimationFrame(onGameLoopTick)
   }, gameplayDependencies)
 
-  useEffect(() => {
+  useLayoutEffect(function startPauseAndResume() {
     if (finishedLoadingDeps && wasCrankStarted && !isPaused) {
       lastTimestampRef.current = window.performance.now()
       onGameLoopTick(lastTimestampRef.current)
