@@ -58,21 +58,15 @@ function ModalCross() {
 }
 
 export default function Modal({
-  id,
   label,
   title,
   active,
   onClose,
   noScroll,
   footing,
-  children
+  children,
+  className = ''
 }) {
-  if (!id) {
-    throw new Error(
-      'id prop of Modal was given a falsey value. This prop is required and must be unique.'
-    )
-  }
-
   const dialogRef = useRef()
   // To fix SSR hydration issues, this component simply doesn't
   // render on the server. Just the client
@@ -107,12 +101,16 @@ export default function Modal({
             background: rgba(0, 0, 0, 0.5) !important;
             -webkit-backdrop-filter: blur(3px) !important;
             backdrop-filter: blur(3px) !important;
-            z-index: 3;
+            z-index: 999;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
           }
 
           .modal-dialog {
             z-index: 4;
-            background: var(--light-gray);
             transition: all 0.2s;
             transform: translateY(20px);
             opacity: 0;
@@ -121,12 +119,6 @@ export default function Modal({
           .modal-dialog.active {
             transform: translateY(0px);
             opacity: 1;
-          }
-
-          @media (prefers-color-scheme: dark) {
-            .modal-dialog {
-              background: var(--dark-gray);
-            }
           }
 
           @media (prefers-reduced-motion) {
@@ -146,7 +138,6 @@ export default function Modal({
             role="alertdialog"
             aria-modal="true"
             aria-label={label || title}
-            aria-describedby={`${id}-body`}
             onClick={(e) => {
               // Don't want any click events here to
               // bubble up into the overlay, causing the modal to
@@ -164,11 +155,11 @@ export default function Modal({
               'mx-auto',
               'modal-dialog',
               {
-                active: active
+                active: active,
+                [className]: !!className
               }
             )}>
             <section
-              id={`${id}-body`}
               className={cx('order-2', 'px-4', {
                 'overflow-y-scroll': !noScroll
               })}
