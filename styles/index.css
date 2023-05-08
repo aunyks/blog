@@ -318,6 +318,10 @@ button.melody {
   color: var(--light-gray);
 }
 
+.modal-dialog {
+  background-color: var(--light-gray);
+}
+
 @media only screen and (max-width: 375px) {
   /*
     iPhone X, 6, 7, 8
@@ -386,5 +390,9 @@ button.melody {
   button.melody {
     color: var(--black);
     background: rgb(216, 216, 216);
+  }
+
+  .modal-dialog {
+    background-color: var(--dark-gray);
   }
 }
